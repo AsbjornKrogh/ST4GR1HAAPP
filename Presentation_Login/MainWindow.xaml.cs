@@ -20,9 +20,25 @@ namespace Presentation_Login
    /// </summary>
    public partial class MainWindow : Window
    {
+       
+
       public MainWindow()
       {
          InitializeComponent();
       }
-   }
+
+        private void logInB_Click(object sender, RoutedEventArgs e)
+        {
+            string medarbejderID = MedarbejderID.Text;
+            string PW = Password.Text;
+
+            if (validering.isUserRegistered(medarbejderID, PW) == true)
+            {
+                //Hide();
+                //teknikker.Show();
+                Content = kliniker;
+
+            }
+        }
+    }
 }
