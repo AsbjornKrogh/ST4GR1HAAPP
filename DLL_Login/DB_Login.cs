@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using DTO; 
 
 namespace DLL_Login
 {
@@ -9,14 +10,15 @@ namespace DLL_Login
        private SqlDataReader reader;
        private SqlCommand command;
        private const String DBlogin = "F20ST2ITS2201907648";
+       private DTO_StaffLogin dtoStaffLogin;
 
-       public bool LoginStaff(String MedarbejderID, String pw)
+       public DTO_StaffLogin LoginStaff(String StaffID, String pw)
        {
-           bool result = false;
+           dtoStaffLogin = new DTO_StaffLogin();
            string connectionString = (@"Data Source=st-i4dab.uni.au.dk;Initial Catalog=" + DBlogin + ";Integrated Security=False;User ID=" + DBlogin + ";Password=" + DBlogin + ";Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
            connection = new SqlConnection(connectionString);
            command = new SqlCommand();
-           string queryString = "Select * from Staff_Table where MedarbejderID = '" + MedarbejderID + "'";
+           string queryString = "Select * from Staff_Table where MedarbejderID = '" + StaffID + "'";
 
            try
            {
@@ -26,9 +28,14 @@ namespace DLL_Login
                    reader = command.ExecuteReader();
                    while (reader.Read())
                    {
-                       if (reader["MedarbejderID"].ToString() == MedarbejderID && reader["Password"].ToString() == pw)
+                       if (reader["MedarbejderID"].ToString() == StaffID && reader["Password"].ToString() == pw)
                        {
-                           result = true;
+                           dtoStaffLogin.StaffID = (int)reader["MedarbejderID"];
+                           dtoStaffLogin.Name = (string)reader["Navn"]; 
+                           //dtoStaffLogin.Password = (int)reader["Password];
+                           dtoStaffLogin.StaffStatus = (char)reader["Status"];
+
+                           return dtoStaffLogin;
                        }
                    }
                }
@@ -41,7 +48,7 @@ namespace DLL_Login
            {
                connection.Close();
            }
-           return result;
+           return dtoStaffLogin;
        }
     }
 }
