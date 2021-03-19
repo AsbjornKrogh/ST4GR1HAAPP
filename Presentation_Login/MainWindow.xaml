@@ -7,6 +7,68 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.40*"/>
+            <RowDefinition Height="1.2*"/>
+        </Grid.RowDefinitions>
 
+        <Border BorderBrush="Black" BorderThickness="3" Padding="20px 0 20 10"  HorizontalAlignment="Center"   VerticalAlignment="Center" Width="300" Background="#FFB1BEFF" >
+            <StackPanel >
+                <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="0 0 0 10" FontSize="29" >Healthcare Login</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="userNameTB" Grid.Column="1" Text="" TextWrapping="Wrap" BorderBrush="Black" VerticalContentAlignment="Center">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5 8 8 5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
+                    <Label Content="Brugernavn: "/>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="passwordTB" Grid.Column="1" TextWrapping="Wrap" VerticalContentAlignment="Center"
+                             BorderBrush="Black" >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5 8 8 5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
+
+                    <Label Content="Password: "/>
+                </Grid>
+
+                <Button Margin="0px 20px 0px 0px" x:Name="logInB" Content="Log in" Click="logInB_Click" BorderBrush="Black" FontWeight="Bold" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="0.1,9">
+                            <GradientStop Color="#FF5A6699" Offset="1"/>
+                            <GradientStop Color="#FF6976B3"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Border.Resources>
+        </Border>
     </Grid>
 </Window>
