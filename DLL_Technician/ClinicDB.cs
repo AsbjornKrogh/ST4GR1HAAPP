@@ -8,6 +8,7 @@ namespace DLL_Technician
     {
         public bool DeleteHA(string CPR)
         {
+            //Todo forbindelse til den rigtige database
             throw new NotImplementedException();
         }
     }
