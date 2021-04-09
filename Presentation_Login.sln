@@ -33,7 +33,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLL_Technician", "DLL_Techn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLL_Clinician", "DLL_Clinician\DLL_Clinician.csproj", "{F90BAB2C-838E-4709-A5B2-9EF7B17AC215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{F0BF29F2-D027-455B-BBD6-A6691E42B213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{F0BF29F2-D027-455B-BBD6-A6691E42B213}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F1B9951-75BB-467B-96A2-1E316BF792C6}"
+	ProjectSection(SolutionItems) = preProject
+		GitCommands.txt = GitCommands.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

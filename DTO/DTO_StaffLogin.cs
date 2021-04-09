@@ -2,6 +2,7 @@
 
 namespace DTO
 {
+
     public class DTO_StaffLogin
     {
         public string Name { get; set; }
@@ -10,7 +11,7 @@ namespace DTO
 
         public string Password { get; set; }
 
-        public char StaffStatus { get; set; }
+        public StaffStatus StaffStatus { get; set; }
 
     }
 }

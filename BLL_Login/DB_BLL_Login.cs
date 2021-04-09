@@ -2,32 +2,28 @@
 using System.Data.SqlClient;
 using System.Transactions;
 using DLL_Login;
+using DTO;
 
 namespace BLL_Login
 {
-    
    public class DB_BLL_Login
    {
-        private DB_Login DBLogin = new DB_Login();
+      public DB_Login DbLogin { get; set; }
 
-        //TODO kontoller DTO objekt for status char 
+      public DB_BLL_Login()
+      {
+         DbLogin = new DB_Login();
+      }
 
-        /// <summary>
-        /// Returns StaffStatus
-        /// </summary>
-        /// <param name="staffID"></param>
-        /// <param name="pw"></param>
-        /// <returns></returns>
-        public bool checkLogin(string staffID, string pw)
-       {
-           if (DBLogin.LoginStaff(staffID, pw) == true)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
-       }
-    }
+      /// <summary>
+      /// Returns SystemStatus and staffDTO
+      /// </summary>
+      /// <param name="staffID"></param>
+      /// <param name="pw"></param>
+      /// <returns></returns>
+      public DTO_StaffLogin CheckLogin(string staffID, string pw)
+      {
+         return DbLogin.LoginStaff(staffID, pw);
+      }
+   }
 }
