@@ -11,7 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BLL_Login\BLL_Login.csproj" />
     <ProjectReference Include="..\DTO\DTO.csproj" />
+    <ProjectReference Include="..\Presentation_Clinician\Presentation_Clinician.csproj" />
+    <ProjectReference Include="..\Presentation_Technician\Presentation_Technician.csproj" />
   </ItemGroup>
 
 </Project>

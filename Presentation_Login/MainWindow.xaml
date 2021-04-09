@@ -29,7 +29,7 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    <Label Content="Brugernavn: "/>
+                    <Label Content="Staff Id: "/>
                 </Grid>
 
                 <Grid>
@@ -37,20 +37,18 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="passwordTB" Grid.Column="1" TextWrapping="Wrap" VerticalContentAlignment="Center"
-                             BorderBrush="Black" >
-                        <TextBox.Resources>
+                    <PasswordBox x:Name="PasswordTB" Grid.Column="1" VerticalContentAlignment="Center"
+                             BorderBrush="Black" KeyUp="PasswordTB_KeyUp" >
+                        <PasswordBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5 8 8 5"/>
                             </Style>
-                        </TextBox.Resources>
-
-                    </TextBox>
-
+                        </PasswordBox.Resources>
+                    </PasswordBox>
                     <Label Content="Password: "/>
                 </Grid>
 
-                <Button Margin="0px 20px 0px 0px" x:Name="logInB" Content="Log in" Click="logInB_Click" BorderBrush="Black" FontWeight="Bold" Foreground="White">
+                <Button Margin="0px 20px 0px 0px" x:Name="logInB" Content="Log in" Click="LoginDB_Click" BorderBrush="Black" FontWeight="Bold" Foreground="White">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -70,5 +68,18 @@
                 </Style>
             </Border.Resources>
         </Border>
+        <Button x:Name="CreateUser" Content="Opret bruger" BorderBrush="Black" FontWeight="Bold" Foreground="White" Margin="273,14,273,14" Grid.Row="1">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="0.1,9">
+                    <GradientStop Color="#FF5A6699" Offset="1"/>
+                    <GradientStop Color="#FF6976B3"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
