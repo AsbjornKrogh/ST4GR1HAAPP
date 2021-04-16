@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DLL_Clinician</name>
+    </assembly>
+    <members>
+        <member name="M:DLL_Clinician.ClinicDatabase.GetAllPatients">
+            <summary>
+            Denne metode benyttes til at hente alle Patienter fra ClinicDatabase
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DLL_Clinician.ClinicDatabase.GetPatient(System.String)">
+            <summary>
+            Denne metode benyttes til at hente en specifik Patient fra ClinicDatabase, ud fra deres CPR
+            </summary>
+            <param name="CPR"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DLL_Clinician.ClinicDatabase.GetPatientWithEarCast(System.String)">
+            <summary>
+            Denne metode benyttes til at hente en specifik Patient med knyttede EarCast fra ClinicDatabase, ud fra deres CPR
+            </summary>
+            <param name="CPR"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DLL_Clinician.ClinicDatabase.CreatePatient(CoreEFTest.Models.Patient)">
+            <summary>
+            Denne metode benyttes til at oprette en specifik Patient i ClinicDatabase.
+            </summary>
+            <param name="patient"></param>
+        </member>
+        <member name="M:DLL_Clinician.ClinicDatabase.DeletePatient(CoreEFTest.Models.Patient)">
+            <summary>
+            Denne metode benyttes til at slette en specifik Patient i ClinicDatabase.
+            </summary>
+            <param name="patient"></param>
+        </member>
+        <member name="M:DLL_Clinician.ClinicDatabase.UpdatePatient(CoreEFTest.Models.Patient)">
+            <summary>
+            Denne metode benyttes til at updatere en specifik Patient i ClinicDatabase.
+            </summary>
+            <param name="patient"></param>
+        </member>
+    </members>
+</doc>
