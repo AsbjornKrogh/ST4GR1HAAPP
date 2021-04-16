@@ -72,7 +72,13 @@
             <fa:ImageAwesome Grid.Column="1" Name="ScanLoading" Visibility="Collapsed" Icon="CircleOutlineNotch" Spin="false" SpinDuration="3" Height="40" Width="40" />
             <Label x:Name="ScannerL" Content="Scanner..." HorizontalAlignment="Center" Visibility="Collapsed"></Label>
         </StackPanel>
-        <Button x:Name="GemB" Content="Gem scanning" Grid.Row="1" Grid.Column="1" Margin="20" FontSize="20" Click="GemB_Click"></Button>
+        <Button x:Name="GemB" Content="Gem scanning" Grid.Row="1" Grid.Column="1" Margin="20" FontSize="20" Click="GemB_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
 
     </Grid>

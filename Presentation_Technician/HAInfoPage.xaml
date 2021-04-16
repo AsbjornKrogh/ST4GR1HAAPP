@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
 
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0"  Margin="5">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>

@@ -37,34 +37,72 @@ namespace Presentation_Technician
       private void HovedmenuB_Click(object sender, RoutedEventArgs e)
       {
           Main.Content = null;
+          VelkommenL.Visibility = Visibility.Visible;
           HovedmenuB.IsEnabled = false;
+
+          //Todo tilføj alle knapper her:
           ManageHAB.IsEnabled = true;
           ScanB.IsEnabled = true;
-      }
+          ProcesB.IsEnabled = true;
+        }
+
         private void ManageHAB_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new HAInfoPage(db);
+            VelkommenL.Visibility = Visibility.Collapsed;
             ManageHAB.IsEnabled = false;
+
+            //Todo tilføj alle knapper her:
             HovedmenuB.IsEnabled = true;
             ScanB.IsEnabled = true;
+            ProcesB.IsEnabled = true;
+            PrintB.IsEnabled = true;
         }
 
         private void ScanB_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new ScanPage(db,scanner);
+            VelkommenL.Visibility = Visibility.Collapsed;
             ScanB.IsEnabled = false;
+
+            //Todo tilføj alle knapper her:
             HovedmenuB.IsEnabled = true;
             ManageHAB.IsEnabled = true;
+            ProcesB.IsEnabled = true;
+            PrintB.IsEnabled = true;
+
         }
 
         private void PrintB_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new PrintPage();
+            VelkommenL.Visibility = Visibility.Collapsed;
+            PrintB.IsEnabled = false;
+
+            //Todo tilføj alle knapper her:
+            HovedmenuB.IsEnabled = true;
+            ManageHAB.IsEnabled = true;
+            ProcesB.IsEnabled = true;
+            ScanB.IsEnabled = true;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             HovedmenuB.IsEnabled = false;
+        }
+
+        private void ProcesB_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new ProcessPage();
+            VelkommenL.Visibility = Visibility.Collapsed;
+            ProcesB.IsEnabled = false;
+
+            //Todo tilføj alle knapper her:
+            HovedmenuB.IsEnabled = true;
+            ManageHAB.IsEnabled = true;
+            PrintB.IsEnabled = true;
+            ScanB.IsEnabled = true;
         }
     }
 }
