@@ -13,5 +13,6 @@ namespace CoreEFTest.Context
 
       protected override void OnConfiguring(DbContextOptionsBuilder options)
          => options.UseSqlServer("Data Source=st-i4dab.uni.au.dk;User ID=F20ST2ITS2201908477;Password=F20ST2ITS2201908477;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
    }
 }
