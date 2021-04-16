@@ -10,14 +10,11 @@ namespace BLL_Clinician
     {
         private IClinicDatabase clinicDatabase;
         bool CPRCorrect;
-        //hej
 
         public UC2_ManagePatient()
         {
-            
             clinicDatabase = new ClinicDatabase();
         }
-        
         
         public void SaveUpdates(string email, int phonenumber)
         {

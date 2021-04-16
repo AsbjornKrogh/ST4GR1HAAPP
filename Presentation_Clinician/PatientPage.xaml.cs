@@ -22,7 +22,6 @@ namespace Presentation_Clinician
     public partial class PatientPage : Page
     {
         private UC2_ManagePatient uc2ManagePatient;
-        private IClinicDatabase clinicDatabase;
 
         private Patient patient;
         
