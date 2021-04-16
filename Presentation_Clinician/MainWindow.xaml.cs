@@ -20,9 +20,54 @@ namespace Presentation_Clinician
    /// </summary>
    public partial class MainWindow : Window
    {
+       HomePage homePage = new HomePage();
+       PatientPage patientPage = new PatientPage();
+       ManageHAPage manageHaPage = new ManageHAPage();
+       ProcessClinPage processClinPage = new ProcessClinPage();
+
+       Color color1 = Color.FromRgb(237,246,253);
+       Color color2 = Color.FromRgb(226, 230, 230);
+
       public MainWindow()
       {
          InitializeComponent();
+         this.Content = homePage;
       }
-   }
+
+        private void BtnPatient_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = patientPage;
+            BtnPatient.Background = new SolidColorBrush(color1);
+            BtnStart.Background = new SolidColorBrush(color2);
+            BtnHearingAid.Background = new SolidColorBrush(color2);
+            BtnProces.Background = new SolidColorBrush(color2);
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = homePage;
+            BtnPatient.Background = new SolidColorBrush(color2);
+            BtnStart.Background = new SolidColorBrush(color1);
+            BtnHearingAid.Background = new SolidColorBrush(color2);
+            BtnProces.Background = new SolidColorBrush(color2);
+        }
+
+        private void BtnHearingAid_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = manageHaPage;
+            BtnPatient.Background = new SolidColorBrush(color2);
+            BtnStart.Background = new SolidColorBrush(color2);
+            BtnHearingAid.Background = new SolidColorBrush(color1);
+            BtnProces.Background = new SolidColorBrush(color2);
+        }
+
+        private void BtnProces_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = processClinPage;
+            BtnPatient.Background = new SolidColorBrush(color2);
+            BtnStart.Background = new SolidColorBrush(color2);
+            BtnHearingAid.Background = new SolidColorBrush(color2);
+            BtnProces.Background = new SolidColorBrush(color1);
+        }
+    }
 }
