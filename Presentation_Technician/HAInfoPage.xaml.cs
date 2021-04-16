@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,14 +13,19 @@ using System.Windows.Shapes;
 
 namespace Presentation_Technician
 {
-   /// <summary>
-   /// Interaction logic for MainWindow.xaml
-   /// </summary>
-   public partial class MainWindow : Window
-   {
-      public MainWindow()
-      {
-         InitializeComponent();
-      }
-   }
+    /// <summary>
+    /// Interaction logic for HAInfoPage.xaml
+    /// </summary>
+    public partial class HAInfoPage : Page
+    {
+        public HAInfoPage()
+        {
+            InitializeComponent();
+        }
+
+        private void OKB_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }
