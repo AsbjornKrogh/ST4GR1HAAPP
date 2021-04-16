@@ -9,11 +9,12 @@ namespace BLL_Technician
     public class UC4_Scan
     {
         private IClinicDB clinicDB;
-        private NoScanner scanner;
+        private IScanner scanner;
 
-        public UC4_Scan(IClinicDB clinicDb)
+        public UC4_Scan(IClinicDB clinicDb, IScanner scanner)
         {
             clinicDB = clinicDb;
+            this.scanner = scanner;
         }
 
         public Patient GetPatientInformations(string EarCastID)
