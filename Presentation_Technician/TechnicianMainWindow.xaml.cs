@@ -12,22 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DLL_Technician;
 
 namespace Presentation_Technician
 {
    /// <summary>
    /// Interaction logic for MainWindow.xaml
    /// </summary>
-   public partial class MainWindow : Window
+   public partial class TechnicianMainWindow : Window
    {
-      public MainWindow()
+       private IClinicDB db;
+      public TechnicianMainWindow()
       {
          InitializeComponent();
+
+        // db = new ClinicDB();
+         db = new ClinicNoDB();
+         ;
       }
 
-        private void Main_Navigated(object sender, NavigationEventArgs e)
+      private void ManageHAB_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HAInfoPage();
+            Main.Content = new HAInfoPage(db);
         }
     }
 }
