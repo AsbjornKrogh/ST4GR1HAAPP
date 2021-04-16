@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BLL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -18,6 +19,9 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class HomePage : Page
     {
+        private UC2_ManagePatient uc2ManagePatient;
+
+
         public HomePage()
         {
             InitializeComponent();
