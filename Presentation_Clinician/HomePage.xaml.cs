@@ -21,6 +21,13 @@ namespace Presentation_Clinician
         public HomePage()
         {
             InitializeComponent();
+
+            tbCPR.Focus();
+        }
+
+        private void BtnOK_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

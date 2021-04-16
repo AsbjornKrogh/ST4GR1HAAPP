@@ -14,41 +14,40 @@ namespace EFCoreTestConsoleApp
    {
       static void Main(string[] args)
       {
-         PatientContext dbContext = new PatientContext();
+         ClinicDBContext dbContext = new ClinicDBContext();
          ClinicianDBLogic clinicianDbLogic = new ClinicianDBLogic(dbContext);
 
-         #region Create (CRUD)
+            #region Create (CRUD)
 
-         #region Create patient
-         //Patient newPatient = new Patient()
-         //{
-         //   CPR = "110396-0000",
-         //   Name = "Maja Louise",
-         //   Lastname = "Enevoldsen",
-         //   Adress = "Hallovej 15",
-         //   zipcode = 8200,
-         //   Age = 25,
-         //   City = "Aarhus N",
-         //   EyeColor = "Brun"
-         //};
+            #region Create patient
+            Patient newPatient = new Patient()
+            {
+                CPR = "123456-7890",
+                Name = "Test",
+                Lastname = "Person",
+                Adress = "Hallovej 15",
+                zipcode = 8200,
+                Age = 25,
+                City = "Aarhus N",
+            };
 
-         // clinicianDbLogic.CreatePatient(newPatient);
-
-
-         #endregion
-
-         #region Create EarCast
-
-         //Patient newCastPatient = clinicianDbLogic.GetPatient("250997-0000");
-         //newCastPatient.EarCasts.Add(new EarCast(){Ear = 'R'});
-         //clinicianDbLogic.UpdatePatient(newCastPatient);
+            clinicianDbLogic.CreatePatient(newPatient);
 
 
-         #endregion
+            #endregion
 
-         #region Create EarCast 2
+            #region Create EarCast
 
-         EarCast newCast = new EarCast()
+            //Patient newCastPatient = clinicianDbLogic.GetPatient("250997-0000");
+            //newCastPatient.EarCasts.Add(new EarCast(){Ear = 'R'});
+            //clinicianDbLogic.UpdatePatient(newCastPatient);
+
+
+            #endregion
+
+            #region Create EarCast 2
+
+            EarCast newCast = new EarCast()
          {
             PatientCPR = "250997-0000",
             Ear = 'L',
@@ -148,9 +147,9 @@ namespace EFCoreTestConsoleApp
 
    internal class ClinicianDBLogic
    {
-      private readonly PatientContext _dbContext;
+      private readonly ClinicDBContext _dbContext;
 
-      public ClinicianDBLogic(PatientContext dbContext)
+      public ClinicianDBLogic(ClinicDBContext dbContext)
       {
          _dbContext = dbContext;
       }

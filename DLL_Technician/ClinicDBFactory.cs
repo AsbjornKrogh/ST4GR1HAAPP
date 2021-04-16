@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreEFTest.Context;
 
 namespace DLL_Technician
 {
@@ -11,7 +12,7 @@ namespace DLL_Technician
 
        public IClinicDB CreateClinicDb()
        {
-           return new ClinicDB();
+           return new ClinicDB(new ClinicDBContext());
        }
    }
 }
