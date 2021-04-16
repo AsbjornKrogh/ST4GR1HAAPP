@@ -12,9 +12,9 @@ namespace DLL_Clinician
     {
         private readonly ClinicDBContext _dbContext;
 
-        public ClinicDatabase(ClinicDBContext dbContext)
+        public ClinicDatabase()
         {
-            _dbContext = dbContext;
+            _dbContext = new ClinicDBContext();
         }
 
         #region Patient
