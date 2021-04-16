@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CoreEFTest.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class IntialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,7 @@ namespace CoreEFTest.Migrations
                 columns: table => new
                 {
                     StaffID = table.Column<int>(type: "int", maxLength: 10, nullable: false)
-                        .Annotation("SqlServer:Identity", "200000, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
                     Password = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     StaffStatus = table.Column<string>(type: "char(1)", nullable: false)
@@ -60,10 +60,60 @@ namespace CoreEFTest.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RawEarPrints",
+                columns: table => new
+                {
+                    EarPrintID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PrintDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StaffID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RawEarPrints", x => x.EarPrintID);
+                    table.ForeignKey(
+                        name: "FK_RawEarPrints_StaffLogin_StaffID",
+                        column: x => x.StaffID,
+                        principalTable: "StaffLogin",
+                        principalColumn: "StaffID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RawEarScans",
+                columns: table => new
+                {
+                    ScanID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ScanDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StaffID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RawEarScans", x => x.ScanID);
+                    table.ForeignKey(
+                        name: "FK_RawEarScans_StaffLogin_StaffID",
+                        column: x => x.StaffID,
+                        principalTable: "StaffLogin",
+                        principalColumn: "StaffID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_EarCast_PatientCPR",
                 table: "EarCast",
                 column: "PatientCPR");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RawEarPrints_StaffID",
+                table: "RawEarPrints",
+                column: "StaffID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RawEarScans_StaffID",
+                table: "RawEarScans",
+                column: "StaffID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -72,10 +122,16 @@ namespace CoreEFTest.Migrations
                 name: "EarCast");
 
             migrationBuilder.DropTable(
-                name: "StaffLogin");
+                name: "RawEarPrints");
+
+            migrationBuilder.DropTable(
+                name: "RawEarScans");
 
             migrationBuilder.DropTable(
                 name: "Patient");
+
+            migrationBuilder.DropTable(
+                name: "StaffLogin");
         }
     }
 }
