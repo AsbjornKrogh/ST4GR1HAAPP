@@ -54,7 +54,7 @@ namespace Presentation_Technician
 
         private void PrintB_Click(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new PrintPage();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
