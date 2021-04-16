@@ -31,7 +31,7 @@ namespace Presentation_Clinician
       public MainWindow()
       {
          InitializeComponent();
-         //this.Content = homePage;
+         this.Content = homePage;
       }
 
         private void BtnPatient_Click(object sender, RoutedEventArgs e)

@@ -26,7 +26,7 @@ namespace BLL_Clinician
         //    return true;
         //}
 
-        public bool CPR_Registered(string CPRnumber)
+        public bool FindCPR(string CPRnumber)
         {
             foreach (var patient in clinicDatabase.GetAllPatients())
             {

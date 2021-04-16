@@ -35,7 +35,7 @@ namespace Presentation_Clinician
         {
             string cpr = tbCPR.Text;
 
-            if (uc2ManagePatient.CPR_Registered(cpr))
+            if (uc2ManagePatient.FindCPR(cpr) == true)
             {
                 this.Content = patientPage;
             }
