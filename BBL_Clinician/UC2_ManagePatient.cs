@@ -10,6 +10,7 @@ namespace BLL_Clinician
     {
         private IClinicDatabase clinicDatabase;
         bool CPRCorrect;
+        //hej
 
         public UC2_ManagePatient()
         {
