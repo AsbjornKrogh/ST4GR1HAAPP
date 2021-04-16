@@ -40,6 +40,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		GitCommands.txt = GitCommands.txt
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreEFTest", "..\..\..\..\source\repos\EFTestProgram\CoreEFTest\CoreEFTest.csproj", "{AEB1752E-3BA1-418F-9C8E-CC269AC5F707}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreTestConsoleApp", "..\..\..\..\source\repos\EFTestProgram\EFCoreTestConsoleApp\EFCoreTestConsoleApp.csproj", "{556A1AE5-CCF9-40D4-8259-3D694736947E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +90,14 @@ Global
 		{F0BF29F2-D027-455B-BBD6-A6691E42B213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0BF29F2-D027-455B-BBD6-A6691E42B213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0BF29F2-D027-455B-BBD6-A6691E42B213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB1752E-3BA1-418F-9C8E-CC269AC5F707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB1752E-3BA1-418F-9C8E-CC269AC5F707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB1752E-3BA1-418F-9C8E-CC269AC5F707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB1752E-3BA1-418F-9C8E-CC269AC5F707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{556A1AE5-CCF9-40D4-8259-3D694736947E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{556A1AE5-CCF9-40D4-8259-3D694736947E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{556A1AE5-CCF9-40D4-8259-3D694736947E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{556A1AE5-CCF9-40D4-8259-3D694736947E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +112,9 @@ Global
 		{6E22987F-2C7C-48AE-9B41-5042642D1440} = {37ECFDCC-97C3-4A3E-8ACC-76EB4F12B3D2}
 		{4698E2FF-5F0D-48FA-AB35-604012DD0FE8} = {8FD15657-3F4B-4C99-A30B-22EF246F2FAB}
 		{F90BAB2C-838E-4709-A5B2-9EF7B17AC215} = {EA5C11D3-AE8C-4FD3-9926-8582A8A8ED56}
+		{F0BF29F2-D027-455B-BBD6-A6691E42B213} = {4F1B9951-75BB-467B-96A2-1E316BF792C6}
+		{AEB1752E-3BA1-418F-9C8E-CC269AC5F707} = {4F1B9951-75BB-467B-96A2-1E316BF792C6}
+		{556A1AE5-CCF9-40D4-8259-3D694736947E} = {4F1B9951-75BB-467B-96A2-1E316BF792C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5DCA216-E07B-4242-AB08-00954D0F0F33}
