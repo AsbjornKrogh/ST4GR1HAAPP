@@ -20,18 +20,30 @@ namespace Presentation_Clinician
     public partial class HomePage : Page
     {
         private UC2_ManagePatient uc2ManagePatient;
+        private PatientPage patientPage;
 
 
         public HomePage()
         {
             InitializeComponent();
             uc2ManagePatient = new UC2_ManagePatient();
+            patientPage=new PatientPage();
             tbCPR.Focus();
         }
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            
+            string cpr = tbCPR.Text;
+
+            if (uc2ManagePatient.CPR_Registered(cpr))
+            {
+                this.Content = patientPage;
+            }
+            else
+            {
+                MessageBox.Show("Ugyldigt CPR");
+            }
+
         }
     }
 }
