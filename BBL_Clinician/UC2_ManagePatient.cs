@@ -22,7 +22,7 @@ namespace BLL_Clinician
             
         }
 
-        //public bool SavePatientPressed(RegionPatient patinet, string email, int phonenumber)
+        //public bool SavePatientPressed(RegionPatient patient, string email, int phonenumber)
         //{
         //    return true;
         //}

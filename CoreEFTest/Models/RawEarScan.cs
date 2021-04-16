@@ -6,14 +6,17 @@ using System.Text;
 
 namespace CoreEFTest.Models
 {
-    public class RawEarPrint
+    public class RawEarScan
     {
         [Required]
         [Key]
-        public int EarPrintID { get; set; }
+        public int ScanID { get; set; }
+
+        //[Required]
+        //public STL Scan { get; set; }
 
         [Required]
-        public DateTime PrintDate { get; set; } = DateTime.Now.Date;
+        public DateTime ScanDate { get; set; } = DateTime.Now.Date;
 
         [Required]
         [ForeignKey("StaffLogin")]
@@ -21,8 +24,7 @@ namespace CoreEFTest.Models
         public StaffLogin StaffLogin { get; set; }
 
         //[Required]
-        ////[ForeignKey]
+        //[ForeignKey("HATechnicalSpecID")]
         //public int HATechnicalSpecID { get; set; }
-
     }
 }

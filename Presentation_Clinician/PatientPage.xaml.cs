@@ -12,7 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BBL_Clinician;
 using BLL_Clinician;
-using DLL_Clinician;
+using CoreEFTest.Models;
 
 namespace Presentation_Clinician
 {
@@ -24,18 +24,37 @@ namespace Presentation_Clinician
         private UC2_ManagePatient uc2ManagePatient;
         private IClinicDatabase clinicDatabase;
 
-        public PatientPage(IClinicDatabase clinicDatabase)
+        private Patient patient;
+        
+
+        public PatientPage()
         {
             InitializeComponent();
-            this.clinicDatabase = clinicDatabase;
-            uc2ManagePatient= new UC2_ManagePatient(clinicDatabase);
+            uc2ManagePatient= new UC2_ManagePatient();
+            
+
         }
+
+        public void PatientPage_Load(object source, EventArgs e)
+        {
+            
+            TBname.Text = patient.Name;
+            TBsurname.Text = patient.Lastname;
+            TBCPR.Text = patient.CPR;
+            TBAddress.Text = patient.Adress;
+
+        }
+
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            uc2ManagePatient.SaveUpdates(TBemail.SelectedText, Convert.ToInt16(TBphonenumber.SelectedText));
+            uc2ManagePatient.SaveUpdates(TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
 
         }
 
+        private void bntUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            TBphonenumber.Focus();
+        }
     }
 }

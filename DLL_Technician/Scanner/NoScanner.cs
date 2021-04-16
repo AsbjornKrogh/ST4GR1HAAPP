@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DLL_Technician
 {
-    public class NoScanner
+    public class NoScanner:IScanner
     {
         private Random random = new Random();
         public bool connectTo3DScanner()

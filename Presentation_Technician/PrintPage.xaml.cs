@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,6 +21,7 @@ namespace Presentation_Technician
     public partial class PrintPage : Page
     {
         private bool isRunning;
+
         public PrintPage()
         {
             InitializeComponent();
@@ -29,22 +31,52 @@ namespace Presentation_Technician
         {
             if (isRunning != true)
             {
-                //string CPR = CPRnummerTB.Text;
-                //if (CPR.Length == 11 && CPR.Contains('-'))
-                //{
-                //    isRunning = true;
+                string CPR = CPRnummerTB.Text;
+                if (CPR.Length == 11 && CPR.Contains('-'))
+                {
+                    isRunning = true;
 
-                //    BackgroundWorker worker = new BackgroundWorker();
+                    BackgroundWorker worker = new BackgroundWorker();
 
 
-                //    worker.DoWork += ;
+                    //worker.DoWork += ;
 
-                //    worker.RunWorkerCompleted += UC3GetPatientCompleted;
+                    //worker.RunWorkerCompleted += UC3GetPatientCompleted;
 
-                //    worker.RunWorkerAsync(CPR);
+                    //worker.RunWorkerAsync(CPR);
 
-                //    Loading.Visibility = Visibility.Visible;
-                //    Loading.Spin = true;
+                    Loading.Visibility = Visibility.Visible;
+                    Loading.Spin = true;
+
+                    Thread.Sleep(1500);
+                    MessageBox.Show("Der blev ikke fundet nogle høreapparater, der er klar til print");
+
+                }
+                else
+                {
+                    MessageBox.Show("Indtast gyldigt CPR");
+
+                }
+            }
+        }
+
+        private void FindScanB_Click(object sender, RoutedEventArgs e)
+        {
+            if (isRunning != true)
+            {
+                string CPR = CPRnummerTB.Text;
+                if (CPR.Length == 11 && CPR.Contains('-'))
+                {
+                    isRunning = true;
+
+                    BackgroundWorker worker = new BackgroundWorker();
+
+
+                    Loading.Visibility = Visibility.Visible;
+                    Loading.Spin = true;
+
+                    Thread.Sleep(1500);
+                    MessageBox.Show("Der blev ikke fundet nogle høreapparater, der er klar til print");
 
 
 
@@ -55,5 +87,6 @@ namespace Presentation_Technician
 
                 }
             }
+        }
     }
 }
