@@ -294,7 +294,6 @@ namespace EFCoreTestConsoleApp
          EarCast earCast = _dbContext.EarCast.Single(x => x.EarCastID == earCastID);
          Patient patient = GetPatient(earCast.PatientCPR);
 
-
          return patient;
       }
 
