@@ -25,7 +25,7 @@ namespace Presentation_Clinician
         public HomePage()
         {
             InitializeComponent();
-
+            uc2ManagePatient = new UC2_ManagePatient();
             tbCPR.Focus();
         }
 
