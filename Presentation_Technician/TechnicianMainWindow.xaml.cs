@@ -22,13 +22,15 @@ namespace Presentation_Technician
    public partial class TechnicianMainWindow : Window
    {
        private IClinicDB db;
+       private IScanner scanner;
       public TechnicianMainWindow()
       {
          InitializeComponent();
 
         //db = new ClinicDB();
          db = new ClinicNoDB();
-         ;
+
+         scanner = new NoScanner();
       }
 
 
@@ -37,19 +39,22 @@ namespace Presentation_Technician
           Main.Content = null;
           HovedmenuB.IsEnabled = false;
           ManageHAB.IsEnabled = true;
+          ScanB.IsEnabled = true;
       }
         private void ManageHAB_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new HAInfoPage(db);
             ManageHAB.IsEnabled = false;
             HovedmenuB.IsEnabled = true;
+            ScanB.IsEnabled = true;
         }
 
         private void ScanB_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ScanPage(db);
+            Main.Content = new ScanPage(db,scanner);
             ScanB.IsEnabled = false;
             HovedmenuB.IsEnabled = true;
+            ManageHAB.IsEnabled = true;
         }
 
         private void PrintB_Click(object sender, RoutedEventArgs e)

@@ -23,15 +23,18 @@ namespace Presentation_Technician
     public partial class ScanPage : Page
     {
         private IClinicDB db;
+        private IScanner scanner;
         private UC4_Scan uc4_scan;
         private bool HentisRunning;
         private bool ScanisRunning;
         private Patient patientAndHA;
-        public ScanPage(IClinicDB db)
+        public ScanPage(IClinicDB db, IScanner scanner)
         {
             InitializeComponent();
             this.db = db;
-            uc4_scan = new UC4_Scan(db);
+            this.scanner = scanner;
+
+            uc4_scan = new UC4_Scan(db, scanner);
         }
 
         private void HentInfoB_Click(object sender, RoutedEventArgs e)
@@ -73,6 +76,7 @@ namespace Presentation_Technician
             if (patientAndHA != null)
             {
                 PatientInformationTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
+                ScanB.IsEnabled = true;
             }
             else
             {
@@ -88,19 +92,20 @@ namespace Presentation_Technician
             {
                 if (ScanisRunning != true)
                 {
-                    //ScanisRunning = true;
+                    //Todo tilføj kald til UC4_scan via backgroundworkers
+                    ScanisRunning = true;
 
-                    //BackgroundWorker worker = new BackgroundWorker();
+                    BackgroundWorker worker = new BackgroundWorker();
 
-                    //worker.DoWork += ;
+                    worker.DoWork += UC4StartScan;
 
-                    //worker.RunWorkerCompleted += ;
+                    worker.RunWorkerCompleted += UC4ScanCompleted;
 
-                    //string castID = HACastIDTB.Text;
-                    //worker.RunWorkerAsync();
+                    worker.RunWorkerAsync();
 
-                    //Loading.Visibility = Visibility.Visible;
-                    //Loading.Spin = true;
+                    ScanLoading.Visibility = Visibility.Visible;
+                    ScanLoading.Spin = true;
+                    ScannerL.Visibility = Visibility.Visible;
                 }
             }
             else
@@ -109,6 +114,21 @@ namespace Presentation_Technician
             }
         }
 
-        
+        public void UC4StartScan(object sender, DoWorkEventArgs e)
+        {
+            //e.Result =
+        }
+
+        public void UC4ScanCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ScanLoading.Visibility = Visibility.Collapsed;
+            ScanLoading.Spin = false;
+            ScannerL.Visibility = Visibility.Collapsed;
+        }
+
+        private void GemB_Click(object sender, RoutedEventArgs e)
+        {
+            //Kald til DB om at gemme...
+        }
     }
 }
