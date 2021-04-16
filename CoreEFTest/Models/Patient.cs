@@ -22,16 +22,6 @@ namespace CoreEFTest.Models
       public string Name { get; set; }
 
       [Required]
-      [MaxLength(11)]
-      [Column(TypeName = "varchar(11)")]
-      public string EyeColor { get; set; }
-
-      //[Required]
-      //[MaxLength(10)]
-      //[Column(TypeName = "varchar(10)")]
-      //public string SkinColor { get; set; }
-
-      [Required]
       [MaxLength(25)]
       [Column(TypeName = "varchar(25)")]
       public string Lastname { get; set; }
@@ -49,7 +39,5 @@ namespace CoreEFTest.Models
 
       [MaxLength(4)]
       public int zipcode { get; set; }
-
-      public List<EarCast> EarCasts { get; set; } = new List<EarCast>();
    }
 }

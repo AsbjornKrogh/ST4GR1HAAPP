@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Frame x:Name="Main" Navigated="Main_Navigated" Margin="0,35,0,0"/>
 
+        <StackPanel Orientation="Horizontal" Height ="35" VerticalAlignment="Top">
+            <Button x:Name="ManageHAB" Content="Manage HA" Margin="10,0,0,0"></Button>
+        </StackPanel>
     </Grid>
+
 </Window>
