@@ -8,6 +8,8 @@ Delete: Slet af metoder og klasser
 
 
 Git update sekvens fx. 
+
+
 Update: UC1
 Create:
 Modify:
