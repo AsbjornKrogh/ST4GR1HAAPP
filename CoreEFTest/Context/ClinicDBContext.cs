@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreEFTest.Context
 {
-   public class PatientContext : DbContext
+   public class ClinicDBContext : DbContext
    {
       public DbSet<Patient> Patient { get; set; }
       public DbSet<EarCast> EarCast { get; set; }

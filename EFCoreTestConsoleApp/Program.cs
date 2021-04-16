@@ -14,7 +14,7 @@ namespace EFCoreTestConsoleApp
    {
       static void Main(string[] args)
       {
-         PatientContext dbContext = new PatientContext();
+         ClinicDBContext dbContext = new ClinicDBContext();
          ClinicianDBLogic clinicianDbLogic = new ClinicianDBLogic(dbContext);
 
          #region Create (CRUD)
@@ -148,9 +148,9 @@ namespace EFCoreTestConsoleApp
 
    internal class ClinicianDBLogic
    {
-      private readonly PatientContext _dbContext;
+      private readonly ClinicDBContext _dbContext;
 
-      public ClinicianDBLogic(PatientContext dbContext)
+      public ClinicianDBLogic(ClinicDBContext dbContext)
       {
          _dbContext = dbContext;
       }

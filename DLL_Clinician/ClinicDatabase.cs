@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using CoreEFTest.Context;
 using CoreEFTest.Models;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace DLL_Clinician
 {
     public class ClinicDatabase: IClinicDatabase
     {
-        private readonly PatientContext _dbContext;
+        private readonly ClinicDBContext _dbContext;
 
-        public ClinicDatabase(PatientContext dbContext)
+        public ClinicDatabase(ClinicDBContext dbContext)
         {
             _dbContext = dbContext;
         }
