@@ -31,12 +31,12 @@ namespace Presentation_Clinician
       public MainWindow()
       {
          InitializeComponent();
-         this.Content = homePage;
+         //this.Content = homePage;
       }
 
         private void BtnPatient_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = patientPage;
+            Main.Content = patientPage;
             BtnPatient.Background = new SolidColorBrush(color1);
             BtnStart.Background = new SolidColorBrush(color2);
             BtnHearingAid.Background = new SolidColorBrush(color2);
@@ -45,7 +45,7 @@ namespace Presentation_Clinician
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = homePage;
+            Main.Content = homePage;
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color1);
             BtnHearingAid.Background = new SolidColorBrush(color2);
@@ -54,7 +54,7 @@ namespace Presentation_Clinician
 
         private void BtnHearingAid_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = manageHaPage;
+            Main.Content = manageHaPage;
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color2);
             BtnHearingAid.Background = new SolidColorBrush(color1);
@@ -63,7 +63,7 @@ namespace Presentation_Clinician
 
         private void BtnProces_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = processClinPage;
+            Main.Content = processClinPage;
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color2);
             BtnHearingAid.Background = new SolidColorBrush(color2);
