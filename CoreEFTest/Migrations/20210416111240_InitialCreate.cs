@@ -25,6 +25,21 @@ namespace CoreEFTest.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StaffLogin",
+                columns: table => new
+                {
+                    StaffID = table.Column<int>(type: "int", maxLength: 10, nullable: false)
+                        .Annotation("SqlServer:Identity", "200000, 1"),
+                    Name = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
+                    Password = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
+                    StaffStatus = table.Column<string>(type: "char(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StaffLogin", x => x.StaffID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EarCast",
                 columns: table => new
                 {
@@ -55,6 +70,9 @@ namespace CoreEFTest.Migrations
         {
             migrationBuilder.DropTable(
                 name: "EarCast");
+
+            migrationBuilder.DropTable(
+                name: "StaffLogin");
 
             migrationBuilder.DropTable(
                 name: "Patient");
