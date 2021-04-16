@@ -22,5 +22,25 @@ namespace Presentation_Clinician
         {
             InitializeComponent();
         }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnRetrieveHearingTest_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
