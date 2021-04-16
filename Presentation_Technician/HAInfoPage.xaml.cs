@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Eventing.Reader;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -82,9 +83,15 @@ namespace Presentation_Technician
 
             patientAndHA = (Patient) e.Result;
 
-            patientInfoTB.Text ="CPR: " + patientAndHA.CPR +" Navn: " + patientAndHA.Name;
-            
-            
+            if (patientAndHA != null)
+            {
+                patientInfoTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
+            }
+            else
+            {
+                patientInfoTB.Text = "Det indtastede CPR nummer findes ikke i databasen";
+            }
+
         }
     }
 }
