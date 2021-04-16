@@ -10,6 +10,9 @@
 
     <Grid>
         <TextBlock Text="Startside"/>
+        <Label Content="Indtast patientens CPR" HorizontalAlignment="Left" Margin="153,0,0,0" VerticalAlignment="Center" Width="149"/>
+        <TextBox x:Name="tbCPR" HorizontalAlignment="Left" Margin="307,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <Button x:Name="BtnOK" Content="OK" HorizontalAlignment="Left" Margin="338,264,0,0" VerticalAlignment="Top" Width="62" Click="BtnOK_Click"/>
 
     </Grid>
 </Page>
