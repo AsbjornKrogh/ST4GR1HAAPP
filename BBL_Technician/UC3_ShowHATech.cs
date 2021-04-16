@@ -2,7 +2,8 @@
 
 namespace BBL_Technician
 {
-   public class Class1
+   public class UC3_ShowHATech
    {
+
    }
 }
