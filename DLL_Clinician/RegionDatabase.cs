@@ -2,7 +2,7 @@
 
 namespace DLL_Clinician
 {
-   public class Class1
+   public class RegionDatabase
    {
    }
 }
