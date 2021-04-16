@@ -9,11 +9,22 @@
       Title="PatientPage">
 
     <Grid>
-        <TextBlock Text="Patient"/>
-        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="232,351,0,0" VerticalAlignment="Top" Click="BtnSave_Click" Height="54" Width="96"/>
-        <TextBox x:Name="TBemail" HorizontalAlignment="Left" Margin="65,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TBphonenumber" HorizontalAlignment="Left" Margin="65,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Telefonnummer" HorizontalAlignment="Left" Margin="70,237,0,0" VerticalAlignment="Top" Width="108"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="73,315,0,0" VerticalAlignment="Top"/>
+        <TextBlock Text="Patient" Margin="475,-79,-682,78"/>
+        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="255,314,0,0" VerticalAlignment="Top" Click="BtnSave_Click" Height="50" Width="96"/>
+        <TextBox x:Name="TBemail" HorizontalAlignment="Left" Margin="102,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TBphonenumber" HorizontalAlignment="Left" Margin="102,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Telefon nr" HorizontalAlignment="Left" Margin="28,220,0,0" VerticalAlignment="Top" Width="108"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="32,262,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="25,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="CPR" HorizontalAlignment="Left" Margin="28,129,0,0" VerticalAlignment="Top"/>
+        <Label Content="Adresse" HorizontalAlignment="Left" Margin="28,158,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBname" HorizontalAlignment="Left" Margin="102,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="29,107,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBsurname" HorizontalAlignment="Left" Margin="102,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TBCPR" HorizontalAlignment="Left" Margin="102,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TBAddress" HorizontalAlignment="Left" Margin="103,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="bntUpdate" Content="Opdater" HorizontalAlignment="Left" Margin="71,311,0,0" VerticalAlignment="Top" Height="48" Width="95" Click="bntUpdate_Click"/>
+        <Button Content="Bestil nyt høreapparat" HorizontalAlignment="Left" Margin="531,312,0,0" VerticalAlignment="Top" Height="53" Width="158"/>
+        <Label Content="Patientinformation:" HorizontalAlignment="Left" Margin="29,29,0,0" VerticalAlignment="Top" Width="299"/>
     </Grid>
 </Page>
