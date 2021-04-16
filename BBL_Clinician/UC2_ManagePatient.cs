@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DLL_Clinician;
+using EFCoreTestConsoleApp;
 
 namespace BLL_Clinician
 {
     public class UC2_ManagePatient
     {
+        private IClinicDatabase clinicDatabase;
+        bool CPRCorrect;
 
+        public UC2_ManagePatient(IClinicDatabase clinicDatabase)
+        {
+            this.clinicDatabase = clinicDatabase;
+            clinicDatabase = new ClinicDatabase();
+        }
+        
         public void SaveUpdates(string email, int phonenumber)
         {
             
@@ -17,12 +27,20 @@ namespace BLL_Clinician
         //    return true;
         //}
 
-
         public bool CPR_Registered(string CPRnumber)
         {
-            return true;
+            foreach (var patient in clinicDatabase.GetAllPatients())
+            {
+                if (patient.CPR == CPRnumber)
+                {
+                    CPRCorrect = true;
+                }
+                else
+                {
+                    CPRCorrect = false;
+                }
+            }
+            return CPRCorrect;
         }
-
-
     }
 }

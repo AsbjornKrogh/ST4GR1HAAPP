@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DLL_Clinician\DLL_Clinician.csproj" />
     <ProjectReference Include="..\EFCoreTestConsoleApp\EFCoreTestConsoleApp.csproj" />
   </ItemGroup>
 

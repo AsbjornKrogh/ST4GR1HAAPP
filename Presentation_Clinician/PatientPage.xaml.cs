@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BBL_Clinician;
 using BLL_Clinician;
+using DLL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -21,11 +22,13 @@ namespace Presentation_Clinician
     public partial class PatientPage : Page
     {
         private UC2_ManagePatient uc2ManagePatient;
+        private IClinicDatabase clinicDatabase;
 
-        public PatientPage()
+        public PatientPage(IClinicDatabase clinicDatabase)
         {
             InitializeComponent();
-            uc2ManagePatient= new UC2_ManagePatient();
+            this.clinicDatabase = clinicDatabase;
+            uc2ManagePatient= new UC2_ManagePatient(clinicDatabase);
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
