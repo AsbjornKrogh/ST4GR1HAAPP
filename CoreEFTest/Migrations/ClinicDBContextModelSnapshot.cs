@@ -81,6 +81,33 @@ namespace CoreEFTest.Migrations
                     b.ToTable("Patient");
                 });
 
+            modelBuilder.Entity("CoreEFTest.Models.StaffLogin", b =>
+                {
+                    b.Property<int>("StaffID")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(10)
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<string>("StaffStatus")
+                        .IsRequired()
+                        .HasColumnType("char(1)");
+
+                    b.HasKey("StaffID");
+
+                    b.ToTable("StaffLogin");
+                });
+
             modelBuilder.Entity("CoreEFTest.Models.EarCast", b =>
                 {
                     b.HasOne("CoreEFTest.Models.Patient", null)

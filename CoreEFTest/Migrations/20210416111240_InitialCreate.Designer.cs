@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreEFTest.Migrations
 {
     [DbContext(typeof(ClinicDBContext))]
-    [Migration("20210416094236_InitialCreate")]
+    [Migration("20210416111240_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,6 +81,33 @@ namespace CoreEFTest.Migrations
                     b.HasKey("CPR");
 
                     b.ToTable("Patient");
+                });
+
+            modelBuilder.Entity("CoreEFTest.Models.StaffLogin", b =>
+                {
+                    b.Property<int>("StaffID")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(10)
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("varchar(25)");
+
+                    b.Property<string>("StaffStatus")
+                        .IsRequired()
+                        .HasColumnType("char(1)");
+
+                    b.HasKey("StaffID");
+
+                    b.ToTable("StaffLogin");
                 });
 
             modelBuilder.Entity("CoreEFTest.Models.EarCast", b =>
