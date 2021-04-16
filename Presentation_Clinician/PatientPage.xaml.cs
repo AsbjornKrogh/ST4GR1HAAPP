@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BBL_Clinician;
+using BLL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -18,9 +20,19 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class PatientPage : Page
     {
+        private UC2_ManagePatient uc2ManagePatient;
+
         public PatientPage()
         {
             InitializeComponent();
+            uc2ManagePatient= new UC2_ManagePatient();
         }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            uc2ManagePatient.SaveUpdates(TBemail.SelectedText, Convert.ToInt16(TBphonenumber.SelectedText));
+
+        }
+
     }
 }
