@@ -130,9 +130,9 @@ namespace EFCoreTestConsoleApp
 
          #region Retrieve Patient tilhørende øre afstøbning
 
-         Patient EarPatient = clinicianDbLogic.GetPatientWithEarCast("250997-0000");
+         Patient earPatient = clinicianDbLogic.GetPatientWithEarCast("250997-0000");
 
-         foreach (EarCast earPatientEarCast in EarPatient.EarCasts)
+         foreach (EarCast earPatientEarCast in earPatient.EarCasts)
          {
             Console.WriteLine($"CPR: {earPatientEarCast.PatientCPR} Øre side: {earPatientEarCast.Ear} ID: {earPatientEarCast.EarCastID}");
          }
@@ -174,17 +174,17 @@ namespace EFCoreTestConsoleApp
       /// <returns></returns>
       public Patient GetPatient(string CPR)
       {
-         Patient Patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+         Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
          
-         return Patient;
+         return patient;
       }
       
       public Patient GetPatientWithEarCast(string CPR)
       {
-         Patient Patient = _dbContext.Patient.Single(x => x.CPR == CPR);
-         Patient.EarCasts = _dbContext.EarCast.Where(x => x.PatientCPR == CPR).ToList();
+         Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+         patient.EarCasts = _dbContext.EarCast.Where(x => x.PatientCPR == CPR).ToList();
 
-         return Patient;
+         return patient;
       }
 
       /// <summary>
