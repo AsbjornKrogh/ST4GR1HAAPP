@@ -6,11 +6,16 @@
         xmlns:local="clr-namespace:Presentation_Clinician"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
-        <Button x:Name="BtnPatient" Content="Patient" HorizontalAlignment="Left" Margin="128,10,0,0" VerticalAlignment="Top" Height="36" Width="90" Click="BtnPatient_Click"/>
-        <Button x:Name="BtnHearingAid" Content="Høreapparat" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top" Width="90" Height="36" Click="BtnHearingAid_Click"/>
-        <Button x:Name="BtnProces" Content="Proces" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top" Width="90" Height="36" Click="BtnProces_Click"/>
-        <Button x:Name="BtnStart" Content="Startside" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Height="36" Width="88" Click="BtnStart_Click"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="42">
+            <Button x:Name="BtnStart" Content="Startside"  Width="80" Height="40" Margin="10,0,0,0" Click="BtnStart_Click"/>
+            <Button x:Name="BtnPatient" Content="Patient" Width="80" Height="40" Margin="10,0,0,0" Click="BtnPatient_Click"/>
+            <Button x:Name="BtnHearingAid" Content="Høreapparat" Width="80" Height="40" Margin="10,0,0,0" Click="BtnHearingAid_Click" />
+            <Button x:Name="BtnProces" Content="Proces"  Width="80" Height="40" Margin="10,0,0,0" Click="BtnProces_Click" />
+
+        </StackPanel>
+        <Frame x:Name="Main" Margin="0,50,0,-1" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>
