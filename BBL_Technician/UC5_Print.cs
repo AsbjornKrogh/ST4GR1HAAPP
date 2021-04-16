@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CoreEFTest.Models;
 using DLL_Technician;
 
 namespace BLL_Technician
