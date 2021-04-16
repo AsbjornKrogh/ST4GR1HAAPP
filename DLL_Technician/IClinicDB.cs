@@ -10,5 +10,7 @@ namespace DLL_Technician
         Patient GetPatient(string CPR);
 
         bool DeleteHA(string CPR);
+
+        Patient GetPatientInformations(string EarCastID);
     }
 }

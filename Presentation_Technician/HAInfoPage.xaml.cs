@@ -44,7 +44,6 @@ namespace Presentation_Technician
                 if (CPR.Length == 11 && CPR.Contains('-'))
                 {
                     isRunning = true;
-                    uc3_ShowHATech.GetPatient(CPR);
 
                     BackgroundWorker worker = new BackgroundWorker();
 

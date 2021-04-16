@@ -33,5 +33,10 @@ namespace DLL_Technician
             //Todo forbindelse til den rigtige database
             throw new NotImplementedException();
         }
+
+      public Patient GetPatientInformations(string EarCastID)
+      {
+          throw new NotImplementedException();
+      }
     }
 }

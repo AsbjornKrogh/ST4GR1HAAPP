@@ -47,7 +47,9 @@ namespace Presentation_Technician
 
         private void ScanB_Click(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new ScanPage(db);
+            ScanB.IsEnabled = false;
+            HovedmenuB.IsEnabled = true;
         }
 
         private void PrintB_Click(object sender, RoutedEventArgs e)
