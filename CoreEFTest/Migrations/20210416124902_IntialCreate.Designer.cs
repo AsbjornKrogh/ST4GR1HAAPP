@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreEFTest.Migrations
 {
     [DbContext(typeof(ClinicDBContext))]
-    [Migration("20210416111240_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210416124902_IntialCreate")]
+    partial class IntialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,6 +83,46 @@ namespace CoreEFTest.Migrations
                     b.ToTable("Patient");
                 });
 
+            modelBuilder.Entity("CoreEFTest.Models.RawEarPrint", b =>
+                {
+                    b.Property<int>("EarPrintID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("PrintDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StaffID")
+                        .HasColumnType("int");
+
+                    b.HasKey("EarPrintID");
+
+                    b.HasIndex("StaffID");
+
+                    b.ToTable("RawEarPrints");
+                });
+
+            modelBuilder.Entity("CoreEFTest.Models.RawEarScan", b =>
+                {
+                    b.Property<int>("ScanID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("ScanDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StaffID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ScanID");
+
+                    b.HasIndex("StaffID");
+
+                    b.ToTable("RawEarScans");
+                });
+
             modelBuilder.Entity("CoreEFTest.Models.StaffLogin", b =>
                 {
                     b.Property<int>("StaffID")
@@ -117,6 +157,28 @@ namespace CoreEFTest.Migrations
                         .HasForeignKey("PatientCPR")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CoreEFTest.Models.RawEarPrint", b =>
+                {
+                    b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
+                        .WithMany()
+                        .HasForeignKey("StaffID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StaffLogin");
+                });
+
+            modelBuilder.Entity("CoreEFTest.Models.RawEarScan", b =>
+                {
+                    b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
+                        .WithMany()
+                        .HasForeignKey("StaffID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StaffLogin");
                 });
 
             modelBuilder.Entity("CoreEFTest.Models.Patient", b =>

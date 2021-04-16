@@ -6,13 +6,14 @@ namespace BLL_Clinician
 {
     public class UC2_ManagePatient
     {
+        
 
         public void SaveUpdates(string email, int phonenumber)
         {
             
         }
 
-        //public bool SavePatientPressed(RegionPatient patinet, string email, int phonenumber)
+        //public bool SavePatientPressed(RegionPatient patient, string email, int phonenumber)
         //{
         //    return true;
         //}
