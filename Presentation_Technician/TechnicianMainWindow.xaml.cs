@@ -45,6 +45,16 @@ namespace Presentation_Technician
             HovedmenuB.IsEnabled = true;
         }
 
+        private void ScanB_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PrintB_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             HovedmenuB.IsEnabled = false;

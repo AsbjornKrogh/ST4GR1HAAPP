@@ -12,10 +12,11 @@
 
 
         <StackPanel Orientation="Horizontal" Height ="35" VerticalAlignment="Top">
-            <Button x:Name="HovedmenuB" Content="Hovedmenu" Margin="10,0,0,0" Click="HovedmenuB_Click"></Button>
-            <Button x:Name="ManageHAB" Content="Manage HA" Margin="10,0,0,0" Click="ManageHAB_Click"></Button>
-           
-</StackPanel>
+            <Button x:Name="HovedmenuB" Content="Hovedmenu" MinWidth="75" Margin="10,0,0,0" Click="HovedmenuB_Click"></Button>
+            <Button x:Name="ManageHAB" Content="Manage HA" MinWidth="75" Margin="10,0,0,0" Click="ManageHAB_Click"></Button>
+            <Button x:Name="ScanB" Content="Scan" MinWidth="50" Margin="10,0,0,0" Click="ScanB_Click"></Button>
+            <Button x:Name="PrintB" Content="Print" MinWidth="50" Margin="10,0,0,0" Click="PrintB_Click"></Button>
+        </StackPanel>
     </Grid>
 
 </Window>
