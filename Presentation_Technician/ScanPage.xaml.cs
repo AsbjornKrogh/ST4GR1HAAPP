@@ -9,11 +9,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BLL_Technician;
 using CoreEFTest.Models;
 using DLL_Technician;
+using HelixToolkit.Wpf;
 
 namespace Presentation_Technician
 {
@@ -28,6 +30,9 @@ namespace Presentation_Technician
         private bool HentisRunning;
         private bool ScanisRunning;
         private Patient patientAndHA;
+
+        private const string MODEL_PATH = "Fingerklemme 1.1.stl";
+
         public ScanPage(IClinicDB db, IScanner scanner)
         {
             InitializeComponent();
@@ -35,6 +40,14 @@ namespace Presentation_Technician
             this.scanner = scanner;
 
             uc4_scan = new UC4_Scan(db, scanner);
+
+            var modelImport = new ModelImporter();
+            //Model3D currentModel  = modelImport.Load(MODEL_PATH);
+            
+            Visual3D.Content = modelImport.Load(MODEL_PATH);
+
+            //EarScan.Children.Add(new ModelVisual3D { Content = currentModel });
+            //EarScan.IsZoomEnabled = true;
         }
 
         private void HentInfoB_Click(object sender, RoutedEventArgs e)
