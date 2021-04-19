@@ -23,17 +23,20 @@ namespace Presentation_Clinician
     {
         private UC2_ManagePatient uc2ManagePatient;
         private HomePage homePage;
+        private Patient patient;
+        
 
         public PatientPage()
         {
             InitializeComponent();
             uc2ManagePatient= new UC2_ManagePatient();
             homePage = new HomePage();
+            
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            uc2ManagePatient.SaveUpdates(TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
+            uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
@@ -43,8 +46,8 @@ namespace Presentation_Clinician
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
         {
-            var patient = uc2ManagePatient.GetPatientInformation(homePage.tbCPR.Text);
 
+            patient = uc2ManagePatient.GetPatientInformation(homePage.tbCPR.Text);
             TBname.Text = patient.Name;
             TBsurname.Text = patient.Lastname;
             TBCPR.Text = patient.CPR;
