@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BBL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -18,9 +19,15 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class ManageHAPage : Page
     {
-        public ManageHAPage()
+        MainWindow mainWindow = new MainWindow();
+        UC3_ManageHA manageHA = new UC3_ManageHA();
+
+        public ManageHAPage(MainWindow mainWindow, UC3_ManageHA manageHA)
         {
             InitializeComponent();
+
+            this.mainWindow = mainWindow;
+            this.manageHA = manageHA;
         }
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)

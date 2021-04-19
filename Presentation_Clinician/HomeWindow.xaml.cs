@@ -19,11 +19,13 @@ namespace Presentation_Clinician
     public partial class HomeWindow : Window
     {
         private UC2_ManagePatient uc2ManagePatient;
-        public HomeWindow()
+        private MainWindow mainWindow;
+        public HomeWindow(MainWindow mainWindow, UC2_ManagePatient managePatient)
         {
             InitializeComponent();
 
-            uc2ManagePatient = new UC2_ManagePatient();
+            this.mainWindow = mainWindow;
+            this.uc2ManagePatient = managePatient;
 
             TbCPRnumber.Focus();
         }
@@ -31,16 +33,25 @@ namespace Presentation_Clinician
         private void BtOK_Click(object sender, RoutedEventArgs e)
         {
             string cpr = TbCPRnumber.Text;
-            
-            this.Close();
 
-            //if (uc2ManagePatient.FindCPR(cpr))
+            this.Hide();
+            mainWindow.LoginOK = true;
+            mainWindow.CPR = cpr;
+
+
+            //if (uc2ManagePatient.CheckCPR(cpr))
             //{
-            //    this.Close();
+            //   this.Close();
+            //   mainWindow.LoginOK = true;
+
             //}
             //else
             //{
-            //    MessageBox.Show("Ugyldigt CPR");
+            //    mainWindow.LoginOK = false;
+            //string message = "Ugyldigt CPR";
+            //string title = "Fejl";
+            //MessageBoxImage error = MessageBoxImage.Error;
+            //MessageBox.Show(message, title, MessageBoxButton.OK, error);
             //}
         }
     }

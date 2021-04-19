@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BBL_Clinician;
+using BLL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -20,11 +23,16 @@ namespace Presentation_Clinician
    /// </summary>
    public partial class MainWindow : Window
    {
-       HomePage homePage = new HomePage();
-       PatientPage patientPage = new PatientPage();
-       ManageHAPage manageHaPage = new ManageHAPage();
-       ProcessClinPage processClinPage = new ProcessClinPage();
-       HomeWindow homeWindow = new HomeWindow();
+       
+       UC2_ManagePatient managePatient = new UC2_ManagePatient();
+       UC3_ManageHA manageHA = new UC3_ManageHA();
+        ProcessClinPage processClinPage = new ProcessClinPage();
+        private HomeWindow homeWindow;
+       private PatientPage patientPage;
+       private ManageHAPage manageHaPage;
+
+        public bool LoginOK { get; set; }
+       public string CPR { get; set; }
 
        Color color1 = Color.FromRgb(237,246,253);
        Color color2 = Color.FromRgb(226, 230, 230);
@@ -32,18 +40,31 @@ namespace Presentation_Clinician
       public MainWindow()
       {
          InitializeComponent();
+         Main.Content = patientPage;
+         homeWindow = new HomeWindow(this,managePatient);
+         //patientPage = new PatientPage(this, managePatient);
+         //manageHaPage = new ManageHAPage(this, manageHA);
 
       }
       private void Window_Loaded(object sender, RoutedEventArgs e)
       {
           this.Hide();
           homeWindow.ShowDialog();
-          Main.Content = patientPage;
+
+          if (LoginOK == true)
+          {
+              this.ShowDialog();
+          }
+          else
+          {
+              MessageBox.Show("Fejl -- loginOK");
+          }
+          
         }
 
         private void BtnPatient_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = patientPage;
+            Main.Content = new PatientPage(this, managePatient);
             BtnPatient.Background = new SolidColorBrush(color1);
             BtnStart.Background = new SolidColorBrush(color2);
             BtnHearingAid.Background = new SolidColorBrush(color2);
@@ -52,8 +73,9 @@ namespace Presentation_Clinician
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             homeWindow.ShowDialog();
-            //Main.Content = homePage;
+            homeWindow.TbCPRnumber.Clear();
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color1);
             BtnHearingAid.Background = new SolidColorBrush(color2);
@@ -63,7 +85,7 @@ namespace Presentation_Clinician
 
         private void BtnHearingAid_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = manageHaPage;
+            Main.Content = new ManageHAPage(this, manageHA);
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color2);
             BtnHearingAid.Background = new SolidColorBrush(color1);

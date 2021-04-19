@@ -31,7 +31,7 @@ namespace BLL_Clinician
             clinicDatabase.UpdatePatient(patient);
         }
 
-        public bool FindCPR(string CPRnumber)
+        public bool CheckCPR(string CPRnumber)
         {
             foreach (var patient in clinicDatabase.GetAllPatients())
             {
