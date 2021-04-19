@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoreEFTest.Models;
 using DLL_Technician;
 
 namespace Presentation_Technician
@@ -23,14 +24,19 @@ namespace Presentation_Technician
    {
        private IClinicDB db;
        private IScanner scanner;
+       private StaffLogin technician;
+       private TimeStamp timeStamp;
       public TechnicianMainWindow()
       {
          InitializeComponent();
 
         //db = new ClinicDB();
          db = new ClinicNoDB();
+         timeStamp = new TimeStamp();
 
-         scanner = new NoScanner();
+         scanner = new NoScanner(timeStamp);
+
+         technician = new StaffLogin();
       }
 
 
@@ -61,7 +67,7 @@ namespace Presentation_Technician
 
         private void ScanB_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ScanPage(db,scanner);
+            Main.Content = new ScanPage(db,scanner,technician);
             VelkommenL.Visibility = Visibility.Collapsed;
             ScanB.IsEnabled = false;
 

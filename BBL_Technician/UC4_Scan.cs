@@ -26,5 +26,10 @@ namespace BLL_Technician
         {
             return scanner.connectTo3DScanner();
         }
+
+        public RawEarScan StartScanning(int ScanTechID)
+        {
+            return scanner.StartScanning(ScanTechID);
+        }
     }
 }
