@@ -24,6 +24,7 @@ namespace Presentation_Clinician
        PatientPage patientPage = new PatientPage();
        ManageHAPage manageHaPage = new ManageHAPage();
        ProcessClinPage processClinPage = new ProcessClinPage();
+       HomeWindow homeWindow = new HomeWindow();
 
        Color color1 = Color.FromRgb(237,246,253);
        Color color2 = Color.FromRgb(226, 230, 230);
@@ -31,7 +32,14 @@ namespace Presentation_Clinician
       public MainWindow()
       {
          InitializeComponent();
+
       }
+      private void Window_Loaded(object sender, RoutedEventArgs e)
+      {
+          this.Hide();
+          homeWindow.ShowDialog();
+          Main.Content = patientPage;
+        }
 
         private void BtnPatient_Click(object sender, RoutedEventArgs e)
         {
@@ -44,7 +52,8 @@ namespace Presentation_Clinician
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = homePage;
+            homeWindow.ShowDialog();
+            //Main.Content = homePage;
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color1);
             BtnHearingAid.Background = new SolidColorBrush(color2);
