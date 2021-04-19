@@ -10,6 +10,8 @@ namespace CoreEFTest.Models
 {
     public class StaffLogin
     {
+        public enum Status { Clinician, Technician}
+
         [Required]
         [Key]
         [MaxLength(10)]
@@ -26,7 +28,6 @@ namespace CoreEFTest.Models
         public string Password { get; set; }
 
         [Required]
-        [Column(TypeName = "char(1)")]
-        public char StaffStatus { get; set; }
+        public Status StaffStatus { get; set; }
     }
 }
