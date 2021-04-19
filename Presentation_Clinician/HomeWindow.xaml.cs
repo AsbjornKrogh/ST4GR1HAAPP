@@ -31,7 +31,7 @@ namespace Presentation_Clinician
         private void BtOK_Click(object sender, RoutedEventArgs e)
         {
             string cpr = TbCPRnumber.Text;
-
+            
             this.Close();
 
             //if (uc2ManagePatient.FindCPR(cpr))
