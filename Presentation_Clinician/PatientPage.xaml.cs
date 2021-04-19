@@ -22,40 +22,33 @@ namespace Presentation_Clinician
     public partial class PatientPage : Page
     {
         private UC2_ManagePatient uc2ManagePatient;
-
-        private Patient patient;
-        
+        private HomePage homePage;
 
         public PatientPage()
         {
             InitializeComponent();
             uc2ManagePatient= new UC2_ManagePatient();
-            
-
+            homePage = new HomePage();
         }
-
-    
-
-        public void PatientPage_Load(object source, EventArgs e)
-        {
-            
-            TBname.Text = patient.Name;
-            TBsurname.Text = patient.Lastname;
-            TBCPR.Text = patient.CPR;
-            TBAddress.Text = patient.Adress;
-
-        }
-
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             uc2ManagePatient.SaveUpdates(TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
-
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
         {
             TBphonenumber.Focus();
+        }
+
+        private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
+        {
+            var patient = uc2ManagePatient.GetPatientInformation(homePage.tbCPR.Text);
+
+            TBname.Text = patient.Name;
+            TBsurname.Text = patient.Lastname;
+            TBCPR.Text = patient.CPR;
+            TBAddress.Text = patient.Adress;
         }
     }
 }

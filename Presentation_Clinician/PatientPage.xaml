@@ -8,8 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PatientPage">
 
-    <Grid>
-        <TextBlock Text="Patient" Margin="475,-79,-682,78"/>
+    <Grid x:Name="PatientPage1" Loaded="PatientPage1_Loaded">
         <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="255,314,0,0" VerticalAlignment="Top" Click="BtnSave_Click" Height="50" Width="96"/>
         <TextBox x:Name="TBemail" HorizontalAlignment="Left" Margin="102,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="TBphonenumber" HorizontalAlignment="Left" Margin="102,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

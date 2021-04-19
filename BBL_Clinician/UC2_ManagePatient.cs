@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CoreEFTest.Models;
 using DLL_Clinician;
 using EFCoreTestConsoleApp;
 
@@ -15,6 +16,8 @@ namespace BLL_Clinician
         {
             clinicDatabase = new ClinicDatabase();
         }
+
+
         
         public void SaveUpdates(string email, int phonenumber)
         {
@@ -40,6 +43,11 @@ namespace BLL_Clinician
                 }
             }
             return CPRCorrect;
+        }
+
+        public Patient GetPatientInformation(string CPRnumber)
+        {
+            return clinicDatabase.GetPatient(CPRnumber);
         }
     }
 }
