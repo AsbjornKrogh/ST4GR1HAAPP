@@ -5,17 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation_Clinician"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Kliniker Portalen" Height="450" Width="800" Loaded="Window_Loaded">
 
     <Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="42">
-            <Button x:Name="BtnStart" Content="Startside"  Width="80" Height="40" Margin="10,0,0,0" Click="BtnStart_Click"/>
-            <Button x:Name="BtnPatient" Content="Patient" Width="80" Height="40" Margin="10,0,0,0" Click="BtnPatient_Click"/>
-            <Button x:Name="BtnHearingAid" Content="Høreapparat" Width="80" Height="40" Margin="10,0,0,0" Click="BtnHearingAid_Click" />
-            <Button x:Name="BtnProces" Content="Proces"  Width="80" Height="40" Margin="10,0,0,0" Click="BtnProces_Click" />
+        <StackPanel Orientation="Horizontal" Height ="45" VerticalAlignment="Top">
+            <Button x:Name="BtnStart" Content="Startside" Width="90" Margin="10,5,0,0" Click="BtnStart_Click" FontWeight="Bold" FontSize="14">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
+            <Button x:Name="BtnPatient" Content="Patient" Width="90" Margin="10,5,0,0" Click="BtnPatient_Click" FontWeight="Bold" FontSize="14">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="BtnHearingAid" Content="Høreapparat" Width="90" Margin="10,5,0,0" Click="BtnHearingAid_Click" FontWeight="Bold" FontSize="14">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="BtnProces" Content="Vis Proces" Width="90" Margin="10,5,0,0" Click="BtnProces_Click" FontWeight="Bold" FontSize="14">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
         <Frame x:Name="Main" Margin="0,50,0,-1" NavigationUIVisibility="Hidden"/>
+        
 
     </Grid>
 </Window>

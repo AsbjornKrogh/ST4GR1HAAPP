@@ -31,8 +31,6 @@ namespace Presentation_Clinician
         {
             InitializeComponent();
 
-            //uc2ManagePatient = new UC2_ManagePatient();
-            //mainWindow = new MainWindow();
             this.mainWindow = mainWindow;
             this.uc2ManagePatient = managePatient;
 
@@ -57,12 +55,12 @@ namespace Presentation_Clinician
             TBsurname.Text = "TestEfternavn";
             TBCPR.Text = "123456-7890";
             TBAddress.Text = "Testvej 2";
-            patient = uc2ManagePatient.GetPatientInformation(mainWindow.CPR);
-
-            TBname.Text = patient.Name;
-            TBsurname.Text = patient.Lastname;
-            TBCPR.Text = patient.CPR;
-            TBAddress.Text = patient.Adress;
+            
+            //patient = uc2ManagePatient.GetPatientInformation(mainWindow.CPR);
+            //TBname.Text = patient.Name;
+            //TBsurname.Text = patient.Lastname;
+            //TBCPR.Text = patient.CPR;
+            //TBAddress.Text = patient.Adress;
 
             TBname.IsEnabled = false;
             TBsurname.IsEnabled = false;

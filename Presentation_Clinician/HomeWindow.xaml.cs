@@ -24,11 +24,8 @@ namespace Presentation_Clinician
         {
             InitializeComponent();
 
-            //uc2ManagePatient = new UC2_ManagePatient();
-            //mainWindow = new MainWindow();
             this.mainWindow = mainWindow;
             this.uc2ManagePatient = managePatient;
-
 
             TbCPRnumber.Focus();
         }
