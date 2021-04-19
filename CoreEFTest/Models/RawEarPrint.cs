@@ -20,9 +20,10 @@ namespace CoreEFTest.Models
         public int StaffID { get; set; }
         public StaffLogin StaffLogin { get; set; }
 
-        //[Required]
-        ////[ForeignKey]
-        //public int HATechnicalSpecID { get; set; }
+        [Required]
+        [ForeignKey("TecnicalSpec")]
+        public int HATechnicalSpecID { get; set; }
+        public TecnicalSpec TecnicalSpec { get; set; }
 
     }
 }

@@ -12,8 +12,8 @@ namespace CoreEFTest.Models
         [Key]
         public int ScanID { get; set; }
 
-        //[Required]
-        //public STL Scan { get; set; }
+        [Required]
+        public byte[] Scan { get; set; }
 
         [Required]
         public DateTime ScanDate { get; set; } = DateTime.Now.Date;
@@ -23,8 +23,10 @@ namespace CoreEFTest.Models
         public int StaffID { get; set; }
         public StaffLogin StaffLogin { get; set; }
 
-        //[Required]
-        //[ForeignKey("HATechnicalSpecID")]
-        //public int HATechnicalSpecID { get; set; }
+        [Required]
+        [ForeignKey("TecnicalSpec")]
+        public int HATechnicalSpecID { get; set; }
+
+        public TecnicalSpec TecnicalSpec { get; set; }
     }
 }

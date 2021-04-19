@@ -313,11 +313,11 @@ namespace EFCoreTestConsoleApp
             {
                 if (staffLogin.Password == pw)
                 {
-                    if (staffLogin.StaffStatus == 'C')
+                    if (staffLogin.StaffStatus == StaffLogin.Status.Clinician)
                     {
                         // åben cliniker vindue
                     }
-                    else if (staffLogin.StaffStatus == 'T')
+                    else if (staffLogin.StaffStatus == StaffLogin.Status.Technician)
                     {
                         // åben teknikker vindue
                     }
