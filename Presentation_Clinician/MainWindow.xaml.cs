@@ -69,10 +69,5 @@ namespace Presentation_Clinician
             BtnHearingAid.Background = new SolidColorBrush(color2);
             BtnProces.Background = new SolidColorBrush(color1);
         }
-
-        public void OpenPatientPage()
-        {
-            Main.Content = patientPage;
-        }
-    }
+   }
 }
