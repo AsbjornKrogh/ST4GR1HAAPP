@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreEFTest.Migrations
 {
     [DbContext(typeof(ClinicDBContext))]
-    [Migration("20210419093353_TecnicalSpecadd")]
-    partial class TecnicalSpecadd
+    [Migration("20210419121711_InitialCreat")]
+    partial class InitialCreat
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,6 +44,36 @@ namespace CoreEFTest.Migrations
                     b.HasIndex("PatientCPR");
 
                     b.ToTable("EarCast");
+                });
+
+            modelBuilder.Entity("CoreEFTest.Models.GeneralSpec", b =>
+                {
+                    b.Property<int>("HAGeneralSpecID")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(10)
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EarSide")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StaffID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("HAGeneralSpecID");
+
+                    b.HasIndex("StaffID");
+
+                    b.ToTable("GeneralSpec");
                 });
 
             modelBuilder.Entity("CoreEFTest.Models.Patient", b =>
@@ -90,20 +120,20 @@ namespace CoreEFTest.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("HATechnicalSpecID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("PrintDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("StaffID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TecnicalSpecHATechinalSpecID")
-                        .HasColumnType("int");
-
                     b.HasKey("EarPrintID");
 
-                    b.HasIndex("StaffID");
+                    b.HasIndex("HATechnicalSpecID");
 
-                    b.HasIndex("TecnicalSpecHATechinalSpecID");
+                    b.HasIndex("StaffID");
 
                     b.ToTable("RawEarPrints");
                 });
@@ -115,6 +145,13 @@ namespace CoreEFTest.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("HATechnicalSpecID")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Scan")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<DateTime>("ScanDate")
                         .HasColumnType("datetime2");
 
@@ -122,6 +159,8 @@ namespace CoreEFTest.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ScanID");
+
+                    b.HasIndex("HATechnicalSpecID");
 
                     b.HasIndex("StaffID");
 
@@ -146,9 +185,8 @@ namespace CoreEFTest.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("varchar(25)");
 
-                    b.Property<string>("StaffStatus")
-                        .IsRequired()
-                        .HasColumnType("char(1)");
+                    b.Property<int>("StaffStatus")
+                        .HasColumnType("int");
 
                     b.HasKey("StaffID");
 
@@ -169,9 +207,14 @@ namespace CoreEFTest.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Ear")
-                        .IsRequired()
-                        .HasColumnType("char(1)");
+                    b.Property<int>("EarSide")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GeneralSpecHAGeneralSpecID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HAinfo")
+                        .HasColumnType("int");
 
                     b.Property<int>("ScanID")
                         .HasColumnType("int");
@@ -183,6 +226,8 @@ namespace CoreEFTest.Migrations
                         .HasColumnType("varchar(11)");
 
                     b.HasKey("HATechinalSpecID");
+
+                    b.HasIndex("GeneralSpecHAGeneralSpecID");
 
                     b.HasIndex("ScanID");
 
@@ -198,53 +243,82 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.Patient", null)
                         .WithMany("EarCasts")
                         .HasForeignKey("PatientCPR")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CoreEFTest.Models.GeneralSpec", b =>
+                {
+                    b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
+                        .WithMany()
+                        .HasForeignKey("StaffID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("StaffLogin");
                 });
 
             modelBuilder.Entity("CoreEFTest.Models.RawEarPrint", b =>
                 {
+                    b.HasOne("CoreEFTest.Models.TecnicalSpec", "TecnicalSpec")
+                        .WithMany("EarPrints")
+                        .HasForeignKey("HATechnicalSpecID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CoreEFTest.Models.TecnicalSpec", null)
-                        .WithMany("EarPrints")
-                        .HasForeignKey("TecnicalSpecHATechinalSpecID");
-
                     b.Navigation("StaffLogin");
+
+                    b.Navigation("TecnicalSpec");
                 });
 
             modelBuilder.Entity("CoreEFTest.Models.RawEarScan", b =>
                 {
+                    b.HasOne("CoreEFTest.Models.TecnicalSpec", "TecnicalSpec")
+                        .WithMany()
+                        .HasForeignKey("HATechnicalSpecID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("StaffLogin");
+
+                    b.Navigation("TecnicalSpec");
                 });
 
             modelBuilder.Entity("CoreEFTest.Models.TecnicalSpec", b =>
                 {
+                    b.HasOne("CoreEFTest.Models.GeneralSpec", "GeneralSpec")
+                        .WithMany()
+                        .HasForeignKey("GeneralSpecHAGeneralSpecID");
+
                     b.HasOne("CoreEFTest.Models.RawEarScan", "RawEarScan")
                         .WithMany()
                         .HasForeignKey("ScanID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreEFTest.Models.Patient", "patient")
                         .WithMany()
                         .HasForeignKey("patientCPR");
+
+                    b.Navigation("GeneralSpec");
 
                     b.Navigation("patient");
 

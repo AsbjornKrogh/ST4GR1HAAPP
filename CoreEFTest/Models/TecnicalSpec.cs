@@ -16,7 +16,7 @@ namespace CoreEFTest.Models
 
         [Required]
         public Ear EarSide { get; set; }
-
+        
         [Required]
         public DateTime CreateDate { get; set; } = DateTime.Now.Date;
 
@@ -26,6 +26,7 @@ namespace CoreEFTest.Models
         public StaffLogin StaffLogin { get; set; }
 
         [Required]
+        
         [ForeignKey("Patient")]
         public int CPR { get; set; }
         public Patient patient { get; set; }
