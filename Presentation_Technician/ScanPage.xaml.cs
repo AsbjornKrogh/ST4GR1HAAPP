@@ -142,6 +142,7 @@ namespace Presentation_Technician
 
             rawEarScan = (RawEarScan)e.Result;
 
+            //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
             Visual3D.Content = modelImporter.Load(MODEL_PATH);
             GemB.IsEnabled = false;
