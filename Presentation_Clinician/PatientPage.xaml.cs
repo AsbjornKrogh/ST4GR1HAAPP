@@ -41,10 +41,13 @@ namespace Presentation_Clinician
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
+            MessageBox.Show("Patienten er gemt");
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
         {
+            TBemail.IsEnabled = true;
+            TBphonenumber.IsEnabled = true;
             TBphonenumber.Focus();
         }
 
@@ -56,10 +59,17 @@ namespace Presentation_Clinician
             TBAddress.Text = "Testvej 2";
             patient = uc2ManagePatient.GetPatientInformation(mainWindow.CPR);
 
-            //TBname.Text = patient.Name;
-            //TBsurname.Text = patient.Lastname;
-            //TBCPR.Text = patient.CPR;
-            //TBAddress.Text = patient.Adress;
+            TBname.Text = patient.Name;
+            TBsurname.Text = patient.Lastname;
+            TBCPR.Text = patient.CPR;
+            TBAddress.Text = patient.Adress;
+
+            TBname.IsEnabled = false;
+            TBsurname.IsEnabled = false;
+            TBCPR.IsEnabled = false;
+            TBAddress.IsEnabled = false;
+            TBemail.IsEnabled = false;
+            TBphonenumber.IsEnabled = false;
         }
     }
 }
