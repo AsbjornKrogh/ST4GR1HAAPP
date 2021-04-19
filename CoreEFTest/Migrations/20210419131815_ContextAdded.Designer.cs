@@ -4,14 +4,16 @@ using CoreEFTest.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoreEFTest.Migrations
 {
     [DbContext(typeof(ClinicDBContext))]
-    partial class ClinicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210419131815_ContextAdded")]
+    partial class ContextAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,9 +200,8 @@ namespace CoreEFTest.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CPR")
-                        .IsRequired()
-                        .HasColumnType("varchar(11)");
+                    b.Property<int>("CPR")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -211,7 +212,7 @@ namespace CoreEFTest.Migrations
                     b.Property<int?>("GeneralSpecHAGeneralSpecID")
                         .HasColumnType("int");
 
-                    b.Property<int>("HAGenerelSpec")
+                    b.Property<int>("HAinfo")
                         .HasColumnType("int");
 
                     b.Property<int>("ScanID")
@@ -220,13 +221,18 @@ namespace CoreEFTest.Migrations
                     b.Property<int>("StaffID")
                         .HasColumnType("int");
 
-                    b.HasKey("HATechinalSpecID");
+                    b.Property<string>("patientCPR")
+                        .HasColumnType("varchar(11)");
 
-                    b.HasIndex("CPR");
+                    b.HasKey("HATechinalSpecID");
 
                     b.HasIndex("GeneralSpecHAGeneralSpecID");
 
+                    b.HasIndex("ScanID");
+
                     b.HasIndex("StaffID");
+
+                    b.HasIndex("patientCPR");
 
                     b.ToTable("TecnicalSpecs");
                 });
@@ -236,7 +242,7 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.Patient", null)
                         .WithMany("EarCasts")
                         .HasForeignKey("PatientCPR")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -245,7 +251,7 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("StaffLogin");
@@ -256,13 +262,13 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.TecnicalSpec", "TecnicalSpec")
                         .WithMany("EarPrints")
                         .HasForeignKey("HATechnicalSpecID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("StaffLogin");
@@ -275,13 +281,13 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.TecnicalSpec", "TecnicalSpec")
                         .WithMany()
                         .HasForeignKey("HATechnicalSpecID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("StaffLogin");
@@ -291,25 +297,31 @@ namespace CoreEFTest.Migrations
 
             modelBuilder.Entity("CoreEFTest.Models.TecnicalSpec", b =>
                 {
-                    b.HasOne("CoreEFTest.Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("CPR")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CoreEFTest.Models.GeneralSpec", "GeneralSpec")
                         .WithMany()
                         .HasForeignKey("GeneralSpecHAGeneralSpecID");
 
+                    b.HasOne("CoreEFTest.Models.RawEarScan", "RawEarScan")
+                        .WithMany()
+                        .HasForeignKey("ScanID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("CoreEFTest.Models.Patient", "patient")
+                        .WithMany()
+                        .HasForeignKey("patientCPR");
 
                     b.Navigation("GeneralSpec");
 
-                    b.Navigation("Patient");
+                    b.Navigation("patient");
+
+                    b.Navigation("RawEarScan");
 
                     b.Navigation("StaffLogin");
                 });
