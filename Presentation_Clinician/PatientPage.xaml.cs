@@ -22,7 +22,6 @@ namespace Presentation_Clinician
     public partial class PatientPage : Page
     {
         private UC2_ManagePatient uc2ManagePatient;
-        private HomePage homePage;
         private Patient patient;
         
 
@@ -48,7 +47,7 @@ namespace Presentation_Clinician
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
         {
-            var patient = uc2ManagePatient.GetPatientInformation(homeWindow.TbCPRnumber.Text);
+            patient = uc2ManagePatient.GetPatientInformation(homeWindow.TbCPRnumber.Text);
 
             TBname.Text = patient.Name;
             TBsurname.Text = patient.Lastname;
