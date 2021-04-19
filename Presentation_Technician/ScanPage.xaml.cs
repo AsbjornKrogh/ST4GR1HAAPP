@@ -9,11 +9,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BLL_Technician;
 using CoreEFTest.Models;
 using DLL_Technician;
+using HelixToolkit.Wpf;
 
 namespace Presentation_Technician
 {
@@ -24,19 +26,30 @@ namespace Presentation_Technician
     {
         private IClinicDB db;
         private IScanner scanner;
+        private StaffLogin technician;
         private UC4_Scan uc4_scan;
         private bool HentisRunning;
         private bool ScanisRunning;
         private Patient patientAndHA;
-        public ScanPage(IClinicDB db, IScanner scanner)
+        private RawEarScan rawEarScan;
+        private ModelImporter modelImporter;
+
+        private const string MODEL_PATH = "Fingerklemme 1.1.stl";
+
+        public ScanPage(IClinicDB db, IScanner scanner, StaffLogin technician)
         {
             InitializeComponent();
             this.db = db;
             this.scanner = scanner;
+            this.technician = technician;
 
             uc4_scan = new UC4_Scan(db, scanner);
+
+            modelImporter = new ModelImporter();
+            
         }
 
+        #region Hent metoder
         private void HentInfoB_Click(object sender, RoutedEventArgs e)
         {
             if (HentisRunning != true)
@@ -83,7 +96,9 @@ namespace Presentation_Technician
                 PatientInformationTB.Text = "Det indtastede høreafstøbningsID findes ikke i databasen";
             }
         }
+        #endregion
 
+        #region Scan metoder
         private void ScanB_Click(object sender, RoutedEventArgs e)
         {
             bool connection = uc4_scan.ConnectToScanner();
@@ -101,7 +116,7 @@ namespace Presentation_Technician
 
                     worker.RunWorkerCompleted += UC4ScanCompleted;
 
-                    worker.RunWorkerAsync();
+                    worker.RunWorkerAsync(technician.StaffID);
 
                     ScanLoading.Visibility = Visibility.Visible;
                     ScanLoading.Spin = true;
@@ -116,7 +131,7 @@ namespace Presentation_Technician
 
         public void UC4StartScan(object sender, DoWorkEventArgs e)
         {
-            //e.Result =
+            e.Result = uc4_scan.StartScanning((int) e.Argument);
         }
 
         public void UC4ScanCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -124,11 +139,22 @@ namespace Presentation_Technician
             ScanLoading.Visibility = Visibility.Collapsed;
             ScanLoading.Spin = false;
             ScannerL.Visibility = Visibility.Collapsed;
+
+            rawEarScan = (RawEarScan)e.Result;
+
+            //Viser STL-filen på GUI'en
+            Visual3D.Content = modelImporter.Load(MODEL_PATH);
+            GemB.IsEnabled = false;
         }
 
+        #endregion
+
+        #region Gem metoder
         private void GemB_Click(object sender, RoutedEventArgs e)
         {
             //Kald til DB om at gemme...
         }
+        #endregion
+
     }
 }
