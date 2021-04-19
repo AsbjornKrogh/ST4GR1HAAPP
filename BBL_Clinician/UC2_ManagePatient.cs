@@ -25,11 +25,16 @@ namespace BLL_Clinician
             
         }
 
-        public void SavePatientPressed(Patient patient, string email, int phonenumber)
+        public void SavePatientPressed(Patient patient)
         {
-            patient.zipcode = phonenumber;
             clinicDatabase.UpdatePatient(patient);
         }
+
+        //public void SavePatientPressed(Patient patient, string email, int phonenumber)
+        //{
+        //    //patient.zipcode = phonenumber;
+        //    clinicDatabase.UpdatePatient(patient);
+        //}
 
         public bool CheckCPR(string CPRnumber)
         {
