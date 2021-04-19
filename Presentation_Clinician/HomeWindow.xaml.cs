@@ -19,13 +19,11 @@ namespace Presentation_Clinician
     public partial class HomeWindow : Window
     {
         private UC2_ManagePatient uc2ManagePatient;
-        private PatientPage patientPage;
         public HomeWindow()
         {
             InitializeComponent();
 
             uc2ManagePatient = new UC2_ManagePatient();
-            patientPage = new PatientPage();
 
             TbCPRnumber.Focus();
         }
@@ -34,16 +32,16 @@ namespace Presentation_Clinician
         {
             string cpr = TbCPRnumber.Text;
 
-            MessageBox.Show("Hej");
+            this.Close();
 
-            if (uc2ManagePatient.FindCPR(cpr))
-            {
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Ugyldigt CPR");
-            }
+            //if (uc2ManagePatient.FindCPR(cpr))
+            //{
+            //    this.Close();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Ugyldigt CPR");
+            //}
         }
     }
 }
