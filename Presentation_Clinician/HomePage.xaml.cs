@@ -27,7 +27,7 @@ namespace Presentation_Clinician
         {
             InitializeComponent();
             uc2ManagePatient = new UC2_ManagePatient();
-            patientPage=new PatientPage();
+            patientPage = new PatientPage();
             tbCPR.Focus();
         }
 
@@ -35,7 +35,7 @@ namespace Presentation_Clinician
         {
             string cpr = tbCPR.Text;
 
-            if (uc2ManagePatient.FindCPR(cpr) == true)
+            if (uc2ManagePatient.FindCPR(cpr))
             {
                 this.Content = patientPage;
             }
