@@ -26,12 +26,14 @@ namespace Presentation_Clinician
         private Patient patient;
         
 
+        private HomeWindow homeWindow;
+     
+
         public PatientPage()
         {
             InitializeComponent();
             uc2ManagePatient= new UC2_ManagePatient();
-            homePage = new HomePage();
-            
+            homeWindow = new HomeWindow();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -46,8 +48,8 @@ namespace Presentation_Clinician
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
         {
+            var patient = uc2ManagePatient.GetPatientInformation(homeWindow.TbCPRnumber.Text);
 
-            patient = uc2ManagePatient.GetPatientInformation(homePage.tbCPR.Text);
             TBname.Text = patient.Name;
             TBsurname.Text = patient.Lastname;
             TBCPR.Text = patient.CPR;

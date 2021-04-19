@@ -33,21 +33,21 @@ namespace Presentation_Clinician
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            string cpr = tbCPR.Text;
-            
-            MessageBox.Show("Hej");
+            //    //string cpr = tbCPR.Text;
 
-            //if (uc2ManagePatient.FindCPR(cpr))
-            //{
-            //    mainWindow.OpenPatientPage();
-            //    MessageBox.Show("true");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Ugyldigt CPR");
-            //}
+            //    //MessageBox.Show("Hej");
+
+            //    //if (uc2ManagePatient.FindCPR(cpr))
+            //    //{
+            //    //    mainWindow.OpenPatientPage();
+            //    //    MessageBox.Show("true");
+            //    //}
+            //    //else
+            //    //{
+            //    //    MessageBox.Show("Ugyldigt CPR");
+            //    //}
 
         }
-    }
+}
 }
 

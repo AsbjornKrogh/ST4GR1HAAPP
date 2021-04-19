@@ -26,13 +26,13 @@ namespace EFCoreTestConsoleApp
                 CPR = "123456-7890",
                 Name = "Test",
                 Lastname = "Person",
-                Adress = "Hallovej 15",
+                Adress = "Testvej 15",
                 zipcode = 8200,
                 Age = 25,
-                City = "Aarhus N",
+                City = "TestBy",
             };
 
-            clinicianDbLogic.CreatePatient(newPatient);
+            //clinicianDbLogic.CreatePatient(newPatient);
 
 
             #endregion
@@ -51,10 +51,55 @@ namespace EFCoreTestConsoleApp
             EarCast newCast = new EarCast()
             {
                 PatientCPR = "250997-0000",
-                Ear = 'L',
+                EarSide = EarCast.Ear.Left,
             };
 
-            clinicianDbLogic.CreateEarCast(newCast);
+            //clinicianDbLogic.CreateEarCast(newCast);
+
+            #endregion
+
+            #region Create Staff
+
+            StaffLogin newStaffLogin = new StaffLogin()
+            {
+                //StaffID = 200001,
+                Name = "Freja",
+                Password = "123",
+                StaffStatus = StaffLogin.Status.Technician,
+            };
+
+            clinicianDbLogic.CreateStaffLogin(newStaffLogin);
+
+            #endregion
+
+            #region Create GeneralSpec
+
+            GeneralSpec newGeneralSpec = new GeneralSpec()
+            {
+                Type = GeneralSpec.Material.AntiAllergi,
+                Color = GeneralSpec.PlugColor.Honey,
+                EarSide = GeneralSpec.Ear.Left,
+                CreateDate = DateTime.Now,
+                StaffID = 1,
+
+            };
+            clinicianDbLogic.CreateGeneralSpec(newGeneralSpec);
+
+            #endregion
+
+            #region Create TecnicalSpec
+
+            TecnicalSpec newTecnicalSpec = new TecnicalSpec()
+            {
+                EarSide = TecnicalSpec.Ear.Right,
+                CreateDate = DateTime.Now,
+                StaffID = 1,
+                CPR = "123456-7890",
+                HAGenerelSpec = 1,
+
+            };
+
+            clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpec);
 
             #endregion
 
@@ -83,6 +128,7 @@ namespace EFCoreTestConsoleApp
             // clinicianDbLogic.DeleteEarCast(DeleteEarCast);
 
             #endregion
+
             #endregion
 
             #region Update (CRUD)
@@ -100,20 +146,24 @@ namespace EFCoreTestConsoleApp
             //clinicianDbLogic.UpdatePatient(UpdatePatient);
 
             #endregion
+
             #endregion
 
             #region Retrive (CRUD)
 
-            #region Retrieve Alle patienter 
+            #region Retrieve Alle patienter
+
             //List<Patient> Patients = clinicianDbLogic.GetAllPatients();
 
             //foreach (Patient patient in Patients)
             //{
             //   Console.WriteLine(patient.Name);
             //}
+
             #endregion
 
             #region Retrieve Patient tilhørende øre afstøbning
+
             //Patient Patient = clinicianDbLogic.GetPatientFromEarCast(2);
 
             //Console.WriteLine(Patient.Name);
@@ -121,6 +171,7 @@ namespace EFCoreTestConsoleApp
             #endregion
 
             #region Create afstøbning
+
             //EarCast earCast = clinicianDbLogic.Get
             //Patient Patient = clinicianDbLogic.GetPatient("250997-0000");
 
@@ -130,12 +181,12 @@ namespace EFCoreTestConsoleApp
 
             #region Retrieve Patient tilhørende øre afstøbning
 
-            Patient earPatient = clinicianDbLogic.GetPatientWithEarCast("250997-0000");
+            //Patient earPatient = clinicianDbLogic.GetPatientWithEarCast("250997-0000");
 
-            foreach (EarCast earPatientEarCast in earPatient.EarCasts)
-            {
-                Console.WriteLine($"CPR: {earPatientEarCast.PatientCPR} Øre side: {earPatientEarCast.Ear} ID: {earPatientEarCast.EarCastID}");
-            }
+            //foreach (EarCast earPatientEarCast in earPatient.EarCasts)
+            //{
+            //    Console.WriteLine($"CPR: {earPatientEarCast.PatientCPR} Øre side: {earPatientEarCast.EarSide.ToString()} ID: {earPatientEarCast.EarCastID}");
+            //}
 
             #endregion
 
@@ -329,6 +380,36 @@ namespace EFCoreTestConsoleApp
             }
             return staffLogin;
         }
+        #endregion
+
+        #region Create StaffLogin
+        public void CreateStaffLogin(StaffLogin staffLogin)
+        {
+            _dbContext.StaffLogin.Add(staffLogin);
+            _dbContext.SaveChanges();
+        }
+
+        #endregion
+
+        #region Create GeneralSpec
+
+        public void CreateGeneralSpec(GeneralSpec generalSpec)
+        {
+            _dbContext.GeneralSpecs.Add(generalSpec);
+            _dbContext.SaveChanges();
+
+        }
+
+        #endregion
+
+        #region Create TechnicalSpec
+
+        public void CreateTechnicalSpec(TecnicalSpec tecnicalSpec)
+        {
+            _dbContext.TecnicalSpecs.Add(tecnicalSpec);
+            _dbContext.SaveChanges();
+        }
+
         #endregion
 
 
