@@ -34,7 +34,11 @@ namespace Presentation_Technician
         private RawEarScan rawEarScan;
         private ModelImporter modelImporter;
 
-        private const string MODEL_PATH = "Fingerklemme 1.1.stl";
+        //Venstre øreafstøbning
+        private const string MODEL_PATH = "Mold_for_Ear_V1.7_L.stl";
+
+        //Højre øreafstøbning
+        //private const string MODEL_PATH = "Mold_for_Ear_V1.7_R.stl";
 
         public ScanPage(IClinicDB db, IScanner scanner, StaffLogin technician)
         {
@@ -145,7 +149,7 @@ namespace Presentation_Technician
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
             Visual3D.Content = modelImporter.Load(MODEL_PATH);
-            GemB.IsEnabled = false;
+            GemB.IsEnabled = true;
         }
 
         #endregion
