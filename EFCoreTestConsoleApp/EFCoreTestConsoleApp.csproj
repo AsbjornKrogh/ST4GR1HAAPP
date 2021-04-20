@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreEFTest\CoreEFTest.csproj" />
+    <ProjectReference Include="..\HL7-FHIR\HL7-FHIR.csproj" />
   </ItemGroup>
 
 </Project>
