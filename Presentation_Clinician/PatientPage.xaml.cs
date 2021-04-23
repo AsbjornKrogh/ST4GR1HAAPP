@@ -39,17 +39,17 @@ namespace Presentation_Clinician
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
-            TBphonenumber.Text = patient.Email;
-            TBemail.Text = patient.MobilNummer;
+            patient.Email = TBEmail.Text;
+            patient.MobilNummer= TBPhonenumber.Text;
             uc2ManagePatient.SavePatientPressed(patient);
             MessageBox.Show("Patienten er gemt");
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
         {
-            TBemail.IsEnabled = true;
-            TBphonenumber.IsEnabled = true;
-            TBemail.Focus();
+            TBEmail.IsEnabled = true;
+            TBPhonenumber.IsEnabled = true;
+            TBEmail.Focus();
         }
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
@@ -61,8 +61,9 @@ namespace Presentation_Clinician
             TBAddress.Text = patient.Adress;
             TbCity.Text = patient.City;
             TbZipcode.Text = Convert.ToString(patient.zipcode);
-            TBphonenumber.Text = patient.MobilNummer;
-            TBemail.Text = patient.Email;
+            TBPhonenumber.Text = patient.MobilNummer;
+            TBEmail.Text = patient.Email;
+            
 
 
             TBname.IsEnabled = false;
@@ -71,8 +72,8 @@ namespace Presentation_Clinician
             TBAddress.IsEnabled = false;
             TbCity.IsEnabled = false;
             TbZipcode.IsEnabled = false;
-            TBemail.IsEnabled = false;
-            TBphonenumber.IsEnabled = false;
+            TBEmail.IsEnabled = false;
+            TBPhonenumber.IsEnabled = false;
         }
     }
 }

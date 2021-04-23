@@ -49,6 +49,9 @@ namespace DLL_Clinician
         /// <param name="CPR"></param>
         /// <returns></returns>
 
+
+
+
         public Patient GetPatientWithEarCast(string CPR)
         {
             Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
