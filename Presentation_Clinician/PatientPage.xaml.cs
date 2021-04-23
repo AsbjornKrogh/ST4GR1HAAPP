@@ -38,11 +38,19 @@ namespace Presentation_Clinician
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
-            patient.Email = TBEmail.Text;
-            patient.MobilNummer= TBPhonenumber.Text;
-            uc2ManagePatient.SavePatientPressed(patient);
-            MessageBox.Show("Patienten er gemt");
+            if (TBCPR.Text == patient.CPR)
+            { 
+                //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
+                patient.Email = TBEmail.Text;
+                patient.MobilNummer = TBPhonenumber.Text;
+                uc2ManagePatient.SaveUpdates(patient);
+                MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
+            }
+            //else
+            //{
+            //    uc2ManagePatient.SavePatientPressed(patient);
+            //}
+            
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)

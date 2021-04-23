@@ -20,15 +20,16 @@ namespace BLL_Clinician
 
 
         
-        public void SaveUpdates(string email, int phonenumber)
+        public void SaveUpdates(Patient patient)
         {
 
-            
+            clinicDatabase.UpdatePatient(patient);
         }
 
         public void SavePatientPressed(Patient patient)
         {
-            clinicDatabase.UpdatePatient(patient);
+            clinicDatabase.CreatePatient(patient);
+            
         }
 
         //public void SavePatientPressed(Patient patient, string email, int phonenumber)
