@@ -21,12 +21,31 @@ namespace HearingAidApp.Test.Unit
         }
 
         [Test]
-        public void Test1()
+        public void UC4_Scan_ConnectToScanner_ScannerRecievesConnectCall()
         {
+          //Act
             uut.ConnectToScanner();
 
+            //Test
             _scanner.Received().connectTo3DScanner();
 
+        }
+
+        [Test]
+        public void UC4_Scan_StarttScanner_ScannerRecievesStartCall()
+        {
+            uut.StartScanning(1);
+
+            _scanner.Received().StartScanning(1);
+        }
+
+
+        [Test]
+        public void UC4_Scan_GetPatientInformations_ClinicRecievesGetCall()
+        {
+            uut.GetPatientInformations("1111111-0000");
+
+            _clinicDB.Received().GetPatientInformations("1111111-0000");
         }
     }
 }

@@ -8,7 +8,11 @@
         Title="Kliniker Portalen" Height="450" Width="800" Loaded="Window_Loaded">
 
     <Grid>
-        <StackPanel Orientation="Horizontal" Height ="45" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="799*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Height ="45" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <Button x:Name="BtnStart" Content="Startside" Width="90" Margin="10,5,0,0" Click="BtnStart_Click" FontWeight="Bold" FontSize="14">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -41,8 +45,8 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
-        <Frame x:Name="Main" Margin="0,50,0,-1" NavigationUIVisibility="Hidden"/>
-        
+        <Frame x:Name="Main" Margin="0,50,0,-1" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
+
 
     </Grid>
 </Window>

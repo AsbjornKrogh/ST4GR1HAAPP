@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="DLL_Tech\" />
-    <Folder Include="BLL_Tech\" />
     <Folder Include="Presentation_Tech\" />
   </ItemGroup>
 
