@@ -20,4 +20,10 @@
     <ProjectReference Include="..\Presentation_Technician\Presentation_Technician.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DLL_Tech\" />
+    <Folder Include="BLL_Tech\" />
+    <Folder Include="Presentation_Tech\" />
+  </ItemGroup>
+
 </Project>
