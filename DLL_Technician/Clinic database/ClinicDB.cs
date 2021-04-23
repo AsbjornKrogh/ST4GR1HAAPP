@@ -49,6 +49,7 @@ namespace DLL_Technician
          return _dbContext.TecnicalSpecs.Contains(techSpec);
       }
 
+
       /// <summary>
       /// 
       /// </summary>
@@ -74,8 +75,7 @@ namespace DLL_Technician
          return patient;
       }
 
-
-      // Mangel på HAtechspec ID;
+     
       /// <summary>
       /// 
       /// </summary>
@@ -85,6 +85,11 @@ namespace DLL_Technician
       {
          try
          {
+            //Find det specifikke scans techspec
+            TecnicalSpec Techspec = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == scan.EarSide));
+
+            scan.HATechnicalSpecID = Techspec.HATechinalSpecID;
+
             _dbContext.RawEarScans.Add(scan);
             _dbContext.SaveChanges();
          }
@@ -96,6 +101,7 @@ namespace DLL_Technician
          return _dbContext.RawEarScans.Contains(scan);
       }
 
+
       /// <summary>
       /// 
       /// </summary>
@@ -104,8 +110,8 @@ namespace DLL_Technician
       public List<TecnicalSpec> GetEarScan(string CPR)
       {
          //Henter TechSpec for V og H øre
-         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == TecnicalSpec.Ear.Left));
-         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == TecnicalSpec.Ear.Right));
+         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == Ear.Left));
+         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == Ear.Right));
 
          //Henter Earscan for V og H øre 
          TechspecL.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID);
@@ -124,9 +130,7 @@ namespace DLL_Technician
          return Techspec;
       }
 
-
-      //Vil i hente scanninger for begge øre?
-      //Alle som ikke er blevet printet endnu skal hentes 
+ 
       /// <summary>
       /// 
       /// </summary>

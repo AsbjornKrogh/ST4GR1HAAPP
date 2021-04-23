@@ -7,8 +7,6 @@ namespace CoreEFTest.Models
 {
     public class TecnicalSpec
     {
-        public enum Ear { Left, Right }
-
         [Required]
         [Key]
         [MaxLength(10)]

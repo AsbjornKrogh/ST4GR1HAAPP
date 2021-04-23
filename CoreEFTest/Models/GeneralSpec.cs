@@ -6,10 +6,6 @@ namespace CoreEFTest.Models
 {
     public class GeneralSpec
     {
-        public enum PlugColor {LightPale, Pale, Honey, Tanned, Almond, Brown, DarkBrown, Black, DarkBlack}
-        public enum Ear {Left, Right}
-        public enum Material { Silhuet, AntiAllergi, Blød, Titan, Termotec}
-
         [Required]
         [Key]
         [MaxLength(10)]

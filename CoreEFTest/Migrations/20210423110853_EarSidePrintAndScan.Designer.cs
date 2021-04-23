@@ -4,14 +4,16 @@ using CoreEFTest.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoreEFTest.Migrations
 {
     [DbContext(typeof(ClinicDBContext))]
-    partial class ClinicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210423110853_EarSidePrintAndScan")]
+    partial class EarSidePrintAndScan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,7 +258,7 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.Patient", null)
                         .WithMany("EarCasts")
                         .HasForeignKey("PatientCPR")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -265,7 +267,7 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("StaffLogin");
@@ -276,13 +278,13 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.TecnicalSpec", "TecnicalSpec")
                         .WithMany("EarPrints")
                         .HasForeignKey("HATechnicalSpecID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("StaffLogin");
@@ -295,13 +297,13 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.TecnicalSpec", "TecnicalSpec")
                         .WithOne("RawEarScan")
                         .HasForeignKey("CoreEFTest.Models.RawEarScan", "HATechnicalSpecID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("StaffLogin");
@@ -314,7 +316,7 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("CPR")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreEFTest.Models.GeneralSpec", "GeneralSpec")
@@ -324,7 +326,7 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
                         .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("GeneralSpec");

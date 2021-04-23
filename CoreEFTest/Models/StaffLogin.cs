@@ -10,8 +10,6 @@ namespace CoreEFTest.Models
 {
     public class StaffLogin
     {
-        public enum Status { Clinician, Technician}
-
         [Required]
         [Key]
         [MaxLength(10)]
