@@ -28,6 +28,11 @@ namespace DLL_Technician
            return patient;
         }
 
+      public bool SaveTechnicalSpec(TecnicalSpec techSpec)
+      {
+          throw new NotImplementedException();
+      }
+
       public bool DeleteHA(string CPR)
         {
             //Todo forbindelse til den rigtige database
@@ -35,6 +40,21 @@ namespace DLL_Technician
         }
 
       public Patient GetPatientInformations(string EarCastID)
+      {
+          throw new NotImplementedException();
+      }
+
+      public bool SaveScan(RawEarScan scan)
+      {
+          throw new NotImplementedException();
+      }
+
+      public TecnicalSpec GetEarScan(string CPR)
+      {
+          throw new NotImplementedException();
+      }
+
+      public List<TecnicalSpec> GetEarScans()
       {
           throw new NotImplementedException();
       }

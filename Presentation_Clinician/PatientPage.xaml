@@ -13,39 +13,43 @@
             <ColumnDefinition Width="739*"/>
             <ColumnDefinition Width="61*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="162,317,0,0" VerticalAlignment="Top" Click="BtnSave_Click" Height="50" Width="96">
+        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="490,125,0,0" VerticalAlignment="Top" Click="BtnSave_Click" Height="38" Width="85">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5,5,5,5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <TextBox x:Name="TBemail" HorizontalAlignment="Left" Margin="102,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TBphonenumber" HorizontalAlignment="Left" Margin="102,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Telefon nr" HorizontalAlignment="Left" Margin="28,220,0,0" VerticalAlignment="Top" Width="108"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="32,262,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="25,80,0,0" VerticalAlignment="Top"/>
-        <Label Content="CPR" HorizontalAlignment="Left" Margin="28,129,0,0" VerticalAlignment="Top"/>
-        <Label Content="Adresse" HorizontalAlignment="Left" Margin="28,158,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBname" HorizontalAlignment="Left" Margin="102,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="29,107,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBsurname" HorizontalAlignment="Left" Margin="102,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TBCPR" HorizontalAlignment="Left" Margin="102,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TBAddress" HorizontalAlignment="Left" Margin="103,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="bntUpdate" Content="Opdater" HorizontalAlignment="Left" Margin="34,317,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="bntUpdate_Click">
+        <TextBox x:Name="TBemail" HorizontalAlignment="Left" Margin="455,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TBphonenumber" HorizontalAlignment="Left" Margin="455,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Telefon nr." HorizontalAlignment="Left" Margin="370,44,0,0" VerticalAlignment="Top" Width="108"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="371,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="85,48,0,0" VerticalAlignment="Top"/>
+        <Label Content="CPR" HorizontalAlignment="Left" Margin="85,105,0,0" VerticalAlignment="Top"/>
+        <Label Content="Adresse" HorizontalAlignment="Left" Margin="85,136,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBname" HorizontalAlignment="Left" Margin="170,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="85,77,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBsurname" HorizontalAlignment="Left" Margin="170,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="TBCPR" HorizontalAlignment="Left" Margin="170,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="TBAddress" HorizontalAlignment="Left" Margin="170,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Button x:Name="bntUpdate" Content="Opdater" HorizontalAlignment="Left" Margin="383,124,0,0" VerticalAlignment="Top" Height="38" Width="83" Click="bntUpdate_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5,5,5,5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Bestil nyt høreapparat" HorizontalAlignment="Left" Margin="515,317,0,0" VerticalAlignment="Top" Height="53" Width="158">
+        <Button Content="Bestil nyt høreapparat" HorizontalAlignment="Left" Margin="88,249,0,0" VerticalAlignment="Top" Height="44" Width="202">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5,5,5,5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Label Content="Patientinformation:" HorizontalAlignment="Left" Margin="29,38,0,0" VerticalAlignment="Top" Width="299" FontWeight="Bold" FontSize="16"/>
+        <Label Content="Patientinformation:" HorizontalAlignment="Left" Margin="89,10,0,0" VerticalAlignment="Top" Width="299" FontWeight="Bold" FontSize="16"/>
+        <Label Content="By" HorizontalAlignment="Left" Margin="88,165,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TbCity" HorizontalAlignment="Left" Margin="170,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="TbZipcode" HorizontalAlignment="Left" Margin="170,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Postnummer" HorizontalAlignment="Left" Margin="85,200,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
