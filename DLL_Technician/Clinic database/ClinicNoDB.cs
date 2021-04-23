@@ -38,7 +38,6 @@ namespace DLL_Technician
         }
         #endregion
 
-
         #region UC3.4 Delete patient
         public bool DeleteHA(string CPR)
         {
