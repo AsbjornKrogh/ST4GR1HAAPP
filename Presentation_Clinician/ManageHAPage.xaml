@@ -24,6 +24,7 @@
             </Menu.RenderTransform>
             <Button x:Name="BtnRetrieveHearingTest" Content="Hent høreprøve" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="31" Width="134" Click="BtnRetrieveHearingTest_Click"/>
             <Button x:Name="BtnFormerHearingAids" Content="Vis alle høreapparater" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="31" Width="134" Click="BtnFormerHearingAids_Click"/>
+            <Button x:Name="BtnOrderHearingAids" Content="Bestil nyt høreapparat" Height="30" Width="134"/>
         </Menu>
         <Label Content="Type" HorizontalAlignment="Left" Margin="232,69,0,0" VerticalAlignment="Top"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="506,69,0,0" VerticalAlignment="Top"/>
