@@ -9,13 +9,22 @@
       Title="ManageHAPage" Background="#FFF9F5F5">
 
     <Grid>
-        <Button x:Name="BtnUpdate" Content="Opdater" HorizontalAlignment="Left" Margin="352,274,0,0" VerticalAlignment="Top" Height="31" Width="75" Click="BtnUpdate_Click" RenderTransformOrigin="2.187,0.516"/>
-        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="448,274,0,0" VerticalAlignment="Top" Height="31" Width="75" Click="BtnSave_Click" RenderTransformOrigin="0.507,1.742"/>
+        <Button x:Name="BtnUpdate" Content="Opdater" HorizontalAlignment="Left" Margin="352,227,0,0" VerticalAlignment="Top" Height="31" Width="75" Click="BtnUpdate_Click" RenderTransformOrigin="2.187,0.516"/>
+        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="448,227,0,0" VerticalAlignment="Top" Height="31" Width="75" Click="BtnSave_Click" RenderTransformOrigin="0.507,1.742"/>
         <Label Content="Høreapparat - højre øre" HorizontalAlignment="Left" Margin="232,29,0,0" VerticalAlignment="Top"/>
         <Label Content="Høreapparat - venstre øre" HorizontalAlignment="Left" Margin="506,29,0,0" VerticalAlignment="Top"/>
-        <Menu Margin="0,0,649,0">
+        <Menu Margin="0,0,622,0" RenderTransformOrigin="0.5,0.5">
+            <Menu.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.976"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="1.286"/>
+                </TransformGroup>
+            </Menu.RenderTransform>
             <Button x:Name="BtnRetrieveHearingTest" Content="Hent høreprøve" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="31" Width="134" Click="BtnRetrieveHearingTest_Click"/>
             <Button x:Name="BtnFormerHearingAids" Content="Vis alle høreapparater" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="31" Width="134" Click="BtnFormerHearingAids_Click"/>
+            <Button x:Name="BtnOrderHearingAids" Content="Bestil nyt høreapparat" Height="30" Width="134"/>
         </Menu>
         <Label Content="Type" HorizontalAlignment="Left" Margin="232,69,0,0" VerticalAlignment="Top"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="506,69,0,0" VerticalAlignment="Top"/>
