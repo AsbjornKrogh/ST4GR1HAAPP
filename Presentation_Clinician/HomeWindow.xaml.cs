@@ -38,7 +38,7 @@ namespace Presentation_Clinician
             {
                 mainWindow.LoginOK = true;
                 mainWindow.CPR = cpr;
-                Hide();
+                Close();
 
             }
             else

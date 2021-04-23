@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using BLL_Technician;
-using CoreEFTest.Models;
 using DLL_Technician;
 using NSubstitute;
 using NUnit.Framework;
@@ -23,7 +22,7 @@ namespace Technician_HearingAidApp.Test.Unit
 
         [TestCase("1234")]
         [TestCase("123456-7890")]
-        public void GetPatient_CallToDB_DBGetPatientRecivesACall(string cpr)
+        public void GetPatient_CallToDB_DBGetPatientReceivesACall(string cpr)
         {
             uut.GetPatient(cpr);
 

@@ -8,8 +8,8 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProcessClinPage">
 
-    <Grid>
-        <TextBlock Text="Proces"/>
-        
+    <Grid Background="White">
+        <Label Content="Høreapparatets proces" HorizontalAlignment="Left" Margin="41,29,0,0" VerticalAlignment="Top" Height="37" Width="215" FontWeight="Bold" FontSize="18"/>
+
     </Grid>
 </Page>

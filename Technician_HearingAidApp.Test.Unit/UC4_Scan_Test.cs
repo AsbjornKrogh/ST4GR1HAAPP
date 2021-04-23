@@ -1,7 +1,9 @@
 using BLL_Technician;
 using DLL_Technician;
-using NSubstitute;
 using NUnit.Framework;
+using NSubstitute;
+
+
 
 namespace Technician_HearingAidApp.Test.Unit
 {
@@ -11,19 +13,19 @@ namespace Technician_HearingAidApp.Test.Unit
         private IClinicDB _clinicDB;
         private IScanner _scanner;
 
-        [SetUp] 
+        [SetUp]
         public void Setup()
         {
             _scanner = Substitute.For<IScanner>();
             _clinicDB = Substitute.For<IClinicDB>();
-            uut = new UC4_Scan(_clinicDB,_scanner);
+            uut = new UC4_Scan(_clinicDB, _scanner);
 
         }
 
         [Test]
         public void UC4_Scan_ConnectToScanner_ScannerRecievesConnectCall()
         {
-          //Act
+            //Act
             uut.ConnectToScanner();
 
             //Test
@@ -36,7 +38,7 @@ namespace Technician_HearingAidApp.Test.Unit
         {
             uut.StartScanning(1);
 
-            _scanner.Received().StartScanning(1); 
+            _scanner.Received().StartScanning(1);
         }
 
 
