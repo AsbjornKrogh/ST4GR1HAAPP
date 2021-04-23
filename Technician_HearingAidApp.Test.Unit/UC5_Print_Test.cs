@@ -10,27 +10,22 @@ namespace Technician_HearingAidApp.Test.Unit
 {
     public class UC5_Print_Test
     {
-        private UC4_Scan uut;
+        private UC5_Print uut;
         private IClinicDB _clinicDB;
-        private IScanner _scanner;
+
 
         [SetUp]
         public void Setup()
         {
-            _scanner = Substitute.For<IScanner>();
             _clinicDB = Substitute.For<IClinicDB>();
-            uut = new UC4_Scan(_clinicDB, _scanner);
+            //uut = new UC5_Scan();
 
         }
 
         [Test]
-        public void UC4_Scan_ConnectToScanner_ScannerRecievesConnectCall()
+        public void UC5()
         {
-            //Act
-            uut.ConnectToScanner();
 
-            //Test
-            _scanner.Received().connectTo3DScanner();
 
         }
     }
