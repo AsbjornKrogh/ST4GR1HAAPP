@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Channels;
 using CoreEFTest.Context;
 using CoreEFTest.Models;
+using HL7_FHIR;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
@@ -14,7 +15,16 @@ namespace EFCoreTestConsoleApp
     class Program
     {
         static void Main(string[] args)
-        {
+        {   
+           HL7FHIRClient client = new HL7FHIRClient();
+
+           client.FindPatientByCPR("250997-0000");
+
+
+
+
+
+
             ClinicDBContext dbContext = new ClinicDBContext();
             ClinicianDBLogic clinicianDbLogic = new ClinicianDBLogic(dbContext);
 
@@ -68,7 +78,7 @@ namespace EFCoreTestConsoleApp
                 StaffStatus = StaffLogin.Status.Technician,
             };
 
-            clinicianDbLogic.CreateStaffLogin(newStaffLogin);
+            //clinicianDbLogic.CreateStaffLogin(newStaffLogin);
 
             #endregion
 
@@ -83,7 +93,7 @@ namespace EFCoreTestConsoleApp
                 StaffID = 1,
 
             };
-            clinicianDbLogic.CreateGeneralSpec(newGeneralSpec);
+            //clinicianDbLogic.CreateGeneralSpec(newGeneralSpec);
 
             #endregion
 
@@ -99,7 +109,7 @@ namespace EFCoreTestConsoleApp
 
             };
 
-            clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpec);
+           // clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpec);
 
             #endregion
 
@@ -194,8 +204,14 @@ namespace EFCoreTestConsoleApp
 
             #endregion
 
+
+
+
+
         }
     }
+
+
 
     internal class ClinicianDBLogic
     {
@@ -380,20 +396,20 @@ namespace EFCoreTestConsoleApp
             }
             return staffLogin;
         }
-        #endregion
+      #endregion
 
-        #region Create StaffLogin
-        public void CreateStaffLogin(StaffLogin staffLogin)
-        {
-            _dbContext.StaffLogin.Add(staffLogin);
-            _dbContext.SaveChanges();
-        }
+      #region Create StaffLogin
+      public void CreateStaffLogin(StaffLogin staffLogin)
+      {
+         _dbContext.StaffLogin.Add(staffLogin);
+         _dbContext.SaveChanges();
+      }
 
-        #endregion
+      #endregion
 
-        #region Create GeneralSpec
+      #region Create GeneralSpec
 
-        public void CreateGeneralSpec(GeneralSpec generalSpec)
+      public void CreateGeneralSpec(GeneralSpec generalSpec)
         {
             _dbContext.GeneralSpecs.Add(generalSpec);
             _dbContext.SaveChanges();

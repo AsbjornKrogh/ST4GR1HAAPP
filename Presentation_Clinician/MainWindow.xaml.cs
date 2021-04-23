@@ -74,6 +74,7 @@ namespace Presentation_Clinician
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+            homeWindow = new HomeWindow(this, managePatient);
             homeWindow.ShowDialog();
             homeWindow.TbCPRnumber.Clear();
             BtnPatient.Background = new SolidColorBrush(color2);

@@ -21,8 +21,6 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <fa:ImageAwesome Margin="306,85,454,45" Name="Loading" Visibility="Visible" Icon="CircleOutlineNotch" Spin="false" SpinDuration="3" Height="40" Width="40" RenderTransformOrigin="0.55,0.517"/>
-
 
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Grid>
@@ -67,10 +65,14 @@
             </Grid>
         </StackPanel>
 
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid>
+            <fa:ImageAwesome HorizontalAlignment="Center" VerticalAlignment="Center" Name="Loading" Visibility="Collapsed" Icon="CircleOutlineNotch" Spin="false" SpinDuration="3" Height="40" Width="40" RenderTransformOrigin="0.55,0.517"/>
+            </Grid>
+        </StackPanel>
 
 
-
-        <StackPanel  Grid.Row="1" Grid.Column="1">
+            <StackPanel  Grid.Row="1" Grid.Column="1">
 
             <Grid>
                 <Grid.ColumnDefinitions>
