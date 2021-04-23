@@ -39,7 +39,7 @@ namespace Presentation_Clinician
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
-            patient.zipcode = Convert.ToInt16(TBphonenumber.Text);
+            //patient.zipcode = Convert.ToInt16(TBphonenumber.Text);
             uc2ManagePatient.SavePatientPressed(patient);
             MessageBox.Show("Patienten er gemt");
         }
@@ -48,21 +48,21 @@ namespace Presentation_Clinician
         {
             TBemail.IsEnabled = true;
             TBphonenumber.IsEnabled = true;
-            TBphonenumber.Focus();
+            TBemail.Focus();
         }
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
         {
-            TBname.Text = "TestNavn";
-            TBsurname.Text = "TestEfternavn";
-            TBCPR.Text = "123456-7890";
-            TBAddress.Text = "Testvej 2";
+            //TBname.Text = "TestNavn";
+            //TBsurname.Text = "TestEfternavn";
+            //TBCPR.Text = "123456-7890";
+            //TBAddress.Text = "Testvej 2";
             
-            //patient = uc2ManagePatient.GetPatientInformation(mainWindow.CPR);
-            //TBname.Text = patient.Name;
-            //TBsurname.Text = patient.Lastname;
-            //TBCPR.Text = patient.CPR;
-            //TBAddress.Text = patient.Adress;
+            patient = uc2ManagePatient.GetPatientInformation(mainWindow.CPR);
+            TBname.Text = patient.Name;
+            TBsurname.Text = patient.Lastname;
+            TBCPR.Text = patient.CPR;
+            TBAddress.Text = patient.Adress;
 
             TBname.IsEnabled = false;
             TBsurname.IsEnabled = false;

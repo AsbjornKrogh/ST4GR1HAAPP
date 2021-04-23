@@ -34,25 +34,28 @@ namespace Presentation_Clinician
         {
             string cpr = TbCPRnumber.Text;
 
-            this.Hide();
-            mainWindow.LoginOK = true;
-            mainWindow.CPR = cpr;
+            //this.Hide();
+            //mainWindow.LoginOK = true;
+            //mainWindow.CPR = cpr;
+            //mainWindow.ShowDialog();
 
 
-            //if (uc2ManagePatient.CheckCPR(cpr))
-            //{
-            //   this.Close();
-            //   mainWindow.LoginOK = true;
+            if (uc2ManagePatient.CheckCPR(cpr))
+            {
+                this.Hide();
+                mainWindow.LoginOK = true;
+                mainWindow.CPR = cpr;
+                mainWindow.ShowDialog();
 
-            //}
-            //else
-            //{
-            //    mainWindow.LoginOK = false;
-            //string message = "Ugyldigt CPR";
-            //string title = "Fejl";
-            //MessageBoxImage error = MessageBoxImage.Error;
-            //MessageBox.Show(message, title, MessageBoxButton.OK, error);
-            //}
+            }
+            else
+            {
+                mainWindow.LoginOK = false;
+                string message = "Ugyldigt CPR";
+                string title = "Fejl";
+                MessageBoxImage error = MessageBoxImage.Error;
+                MessageBox.Show(message, title, MessageBoxButton.OK, error);
+            }
         }
     }
 }
