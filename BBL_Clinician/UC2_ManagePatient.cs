@@ -53,6 +53,9 @@ namespace BLL_Clinician
             return CPRCorrect;
         }
 
+
+
+
         public Patient GetPatientInformation(string CPRnumber)
         {
             return clinicDatabase.GetPatient(CPRnumber);
