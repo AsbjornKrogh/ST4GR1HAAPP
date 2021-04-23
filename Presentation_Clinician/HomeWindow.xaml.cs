@@ -34,12 +34,6 @@ namespace Presentation_Clinician
         {
             string cpr = TbCPRnumber.Text;
 
-            //this.Hide();
-            //mainWindow.LoginOK = true;
-            //mainWindow.CPR = cpr;
-            //mainWindow.ShowDialog();
-
-
             if (uc2ManagePatient.CheckCPR(cpr))
             {
                 this.Hide();
