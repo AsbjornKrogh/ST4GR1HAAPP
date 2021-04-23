@@ -22,7 +22,7 @@ namespace Technician_HearingAidApp.Test.Unit
 
         [TestCase("1234")]
         [TestCase("123456-7890")]
-        public void GetPatient_CallToDB_DBGetPatientRecivesACall(string cpr)
+        public void GetPatient_CallToDB_DBGetPatientReceivesACall(string cpr)
         {
             uut.GetPatient(cpr);
 
@@ -30,4 +30,3 @@ namespace Technician_HearingAidApp.Test.Unit
         }
     }
 }
-
