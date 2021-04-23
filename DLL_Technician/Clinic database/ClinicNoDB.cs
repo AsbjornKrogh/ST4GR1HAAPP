@@ -66,6 +66,16 @@ namespace DLL_Technician
             }
         }
 
+        public TecnicalSpec GetEarScan(string CPR)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TecnicalSpec> GetEarScans()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool SaveScan(RawEarScan scan)
         {
             throw new NotImplementedException();
