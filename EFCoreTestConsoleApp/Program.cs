@@ -24,7 +24,6 @@ namespace EFCoreTestConsoleApp
 
 
 
-
             ClinicDBContext dbContext = new ClinicDBContext();
             ClinicianDBLogic clinicianDbLogic = new ClinicianDBLogic(dbContext);
 
