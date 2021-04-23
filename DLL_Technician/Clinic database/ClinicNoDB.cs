@@ -27,16 +27,24 @@ namespace DLL_Technician
             {
                 return null;
             }
-            
-            
         }
-
         #endregion
 
+        #region UC3.3 Update 
+
+        public bool SaveTechnicalSpec(TecnicalSpec techSpec)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+
+        #region UC3.4 Delete patient
         public bool DeleteHA(string CPR)
         {
             return true;
         }
+        #endregion
 
         #region UC4 scan
         public Patient GetPatientInformations(string EarCastID)
@@ -57,6 +65,12 @@ namespace DLL_Technician
                 return null;
             }
         }
+
+        public bool SaveScan(RawEarScan scan)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }
