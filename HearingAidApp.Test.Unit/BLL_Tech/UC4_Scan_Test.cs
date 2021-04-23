@@ -3,7 +3,7 @@ using DLL_Technician;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace HearingAidApp.Test.Unit
+namespace Technician_HearingAidApp.Test.Unit
 {
     public class UC4_Scan_Test
     {
@@ -32,11 +32,11 @@ namespace HearingAidApp.Test.Unit
         }
 
         [Test]
-        public void UC4_Scan_StarttScanner_ScannerRecievesStartCall()
+        public void UC4_Scan_StartScanner_ScannerRecievesStartCall()
         {
             uut.StartScanning(1);
 
-            _scanner.Received().StartScanning(1);
+            _scanner.Received().StartScanning(1); 
         }
 
 

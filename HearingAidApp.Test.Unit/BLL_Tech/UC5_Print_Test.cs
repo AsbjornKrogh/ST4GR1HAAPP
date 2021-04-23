@@ -3,7 +3,7 @@ using DLL_Technician;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Techinician_HearingAidApp.Test.Unit
+namespace Technician_HearingAidApp.Test.Unit
 {
     class UC5_Print
     {
