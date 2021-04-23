@@ -21,6 +21,7 @@ namespace Presentation_Clinician
     {
         MainWindow mainWindow = new MainWindow();
         UC3_ManageHA manageHA = new UC3_ManageHA();
+        HearingTestWindow _hearingTest = new HearingTestWindow();
         
         public ManageHAPage(MainWindow mainWindow, UC3_ManageHA manageHA)
         {
@@ -28,6 +29,7 @@ namespace Presentation_Clinician
 
             this.mainWindow = mainWindow;
             this.manageHA = manageHA;
+            
         }
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
@@ -42,7 +44,9 @@ namespace Presentation_Clinician
 
         private void BtnRetrieveHearingTest_Click(object sender, RoutedEventArgs e)
         {
-
+            _hearingTest = new HearingTestWindow();
+            _hearingTest.Show();
+            //mainWindow.Hide();
         }
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)

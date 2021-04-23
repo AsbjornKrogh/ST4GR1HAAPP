@@ -30,6 +30,7 @@ namespace Presentation_Clinician
         private HomeWindow homeWindow;
        private PatientPage patientPage;
        private ManageHAPage manageHaPage;
+       //private HearingTestWindow hearingTest;
 
         public bool LoginOK { get; set; }
        public string CPR { get; set; }
