@@ -20,5 +20,17 @@ namespace DLL_Technician
         Patient GetPatientInformations(string EarCastID);
 
         bool SaveScan(RawEarScan scan);
+
+        //UC5
+        TecnicalSpec GetEarScan(string CPR);
+
+        List<TecnicalSpec> GetEarScans();
+
+
+        //UC6
+        //List<ProcesSpec> GetProcesInfo(string CPR); 
+
+
+
     }
 }
