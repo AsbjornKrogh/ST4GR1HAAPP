@@ -12,5 +12,12 @@ namespace DLL_Technician
         bool DeleteHA(string CPR);
 
         Patient GetPatientInformations(string EarCastID);
+
+        TecnicalSpec GetEarScan(string CPR);
+
+        List<TecnicalSpec> GetEarScans();
+
+        //List<ProcesSpec> GetProcesInfo(string CPR); 
+
     }
 }
