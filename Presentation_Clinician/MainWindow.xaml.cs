@@ -26,8 +26,8 @@ namespace Presentation_Clinician
        
        UC2_ManagePatient managePatient = new UC2_ManagePatient();
        UC3_ManageHA manageHA = new UC3_ManageHA();
-        ProcessClinPage processClinPage = new ProcessClinPage();
-        private HomeWindow homeWindow;
+       ProcessClinPage processClinPage = new ProcessClinPage();
+       private HomeWindow homeWindow;
        private PatientPage patientPage;
        private ManageHAPage manageHaPage;
 
@@ -40,27 +40,24 @@ namespace Presentation_Clinician
       public MainWindow()
       {
          InitializeComponent();
-         Main.Content = patientPage;
          homeWindow = new HomeWindow(this,managePatient);
-         //patientPage = new PatientPage(this, managePatient);
-         //manageHaPage = new ManageHAPage(this, manageHA);
 
       }
-      private void Window_Loaded(object sender, RoutedEventArgs e)
+      public void Window_Loaded(object sender, RoutedEventArgs e)
       {
-          this.Hide();
+          Hide();
           homeWindow.ShowDialog();
 
-          if (LoginOK == true)
+          if (LoginOK)
           {
-              this.ShowDialog();
+              Main.Content = new PatientPage(this, managePatient);
+              ShowDialog();
           }
           else
           {
-              MessageBox.Show("Fejl -- loginOK");
+              MessageBox.Show("Fejl ved loginOK -- MainWindow");
           }
-          
-        }
+      }
 
         private void BtnPatient_Click(object sender, RoutedEventArgs e)
         {
@@ -73,10 +70,10 @@ namespace Presentation_Clinician
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             homeWindow = new HomeWindow(this, managePatient);
-            homeWindow.ShowDialog();
             homeWindow.TbCPRnumber.Clear();
+            homeWindow.ShowDialog();
+
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color1);
             BtnHearingAid.Background = new SolidColorBrush(color2);
