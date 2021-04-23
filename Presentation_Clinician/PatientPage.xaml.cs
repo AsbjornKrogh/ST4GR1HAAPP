@@ -39,7 +39,7 @@ namespace Presentation_Clinician
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
-            //patient.zipcode = Convert.ToInt32(TBphonenumber.Text);
+            //patient.City = TBphonenumber.Text;
             uc2ManagePatient.SavePatientPressed(patient);
             MessageBox.Show("Patienten er gemt");
         }
@@ -64,11 +64,16 @@ namespace Presentation_Clinician
             TBsurname.Text = patient.Lastname;
             TBCPR.Text = patient.CPR;
             TBAddress.Text = patient.Adress;
+            TbCity.Text = patient.City;
+            TbZipcode.Text = Convert.ToString(patient.zipcode);
+
 
             TBname.IsEnabled = false;
             TBsurname.IsEnabled = false;
             TBCPR.IsEnabled = false;
             TBAddress.IsEnabled = false;
+            TbCity.IsEnabled = false;
+            TbZipcode.IsEnabled = false;
             TBemail.IsEnabled = false;
             TBphonenumber.IsEnabled = false;
         }

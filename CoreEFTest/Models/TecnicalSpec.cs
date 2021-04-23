@@ -21,12 +21,14 @@ namespace CoreEFTest.Models
         public DateTime CreateDate { get; set; } = DateTime.Now.Date;
 
         [Required]
+        public bool Printed { get; set; }
+
+        [Required]
         [ForeignKey("StaffLogin")]
         public int StaffID { get; set; }
         public StaffLogin StaffLogin { get; set; }
 
         [Required]
-        
         [ForeignKey("Patient")]
         public string CPR { get; set; }
         public Patient Patient { get; set; }
@@ -38,7 +40,7 @@ namespace CoreEFTest.Models
 
         //[ForeignKey("RawEarScan")]
         public int ScanID { get; set; }
-        //public RawEarScan RawEarScan { get; set; }
+        public RawEarScan RawEarScan { get; set; }
 
         public List<RawEarPrint> EarPrints { get; set; }
     }

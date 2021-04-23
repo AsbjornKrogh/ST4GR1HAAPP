@@ -28,6 +28,16 @@ namespace CoreEFTest.Models
 
       [MaxLength(3)] public int Age { get; set; }
 
+      [Required]
+      [MaxLength(50)]
+      [Column(TypeName = "varchar(50)")]
+      public string Email { get; set; }
+
+      [Required]
+      [MaxLength(12)]
+      [Column(TypeName = "varchar(12)")]
+      public string MobilNummer { get; set; }
+
       [MaxLength(100)]
       [Column(TypeName = "varchar(100)")]
       public string Adress { get; set; }
