@@ -111,7 +111,6 @@ namespace Presentation_Technician
             {
                 if (ScanisRunning != true)
                 {
-                    //Todo tilføj kald til UC4_scan via backgroundworkers
                     ScanisRunning = true;
 
                     BackgroundWorker worker = new BackgroundWorker();

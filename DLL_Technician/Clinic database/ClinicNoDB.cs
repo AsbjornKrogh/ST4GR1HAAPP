@@ -38,7 +38,6 @@ namespace DLL_Technician
         }
         #endregion
 
-
         #region UC3.4 Delete patient
         public bool DeleteHA(string CPR)
         {
@@ -64,6 +63,16 @@ namespace DLL_Technician
             {
                 return null;
             }
+        }
+
+        public TecnicalSpec GetEarScan(string CPR)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TecnicalSpec> GetEarScans()
+        {
+            throw new NotImplementedException();
         }
 
         public bool SaveScan(RawEarScan scan)

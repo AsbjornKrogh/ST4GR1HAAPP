@@ -11,10 +11,12 @@ namespace DLL_Clinician
     public class ClinicDatabase: IClinicDatabase
     {
         private readonly ClinicDBContext _dbContext;
+        
 
         public ClinicDatabase()
         {
             _dbContext = new ClinicDBContext();
+           
         }
 
         #region Patient
@@ -82,6 +84,7 @@ namespace DLL_Clinician
         public void UpdatePatient(Patient patient)
         {
             Patient DBpatient = _dbContext.Patient.Find(patient.CPR);
+            
             if (DBpatient != null)
             {
                 if (DBpatient.Name != patient.Name && patient.Name != null)
