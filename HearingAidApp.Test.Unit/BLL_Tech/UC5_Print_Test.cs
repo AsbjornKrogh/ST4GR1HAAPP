@@ -49,4 +49,3 @@ namespace Techinician_HearingAidApp.Test.Unit
         }
     }
 }
-}
