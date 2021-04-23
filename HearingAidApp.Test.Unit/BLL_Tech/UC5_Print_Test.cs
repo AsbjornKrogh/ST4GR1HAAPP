@@ -1,29 +1,29 @@
-using BLL_Technician;
+﻿using BLL_Technician;
 using DLL_Technician;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace HearingAidApp.Test.Unit
+namespace Techinician_HearingAidApp.Test.Unit
 {
-    public class UC4_Scan_Test
+    class UC5_Print
     {
         private UC4_Scan uut;
         private IClinicDB _clinicDB;
         private IScanner _scanner;
 
-        [SetUp] 
+        [SetUp]
         public void Setup()
         {
             _scanner = Substitute.For<IScanner>();
             _clinicDB = Substitute.For<IClinicDB>();
-            uut = new UC4_Scan(_clinicDB,_scanner);
+            uut = new UC4_Scan(_clinicDB, _scanner);
 
         }
 
         [Test]
         public void UC4_Scan_ConnectToScanner_ScannerRecievesConnectCall()
         {
-          //Act
+            //Act
             uut.ConnectToScanner();
 
             //Test
@@ -48,4 +48,5 @@ namespace HearingAidApp.Test.Unit
             _clinicDB.Received().GetPatientInformations("1111111-0000");
         }
     }
+}
 }

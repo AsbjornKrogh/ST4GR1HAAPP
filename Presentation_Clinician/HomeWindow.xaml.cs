@@ -36,10 +36,9 @@ namespace Presentation_Clinician
 
             if (uc2ManagePatient.CheckCPR(cpr))
             {
-                this.Hide();
                 mainWindow.LoginOK = true;
                 mainWindow.CPR = cpr;
-                mainWindow.ShowDialog();
+                Hide();
 
             }
             else
