@@ -38,23 +38,6 @@ namespace BLL_Clinician
         //    clinicDatabase.UpdatePatient(patient);
         //}
 
-        //public bool CheckCPR(string CPRnumber)
-        //{
-
-        //    foreach (var patient in clinicDatabase.GetAllPatients())
-        //    {
-        //        if (patient.CPR == CPRnumber)
-        //        {
-        //            CPRCorrect = true;
-        //        }
-        //        else
-        //        {
-        //            CPRCorrect = false;
-        //        }
-        //    }
-        //    return CPRCorrect;
-        //}
-
         public bool CheckCPR(string CPRnumber)
         {
             int patientRegistered = 0;
