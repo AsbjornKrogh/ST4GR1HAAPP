@@ -39,7 +39,7 @@ namespace Presentation_Clinician
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
-            //patient.zipcode = Convert.ToInt16(TBphonenumber.Text);
+            patient.City = TBphonenumber.Text;
             uc2ManagePatient.SavePatientPressed(patient);
             MessageBox.Show("Patienten er gemt");
         }
