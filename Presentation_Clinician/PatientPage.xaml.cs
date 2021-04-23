@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using BBL_Clinician;
 using BLL_Clinician;
 using CoreEFTest.Models;
+using DLL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -46,18 +47,18 @@ namespace Presentation_Clinician
                 uc2ManagePatient.SaveUpdates(patient);
                 MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
             }
-            //else
+            //else if (TBCPR.Text ==regionpatient.CPR)
             //{
             //    uc2ManagePatient.SavePatientPressed(patient);
             //}
-            
+
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
         {
             TBEmail.IsEnabled = true;
             TBPhonenumber.IsEnabled = true;
-            TBEmail.Focus();
+            TBPhonenumber.Focus();
         }
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
