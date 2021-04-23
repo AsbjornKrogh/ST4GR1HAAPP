@@ -33,12 +33,13 @@ namespace Presentation_Clinician
         private void BtOK_Click(object sender, RoutedEventArgs e)
         {
             string cpr = TbCPRnumber.Text;
+            mainWindow.LoginOK = true;
 
-            if (uc2ManagePatient.CheckCPR(cpr))
+            if (uc2ManagePatient.CheckCPR(cpr) == true)
             {
                 mainWindow.LoginOK = true;
-                mainWindow.CPR = cpr;
                 Close();
+                mainWindow.CPR = cpr;
 
             }
             else
