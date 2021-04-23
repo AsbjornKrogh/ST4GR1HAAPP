@@ -53,6 +53,7 @@ namespace Presentation_Clinician
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
         {
+            //Til at teste uden database
             //TBname.Text = "TestNavn";
             //TBsurname.Text = "TestEfternavn";
             //TBCPR.Text = "123456-7890";
