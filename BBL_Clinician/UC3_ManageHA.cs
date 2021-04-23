@@ -18,6 +18,7 @@ namespace BBL_Clinician
        public bool SaveHAPressed(int HearingAidID, string type, string color, DateTime createDate, int ClinianID)
        {
            return true;
+           //måske skal vi benytte general spec her - ved ikke om man skal have en datetime og staffid med her
        }
 
    }

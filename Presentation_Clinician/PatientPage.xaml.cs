@@ -48,7 +48,7 @@ namespace Presentation_Clinician
         {
             TBemail.IsEnabled = true;
             TBphonenumber.IsEnabled = true;
-            TBphonenumber.Focus();
+            TBemail.Focus();
         }
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
