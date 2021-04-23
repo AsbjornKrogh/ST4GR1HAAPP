@@ -46,8 +46,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreTestConsoleApp", "EFC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HL7-FHIR", "HL7-FHIR\HL7-FHIR.csproj", "{5B7121CA-EC2E-4C05-9B35-4C178F61FE06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Technician_HearingAidApp.Test.Unit", "HearingAidApp.Test.Unit\Technician_HearingAidApp.Test.Unit.csproj", "{A94D4C9D-4A41-40E1-9F32-083A32D31B1D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,10 +104,6 @@ Global
 		{5B7121CA-EC2E-4C05-9B35-4C178F61FE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B7121CA-EC2E-4C05-9B35-4C178F61FE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B7121CA-EC2E-4C05-9B35-4C178F61FE06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A94D4C9D-4A41-40E1-9F32-083A32D31B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A94D4C9D-4A41-40E1-9F32-083A32D31B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A94D4C9D-4A41-40E1-9F32-083A32D31B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A94D4C9D-4A41-40E1-9F32-083A32D31B1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
