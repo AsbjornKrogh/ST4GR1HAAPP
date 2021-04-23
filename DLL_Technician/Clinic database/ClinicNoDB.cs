@@ -7,7 +7,7 @@ using CoreEFTest.Models;
 
 namespace DLL_Technician
 {
-    public class ClinicNoDB : IClinicDB
+    public class ClinicNoDB:IClinicDB
     {
         #region UC3.2 Show patient
         public Patient GetPatient(string CPR)
@@ -70,15 +70,17 @@ namespace DLL_Technician
             throw new NotImplementedException();
         }
 
+        public bool SaveScan(RawEarScan scan, string CPR)
+        {
+           throw new NotImplementedException();
+        }
+
+
         public List<TecnicalSpec> GetEarScans()
         {
             throw new NotImplementedException();
         }
 
-        public bool SaveScan(RawEarScan scan)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
     }

@@ -1,11 +1,13 @@
-﻿using BLL_Technician;
+using BLL_Technician;
 using DLL_Technician;
-using NSubstitute;
 using NUnit.Framework;
+using NSubstitute;
+
+
 
 namespace Technician_HearingAidApp.Test.Unit
 {
-    public class UC5_Print_Test
+    public class UC4_Scan_Test
     {
         private UC4_Scan uut;
         private IClinicDB _clinicDB;
@@ -30,6 +32,22 @@ namespace Technician_HearingAidApp.Test.Unit
             _scanner.Received().connectTo3DScanner();
 
         }
+
+        [Test]
+        public void UC4_Scan_StartScanner_ScannerRecievesStartCall()
+        {
+            uut.StartScanning(1);
+
+            _scanner.Received().StartScanning(1);
+        }
+
+
+        [Test]
+        public void UC4_Scan_GetPatientInformations_ClinicRecievesGetCall()
+        {
+            uut.GetPatientInformations("1111111-0000");
+
+            _clinicDB.Received().GetPatientInformations("1111111-0000");
+        }
     }
 }
-

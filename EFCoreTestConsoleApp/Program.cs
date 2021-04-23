@@ -74,7 +74,7 @@ namespace EFCoreTestConsoleApp
                 //StaffID = 200001,
                 Name = "Freja",
                 Password = "123",
-                StaffStatus = StaffLogin.Status.Technician,
+                StaffStatus = Status.Technician,
             };
 
             //clinicianDbLogic.CreateStaffLogin(newStaffLogin);
@@ -85,9 +85,9 @@ namespace EFCoreTestConsoleApp
 
             GeneralSpec newGeneralSpec = new GeneralSpec()
             {
-                Type = GeneralSpec.Material.AntiAllergi,
-                Color = GeneralSpec.PlugColor.Honey,
-                EarSide = GeneralSpec.Ear.Left,
+                Type = Material.AntiAllergi,
+                Color = PlugColor.Honey,
+                EarSide = Ear.Left,
                 CreateDate = DateTime.Now,
                 StaffID = 1,
 
@@ -100,7 +100,7 @@ namespace EFCoreTestConsoleApp
 
             TecnicalSpec newTecnicalSpec = new TecnicalSpec()
             {
-                EarSide = TecnicalSpec.Ear.Right,
+                EarSide = Ear.Right,
                 CreateDate = DateTime.Now,
                 StaffID = 1,
                 CPR = "123456-7890",
@@ -379,11 +379,11 @@ namespace EFCoreTestConsoleApp
             {
                 if (staffLogin.Password == pw)
                 {
-                    if (staffLogin.StaffStatus == StaffLogin.Status.Clinician)
+                    if (staffLogin.StaffStatus == Status.Clinician)
                     {
                         // åben cliniker vindue
                     }
-                    else if (staffLogin.StaffStatus == StaffLogin.Status.Technician)
+                    else if (staffLogin.StaffStatus == Status.Technician)
                     {
                         // åben teknikker vindue
                     }

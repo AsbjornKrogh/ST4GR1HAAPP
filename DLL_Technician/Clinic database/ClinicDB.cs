@@ -18,7 +18,8 @@ namespace DLL_Technician
       }
 
       /// <summary>
-      /// 
+      /// Metoden bliver benyttet til at hente en patient fra DB der passer til det pågældende CPR
+      /// og returnere et patient objekt.
       /// </summary>
       /// <param name="CPR"></param>
       /// <returns></returns>
@@ -30,7 +31,8 @@ namespace DLL_Technician
       }
 
       /// <summary>
-      /// 
+      /// Metoden benyttes til at gemme en TechinalSpec, og returnere efterfølgende en bool
+      /// hvorvidt den er gemt i DB eller ej
       /// </summary>
       /// <param name="techSpec"></param>
       /// <returns></returns>
@@ -49,8 +51,9 @@ namespace DLL_Technician
          return _dbContext.TecnicalSpecs.Contains(techSpec);
       }
 
+
       /// <summary>
-      /// 
+      /// DEN ER PÅ HOLD!
       /// </summary>
       /// <param name="CPR"></param>
       /// <returns></returns>
@@ -61,7 +64,8 @@ namespace DLL_Technician
 
 
       /// <summary>
-      /// 
+      /// ID på earcast bliver brugt til at hente informationer omkring en patient.
+      /// Den patient som passer med det specifikke earcast ID returneres.
       /// </summary>
       /// <param name="EarCastID"></param>
       /// <returns></returns>
@@ -75,16 +79,21 @@ namespace DLL_Technician
       }
 
 
-      // Mangel på HAtechspec ID;
-      /// <summary>
-      /// 
-      /// </summary>
-      /// <param name="scan"></param>
-      /// <returns></returns>
-      public bool SaveScan(RawEarScan scan, string CPR)
+        /// <summary>
+        /// Der gemmes et specikt earscan i DB og efterfølgende returneres en bool som fortæller om det er gjort.
+        /// </summary>
+        /// <param name="scan"></param>
+        /// <param name="CPR"></param>
+        /// <returns></returns>
+        public bool SaveScan(RawEarScan scan, string CPR)
       {
          try
          {
+            //Find det specifikke scans techspec
+            TecnicalSpec Techspec = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == scan.EarSide));
+
+            scan.HATechnicalSpecID = Techspec.HATechinalSpecID;
+
             _dbContext.RawEarScans.Add(scan);
             _dbContext.SaveChanges();
          }
@@ -96,16 +105,18 @@ namespace DLL_Technician
          return _dbContext.RawEarScans.Contains(scan);
       }
 
+
       /// <summary>
-      /// 
+      /// Der hentes et earscan fra DB ud fra et specifikt CPR.
+      /// Metoden returnerer en liste der indeholder scanning for både venstre og højre øre.
       /// </summary>
       /// <param name="CPR"></param>
       /// <returns></returns>
       public List<TecnicalSpec> GetEarScan(string CPR)
       {
          //Henter TechSpec for V og H øre
-         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == TecnicalSpec.Ear.Left));
-         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == TecnicalSpec.Ear.Right));
+         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == Ear.Left));
+         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == Ear.Right));
 
          //Henter Earscan for V og H øre 
          TechspecL.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID);
@@ -124,11 +135,9 @@ namespace DLL_Technician
          return Techspec;
       }
 
-
-      //Vil i hente scanninger for begge øre?
-      //Alle som ikke er blevet printet endnu skal hentes 
+ 
       /// <summary>
-      /// 
+      /// Benyttes til at returnere en liste med alle earscan fra DB der endnu ikke er printet.
       /// </summary>
       /// <returns></returns>
       public List<TecnicalSpec> GetEarScans()
