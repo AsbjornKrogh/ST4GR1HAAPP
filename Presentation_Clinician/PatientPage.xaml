@@ -20,8 +20,8 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <TextBox x:Name="TBPhonenumber" HorizontalAlignment="Left" Margin="455,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TBEmail" HorizontalAlignment="Left" Margin="455,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TBemail" HorizontalAlignment="Left" Margin="455,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TBphonenumber" HorizontalAlignment="Left" Margin="455,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Telefon nr." HorizontalAlignment="Left" Margin="370,44,0,0" VerticalAlignment="Top" Width="108"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="371,77,0,0" VerticalAlignment="Top"/>
         <Label Content="Fornavn" HorizontalAlignment="Left" Margin="85,48,0,0" VerticalAlignment="Top"/>

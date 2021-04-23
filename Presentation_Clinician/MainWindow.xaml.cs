@@ -104,6 +104,7 @@ namespace Presentation_Clinician
             else
             {
                 MessageBox.Show("Fejl ved loginOK -- MainWindow");
+                Close();
             }
         }
 
