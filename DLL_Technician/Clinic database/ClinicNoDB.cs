@@ -65,25 +65,22 @@ namespace DLL_Technician
             }
         }
 
-        public TecnicalSpec GetEarScan(string CPR)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<TecnicalSpec> IClinicDB.GetEarScan(string CPR)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<TecnicalSpec> GetEarScans()
+        public List<TecnicalSpec> GetEarScan(string CPR)
         {
             throw new NotImplementedException();
         }
 
         public bool SaveScan(RawEarScan scan, string CPR)
         {
+           throw new NotImplementedException();
+        }
+
+
+        public List<TecnicalSpec> GetEarScans()
+        {
             throw new NotImplementedException();
         }
+
 
         #endregion
     }

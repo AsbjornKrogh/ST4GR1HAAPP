@@ -6,24 +6,28 @@ using System.Text;
 
 namespace CoreEFTest.Models
 {
-    public class RawEarPrint
-    {
-        [Required]
-        [Key]
-        public int EarPrintID { get; set; }
+   public class RawEarPrint
+   {
+      
+      [Required]
+      [Key]
+      public int EarPrintID { get; set; }
 
-        [Required]
-        public DateTime PrintDate { get; set; } = DateTime.Now.Date;
+      [Required]
+      public Ear EarSide { get; set; }
 
-        [Required]
-        [ForeignKey("StaffLogin")]
-        public int StaffID { get; set; }
-        public StaffLogin StaffLogin { get; set; }
+      [Required]
+      public DateTime PrintDate { get; set; } = DateTime.Now.Date;
 
-        [Required]
-        [ForeignKey("TecnicalSpec")]
-        public int HATechnicalSpecID { get; set; }
-        public TecnicalSpec TecnicalSpec { get; set; }
+      [Required]
+      [ForeignKey("StaffLogin")]
+      public int StaffID { get; set; }
+      public StaffLogin StaffLogin { get; set; }
 
-    }
+      [Required]
+      [ForeignKey("TecnicalSpec")]
+      public int HATechnicalSpecID { get; set; }
+      public TecnicalSpec TecnicalSpec { get; set; }
+
+   }
 }
