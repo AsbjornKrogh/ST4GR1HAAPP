@@ -21,7 +21,7 @@ namespace Presentation_Clinician
     {
         MainWindow mainWindow = new MainWindow();
         UC3_ManageHA manageHA = new UC3_ManageHA();
-
+        
         public ManageHAPage(MainWindow mainWindow, UC3_ManageHA manageHA)
         {
             InitializeComponent();
