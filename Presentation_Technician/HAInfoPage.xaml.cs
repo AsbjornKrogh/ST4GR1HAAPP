@@ -56,9 +56,6 @@ namespace Presentation_Technician
 
                     Loading.Visibility = Visibility.Visible;
                     Loading.Spin = true;
-
-
-
                 }
                 else
                 {

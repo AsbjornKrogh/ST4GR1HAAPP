@@ -76,7 +76,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
-            <h:HelixViewport3D x:Name="EarScan" Grid.ColumnSpan="2"  Grid.Row="0" MinHeight="275" ZoomExtentsWhenLoaded="true" RotateAroundMouseDownPoint="true">
+            <h:HelixViewport3D x:Name="EarScan" MinHeight="275">
             <h:SunLight/>
             <ModelVisual3D x:Name="Visual3D">
                 <ModelVisual3D.Content>
