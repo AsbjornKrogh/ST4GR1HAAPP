@@ -122,6 +122,17 @@ namespace DLL_Clinician
                     DBpatient.EarCasts = patient.EarCasts;
                 }
 
+                if (DBpatient.Email != patient.Email && patient.Email != null)
+                {
+                    DBpatient.Email = patient.Email;
+                }
+
+                if (DBpatient.MobilNummer != patient.MobilNummer && patient.MobilNummer != null)
+                {
+                    DBpatient.MobilNummer = patient.MobilNummer;
+                }
+
+
                 _dbContext.Patient.Update(DBpatient);
             }
 

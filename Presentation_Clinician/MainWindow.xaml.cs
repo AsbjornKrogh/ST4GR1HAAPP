@@ -47,12 +47,14 @@ namespace Presentation_Clinician
       public void Window_Loaded(object sender, RoutedEventArgs e)
       {
           Hide();
-          homeWindow.ShowDialog();
+          homeWindow.Show();
 
           if (LoginOK)
           {
               Main.Content = new PatientPage(this, managePatient);
+              //ShowDialog();
               ShowDialog();
+              
           }
           else
           {
@@ -74,6 +76,7 @@ namespace Presentation_Clinician
             homeWindow = new HomeWindow(this, managePatient);
             homeWindow.TbCPRnumber.Clear();
             homeWindow.ShowDialog();
+            
 
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color1);
