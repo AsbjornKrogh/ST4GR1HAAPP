@@ -24,13 +24,41 @@ namespace HL7_FHIR
          return models.Id;
       }
 
-      public Patient ReadHl7FHIRPatient(string id)
+      public Patient ReadHl7FHIRPatientByID(string id)
       {
          var location = new Uri("https://aseecest3fhirservice.azurewebsites.net/Patient/" + id);
          var patient = client.Read<Patient>(location);
 
          return patient;
       }
+
+      public Patient ReadHl7FHIRPatientByName(string name)
+      {
+         //var location = new Uri("https://aseecest3fhirservice.azurewebsites.net/Patient?name=" + name);
+         //var patient = client.Read<Patient>(location);
+
+         //SearchParameter pram = new SearchParameter();
+
+         SearchParams prammer = new SearchParams("/Patient?name=Asbjørn","0");
+         Bundle result = client.Search(prammer);
+
+
+         foreach (Bundle.EntryComponent component in result.Entry)
+         {
+            try
+            {
+               Patient patient = (Patient)component.Resource;
+               Console.WriteLine(patient.Name[0].ToString());
+            }
+            catch (Exception e)
+            {
+              
+            }
+         }
+
+         return new Patient();
+      }
+
 
       public Patient FindPatientByCPR(string CPR)
       {

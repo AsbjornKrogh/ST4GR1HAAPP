@@ -18,9 +18,9 @@ namespace EFCoreTestConsoleApp
         {   
            HL7FHIRClient client = new HL7FHIRClient();
 
-           client.FindPatientByCPR("250997-0000");
+           //client.FindPatientByCPR("250997-0000");
 
-
+           client.ReadHl7FHIRPatientByName("Name");
 
 
 
