@@ -16,5 +16,21 @@ namespace DLL_Clinician
         void DeletePatient(Patient patient);
 
         void UpdatePatient(Patient patient);
+
+        //UC3
+        List<GeneralSpec> GetAlleGeneralSpecs(string CPR);
+
+        void UpdateGeneralSpec(GeneralSpec generalSpec);
+
+        //muligvis - men skal ikke laves endnu
+        //GetHearingTestPDF(string CPR)
+        
+
+
+        //UC6
+        //List<ProcesSpec> GetProcesInfo(string CPR); 
+
+
+
     }
 }

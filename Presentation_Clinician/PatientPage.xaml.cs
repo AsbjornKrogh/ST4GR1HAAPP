@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using BBL_Clinician;
 using BLL_Clinician;
 using CoreEFTest.Models;
+using DLL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -38,27 +39,30 @@ namespace Presentation_Clinician
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
-            //patient.City = TBphonenumber.Text;
-            uc2ManagePatient.SavePatientPressed(patient);
-            MessageBox.Show("Patienten er gemt");
+            if (TBCPR.Text == patient.CPR)
+            { 
+                //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
+                patient.Email = TBEmail.Text;
+                patient.MobilNummer = TBPhonenumber.Text;
+                uc2ManagePatient.SaveUpdates(patient);
+                MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
+            }
+            //else if (TBCPR.Text ==regionpatient.CPR)
+            //{
+            //    uc2ManagePatient.SavePatientPressed(patient);
+            //}
+
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
         {
-            TBemail.IsEnabled = true;
-            TBphonenumber.IsEnabled = true;
-            TBemail.Focus();
+            TBEmail.IsEnabled = true;
+            TBPhonenumber.IsEnabled = true;
+            TBPhonenumber.Focus();
         }
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
         {
-            //Til at teste uden database
-            //TBname.Text = "TestNavn";
-            //TBsurname.Text = "TestEfternavn";
-            //TBCPR.Text = "123456-7890";
-            //TBAddress.Text = "Testvej 2";
-            
             patient = uc2ManagePatient.GetPatientInformation(mainWindow.CPR);
             TBname.Text = patient.Name;
             TBsurname.Text = patient.Lastname;
@@ -66,6 +70,9 @@ namespace Presentation_Clinician
             TBAddress.Text = patient.Adress;
             TbCity.Text = patient.City;
             TbZipcode.Text = Convert.ToString(patient.zipcode);
+            TBPhonenumber.Text = patient.MobilNummer;
+            TBEmail.Text = patient.Email;
+            
 
 
             TBname.IsEnabled = false;
@@ -74,8 +81,8 @@ namespace Presentation_Clinician
             TBAddress.IsEnabled = false;
             TbCity.IsEnabled = false;
             TbZipcode.IsEnabled = false;
-            TBemail.IsEnabled = false;
-            TBphonenumber.IsEnabled = false;
+            TBEmail.IsEnabled = false;
+            TBPhonenumber.IsEnabled = false;
         }
     }
 }

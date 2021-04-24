@@ -41,23 +41,13 @@ namespace Presentation_Clinician
       public MainWindow()
       {
          InitializeComponent();
-         homeWindow = new HomeWindow(this,managePatient);
+         homeWindow = new HomeWindow(this, managePatient);
 
       }
       public void Window_Loaded(object sender, RoutedEventArgs e)
       {
           Hide();
-          homeWindow.ShowDialog();
-
-          if (LoginOK)
-          {
-              Main.Content = new PatientPage(this, managePatient);
-              ShowDialog();
-          }
-          else
-          {
-              MessageBox.Show("Fejl ved loginOK -- MainWindow");
-          }
+          CheckPatientCPR();
       }
 
         private void BtnPatient_Click(object sender, RoutedEventArgs e)
@@ -71,9 +61,8 @@ namespace Presentation_Clinician
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            homeWindow = new HomeWindow(this, managePatient);
-            homeWindow.TbCPRnumber.Clear();
-            homeWindow.ShowDialog();
+            Hide();
+            CheckPatientCPR();
 
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color1);
@@ -99,5 +88,25 @@ namespace Presentation_Clinician
             BtnHearingAid.Background = new SolidColorBrush(color2);
             BtnProces.Background = new SolidColorBrush(color1);
         }
+
+        public void CheckPatientCPR()
+        {
+            Hide();
+            homeWindow = new HomeWindow(this, managePatient);
+            homeWindow.ShowDialog();
+            homeWindow.TbCPRnumber.Clear();
+
+            if (LoginOK)
+            {
+                Main.Content = new PatientPage(this, managePatient);
+                ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Fejl ved loginOK -- MainWindow");
+                Close();
+            }
+        }
+
    }
 }

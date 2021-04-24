@@ -7,21 +7,29 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Presentation_Clinician
 {
     /// <summary>
-    /// Interaction logic for HearingTestWindow.xaml
+    /// Interaction logic for OrderNewHA.xaml
     /// </summary>
-    public partial class HearingTestWindow : Window
+    public partial class OrderNewHA : Window
     {
-        public HearingTestWindow()
+        public OrderNewHA()
         {
             InitializeComponent();
-            
+        }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

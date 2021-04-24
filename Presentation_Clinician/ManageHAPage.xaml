@@ -9,8 +9,6 @@
       Title="ManageHAPage" Background="#FFF9F5F5">
 
     <Grid>
-        <Button x:Name="BtnUpdate" Content="Opdater" HorizontalAlignment="Left" Margin="352,227,0,0" VerticalAlignment="Top" Height="31" Width="75" Click="BtnUpdate_Click" RenderTransformOrigin="2.187,0.516"/>
-        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" Margin="448,227,0,0" VerticalAlignment="Top" Height="31" Width="75" Click="BtnSave_Click" RenderTransformOrigin="0.507,1.742"/>
         <Label Content="Høreapparat - højre øre" HorizontalAlignment="Left" Margin="232,29,0,0" VerticalAlignment="Top"/>
         <Label Content="Høreapparat - venstre øre" HorizontalAlignment="Left" Margin="506,29,0,0" VerticalAlignment="Top"/>
         <Menu Margin="0,0,622,0" RenderTransformOrigin="0.5,0.5">
