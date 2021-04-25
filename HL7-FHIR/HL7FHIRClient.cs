@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
@@ -20,7 +21,7 @@ namespace HL7_FHIR
       public string CreateHl7FHIRPatient(Patient model)
       {
          Patient models = client.Create<Patient>(model);
-           
+
          return models.Id;
       }
 
@@ -39,7 +40,7 @@ namespace HL7_FHIR
 
          //SearchParameter pram = new SearchParameter();
 
-         SearchParams prammer = new SearchParams("/Patient?name=Asbjørn","0");
+         SearchParams prammer = new SearchParams("/Patient?name=Asbjørn", "0");
          Bundle result = client.Search(prammer);
 
 
@@ -47,12 +48,12 @@ namespace HL7_FHIR
          {
             try
             {
-               Patient patient = (Patient)component.Resource;
+               Patient patient = (Patient) component.Resource;
                Console.WriteLine(patient.Name[0].ToString());
             }
             catch (Exception e)
             {
-              
+
             }
          }
 
@@ -70,8 +71,45 @@ namespace HL7_FHIR
 
             Console.WriteLine(patient.Name[0].ToString());
          }
-      
+
          return new Patient();
+      }
+
+
+
+
+      public Patient FindPatientByCPRTry(string CPR)
+      {
+         Bundle result = client.Search<Patient>(null);
+
+         foreach (Bundle.EntryComponent component in result.Entry)
+         {
+            Patient patient = (Patient) component.Resource;
+
+            Console.WriteLine(patient.Name[0].ToString());
+         }
+
+         return new Patient();
+      }
+
+      public IEnumerable<Patient> GetObservationsByName(string text)
+      {
+         var searchParameters = new SearchParams();
+         searchParameters.Add("identifier.value", text);
+
+         var results = client.Search(searchParameters, ResourceType.Patient.ToString());
+         return results.Entry.Select(s => (Patient) s.Resource);
+      }
+
+      public IEnumerable<Patient> GetPatientsByName(string firstName, string lastName)
+      {
+         var searchParameters = new SearchParams();
+         searchParameters.Add("Given", firstName);
+         searchParameters.Add("Family", lastName);
+
+         var matches = new List<Patient>();
+         var result = client.Search(searchParameters, ResourceType.Patient.ToString());
+         return result.Entry.Select(x => (Patient)x.Resource);
       }
 
    }
