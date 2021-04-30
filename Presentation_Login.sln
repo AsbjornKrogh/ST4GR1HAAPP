@@ -46,7 +46,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreTestConsoleApp", "EFC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HL7-FHIR", "HL7-FHIR\HL7-FHIR.csproj", "{5B7121CA-EC2E-4C05-9B35-4C178F61FE06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Technician_HearingAidApp.Test.Unit", "Technician_HearingAidApp.Test.Unit\Technician_HearingAidApp.Test.Unit.csproj", "{22EB2315-9560-4CB9-B91A-5020BFD1E6D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Technician_HearingAidApp.Test.Unit", "Technician_HearingAidApp.Test.Unit\Technician_HearingAidApp.Test.Unit.csproj", "{22EB2315-9560-4CB9-B91A-5020BFD1E6D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
