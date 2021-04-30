@@ -23,6 +23,7 @@ namespace Presentation_Clinician
         UC3_ManageHA manageHA = new UC3_ManageHA();
         HearingTestWindow _hearingTest = new HearingTestWindow();
         
+        
         public ManageHAPage(MainWindow mainWindow, UC3_ManageHA manageHA)
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace Presentation_Clinician
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
         {
-
+         TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(mainWindow.CPR));
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
