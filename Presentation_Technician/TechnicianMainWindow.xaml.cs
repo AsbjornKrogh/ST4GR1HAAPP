@@ -35,6 +35,7 @@ namespace Presentation_Technician
         //db = new ClinicDB();
          db = new ClinicNoDB();
          timeStamp = new TimeStamp();
+         printer = new NoPrinter(timeStamp);
 
          scanner = new NoScanner(timeStamp);
 

@@ -114,7 +114,9 @@ namespace DLL_Technician
                 //testTecnicalSpec1.Patient.Lastname = "Andersen";
                 testTecnicalSpec1.EarSide = Ear.Right;
                 //testTecnicalSpec1.Patient.Age = 69;
+                testTecnicalSpec1.RawEarScan = new RawEarScan();
                 tecnicalSpecs.Add(testTecnicalSpec1);
+
 
                 TecnicalSpec testTecnicalSpec2 = new TecnicalSpec();
                 testTecnicalSpec2.CPR = "123456-7891";
@@ -122,6 +124,7 @@ namespace DLL_Technician
                 //testTecnicalSpec2.Patient.Lastname = "Andersen";
                 testTecnicalSpec2.EarSide = Ear.Left;
                 //testTecnicalSpec2.Patient.Age = 69;
+                testTecnicalSpec2.RawEarScan = new RawEarScan();
                 tecnicalSpecs.Add(testTecnicalSpec2);
 
                 return tecnicalSpecs;
@@ -144,14 +147,16 @@ namespace DLL_Technician
                 //testTecnicalSpec1.Patient.Lastname = "Andersen";
                 testTecnicalSpec1.EarSide = Ear.Right;
                 //testTecnicalSpec1.Patient.Age = 69;
+                testTecnicalSpec1.RawEarScan = new RawEarScan(); 
                 tecnicalSpecs.Add(testTecnicalSpec1);
 
                 TecnicalSpec testTecnicalSpec2 = new TecnicalSpec();
                 testTecnicalSpec2.CPR = "123456-7891";
                 //testTecnicalSpec2.Patient.Name = "Børge";
                 //testTecnicalSpec2.Patient.Lastname = "Andersen";
-                testTecnicalSpec2.EarSide = Ear.Left;
+                testTecnicalSpec2.EarSide = Ear.Left; 
                 //testTecnicalSpec2.Patient.Age = 69;
+                testTecnicalSpec2.RawEarScan = new RawEarScan();
                 tecnicalSpecs.Add(testTecnicalSpec2);
 
                 return tecnicalSpecs;

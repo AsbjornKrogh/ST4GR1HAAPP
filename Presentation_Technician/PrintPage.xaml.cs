@@ -16,6 +16,7 @@ using BLL_Technician;
 using DLL_Technician;
 using CoreEFTest.Models;
 using DLL_Technician.Printer;
+using DTO;
 
 namespace Presentation_Technician
 {
@@ -32,7 +33,9 @@ namespace Presentation_Technician
         private bool HentisRunning;
         private bool ScanisRunning;
         private List<TecnicalSpec> patientInformationsAll;
+        private List<TecnicalSpec> patientInformations;
         private RawEarScan rawEarScan;
+        private RawEarPrint printedEarPrint;
 
 
         public PrintPage(IClinicDB db, IPrinter printer, StaffLogin technician)
@@ -56,20 +59,20 @@ namespace Presentation_Technician
             FindScanB.IsEnabled = false;
             if (isRunning != true)
             {
-                    isRunning = true;
+                isRunning = true;
 
-                    BackgroundWorker worker = new BackgroundWorker();
+                BackgroundWorker worker = new BackgroundWorker();
 
-                    worker.DoWork += UC4GetPatientInformationAll;
-                    worker.RunWorkerCompleted += UC4GetPatientInformationAllCompleted;
+                worker.DoWork += UC4GetPatientInformationAll;
+                worker.RunWorkerCompleted += UC4GetPatientInformationAllCompleted;
 
-                    worker.RunWorkerAsync();
+                worker.RunWorkerAsync();
 
-                    Loading.Visibility = Visibility.Visible;
-                    Loading.Spin = true;
+                Loading.Visibility = Visibility.Visible;
+                Loading.Spin = true;
 
-                    //Thread.Sleep(1500);
-                    //MessageBox.Show("Der blev ikke fundet nogle høreapparater, der er klar til print")
+                //Thread.Sleep(1500);
+                //MessageBox.Show("Der blev ikke fundet nogle høreapparater, der er klar til print")
             }
         }
 
@@ -87,7 +90,7 @@ namespace Presentation_Technician
 
             FindAllPatientsB.Visibility = Visibility.Visible;
 
-            patientInformationsAll = (List<TecnicalSpec>)e.Result;
+            patientInformationsAll = (List<TecnicalSpec>) e.Result;
             if (patientInformationsAll.Count > 1)
             {
                 PatientInformationLB.Items.Add("Vælg alle");
@@ -97,53 +100,55 @@ namespace Presentation_Technician
             {
                 if (tecnicalSpec != null)
                 {
-                    PatientInformationLB.Items.Add("CPR: " + tecnicalSpec.CPR + /*"\r\nNavn: " + tecnicalSpec.Patient.Name + " " + tecnicalSpec.Patient.Lastname +*/ "\r\nØre: " + tecnicalSpec.EarSide);
+                    PatientInformationLB.Items.Add("CPR: " + tecnicalSpec.CPR + "\r\nØre: " + tecnicalSpec.EarSide);
                 }
                 else
                 {
                     PatientInformationLB.Items.Add("Der er ingen ørepropper klar til print");
                 }
             }
+
             PrintB.IsEnabled = true;
         }
+
         #endregion
 
         #region Find en patient
 
-        
+
         private void FindScanB_Click(object sender, RoutedEventArgs e)
         {
             if (CPRnummerTB.Text == "")
             {
-                MessageBox.Show("Indtast et CPR-nummer","Fejl");
+                MessageBox.Show("Indtast et CPR-nummer", "Fejl");
             }
             else
             {
                 FindAllPatientsB.IsEnabled = false;
-                if (isRunning != true) 
+                if (isRunning != true)
                 {
-                 isRunning = true;
+                    isRunning = true;
 
-                BackgroundWorker worker = new BackgroundWorker();
+                    BackgroundWorker worker = new BackgroundWorker();
 
-                worker.DoWork += UC5GetPatientInformation;
-                worker.RunWorkerCompleted += UC5GetPatientInformationCompleted;
+                    worker.DoWork += UC5GetPatientInformation;
+                    worker.RunWorkerCompleted += UC5GetPatientInformationCompleted;
 
-                string CPR = CPRnummerTB.Text;
-                worker.RunWorkerAsync(CPR);
+                    string CPR = CPRnummerTB.Text;
+                    worker.RunWorkerAsync(CPR);
 
-                Loading.Visibility = Visibility.Visible;
-                Loading.Spin = true;
+                    Loading.Visibility = Visibility.Visible;
+                    Loading.Spin = true;
 
-                //Thread.Sleep(1500);
-                //MessageBox.Show("Der blev ikke fundet nogle høreapparater, der er klar til print")
+                    //Thread.Sleep(1500);
+                    //MessageBox.Show("Der blev ikke fundet nogle høreapparater, der er klar til print")
                 }
             }
         }
 
         public void UC5GetPatientInformation(object sender, DoWorkEventArgs e)
         {
-            e.Result = uc5_print.GetEarScan((string)e.Argument);
+            e.Result = uc5_print.GetEarScan((string) e.Argument);
         }
 
         public void UC5GetPatientInformationCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -154,17 +159,20 @@ namespace Presentation_Technician
 
             FindAllPatientsB.Visibility = Visibility.Visible;
 
-            patientInformationsAll = (List<TecnicalSpec>)e.Result;
+            patientInformations = (List<TecnicalSpec>) e.Result;
 
             int count = 0;
 
-            foreach (var tecnicalSpec in patientInformationsAll)
+            foreach (var tecnicalSpec in patientInformations)
             {
                 if (tecnicalSpec != null)
                 {
                     if (count == 0)
                     {
-                        PatientInformationTB.Text = "CPR: " + tecnicalSpec.CPR + /*"\r\nNavn: " + tecnicalSpec.Patient.Name + " " + tecnicalSpec.Patient.Lastname +*/ "\r\nØre: " + tecnicalSpec.EarSide;
+                        PatientInformationTB.Text = "CPR: " +
+                                                    tecnicalSpec
+                                                        .CPR + /*"\r\nNavn: " + tecnicalSpec.Patient.Name + " " + tecnicalSpec.Patient.Lastname +*/
+                                                    "\r\nØre: " + tecnicalSpec.EarSide;
                         count++;
                     }
                     else
@@ -178,6 +186,7 @@ namespace Presentation_Technician
                     PatientInformationTB.Text = "Der er ingen ørepropper klar til print";
                 }
             }
+
             PrintB.IsEnabled = true;
         }
 
@@ -192,16 +201,76 @@ namespace Presentation_Technician
             bool connect = uc5_print.ConnectToPrinter();
             if (connect)
             {
+                BackgroundWorker worker = new BackgroundWorker();
+
+                worker.DoWork += UC5AddToPrintQueue;
+                worker.RunWorkerCompleted += UC5AddToPrintQueueCompleted;
+                
+
+                FullRawEarPrint fullRawEarPrint = new FullRawEarPrint();
+                fullRawEarPrint.PrintTechID = technician.StaffID;
+                fullRawEarPrint.EarScans = new List<RawEarScan>();
+                
+
                 if (PatientInformationLB.Items.Count > 0)
                 {
+                  
 
+                    if (PatientInformationLB.SelectedIndex == 0)
+                    {
+                        foreach (var tecnical in patientInformationsAll)
+                        {
+                            fullRawEarPrint.EarScans.Add(tecnical.RawEarScan);
+                        }
+                    }
+                    else
+                    {
+                        int EarScanIndex = PatientInformationLB.SelectedIndex - 1;
+                        fullRawEarPrint.EarScans.Add(patientInformationsAll[EarScanIndex].RawEarScan);
+                    }
                 }
+
+                else
+                {
+                    foreach (var tecnical in patientInformations)
+                    {
+                      fullRawEarPrint.EarScans.Add(tecnical.RawEarScan);
+                    }
+                }
+
+                worker.RunWorkerAsync(fullRawEarPrint);
+
+                Loading.Visibility = Visibility.Visible;
+                Loading.Spin = true;
             }
+        }
 
+        public void UC5AddToPrintQueue(object sender, DoWorkEventArgs e)
+        {
+            FullRawEarPrint parm = (FullRawEarPrint) e.Argument;
+            e.Result = uc5_print.AddToPrintQueue(parm.PrintTechID, parm.EarScans);
+        }
 
+        public void UC5AddToPrintQueueCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            HentisRunning = false;
+            Loading.Spin = false;
+            Loading.Visibility = Visibility.Collapsed;
+
+            //FindAllPatientsB.Visibility = Visibility.Visible;
+
+            printedEarPrint = (RawEarPrint)e.Result;
+
+            if (printedEarPrint == null)
+            {
+                MessageBox.Show("Øreprop kunne ikke tilføjes til printkøen");
+            }
+            else
+            {
+                MessageBox.Show("Øreproppen er tilføjet til printkøen");
+            }
         }
 
         #endregion
-
     }
 }

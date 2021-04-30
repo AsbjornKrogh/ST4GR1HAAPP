@@ -8,6 +8,6 @@ namespace DLL_Technician.Printer
     public interface IPrinter
     {
         bool connectToPrinter();
-        RawEarPrint StartPrint(int ScanTechID);
+        RawEarPrint StartPrint(int ScanTechID, List<RawEarScan>earScans);
     }
 }
