@@ -13,8 +13,8 @@ namespace HL7_FHIR
 
       public HL7FHIRClient()
       {
-         //client = new FhirClient("https://aseecest3fhirservice.azurewebsites.net/");
-         client = new FhirClient("https://vonk.fire.ly");
+         client = new FhirClient("https://aseecest3fhirservice.azurewebsites.net/");
+         //client = new FhirClient("https://vonk.fire.ly");
          client.Timeout = 120000;
       }
 
@@ -63,6 +63,12 @@ namespace HL7_FHIR
 
       public Patient FindPatientByCPR(string CPR)
       {
+         var con = new SearchParams();
+         con.Add("identifier", CPR);
+
+         var getpbyCPR = client.Search(con);
+
+
          Bundle result = client.Search<Patient>(null);
 
          foreach (Bundle.EntryComponent component in result.Entry)
@@ -74,9 +80,6 @@ namespace HL7_FHIR
 
          return new Patient();
       }
-
-
-
 
       public Patient FindPatientByCPRTry(string CPR)
       {

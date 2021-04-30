@@ -51,17 +51,40 @@ namespace DLL_Technician
          return _dbContext.TecnicalSpecs.Contains(techSpec);
       }
 
+      /// <summary>
+      /// Der gemmes et specifikt rawEarScan i DB og efterfølgende returneres en bool som fortæller om det er gjort.
+      /// </summary>
+      /// <param name="rawEarPrint"></param>
+      /// <param name="CPR"></param>
+      /// <returns></returns>
+      public bool SavePrint(RawEarPrint rawEarPrint, string CPR)
+      {
+         try
+         {
+            TecnicalSpec Techspec = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == rawEarPrint.EarSide));
+
+            rawEarPrint.HATechnicalSpecID = Techspec.HATechinalSpecID;
+
+            _dbContext.RawEarPrints.Add(rawEarPrint);
+            _dbContext.SaveChanges();
+         }
+         catch
+         {
+            return false;
+         }
+
+         return _dbContext.RawEarPrints.Contains(rawEarPrint);
+      }
 
       /// <summary>
-      /// DEN ER PÅ HOLD!
+      /// Er ikke implementeret. 
       /// </summary>
       /// <param name="CPR"></param>
       /// <returns></returns>
       public bool DeleteHA(string CPR)
       {
-         return true;
+         return false;
       }
-
 
       /// <summary>
       /// ID på earcast bliver brugt til at hente informationer omkring en patient.
@@ -78,14 +101,13 @@ namespace DLL_Technician
          return patient;
       }
 
-
-        /// <summary>
-        /// Der gemmes et specikt earscan i DB og efterfølgende returneres en bool som fortæller om det er gjort.
-        /// </summary>
-        /// <param name="scan"></param>
-        /// <param name="CPR"></param>
-        /// <returns></returns>
-        public bool SaveScan(RawEarScan scan, string CPR)
+      /// <summary>
+      /// Der gemmes et specikt earscan i DB og efterfølgende returneres en bool som fortæller om det er gjort.
+      /// </summary>
+      /// <param name="scan"></param>
+      /// <param name="CPR"></param>
+      /// <returns></returns>
+      public bool SaveScan(RawEarScan scan, string CPR)
       {
          try
          {
@@ -104,7 +126,6 @@ namespace DLL_Technician
 
          return _dbContext.RawEarScans.Contains(scan);
       }
-
 
       /// <summary>
       /// Der hentes et earscan fra DB ud fra et specifikt CPR.
@@ -135,7 +156,6 @@ namespace DLL_Technician
          return Techspec;
       }
 
- 
       /// <summary>
       /// Benyttes til at returnere en liste med alle earscan fra DB der endnu ikke er printet.
       /// </summary>
@@ -144,7 +164,7 @@ namespace DLL_Technician
       {
          //Henter alle techSpec ud af DB'en
          List<TecnicalSpec> DBlist = _dbContext.TecnicalSpecs.ToList();
-         
+
          //Oprettelse af listen, som skal returneres
          List<TecnicalSpec> TechSpeclist = new List<TecnicalSpec>();
 

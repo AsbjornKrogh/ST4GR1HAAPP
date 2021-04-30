@@ -4,14 +4,16 @@ using CoreEFTest.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoreEFTest.Migrations
 {
     [DbContext(typeof(ClinicDBContext))]
-    partial class ClinicDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210430081105_GeneralSpecAddCPR")]
+    partial class GeneralSpecAddCPR
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,7 +273,7 @@ namespace CoreEFTest.Migrations
                     b.HasOne("CoreEFTest.Models.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("CPR")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")

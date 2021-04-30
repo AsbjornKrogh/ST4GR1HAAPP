@@ -24,9 +24,16 @@ namespace CoreEFTest.Models
         public DateTime CreateDate { get; set; } = DateTime.Now.Date;
 
         [Required]
+        [ForeignKey("Patient")]
+        public string CPR { get; set; }
+
+        //public Patient Patient { get; set; }
+
+        [Required]
         [ForeignKey("StaffLogin")]
         public int StaffID { get; set; }
-        public StaffLogin StaffLogin { get; set; }
+
+        //public StaffLogin StaffLogin { get; set; }
 
     }
 }

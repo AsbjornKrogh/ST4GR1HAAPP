@@ -82,11 +82,22 @@ namespace Presentation_Technician
             if (patientAndHA != null)
             {
                 patientInfoTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
+                HAList.Items.Add(patientAndHA.EarCasts[0].EarSide.ToString());
+                HAList.Items.Add(patientAndHA.EarCasts[1].EarSide.ToString());
             }
             else
             {
                 patientInfoTB.Text = "Det indtastede CPR nummer findes ikke i databasen";
             }
+
+        }
+
+        private void ShowHAInfoB_Click(object sender, RoutedEventArgs e)
+        {
+            EarCast selected = (EarCast)patientAndHA.EarCasts[HAList.SelectedIndex];
+
+            TypeTB.Text = selected.PatientCPR;
+
 
         }
     }
