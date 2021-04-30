@@ -73,8 +73,6 @@ namespace Presentation_Clinician
             TBPhonenumber.Text = patient.MobilNummer;
             TBEmail.Text = patient.Email;
             
-
-
             TBname.IsEnabled = false;
             TBsurname.IsEnabled = false;
             TBCPR.IsEnabled = false;
