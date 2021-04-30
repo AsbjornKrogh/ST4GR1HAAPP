@@ -26,9 +26,9 @@ namespace DLL_Clinician
         /// <returns></returns>
         public List<Patient> GetAllPatients()
         {
-            List<Patient> Patient = _dbContext.Patient.ToList();
+            List<Patient> patient = _dbContext.Patient.ToList();
 
-            return Patient;
+            return patient;
         }
 
         /// <summary>
