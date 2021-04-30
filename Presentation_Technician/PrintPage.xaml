@@ -67,12 +67,12 @@
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
             <Grid>
-            <fa:ImageAwesome HorizontalAlignment="Center" VerticalAlignment="Center" Name="Loading" Visibility="Collapsed" Icon="CircleOutlineNotch" Spin="false" SpinDuration="3" Height="40" Width="40" RenderTransformOrigin="0.55,0.517"/>
+                <fa:ImageAwesome HorizontalAlignment="Center" VerticalAlignment="Center" Name="Loading" Visibility="Collapsed" Icon="CircleOutlineNotch" Spin="false" SpinDuration="3" Height="40" Width="40" RenderTransformOrigin="0.55,0.517"/>
             </Grid>
         </StackPanel>
 
 
-            <StackPanel  Grid.Row="1" Grid.Column="1">
+        <StackPanel  Grid.Row="1" Grid.Column="1">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -80,7 +80,7 @@
                     <ColumnDefinition Width="199*"/>
                 </Grid.ColumnDefinitions>
 
-                <ListBox  Height ="120" Width="190" HorizontalAlignment="center" VerticalAlignment="Center" Grid.ColumnSpan="2">
+                <ListBox  x:Name="PatientInformationLB" Height ="120" Width="190" HorizontalAlignment="center" VerticalAlignment="Center" Grid.ColumnSpan="2">
                     <ListBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -93,7 +93,7 @@
 
         <StackPanel  Grid.Row="1" Grid.Column="0">
             <Grid>
-                <TextBox VerticalContentAlignment="Center" HorizontalAlignment="Center" Width="190" Height="120">
+                <TextBox x:Name="PatientInformationTB" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="190" Height="120" Margin="107,0,0,0">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5 5 5 5"/>
