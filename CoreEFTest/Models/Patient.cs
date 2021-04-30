@@ -26,7 +26,8 @@ namespace CoreEFTest.Models
       [Column(TypeName = "varchar(25)")]
       public string Lastname { get; set; }
 
-      [MaxLength(3)] public int Age { get; set; }
+      [MaxLength(3)] 
+      public int Age { get; set; }
 
       [Required]
       [MaxLength(50)]
@@ -48,6 +49,10 @@ namespace CoreEFTest.Models
 
       [MaxLength(4)] 
       public int zipcode { get; set; }
+
+      public List<GeneralSpec> GeneralSpecs { get; set; }
+
+      public List<TecnicalSpec> TecnicalSpecs { get; set; }
 
       public List<EarCast> EarCasts { get; set; }
    }

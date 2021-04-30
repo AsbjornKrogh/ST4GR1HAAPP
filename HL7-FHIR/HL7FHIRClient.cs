@@ -66,10 +66,7 @@ namespace HL7_FHIR
          var con = new SearchParams();
          con.Add("identifier", CPR);
 
-         var getpbyCPR = client.Search(con);
-
-
-         Bundle result = client.Search<Patient>(null);
+         Bundle result = client.Search<Patient>(con);
 
          foreach (Bundle.EntryComponent component in result.Entry)
          {

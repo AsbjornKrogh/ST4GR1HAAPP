@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CoreEFTest.Migrations
 {
-    public partial class InitialCreat : Migration
+    public partial class InitCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,6 +15,8 @@ namespace CoreEFTest.Migrations
                     Name = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
                     Lastname = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Age = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    MobilNummer = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false),
                     Adress = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
                     City = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
                     zipcode = table.Column<int>(type: "int", maxLength: 4, nullable: false)
@@ -45,7 +47,7 @@ namespace CoreEFTest.Migrations
                 {
                     EarCastID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ear = table.Column<string>(type: "char(1)", nullable: false),
+                    EarSide = table.Column<int>(type: "int", nullable: false),
                     CastDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PatientCPR = table.Column<string>(type: "varchar(11)", nullable: false)
                 },
@@ -61,7 +63,7 @@ namespace CoreEFTest.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GeneralSpec",
+                name: "GeneralSpecs",
                 columns: table => new
                 {
                     HAGeneralSpecID = table.Column<int>(type: "int", maxLength: 10, nullable: false)
@@ -70,16 +72,18 @@ namespace CoreEFTest.Migrations
                     Color = table.Column<int>(type: "int", nullable: false),
                     EarSide = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StaffID = table.Column<int>(type: "int", nullable: false)
+                    CPR = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StaffID = table.Column<int>(type: "int", nullable: false),
+                    PatientCPR = table.Column<string>(type: "varchar(11)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GeneralSpec", x => x.HAGeneralSpecID);
+                    table.PrimaryKey("PK_GeneralSpecs", x => x.HAGeneralSpecID);
                     table.ForeignKey(
-                        name: "FK_GeneralSpec_StaffLogin_StaffID",
-                        column: x => x.StaffID,
-                        principalTable: "StaffLogin",
-                        principalColumn: "StaffID",
+                        name: "FK_GeneralSpecs_Patient_PatientCPR",
+                        column: x => x.PatientCPR,
+                        principalTable: "Patient",
+                        principalColumn: "CPR",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -91,25 +95,31 @@ namespace CoreEFTest.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EarSide = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Printed = table.Column<bool>(type: "bit", nullable: false),
                     StaffID = table.Column<int>(type: "int", nullable: false),
-                    CPR = table.Column<int>(type: "int", nullable: false),
-                    patientCPR = table.Column<string>(type: "varchar(11)", nullable: true),
-                    HAinfo = table.Column<int>(type: "int", nullable: false),
-                    GeneralSpecHAGeneralSpecID = table.Column<int>(type: "int", nullable: true),
-                    ScanID = table.Column<int>(type: "int", nullable: false)
+                    CPR = table.Column<string>(type: "varchar(11)", nullable: false),
+                    HAGenerelSpecID = table.Column<int>(type: "int", nullable: false),
+                    ScanID = table.Column<int>(type: "int", nullable: false),
+                    PatientCPR = table.Column<string>(type: "varchar(11)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TecnicalSpecs", x => x.HATechinalSpecID);
                     table.ForeignKey(
-                        name: "FK_TecnicalSpecs_GeneralSpec_GeneralSpecHAGeneralSpecID",
-                        column: x => x.GeneralSpecHAGeneralSpecID,
-                        principalTable: "GeneralSpec",
+                        name: "FK_TecnicalSpecs_GeneralSpecs_HAGenerelSpecID",
+                        column: x => x.HAGenerelSpecID,
+                        principalTable: "GeneralSpecs",
                         principalColumn: "HAGeneralSpecID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TecnicalSpecs_Patient_patientCPR",
-                        column: x => x.patientCPR,
+                        name: "FK_TecnicalSpecs_Patient_CPR",
+                        column: x => x.CPR,
+                        principalTable: "Patient",
+                        principalColumn: "CPR",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TecnicalSpecs_Patient_PatientCPR",
+                        column: x => x.PatientCPR,
                         principalTable: "Patient",
                         principalColumn: "CPR",
                         onDelete: ReferentialAction.Restrict);
@@ -127,6 +137,7 @@ namespace CoreEFTest.Migrations
                 {
                     EarPrintID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    EarSide = table.Column<int>(type: "int", nullable: false),
                     PrintDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StaffID = table.Column<int>(type: "int", nullable: false),
                     HATechnicalSpecID = table.Column<int>(type: "int", nullable: false)
@@ -155,6 +166,7 @@ namespace CoreEFTest.Migrations
                     ScanID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Scan = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    EarSide = table.Column<int>(type: "int", nullable: false),
                     ScanDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StaffID = table.Column<int>(type: "int", nullable: false),
                     HATechnicalSpecID = table.Column<int>(type: "int", nullable: false)
@@ -182,9 +194,9 @@ namespace CoreEFTest.Migrations
                 column: "PatientCPR");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GeneralSpec_StaffID",
-                table: "GeneralSpec",
-                column: "StaffID");
+                name: "IX_GeneralSpecs_PatientCPR",
+                table: "GeneralSpecs",
+                column: "PatientCPR");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RawEarPrints_HATechnicalSpecID",
@@ -199,7 +211,8 @@ namespace CoreEFTest.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_RawEarScans_HATechnicalSpecID",
                 table: "RawEarScans",
-                column: "HATechnicalSpecID");
+                column: "HATechnicalSpecID",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_RawEarScans_StaffID",
@@ -207,56 +220,28 @@ namespace CoreEFTest.Migrations
                 column: "StaffID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TecnicalSpecs_GeneralSpecHAGeneralSpecID",
+                name: "IX_TecnicalSpecs_CPR",
                 table: "TecnicalSpecs",
-                column: "GeneralSpecHAGeneralSpecID");
+                column: "CPR");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TecnicalSpecs_patientCPR",
+                name: "IX_TecnicalSpecs_HAGenerelSpecID",
                 table: "TecnicalSpecs",
-                column: "patientCPR");
+                column: "HAGenerelSpecID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TecnicalSpecs_ScanID",
+                name: "IX_TecnicalSpecs_PatientCPR",
                 table: "TecnicalSpecs",
-                column: "ScanID");
+                column: "PatientCPR");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TecnicalSpecs_StaffID",
                 table: "TecnicalSpecs",
                 column: "StaffID");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_TecnicalSpecs_RawEarScans_ScanID",
-                table: "TecnicalSpecs",
-                column: "ScanID",
-                principalTable: "RawEarScans",
-                principalColumn: "ScanID",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_TecnicalSpecs_Patient_patientCPR",
-                table: "TecnicalSpecs");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_GeneralSpec_StaffLogin_StaffID",
-                table: "GeneralSpec");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_RawEarScans_StaffLogin_StaffID",
-                table: "RawEarScans");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_TecnicalSpecs_StaffLogin_StaffID",
-                table: "TecnicalSpecs");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_RawEarScans_TecnicalSpecs_HATechnicalSpecID",
-                table: "RawEarScans");
-
             migrationBuilder.DropTable(
                 name: "EarCast");
 
@@ -264,19 +249,19 @@ namespace CoreEFTest.Migrations
                 name: "RawEarPrints");
 
             migrationBuilder.DropTable(
-                name: "Patient");
-
-            migrationBuilder.DropTable(
-                name: "StaffLogin");
+                name: "RawEarScans");
 
             migrationBuilder.DropTable(
                 name: "TecnicalSpecs");
 
             migrationBuilder.DropTable(
-                name: "GeneralSpec");
+                name: "GeneralSpecs");
 
             migrationBuilder.DropTable(
-                name: "RawEarScans");
+                name: "StaffLogin");
+
+            migrationBuilder.DropTable(
+                name: "Patient");
         }
     }
 }

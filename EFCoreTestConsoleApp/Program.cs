@@ -21,10 +21,7 @@ namespace EFCoreTestConsoleApp
 
          ProgramHL7 program = new ProgramHL7();
 
-         program.metode();
-
-
-
+         //program.metode();
 
 
          #region Create (CRUD)
@@ -32,13 +29,15 @@ namespace EFCoreTestConsoleApp
          #region Create patient
          Patient newPatient = new Patient()
          {
-            CPR = "123456-7890",
+            CPR = "111111-1111",
             Name = "Test",
             Lastname = "Person",
             Adress = "Testvej 15",
             zipcode = 8200,
             Age = 25,
             City = "TestBy",
+            Email = "test@test.dk",
+            MobilNummer = "30405060"
          };
 
          //clinicianDbLogic.CreatePatient(newPatient);
@@ -46,14 +45,6 @@ namespace EFCoreTestConsoleApp
 
          #endregion
 
-         #region Create EarCast
-
-         //Patient newCastPatient = clinicianDbLogic.GetPatient("250997-0000");
-         //newCastPatient.EarCasts.Add(new EarCast(){Ear = 'R'});
-         //clinicianDbLogic.UpdatePatient(newCastPatient);
-
-
-         #endregion
 
          #region Create EarCast 2
 
@@ -71,21 +62,20 @@ namespace EFCoreTestConsoleApp
 
          StaffLogin newStaffLogin = new StaffLogin()
          {
-            //StaffID = 200001,
             Name = "Freja",
             Password = "123",
             StaffStatus = Status.Technician,
          };
 
-         //clinicianDbLogic.CreateStaffLogin(newStaffLogin);
+         clinicianDbLogic.CreateStaffLogin(newStaffLogin);
 
          #endregion
 
          #region Create GeneralSpec
 
-         GeneralSpec newGeneralSpec = new GeneralSpec()
+         GeneralSpec newGeneralSpecL = new GeneralSpec()
          {
-            CPR = "123456-7890",
+            CPR = "111111-1111",
             Type = Material.AntiAllergi,
             Color = PlugColor.Honey,
             EarSide = Ear.Left,
@@ -93,28 +83,43 @@ namespace EFCoreTestConsoleApp
             StaffID = 1,
          };
 
-         clinicianDbLogic.CreateNewGeneralSpec(newGeneralSpec);
-         //clinicianDbLogic.CreateGeneralSpec(newGeneralSpec);
+         clinicianDbLogic.CreateNewGeneralSpec(newGeneralSpecL);
 
-         List<GeneralSpec> list = clinicianDbLogic.GetAlleGeneralSpecs("123456-7890");
+         GeneralSpec newGeneralSpecR = new GeneralSpec()
+         {
+            CPR = "111111-1111",
+            Type = Material.AntiAllergi,
+            Color = PlugColor.Honey,
+            EarSide = Ear.Right,
+            CreateDate = DateTime.Now,
+            StaffID = 1,
+         };
 
+         clinicianDbLogic.CreateNewGeneralSpec(newGeneralSpecR);
 
-         List<GeneralSpec> SpecList = clinicianDbLogic.GetLatestGeneralSpecs("123456-7890");
          #endregion
 
          #region Create TecnicalSpec
 
-         TecnicalSpec newTecnicalSpec = new TecnicalSpec()
+         TecnicalSpec newTecnicalSpecR = new TecnicalSpec()
          {
             EarSide = Ear.Right,
             CreateDate = DateTime.Now,
             StaffID = 1,
-            CPR = "123456-7890",
-            HAGenerelSpec = 1,
-
+            CPR = "111111-1111"
          };
 
-         // clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpec);
+         clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpecR);
+
+         TecnicalSpec newTecnicalSpecL= new TecnicalSpec()
+         {
+            EarSide = Ear.Left,
+            CreateDate = DateTime.Now,
+            StaffID = 1,
+            CPR = "111111-1111",
+         };
+
+         clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpecL);
 
          #endregion
 
@@ -205,6 +210,11 @@ namespace EFCoreTestConsoleApp
 
          #endregion
 
+         #region Hent en patient med alle parametre udfyldt
+
+         Patient patient = clinicianDbLogic.GetPatientWithGeneralSpecAndTechnicalSpec("111111-1111");
+
+         #endregion
 
 
          #endregion
@@ -233,6 +243,30 @@ namespace EFCoreTestConsoleApp
          List<Patient> Patient = _dbContext.Patient.ToList();
 
          return Patient;
+      }
+
+      /// <summary>
+      /// Metoden bliver benyttet til at hente en patient fra DB der passer til det pågældende CPR
+      /// og det nyeste technical- og generalspec for hvert øre fra databasen tilhørende patienten 
+      /// og returnere et patient objekt.
+      /// </summary>
+      /// <param name="CPR"></param>
+      /// <returns></returns>
+      public Patient GetPatientWithGeneralSpecAndTechnicalSpec(string CPR)
+      {
+         Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+
+         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
+         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
+
+         patient.TecnicalSpecs = new List<TecnicalSpec>() { TechspecR, TechspecL };
+
+         GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
+         GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right && x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
+
+         patient.GeneralSpecs = new List<GeneralSpec>() { GenSpecR, GenSpecL };
+
+         return patient;
       }
 
       /// <summary>
@@ -475,9 +509,13 @@ namespace EFCoreTestConsoleApp
 
       #region Create TechnicalSpec
 
-      public void CreateTechnicalSpec(TecnicalSpec tecnicalSpec)
+      public void CreateTechnicalSpec(TecnicalSpec techSpec)
       {
-         _dbContext.TecnicalSpecs.Add(tecnicalSpec);
+         GeneralSpec generalSpec = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == techSpec.CPR && x.EarSide == techSpec.EarSide);
+
+         techSpec.HAGenerelSpecID = generalSpec.HAGeneralSpecID;
+
+         _dbContext.TecnicalSpecs.Add(techSpec);
          _dbContext.SaveChanges();
       }
 

@@ -53,7 +53,7 @@ namespace CoreEFTest.Migrations
 
                     b.Property<string>("CPR")
                         .IsRequired()
-                        .HasColumnType("varchar(11)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Color")
                         .HasColumnType("int");
@@ -64,6 +64,9 @@ namespace CoreEFTest.Migrations
                     b.Property<int>("EarSide")
                         .HasColumnType("int");
 
+                    b.Property<string>("PatientCPR")
+                        .HasColumnType("varchar(11)");
+
                     b.Property<int>("StaffID")
                         .HasColumnType("int");
 
@@ -72,9 +75,7 @@ namespace CoreEFTest.Migrations
 
                     b.HasKey("HAGeneralSpecID");
 
-                    b.HasIndex("CPR");
-
-                    b.HasIndex("StaffID");
+                    b.HasIndex("PatientCPR");
 
                     b.ToTable("GeneralSpecs");
                 });
@@ -231,11 +232,11 @@ namespace CoreEFTest.Migrations
                     b.Property<int>("EarSide")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GeneralSpecHAGeneralSpecID")
+                    b.Property<int>("HAGenerelSpecID")
                         .HasColumnType("int");
 
-                    b.Property<int>("HAGenerelSpec")
-                        .HasColumnType("int");
+                    b.Property<string>("PatientCPR")
+                        .HasColumnType("varchar(11)");
 
                     b.Property<bool>("Printed")
                         .HasColumnType("bit");
@@ -250,7 +251,9 @@ namespace CoreEFTest.Migrations
 
                     b.HasIndex("CPR");
 
-                    b.HasIndex("GeneralSpecHAGeneralSpecID");
+                    b.HasIndex("HAGenerelSpecID");
+
+                    b.HasIndex("PatientCPR");
 
                     b.HasIndex("StaffID");
 
@@ -268,21 +271,9 @@ namespace CoreEFTest.Migrations
 
             modelBuilder.Entity("CoreEFTest.Models.GeneralSpec", b =>
                 {
-                    b.HasOne("CoreEFTest.Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("CPR")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
-                        .WithMany()
-                        .HasForeignKey("StaffID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-
-                    b.Navigation("StaffLogin");
+                    b.HasOne("CoreEFTest.Models.Patient", null)
+                        .WithMany("GeneralSpecs")
+                        .HasForeignKey("PatientCPR");
                 });
 
             modelBuilder.Entity("CoreEFTest.Models.RawEarPrint", b =>
@@ -333,7 +324,13 @@ namespace CoreEFTest.Migrations
 
                     b.HasOne("CoreEFTest.Models.GeneralSpec", "GeneralSpec")
                         .WithMany()
-                        .HasForeignKey("GeneralSpecHAGeneralSpecID");
+                        .HasForeignKey("HAGenerelSpecID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CoreEFTest.Models.Patient", null)
+                        .WithMany("TecnicalSpecs")
+                        .HasForeignKey("PatientCPR");
 
                     b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
                         .WithMany()
@@ -351,6 +348,10 @@ namespace CoreEFTest.Migrations
             modelBuilder.Entity("CoreEFTest.Models.Patient", b =>
                 {
                     b.Navigation("EarCasts");
+
+                    b.Navigation("GeneralSpecs");
+
+                    b.Navigation("TecnicalSpecs");
                 });
 
             modelBuilder.Entity("CoreEFTest.Models.TecnicalSpec", b =>

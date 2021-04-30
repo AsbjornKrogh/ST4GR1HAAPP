@@ -18,7 +18,7 @@ namespace BLL_Technician
 
        public Patient GetPatient(string CPR)
        {
-           return clinicDB.GetPatient(CPR);
+           return clinicDB.GetPatientWithGeneralSpecAndTechnicalSpec(CPR);
        }
    }
 }

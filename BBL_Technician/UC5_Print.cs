@@ -24,7 +24,7 @@ namespace BLL_Technician
 
         public List<TecnicalSpec> GetEarScan(string CPR)
         {
-            return db.GetEarScan(CPR);
+            return db.GetTechnicalSpecs(CPR);
         }
 
     }

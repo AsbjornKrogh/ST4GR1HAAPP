@@ -10,7 +10,7 @@ namespace DLL_Technician
     public class ClinicNoDB:IClinicDB
     {
         #region UC3.2 Show patient
-        public Patient GetPatient(string CPR)
+        public Patient GetPatientWithGeneralSpecAndTechnicalSpec(string CPR)
         {
             Thread.Sleep(3000);
 
@@ -77,7 +77,7 @@ namespace DLL_Technician
 
 
 
-        public List<TecnicalSpec> GetEarScan(string CPR)
+        public List<TecnicalSpec> GetTechnicalSpecs(string CPR)
         {
             List<TecnicalSpec> tecnicalSpecs = new List<TecnicalSpec>();
             //Thread.Sleep(3000);
