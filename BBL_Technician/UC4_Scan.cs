@@ -31,5 +31,10 @@ namespace BLL_Technician
         {
             return scanner.StartScanning(ScanTechID);
         }
+
+        public bool SaveScan(RawEarScan scan, string CPR)
+        {
+            return clinicDB.SaveScan(scan, CPR);
+        }
     }
 }
