@@ -40,8 +40,7 @@ namespace Presentation_Clinician
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (TBCPR.Text == patient.CPR)
-            { 
-                //uc2ManagePatient.SavePatientPressed(patient,TBemail.Text, Convert.ToInt16(TBphonenumber.Text));
+            {
                 patient.Email = TBEmail.Text;
                 patient.MobilNummer = TBPhonenumber.Text;
                 uc2ManagePatient.SaveUpdates(patient);
@@ -73,8 +72,6 @@ namespace Presentation_Clinician
             TBPhonenumber.Text = patient.MobilNummer;
             TBEmail.Text = patient.Email;
             
-
-
             TBname.IsEnabled = false;
             TBsurname.IsEnabled = false;
             TBCPR.IsEnabled = false;

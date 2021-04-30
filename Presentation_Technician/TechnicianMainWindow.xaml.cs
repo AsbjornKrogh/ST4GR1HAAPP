@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CoreEFTest.Models;
 using DLL_Technician;
+using DLL_Technician.Printer;
 
 namespace Presentation_Technician
 {
@@ -24,6 +25,7 @@ namespace Presentation_Technician
    {
        private IClinicDB db;
        private IScanner scanner;
+       private IPrinter printer;
        private StaffLogin technician;
        private TimeStamp timeStamp;
       public TechnicianMainWindow()
@@ -81,7 +83,7 @@ namespace Presentation_Technician
 
         private void PrintB_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new PrintPage();
+            Main.Content = new PrintPage(db, printer, technician);
             VelkommenL.Visibility = Visibility.Collapsed;
             PrintB.IsEnabled = false;
 

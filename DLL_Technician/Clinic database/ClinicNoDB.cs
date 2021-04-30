@@ -79,11 +79,6 @@ namespace DLL_Technician
             }
         }
 
-        public List<TecnicalSpec> GetEarScan(string CPR)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool SaveScan(RawEarScan scan, string CPR)
         {
             Thread.Sleep(1000);
@@ -99,13 +94,69 @@ namespace DLL_Technician
             }
         }
 
+        #endregion
+
+
+        #region UC5 print
+
+
+
+        public List<TecnicalSpec> GetEarScan(string CPR)
+        { 
+            List<TecnicalSpec> tecnicalSpecs = new List<TecnicalSpec>();
+            //Thread.Sleep(3000);
+
+            if (CPR == "123456-7891")
+            {
+                TecnicalSpec testTecnicalSpec1 = new TecnicalSpec();
+                testTecnicalSpec1.CPR = "123456-7891";
+                //testTecnicalSpec1.Patient.Name = "Børge";
+                //testTecnicalSpec1.Patient.Lastname = "Andersen";
+                testTecnicalSpec1.EarSide = Ear.Right;
+                //testTecnicalSpec1.Patient.Age = 69;
+                tecnicalSpecs.Add(testTecnicalSpec1);
+
+                TecnicalSpec testTecnicalSpec2 = new TecnicalSpec();
+                testTecnicalSpec2.CPR = "123456-7891";
+                //testTecnicalSpec2.Patient.Name = "Børge";
+                //testTecnicalSpec2.Patient.Lastname = "Andersen";
+                testTecnicalSpec2.EarSide = Ear.Left;
+                //testTecnicalSpec2.Patient.Age = 69;
+                tecnicalSpecs.Add(testTecnicalSpec2);
+
+                return tecnicalSpecs;
+
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public List<TecnicalSpec> GetEarScans()
         {
-            throw new NotImplementedException();
-        }
+            List<TecnicalSpec> tecnicalSpecs = new List<TecnicalSpec>();
+            Thread.Sleep(3000);
+            
+                TecnicalSpec testTecnicalSpec1 = new TecnicalSpec();
+                testTecnicalSpec1.CPR = "123456-7891";
+                //testTecnicalSpec1.Patient.Name = "Børge";
+                //testTecnicalSpec1.Patient.Lastname = "Andersen";
+                testTecnicalSpec1.EarSide = Ear.Right;
+                //testTecnicalSpec1.Patient.Age = 69;
+                tecnicalSpecs.Add(testTecnicalSpec1);
 
+                TecnicalSpec testTecnicalSpec2 = new TecnicalSpec();
+                testTecnicalSpec2.CPR = "123456-7891";
+                //testTecnicalSpec2.Patient.Name = "Børge";
+                //testTecnicalSpec2.Patient.Lastname = "Andersen";
+                testTecnicalSpec2.EarSide = Ear.Left;
+                //testTecnicalSpec2.Patient.Age = 69;
+                tecnicalSpecs.Add(testTecnicalSpec2);
 
+                return tecnicalSpecs;
+            }
         #endregion
+        
     }
 }
