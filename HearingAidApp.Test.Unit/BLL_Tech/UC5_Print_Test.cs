@@ -33,3 +33,13 @@ namespace Technician_HearingAidApp.Test.Unit
     }
 }
 
+
+        [Test]
+        public void UC4_Scan_GetPatientInformations_ClinicRecievesGetCall()
+        {
+            uut.GetPatientInformations("1111111-0000");
+
+            _clinicDB.Received().GetPatientInformations("1111111-0000");
+        }
+    }
+}

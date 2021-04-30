@@ -26,21 +26,11 @@ namespace Presentation_Clinician
         public ManageHAPage(MainWindow mainWindow, UC3_ManageHA manageHA)
         {
             InitializeComponent();
-
             this.mainWindow = mainWindow;
             this.manageHA = manageHA;
             
         }
 
-        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnSave_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void BtnRetrieveHearingTest_Click(object sender, RoutedEventArgs e)
         {
@@ -50,6 +40,11 @@ namespace Presentation_Clinician
         }
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

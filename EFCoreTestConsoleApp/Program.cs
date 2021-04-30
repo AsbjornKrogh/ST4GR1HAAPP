@@ -18,12 +18,18 @@ namespace EFCoreTestConsoleApp
         {   
            HL7FHIRClient client = new HL7FHIRClient();
 
-           client.FindPatientByCPR("250997-0000");
+           //client.FindPatientByCPR("250997-0000");
+
+           //client.ReadHl7FHIRPatientByName("Name");
+
+           //client.FindPatientByCPRTry("250997-0000");
+
+           //var linst = client.GetObservationsByName("250997-0000");
+
+           //var lins = linst.GetEnumerator().Current.Name[0].Given.ToString();
 
 
-
-
-
+           var l = client.GetPatientsByName("Asbjørn", "Krogh");
             ClinicDBContext dbContext = new ClinicDBContext();
             ClinicianDBLogic clinicianDbLogic = new ClinicianDBLogic(dbContext);
 

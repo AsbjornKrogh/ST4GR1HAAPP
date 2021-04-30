@@ -49,6 +49,9 @@ namespace DLL_Clinician
         /// <param name="CPR"></param>
         /// <returns></returns>
 
+
+
+        //Måske skal vi ikke bruge denne metode
         public Patient GetPatientWithEarCast(string CPR)
         {
             Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
@@ -138,6 +141,20 @@ namespace DLL_Clinician
 
             _dbContext.SaveChanges();
         }
+
+
+
+
+        public List<GeneralSpec> GetAlleGeneralSpecs(string CPR)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateGeneralSpec(GeneralSpec generalSpec)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }
