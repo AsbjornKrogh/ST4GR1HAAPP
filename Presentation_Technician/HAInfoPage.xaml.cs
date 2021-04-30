@@ -82,6 +82,13 @@ namespace Presentation_Technician
             if (patientAndHA != null)
             {
                 patientInfoTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
+
+                if (patientAndHA.EarCasts[0].EarSide == EarCast.Ear.Left)
+                {
+                    
+                }
+
+
                 HAList.Items.Add(patientAndHA.EarCasts[0].EarSide.ToString());
                 HAList.Items.Add(patientAndHA.EarCasts[1].EarSide.ToString());
             }
