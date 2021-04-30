@@ -15,4 +15,10 @@
     <PackageReference Include="NUnit" Version="3.13.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BBL_Clinician\BLL_Clinician.csproj" />
+    <ProjectReference Include="..\DLL_Clinician\DLL_Clinician.csproj" />
+    <ProjectReference Include="..\Presentation_Clinician\Presentation_Clinician.csproj" />
+  </ItemGroup>
+
 </Project>
