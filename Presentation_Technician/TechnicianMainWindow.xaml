@@ -6,7 +6,7 @@
         xmlns:fa = "http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:Presentation_Technician"
         mc:Ignorable="d"
-        Title="Teknikker" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Tekniker" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Frame x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="hidden"/>
            
