@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace TestProject1
 {
-    public class UC2_UnitTest
+    public class UC2_ManagePatient_UnitTest
     {
 
         [SetUp]
