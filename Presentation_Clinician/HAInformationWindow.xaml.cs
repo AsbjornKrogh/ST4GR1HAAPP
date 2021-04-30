@@ -20,6 +20,9 @@ namespace Presentation_Clinician
         public HAInformationWindow()
         {
             InitializeComponent();
+
+
+
         }
     }
 }
