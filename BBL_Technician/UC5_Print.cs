@@ -27,5 +27,15 @@ namespace BLL_Technician
             return db.GetEarScan(CPR);
         }
 
+        public bool ConnectToPrinter()
+        {
+            return printer.connectToPrinter();
+        }
+
+        public RawEarPrint AddToPrintQueue(int printTechID, List<RawEarScan> earScans)
+        {
+            return printer.StartPrint(printTechID, earScans);
+        }
+
     }
 }

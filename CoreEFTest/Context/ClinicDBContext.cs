@@ -32,14 +32,14 @@ namespace CoreEFTest.Context
                     .IsRequired();
             });
 
-            modelBuilder.Entity("CoreEFTest.Models.GeneralSpec", b =>
-            {
-                b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
-                    .WithMany()
-                    .HasForeignKey("StaffID")
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .IsRequired();
-            });
+            //modelBuilder.Entity("CoreEFTest.Models.GeneralSpec", b =>
+            //{
+            //    b.HasOne("CoreEFTest.Models.StaffLogin", "StaffLogin")
+            //        .WithMany()
+            //        .HasForeignKey("StaffID")
+            //        .OnDelete(DeleteBehavior.Restrict)
+            //        .IsRequired();
+            //});
 
             modelBuilder.Entity("CoreEFTest.Models.RawEarPrint", b =>
             {

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using BLL_Technician;
 using CoreEFTest.Models;
 using DLL_Technician;
+using DTO;
 using HelixToolkit.Wpf;
 
 namespace Presentation_Technician
@@ -30,15 +31,17 @@ namespace Presentation_Technician
         private UC4_Scan uc4_scan;
         private bool HentisRunning;
         private bool ScanisRunning;
+        private bool SaveScanisRunning;
         private Patient patientAndHA;
         private RawEarScan rawEarScan;
         private ModelImporter modelImporter;
+        private FullRawEarScan fullRawEarScan;
 
         //Venstre øreafstøbning
-        private const string MODEL_PATH = "Mold_for_Ear_V1.7_L.stl";
+        //private const string MODEL_PATH = "Mold_for_Ear_V1.7_L.stl";
 
         //Højre øreafstøbning
-        //private const string MODEL_PATH = "Mold_for_Ear_V1.7_R.stl";
+        private const string MODEL_PATH = "Mold_for_Ear_V1.7_R.stl";
 
         public ScanPage(IClinicDB db, IScanner scanner, StaffLogin technician)
         {
@@ -139,6 +142,7 @@ namespace Presentation_Technician
 
         public void UC4ScanCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            ScanisRunning = false;
             ScanLoading.Visibility = Visibility.Collapsed;
             ScanLoading.Spin = false;
             ScannerL.Visibility = Visibility.Collapsed;
@@ -156,9 +160,56 @@ namespace Presentation_Technician
         #region Gem metoder
         private void GemB_Click(object sender, RoutedEventArgs e)
         {
-            //Kald til DB om at gemme...
+
+            if (SaveScanisRunning != true)
+            {
+                SaveScanisRunning = true;
+
+                BackgroundWorker worker = new BackgroundWorker();
+
+                worker.DoWork += UC4SaveScan;
+
+                worker.RunWorkerCompleted += UC4SaveScanCompleted;
+                
+                //Der oprettes en intern DTO som indeholder de informationer der skal sendes med i metoden da der kun kan sendes en parameter med i RunWorkAsync
+                fullRawEarScan = new FullRawEarScan();
+                fullRawEarScan.scan = rawEarScan;
+                fullRawEarScan.CPR = patientAndHA.CPR;
+
+                worker.RunWorkerAsync(fullRawEarScan);
+
+                Save.Visibility = Visibility.Visible;
+                Save.Spin = true;
+                Save.Visibility = Visibility.Visible;
+            }
         }
+
+        public void UC4SaveScan(object sender, DoWorkEventArgs e)
+        {
+            FullRawEarScan parm = (FullRawEarScan) e.Argument;
+            e.Result = uc4_scan.SaveScan(parm.scan, parm.CPR);
+        }
+
+        public void UC4SaveScanCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            SaveScanisRunning = false;
+
+            Save.Visibility = Visibility.Collapsed;
+            Save.Spin = true;
+
+            if ((bool)e.Result)
+            {
+                MessageBox.Show("Scanning er gemt i databasen", "Information", MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Scanning er IKKE gemt i databasen \r\n- Prøv igen", "Information", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
         #endregion
 
-    }
+        }
 }

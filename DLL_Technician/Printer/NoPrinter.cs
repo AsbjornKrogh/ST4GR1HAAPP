@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace DLL_Technician.Printer
 {
-    class NoPrinter : IPrinter
+    public class NoPrinter : IPrinter
     {
         private Random random = new Random();
         private RawEarPrint earPrint;
@@ -20,7 +20,7 @@ namespace DLL_Technician.Printer
         {
             int trigger = random.Next(1, 10);
 
-            if (trigger > 1)
+            if (trigger > 0)
             {
                 return true;
             }
@@ -30,11 +30,11 @@ namespace DLL_Technician.Printer
             }
         }
 
-        public RawEarPrint StartPrint(int ScanTechID)
+        public RawEarPrint StartPrint(int printTechID, List<RawEarScan> earScans)
         {
             earPrint = new RawEarPrint();
 
-            earPrint.StaffID = ScanTechID;
+            earPrint.StaffID = printTechID;
             earPrint.PrintDate = timeStamp.getDate();
 
             Thread.Sleep(3000);
