@@ -9,6 +9,8 @@ namespace DLL_Technician
 {
     public class ClinicNoDB:IClinicDB
     {
+        private Random random = new Random();
+
         #region UC3.2 Show patient
         public Patient GetPatientWithGeneralSpecAndTechnicalSpec(string CPR)
         {
@@ -21,6 +23,18 @@ namespace DLL_Technician
                 testPatient.Name = "Børge";
                 testPatient.Lastname = "Andersen";
                 testPatient.Age = 69;
+
+                EarCast leftEar = new EarCast();
+                leftEar.EarSide = EarCast.Ear.Left;
+
+                EarCast rightEar = new EarCast();
+                rightEar.EarSide = EarCast.Ear.Right;
+
+                testPatient.EarCasts = new List<EarCast>();
+
+                testPatient.EarCasts.Add(leftEar);
+                testPatient.EarCasts.Add(rightEar);
+
                 return testPatient;
             }
             else
@@ -48,7 +62,7 @@ namespace DLL_Technician
         #region UC4 scan
         public Patient GetPatientInformations(string EarCastID)
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
 
             if (EarCastID == "R-1")
             {
@@ -67,7 +81,17 @@ namespace DLL_Technician
 
         public bool SaveScan(RawEarScan scan, string CPR)
         {
-            throw new NotImplementedException();
+            Thread.Sleep(1000);
+            int trigger = random.Next(1, 10);
+
+            if (trigger > 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion
@@ -90,7 +114,9 @@ namespace DLL_Technician
                 //testTecnicalSpec1.Patient.Lastname = "Andersen";
                 testTecnicalSpec1.EarSide = Ear.Right;
                 //testTecnicalSpec1.Patient.Age = 69;
+                testTecnicalSpec1.RawEarScan = new RawEarScan();
                 tecnicalSpecs.Add(testTecnicalSpec1);
+
 
                 TecnicalSpec testTecnicalSpec2 = new TecnicalSpec();
                 testTecnicalSpec2.CPR = "123456-7891";
@@ -98,6 +124,7 @@ namespace DLL_Technician
                 //testTecnicalSpec2.Patient.Lastname = "Andersen";
                 testTecnicalSpec2.EarSide = Ear.Left;
                 //testTecnicalSpec2.Patient.Age = 69;
+                testTecnicalSpec2.RawEarScan = new RawEarScan();
                 tecnicalSpecs.Add(testTecnicalSpec2);
 
                 return tecnicalSpecs;
@@ -120,14 +147,16 @@ namespace DLL_Technician
                 //testTecnicalSpec1.Patient.Lastname = "Andersen";
                 testTecnicalSpec1.EarSide = Ear.Right;
                 //testTecnicalSpec1.Patient.Age = 69;
+                testTecnicalSpec1.RawEarScan = new RawEarScan(); 
                 tecnicalSpecs.Add(testTecnicalSpec1);
 
                 TecnicalSpec testTecnicalSpec2 = new TecnicalSpec();
                 testTecnicalSpec2.CPR = "123456-7891";
                 //testTecnicalSpec2.Patient.Name = "Børge";
                 //testTecnicalSpec2.Patient.Lastname = "Andersen";
-                testTecnicalSpec2.EarSide = Ear.Left;
+                testTecnicalSpec2.EarSide = Ear.Left; 
                 //testTecnicalSpec2.Patient.Age = 69;
+                testTecnicalSpec2.RawEarScan = new RawEarScan();
                 tecnicalSpecs.Add(testTecnicalSpec2);
 
                 return tecnicalSpecs;

@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BBL_Clinician;
+using CoreEFTest.Models;
 
 namespace Presentation_Clinician
 {
@@ -22,6 +23,8 @@ namespace Presentation_Clinician
         MainWindow mainWindow = new MainWindow();
         UC3_ManageHA manageHA = new UC3_ManageHA();
         HearingTestWindow _hearingTest = new HearingTestWindow();
+        GeneralSpec generalSpec = new GeneralSpec();
+        
         
         public ManageHAPage(MainWindow mainWindow, UC3_ManageHA manageHA)
         {
@@ -41,11 +44,31 @@ namespace Presentation_Clinician
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
         {
-
+         //TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(mainWindow.CPR));
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void HA_Page_Loaded(object sender, RoutedEventArgs e)
         {
+            manageHA.GetHA(mainWindow.CPR);
+
+            if (generalSpec.EarSide == Ear.Left)
+            {
+                Tb_LeftEar_Color.Text = Convert.ToString(generalSpec.Color);
+                Tb_LeftEar_Type.Text = Convert.ToString(generalSpec.Type);
+                Tb_Left_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+            }
+            
+            if(generalSpec.EarSide == Ear.Right)
+            {
+                Tb_RightEar_Color.Text = Convert.ToString(generalSpec.Color);
+                Tb_RightEar_Type.Text = Convert.ToString(generalSpec.Type);
+                Tb_Right_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+            }
+
+            Tb_StaffID.Text = Convert.ToString(generalSpec.StaffID);
+            Tb_Datetime.Text = Convert.ToString(generalSpec.CreateDate);
+
+
 
         }
     }

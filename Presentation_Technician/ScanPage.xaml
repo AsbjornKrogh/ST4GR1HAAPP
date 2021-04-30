@@ -141,14 +141,16 @@
             </Grid>
         </StackPanel>
 
-        <Button x:Name="GemB" Content="Gem scanning" Grid.Row="1" Grid.Column="0" Margin="20" FontSize="20" Click="GemB_Click" IsEnabled="False">
+        <StackPanel Grid.Column="0" Grid.Row="1">
+        <Button x:Name="GemB" Content="Gem scanning"  Margin="20,0,20,10" FontSize="20" Click="GemB_Click" IsEnabled="False">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5 5 5 5"/>
                 </Style>
             </Button.Resources>
         </Button>
-
+        <fa:ImageAwesome  Name="Save" Visibility="Collapsed" Icon="CircleOutlineNotch" Spin="false" SpinDuration="3" Height="40" Width="40" />
+        </StackPanel>
 
     </Grid>
 </Page>

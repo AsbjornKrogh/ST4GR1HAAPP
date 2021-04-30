@@ -164,6 +164,7 @@ namespace DLL_Clinician
          }
       }
       
+
       /// <summary>
       /// Henter den seneste generalspec som er i db tilhørende CPR'et for både højre og venstre.
       /// Hvis ingen Generalspec i Db returnes null
