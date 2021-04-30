@@ -88,6 +88,10 @@ namespace Presentation_Technician
             FindAllPatientsB.Visibility = Visibility.Visible;
 
             patientInformationsAll = (List<TecnicalSpec>)e.Result;
+            if (patientInformationsAll.Count > 1)
+            {
+                PatientInformationLB.Items.Add("Vælg alle");
+            }
 
             foreach (var tecnicalSpec in patientInformationsAll)
             {
@@ -178,6 +182,26 @@ namespace Presentation_Technician
         }
 
         #endregion
+
         #endregion
+
+        #region Print metoder
+
+        private void PrintB_Click(object sender, RoutedEventArgs e)
+        {
+            bool connect = uc5_print.ConnectToPrinter();
+            if (connect)
+            {
+                if (PatientInformationLB.Items.Count > 0)
+                {
+
+                }
+            }
+
+
+        }
+
+        #endregion
+
     }
 }
