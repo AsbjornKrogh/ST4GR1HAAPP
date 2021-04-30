@@ -21,7 +21,7 @@ namespace BBL_Clinician
 
        public void GetHA(string CPR)
        {
-           clinicDatabase.GetPatientWithEarCast(CPR);
+           
            
        }
 
