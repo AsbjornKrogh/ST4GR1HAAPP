@@ -45,7 +45,6 @@ namespace EFCoreTestConsoleApp
 
          #endregion
 
-
          #region Create EarCast 2
 
          EarCast newCast = new EarCast()
@@ -67,7 +66,7 @@ namespace EFCoreTestConsoleApp
             StaffStatus = Status.Technician,
          };
 
-         clinicianDbLogic.CreateStaffLogin(newStaffLogin);
+         //clinicianDbLogic.CreateStaffLogin(newStaffLogin);
 
          #endregion
 
@@ -83,7 +82,7 @@ namespace EFCoreTestConsoleApp
             StaffID = 1,
          };
 
-         clinicianDbLogic.CreateNewGeneralSpec(newGeneralSpecL);
+         //clinicianDbLogic.CreateNewGeneralSpec(newGeneralSpecL);
 
          GeneralSpec newGeneralSpecR = new GeneralSpec()
          {
@@ -95,7 +94,7 @@ namespace EFCoreTestConsoleApp
             StaffID = 1,
          };
 
-         clinicianDbLogic.CreateNewGeneralSpec(newGeneralSpecR);
+         //clinicianDbLogic.CreateNewGeneralSpec(newGeneralSpecR);
 
          #endregion
 
@@ -109,7 +108,7 @@ namespace EFCoreTestConsoleApp
             CPR = "111111-1111"
          };
 
-         clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpecR);
+         //clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpecR);
 
          TecnicalSpec newTecnicalSpecL= new TecnicalSpec()
          {
@@ -119,7 +118,20 @@ namespace EFCoreTestConsoleApp
             CPR = "111111-1111",
          };
 
-         clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpecL);
+         //clinicianDbLogic.CreateTechnicalSpec(newTecnicalSpecL);
+
+         #endregion
+
+         #region Create rawEarPrint
+
+         RawEarPrint print = new RawEarPrint()
+         {
+            EarSide = Ear.Left,
+            StaffID = 1,
+            PrintDate = DateTime.Now,
+         };
+
+         clinicianDbLogic.SavePrint(print, "111111-1111");
 
          #endregion
 
@@ -234,6 +246,7 @@ namespace EFCoreTestConsoleApp
       }
 
       #region Patient
+
       /// <summary>
       /// 
       /// </summary>
@@ -256,15 +269,19 @@ namespace EFCoreTestConsoleApp
       {
          Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
 
-         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
-         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
+         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate)
+            .Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
+         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate)
+            .Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
-         patient.TecnicalSpecs = new List<TecnicalSpec>() { TechspecR, TechspecL };
+         patient.TecnicalSpecs = new List<TecnicalSpec>() {TechspecR, TechspecL};
 
-         GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
-         GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right && x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
+         GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x =>
+            x.CPR == CPR && x.EarSide == Ear.Left && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
+         GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x =>
+            x.CPR == CPR && x.EarSide == Ear.Right && x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
 
-         patient.GeneralSpecs = new List<GeneralSpec>() { GenSpecR, GenSpecL };
+         patient.GeneralSpecs = new List<GeneralSpec>() {GenSpecR, GenSpecL};
 
          return patient;
       }
@@ -358,9 +375,11 @@ namespace EFCoreTestConsoleApp
 
          _dbContext.SaveChanges();
       }
+
       #endregion
 
       #region EarCast
+
       /// <summary>
       /// 
       /// </summary>
@@ -429,11 +448,14 @@ namespace EFCoreTestConsoleApp
          {
             Console.Write("Database not connected or data not found");
          }
+
          return staffLogin;
       }
+
       #endregion
 
       #region Create StaffLogin
+
       public void CreateStaffLogin(StaffLogin staffLogin)
       {
          _dbContext.StaffLogin.Add(staffLogin);
@@ -486,17 +508,20 @@ namespace EFCoreTestConsoleApp
       {
          try
          {
-         //Henter genneralspec for højre og venstre øre
-         GeneralSpec generalSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Left);
-         GeneralSpec generalSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Right);
+            //Henter genneralspec for højre og venstre øre
+            GeneralSpec generalSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate)
+               .LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Left);
+            GeneralSpec generalSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate)
+               .LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
-         //Placere generalSpec i listen 
-         List<GeneralSpec> generalSpecs = new List<GeneralSpec>();
-         generalSpecs.Add(generalSpecL); generalSpecs.Add(generalSpecR);
+            //Placere generalSpec i listen 
+            List<GeneralSpec> generalSpecs = new List<GeneralSpec>();
+            generalSpecs.Add(generalSpecL);
+            generalSpecs.Add(generalSpecR);
 
-         //Retunere listen. 
+            //Retunere listen. 
 
-         return generalSpecs;
+            return generalSpecs;
 
          }
          catch
@@ -511,7 +536,8 @@ namespace EFCoreTestConsoleApp
 
       public void CreateTechnicalSpec(TecnicalSpec techSpec)
       {
-         GeneralSpec generalSpec = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == techSpec.CPR && x.EarSide == techSpec.EarSide);
+         GeneralSpec generalSpec = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate)
+            .Last(x => x.CPR == techSpec.CPR && x.EarSide == techSpec.EarSide);
 
          techSpec.HAGenerelSpecID = generalSpec.HAGeneralSpecID;
 
@@ -521,6 +547,37 @@ namespace EFCoreTestConsoleApp
 
       #endregion
 
+      #region EarPrint
 
+      public bool SavePrint(RawEarPrint rawEarPrint, string CPR)
+      {
+         try
+         {
+            //Henter specifik techspec tilhørende det givne RawEarPrint og CPR. 
+            TecnicalSpec Techspec =
+               _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == rawEarPrint.EarSide));
+
+            //Sætter id i RawEarPrint
+            rawEarPrint.HATechnicalSpecID = Techspec.HATechinalSpecID;
+
+            //Gemmer RawEarPrint
+            _dbContext.RawEarPrints.Add(rawEarPrint);
+            _dbContext.SaveChanges();
+
+            // Sætter printed parameteren til true
+            Techspec.Printed = true;
+
+            _dbContext.TecnicalSpecs.Update(Techspec);
+            _dbContext.SaveChanges();
+
+            return true;
+         }
+         catch
+         {
+            return false;
+         }
+
+         #endregion
+      }
    }
 }

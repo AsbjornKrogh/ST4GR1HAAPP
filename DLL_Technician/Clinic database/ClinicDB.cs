@@ -17,7 +17,6 @@ namespace DLL_Technician
          _dbContext = dbContext;
       }
 
-
       /// <summary>
       /// Metoden bliver benyttet til at hente en patient fra DB der passer til det pågældende CPR
       /// og returnere et patient objekt.
@@ -26,9 +25,16 @@ namespace DLL_Technician
       /// <returns></returns>
       public Patient GetPatient(string CPR)
       {
-         Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+         try
+         {
+            Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
 
-         return patient;
+            return patient;
+         }
+         catch
+         {
+            return null;
+         }
       }
 
       /// <summary>
@@ -40,18 +46,25 @@ namespace DLL_Technician
       /// <returns></returns>
       public Patient GetPatientWithGeneralSpecAndTechnicalSpec(string CPR)
       {
-         Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+         try
+         {
+            Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
 
-         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
-         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
+            TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
+            TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
-         patient.TecnicalSpecs = new List<TecnicalSpec>(){TechspecR,TechspecL};
+            patient.TecnicalSpecs = new List<TecnicalSpec>() { TechspecR, TechspecL };
 
-         GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
-         GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right && x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
+            GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
+            GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right && x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
 
-         patient.GeneralSpecs = new List<GeneralSpec>(){GenSpecR,GenSpecL};
-         return patient;
+            patient.GeneralSpecs = new List<GeneralSpec>() { GenSpecR, GenSpecL };
+            return patient;
+         }
+         catch
+         {
+            return null;
+         }
       }
 
       /// <summary>
@@ -70,13 +83,13 @@ namespace DLL_Technician
 
             _dbContext.TecnicalSpecs.Add(techSpec);
             _dbContext.SaveChanges();
+
+            return _dbContext.TecnicalSpecs.Contains(techSpec);
          }
          catch
          {
             return false;
          }
-
-         return _dbContext.TecnicalSpecs.Contains(techSpec);
       }
 
       /// <summary>
@@ -89,19 +102,28 @@ namespace DLL_Technician
       {
          try
          {
-            TecnicalSpec Techspec = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == rawEarPrint.EarSide));
+            //Henter specifik techspec tilhørende det givne RawEarPrint og CPR. 
+            TecnicalSpec Techspec = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == rawEarPrint.EarSide);
 
+            //Sætter id i RawEarPrint
             rawEarPrint.HATechnicalSpecID = Techspec.HATechinalSpecID;
 
+            //Gemmer RawEarPrint
             _dbContext.RawEarPrints.Add(rawEarPrint);
             _dbContext.SaveChanges();
+
+            // Sætter printed parameteren til true
+            Techspec.Printed = true;
+
+            _dbContext.TecnicalSpecs.Update(Techspec);
+            _dbContext.SaveChanges();
+
+            return _dbContext.RawEarPrints.Contains(rawEarPrint);
          }
          catch
          {
             return false;
          }
-
-         return _dbContext.RawEarPrints.Contains(rawEarPrint);
       }
 
       /// <summary>
@@ -122,12 +144,20 @@ namespace DLL_Technician
       /// <returns></returns>
       public Patient GetPatientInformations(string EarCastID)
       {
-         int earCastId = Convert.ToInt32(EarCastID);
-         EarCast earCast = _dbContext.EarCast.Single(x => x.EarCastID == earCastId);
-         Patient patient = GetPatientWithGeneralSpecAndTechnicalSpec(earCast.PatientCPR);
+         try
+         {
+            int earCastId = Convert.ToInt32(EarCastID);
+            EarCast earCast = _dbContext.EarCast.Single(x => x.EarCastID == earCastId);
+            Patient patient = GetPatientWithGeneralSpecAndTechnicalSpec(earCast.PatientCPR);
 
-         return patient;
+            return patient;
+         }
+         catch
+         {
+            return null;
+         }
       }
+
 
       /// <summary>
       /// Der gemmes et specikt earscan i DB og efterfølgende returneres en bool som fortæller om det er gjort.
@@ -140,19 +170,25 @@ namespace DLL_Technician
          try
          {
             //Find det specifikke scans techspec
-            TecnicalSpec Techspec = _dbContext.TecnicalSpecs.Single((x => x.CPR == CPR && x.EarSide == scan.EarSide));
+            TecnicalSpec Techspec = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last((x => x.CPR == CPR && x.EarSide == scan.EarSide));
 
             scan.HATechnicalSpecID = Techspec.HATechinalSpecID;
 
             _dbContext.RawEarScans.Add(scan);
             _dbContext.SaveChanges();
+
+            RawEarScan rawEarScan = _dbContext.RawEarScans.OrderBy(x => x.ScanDate).Last(x => x.HATechnicalSpecID == Techspec.HATechinalSpecID && x.EarSide == Techspec.EarSide);
+
+            Techspec.ScanID = rawEarScan.ScanID;
+
+            _dbContext.TecnicalSpecs.Update(Techspec);
+
+             return _dbContext.RawEarScans.Contains(scan);
          }
          catch
          {
             return false;
          }
-
-         return _dbContext.RawEarScans.Contains(scan);
       }
 
       /// <summary>
@@ -163,25 +199,32 @@ namespace DLL_Technician
       /// <returns></returns>
       public List<TecnicalSpec> GetTechnicalSpecs(string CPR)
       {
-         //Henter TechSpec for V og H øre
-         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x=> x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
-         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
+         try
+         {
+            //Henter TechSpec for V og H øre
+            TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x=> x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
+            TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
-         //Henter Earscan for V og H øre 
-         TechspecL.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID);
-         TechspecR.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == TechspecR.HATechinalSpecID);
+            //Henter Earscan for V og H øre 
+            TechspecL.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID);
+            TechspecR.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == TechspecR.HATechinalSpecID);
 
-         //Henter generelsepc for Techspec
-         TechspecL.GeneralSpec = _dbContext.GeneralSpecs.Single(x => x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
-         TechspecR.GeneralSpec = _dbContext.GeneralSpecs.Single(x => x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
+            //Henter generelsepc for Techspec
+            TechspecL.GeneralSpec = _dbContext.GeneralSpecs.Single(x => x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
+            TechspecR.GeneralSpec = _dbContext.GeneralSpecs.Single(x => x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
 
-         //Oprettelse af listen
-         List<TecnicalSpec> Techspec = new List<TecnicalSpec>(2);
-         //Tilføjelse af techspec objekterne til listen 
-         Techspec.Add(TechspecL); Techspec.Add(TechspecR);
+            //Oprettelse af listen
+            List<TecnicalSpec> Techspec = new List<TecnicalSpec>(2);
+            //Tilføjelse af techspec objekterne til listen 
+            Techspec.Add(TechspecL); Techspec.Add(TechspecR);
 
-         //Return the list;
-         return Techspec;
+            //Return the list;
+            return Techspec;
+         }
+         catch 
+         {
+            return null;
+         }
       }
 
       /// <summary>
@@ -190,27 +233,33 @@ namespace DLL_Technician
       /// <returns></returns>
       public List<TecnicalSpec> GetEarScans()
       {
-         //Henter alle techSpec ud af DB'en
-         List<TecnicalSpec> DBlist = _dbContext.TecnicalSpecs.ToList();
-
-         //Oprettelse af listen, som skal returneres
-         List<TecnicalSpec> TechSpeclist = new List<TecnicalSpec>();
-
-         //For hver techspec som er i listen hentet fra database, tjekkes der på om Prited = false
-         foreach (TecnicalSpec tecnicalSpec in DBlist)
+         try
          {
-            //Hvis Printed = false, hentes generalspec og det tilknyttede Earscan
-            //og lægges i techspec objektet og objektet tilføjes returneringslisten
-            if (!tecnicalSpec.Printed)
+            //Henter alle techSpec ud af DB'en
+            List<TecnicalSpec> DBlist = _dbContext.TecnicalSpecs.ToList();
+
+            //Oprettelse af listen, som skal returneres
+            List<TecnicalSpec> TechSpeclist = new List<TecnicalSpec>();
+
+            //For hver techspec som er i listen hentet fra database, tjekkes der på om Prited = false
+            foreach (TecnicalSpec tecnicalSpec in DBlist)
             {
-               tecnicalSpec.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == tecnicalSpec.HATechinalSpecID);
-               tecnicalSpec.GeneralSpec = _dbContext.GeneralSpecs.Single(x => x.HAGeneralSpecID == tecnicalSpec.HAGenerelSpecID);
-               TechSpeclist.Add(tecnicalSpec);
+               //Hvis Printed = false, hentes generalspec og det tilknyttede Earscan
+               //og lægges i techspec objektet og objektet tilføjes returneringslisten
+               if (!tecnicalSpec.Printed)
+               {
+                  tecnicalSpec.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == tecnicalSpec.HATechinalSpecID);
+                  tecnicalSpec.GeneralSpec = _dbContext.GeneralSpecs.Single(x => x.HAGeneralSpecID == tecnicalSpec.HAGenerelSpecID);
+                  TechSpeclist.Add(tecnicalSpec);
+               }
             }
+            return TechSpeclist;
+         }
+         catch
+         {
+            return null;
          }
 
-         //return. 
-         return TechSpeclist;
       }
    }
 }
