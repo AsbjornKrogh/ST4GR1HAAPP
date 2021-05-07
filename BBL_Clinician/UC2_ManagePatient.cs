@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CoreEFTest.Models;
 using DLL_Clinician;
+using DLL_Clinician.RegionsDatabase;
 using EFCoreTestConsoleApp;
 using Microsoft.EntityFrameworkCore.Internal;
 
@@ -11,6 +12,7 @@ namespace BLL_Clinician
     public class UC2_ManagePatient
     {
         private IClinicDatabase clinicDatabase;
+        private IRegionDatabase regionDatabase;
         bool CPRCorrect;
         
 
@@ -39,7 +41,29 @@ namespace BLL_Clinician
         //    clinicDatabase.UpdatePatient(patient);
         //}
 
-        public bool CheckCPR(string CPRnumber)
+        public bool CheckCPRClinicDatabase(string CPRnumber)
+        {
+            int patientRegistered = 0;
+            foreach (var patient in clinicDatabase.GetAllPatients())
+            {
+                if (patient.CPR == CPRnumber)
+                {
+                    patientRegistered++;
+                }
+
+                if (patientRegistered == 1)
+                {
+                    CPRCorrect = true;
+                }
+                else
+                {
+                    CPRCorrect = false;
+                }
+            }
+            return CPRCorrect;
+        }
+
+        public bool CheckCPRRegionDatabase(string CPRnumber)
         {
             int patientRegistered = 0;
             foreach (var patient in clinicDatabase.GetAllPatients())

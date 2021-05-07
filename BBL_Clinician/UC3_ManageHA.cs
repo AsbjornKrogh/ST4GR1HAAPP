@@ -25,16 +25,14 @@ namespace BBL_Clinician
 
        }
 
-       public void SaveHA(int HearingAidID, string type, string color, DateTime createDate, int ClinianID)
+       public void SaveHA(string type, string color, DateTime createDate, int ClinianID)
        {
-           GeneralSpec generalSpec = new GeneralSpec();
-           clinicDatabase.CreateNewGeneralSpec(generalSpec);
-            
+
        }
 
         public void CreateHA(GeneralSpec generalSpec)
         {
-            
+            clinicDatabase.CreateNewGeneralSpec(generalSpec);
         }
 
         public List<GeneralSpec> GetAllHA(string CPR)

@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CoreEFTest.Models;
+using BBL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -17,19 +19,16 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class OrderNewHA : Window
     {
+        UC3_ManageHA manageHA = new UC3_ManageHA();
+        MainWindow mainWindow = new MainWindow();
         public OrderNewHA()
         {
             InitializeComponent();
         }
 
-        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
     }
 }

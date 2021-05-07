@@ -5,7 +5,7 @@ using CoreEFTest.Models;
 
 namespace DLL_Clinician.RegionsDatabase
 {
-    interface IRegionDatabase
+   public interface IRegionDatabase
     {
        bool CheckCPR(string CPR);
 
