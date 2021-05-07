@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using CoreEFTest.Models;
+using DTO;
+
 
 namespace DLL_Technician
 {
@@ -28,7 +30,7 @@ namespace DLL_Technician
 
 
       //UC6
-      //List<ProcesSpec> GetProcesInfo(string CPR); 
+      List<ProcesSpec> GetProcesInfo(string CPR); 
 
 
 

@@ -103,7 +103,7 @@ namespace Presentation_Technician
 
         private void ProcesB_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ProcessPage();
+            Main.Content = new ProcessPage(db,technician);
             VelkommenL.Visibility = Visibility.Collapsed;
             ProcesB.IsEnabled = false;
 

@@ -32,25 +32,25 @@ namespace Presentation_Technician
             technician = login;
         }
 
-        ////private void OKB_Click(object sender, RoutedEventArgs e)
-        ////{
-        ////    if (okIsRunning != true)
-        ////    {
-        ////        okIsRunning = true;
+        private void OKB_Click(object sender, RoutedEventArgs e)
+        {
+            ////    if (okIsRunning != true)
+            ////    {
+            ////        okIsRunning = true;
 
-        ////        BackgroundWorker worker = new BackgroundWorker();
+            ////        BackgroundWorker worker = new BackgroundWorker();
 
-        ////        worker.DoWork += UC4GetPatientInformation;
+            ////        worker.DoWork += UC4GetPatientInformation;
 
-        ////        worker.RunWorkerCompleted += UC4GetPatientInformationCompleted;
+            ////        worker.RunWorkerCompleted += UC4GetPatientInformationCompleted;
 
-        ////        string castID = HACastIDTB.Text;
-        ////        worker.RunWorkerAsync(castID);
+            ////        string castID = HACastIDTB.Text;
+            ////        worker.RunWorkerAsync(castID);
 
-        ////        Loading.Visibility = Visibility.Visible;
-        ////        Loading.Spin = true;
-        ////    }
+            ////        Loading.Visibility = Visibility.Visible;
+            ////        Loading.Spin = true;
+            ////    }
 
-        ////}
+        }
     }
 }

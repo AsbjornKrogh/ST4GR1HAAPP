@@ -39,13 +39,6 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Bestil nyt høreapparat" HorizontalAlignment="Left" Margin="88,249,0,0" VerticalAlignment="Top" Height="44" Width="202">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5,5,5,5"/>
-                </Style>
-            </Button.Resources>
-        </Button>
         <Label Content="Patientinformation:" HorizontalAlignment="Left" Margin="89,10,0,0" VerticalAlignment="Top" Width="299" FontWeight="Bold" FontSize="16"/>
         <Label Content="By" HorizontalAlignment="Left" Margin="88,165,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TbCity" HorizontalAlignment="Left" Margin="170,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
