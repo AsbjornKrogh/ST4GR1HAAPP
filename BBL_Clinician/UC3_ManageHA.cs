@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CoreEFTest.Models;
 using DLL_Clinician;
 
-namespace BBL_Clinician
+namespace BLL_Clinician
 {
    public class UC3_ManageHA
    {

@@ -9,7 +9,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BBL_Clinician;
 using BLL_Clinician;
 using CoreEFTest.Models;
 
@@ -21,30 +20,27 @@ namespace Presentation_Clinician
     public partial class HAInformationWindow : Window
     {
         UC3_ManageHA _manageHA = new UC3_ManageHA();
-        private GeneralSpec _generalSpec;
-        ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
+
+        ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
+
+        GeneralSpec _generalSpec = new GeneralSpec();
         private Patient _patient;
         private List<GeneralSpec> listGeneralSpecs;
         private ManageHAPage manageHa;
-        private UC2_ManagePatient _managePatient;
-        
 
         
 
-
-        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa, UC2_ManagePatient managePatient)
+        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa)
         {
             InitializeComponent();
-            _clinicianMain = clinicianMainWindow;
+            _clinicianMainWindow = clinicianMainWindow;
             _manageHA = manageHa;
-            _managePatient = managePatient;
-
-
         }
 
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
         {
-            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.Patient.CPR);
+            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMainWindow.Patient.CPR);
+      
 
             foreach (var clinicianSpec in listGeneralSpecs)
             {
@@ -55,32 +51,31 @@ namespace Presentation_Clinician
                 else if(clinicianSpec.EarSide == Ear.Left)
                 {
                     Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
-
                 }
                
             }
             
         }
 
-      
+
 
         private void btn_ShowOldAid_Click(object sender, RoutedEventArgs e)
         {
 
-            _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
-            listGeneralSpecs = _manageHA.GetAllHA(_patient.CPR);
-            _generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            //    //listGeneralSpecs = _manageHA.GetAllHA(_clinicianMainWindow.Patient.CPR);
+            //    //_generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            //    _generalSpec = _clinicianMainWindow.Patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
 
-            foreach (var item in listGeneralSpecs)
-            {
-                if (Lb_OldHearingLeft.SelectedItems.ToString() == "Dato: " + item.CreateDate)
-                {
-                    Tblock_OldHearingAid.Text = "Øre: " + Convert.ToString(item.EarSide) + "\r\nDato " + Convert.ToString(item.CreateDate) + "\r\nFarve : " + Convert.ToString(item.Color);
-                }
-            }
+            //    foreach (var item in listGeneralSpecs)
+            //    {
+            //        if (Lb_OldHearingLeft.SelectedItems.ToString() == "Dato: " + item.CreateDate)
+            //        {
+            //            Tblock_OldHearingAid.Text = "Øre: " + Convert.ToString(item.EarSide) + "\r\nDato " + Convert.ToString(item.CreateDate) + "\r\nFarve : " + Convert.ToString(item.Color);
+            //        }
+            //    }
 
-            
-            
+
+
 
             //Tblock_OldHearingAid.Text = selectedGeneralSpec.CPR;
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.EarSide);
@@ -90,7 +85,7 @@ namespace Presentation_Clinician
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.HAGeneralSpecID);
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.StaffID);
 
-            
+
 
 
             //Tblock_OldHearingAid.Text =  "Øre: " + Convert.ToString(_generalSpec.EarSide) + "\r\nDato " + Convert.ToString(_generalSpec.CreateDate) + "\r\nFarve : " + Convert.ToString(_generalSpec.Color);
@@ -103,8 +98,8 @@ namespace Presentation_Clinician
 
 
 
-
-
         }
+
     }
 }
+
