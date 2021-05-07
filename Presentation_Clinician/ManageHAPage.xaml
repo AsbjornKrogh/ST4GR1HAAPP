@@ -9,28 +9,32 @@
       Title="ManageHAPage" Background="#FFF9F5F5">
 
     <Grid x:Name="HA_Page" Loaded="HA_Page_Loaded">
-        <Label Content="Højre øre" HorizontalAlignment="Left" Margin="14,148,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
-        <Label Content="Venstre øre" HorizontalAlignment="Left" Margin="321,153,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
-        <Button x:Name="BtnRetrieveHearingTest" Content="Hent høreprøve" HorizontalAlignment="Left" Margin="206,344,0,0" VerticalAlignment="Top" Height="26" Width="134" Click="BtnRetrieveHearingTest_Click"/>
-        <Button x:Name="BtnOrderHearingAids" Content="Bestil nyt høreapparat" Width="134" Margin="365,344,301,30"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="14,183,0,0" VerticalAlignment="Top"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="324,0,0,0" VerticalAlignment="Center"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="14,219,0,0" VerticalAlignment="Top"/>
-        <Label Content="Farve" HorizontalAlignment="Left" Margin="14,214,0,0" VerticalAlignment="Top"/>
-        <Label Content="Farve" HorizontalAlignment="Left" Margin="324,214,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_RightEar_Type" HorizontalAlignment="Left" Margin="132,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tb_LeftEar_Type" HorizontalAlignment="Left" Margin="444,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tb_RightEar_Color" HorizontalAlignment="Left" Margin="132,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tb_LeftEar_Color" HorizontalAlignment="Left" Margin="442,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Højre øre" HorizontalAlignment="Left" Margin="22,55,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <Label Content="Venstre øre" HorizontalAlignment="Left" Margin="329,60,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="BtnRetrieveHearingTest" Content="Hent høreprøve" HorizontalAlignment="Left" Margin="204,288,0,0" VerticalAlignment="Top" Height="26" Width="134" Click="BtnRetrieveHearingTest_Click"/>
+        <Button x:Name="BtnOrderHearingAids" Content="Bestil nyt høreapparat" Width="134" Margin="363,288,303,86"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="22,90,0,0" VerticalAlignment="Top"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="332,94,0,0" VerticalAlignment="Top"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="22,126,0,0" VerticalAlignment="Top"/>
+        <Label Content="Farve" HorizontalAlignment="Left" Margin="22,121,0,0" VerticalAlignment="Top"/>
+        <Label Content="Farve" HorizontalAlignment="Left" Margin="332,121,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_RightEar_Type" HorizontalAlignment="Left" Margin="140,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Tb_LeftEar_Type" HorizontalAlignment="Left" Margin="452,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Tb_RightEar_Color" HorizontalAlignment="Left" Margin="140,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Tb_LeftEar_Color" HorizontalAlignment="Left" Margin="450,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Oplysninger om nuværende høreapparater" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <Button x:Name="BtnFormerHearingAids" Content="Vis tidligere høreapparater" HorizontalAlignment="Left" Margin="29,344,0,0" VerticalAlignment="Top" Height="26" Width="158" Click="BtnFormerHearingAids_Click"/>
-        <Label Content="Medarbejder ID" HorizontalAlignment="Left" Margin="18,66,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_StaffID" HorizontalAlignment="Left" Margin="132,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Dato" HorizontalAlignment="Left" Margin="18,93,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_Datetime" HorizontalAlignment="Left" Margin="132,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Tb_Left_HAID" HorizontalAlignment="Left" Margin="442,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Høreapparats ID" HorizontalAlignment="Left" Margin="14,245,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_Right_HAID" HorizontalAlignment="Left" Margin="132,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Høreapparats ID" HorizontalAlignment="Left" Margin="326,245,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BtnFormerHearingAids" Content="Vis tidligere høreapparater" HorizontalAlignment="Left" Margin="27,288,0,0" VerticalAlignment="Top" Height="26" Width="158" Click="BtnFormerHearingAids_Click"/>
+        <Label Content="Medarbejder ID" HorizontalAlignment="Left" Margin="338,189,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_StaffID_Left" HorizontalAlignment="Left" Margin="452,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Dato" HorizontalAlignment="Left" Margin="338,216,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_Datetime_Left" HorizontalAlignment="Left" Margin="452,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Tb_Left_HAID" HorizontalAlignment="Left" Margin="450,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Høreapparats ID" HorizontalAlignment="Left" Margin="22,152,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_Right_HAID" HorizontalAlignment="Left" Margin="140,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Høreapparats ID" HorizontalAlignment="Left" Margin="334,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="Medarbejder ID" HorizontalAlignment="Left" Margin="26,180,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_StaffID_Right" HorizontalAlignment="Left" Margin="140,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Dato" HorizontalAlignment="Left" Margin="26,207,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_Datetime_Right" HorizontalAlignment="Left" Margin="140,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>

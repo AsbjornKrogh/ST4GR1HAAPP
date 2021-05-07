@@ -49,26 +49,31 @@ namespace Presentation_Clinician
 
         private void HA_Page_Loaded(object sender, RoutedEventArgs e)
         {
-            manageHA.GetHA(mainWindow.CPR);
+            var HA_GeneralSpec = manageHA.GetHA(mainWindow.CPR);
 
-            if (generalSpec.EarSide == Ear.Left)
+            foreach (var generalSpec in HA_GeneralSpec)
             {
-                Tb_LeftEar_Color.Text = Convert.ToString(generalSpec.Color);
-                Tb_LeftEar_Type.Text = Convert.ToString(generalSpec.Type);
-                Tb_Left_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+                if (generalSpec.EarSide == Ear.Left)
+                {
+                    Tb_LeftEar_Color.Text = Convert.ToString(generalSpec.Color);
+                    Tb_LeftEar_Type.Text = Convert.ToString(generalSpec.Type);
+                    Tb_Left_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+                    Tb_StaffID_Left.Text = Convert.ToString(generalSpec.StaffID);
+                    Tb_Datetime_Left.Text = Convert.ToString(generalSpec.CreateDate);
+                }
+
+                if (generalSpec.EarSide == Ear.Right)
+                {
+                    Tb_RightEar_Color.Text = Convert.ToString(generalSpec.Color);
+                    Tb_RightEar_Type.Text = Convert.ToString(generalSpec.Type);
+                    Tb_Right_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+                    Tb_StaffID_Right.Text = Convert.ToString(generalSpec.StaffID);
+                    Tb_Datetime_Right.Text = Convert.ToString(generalSpec.CreateDate);
+                }
             }
+
+          
             
-            if(generalSpec.EarSide == Ear.Right)
-            {
-                Tb_RightEar_Color.Text = Convert.ToString(generalSpec.Color);
-                Tb_RightEar_Type.Text = Convert.ToString(generalSpec.Type);
-                Tb_Right_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
-            }
-
-            Tb_StaffID.Text = Convert.ToString(generalSpec.StaffID);
-            Tb_Datetime.Text = Convert.ToString(generalSpec.CreateDate);
-
-
 
         }
     }
