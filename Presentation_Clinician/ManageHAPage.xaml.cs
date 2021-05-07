@@ -27,7 +27,7 @@ namespace Presentation_Clinician
         private OrderNewHA orderNewHa;
 
         GeneralSpec generalSpec = new GeneralSpec();
-        HAInformationWindow _haInformation = new HAInformationWindow();
+        HAInformationWindow _haInformation;
         
         
         public ManageHAPage(MainWindow mainWindow, UC3_ManageHA manageHA)
@@ -47,7 +47,7 @@ namespace Presentation_Clinician
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
         {
-            _haInformation = new HAInformationWindow();
+            _haInformation = new HAInformationWindow(mainWindow,manageHA);
             _haInformation.Show();
          //TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(mainWindow.CPR));
         }
@@ -58,18 +58,19 @@ namespace Presentation_Clinician
 
             foreach (var generalSpec in HA_GeneralSpec)
             {
-            
-                    if (generalSpec.EarSide == Ear.Left)
-                    {
-                        Tb_LeftEar_Color.Text = Convert.ToString(generalSpec.Color);
-                        Tb_LeftEar_Type.Text = Convert.ToString(generalSpec.Type);
-                        Tb_Left_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
-                        Tb_StaffID_Left.Text = Convert.ToString(generalSpec.StaffID);
-                        Tb_Datetime_Left.Text = Convert.ToString(generalSpec.CreateDate);
-                    }
-                    else
+            //hvad hvis der ikke er data
+            if (generalSpec != null)
+            {
+                if (generalSpec.EarSide == Ear.Left)
+                {
+                    Tb_LeftEar_Color.Text = Convert.ToString(generalSpec.Color);
+                    Tb_LeftEar_Type.Text = Convert.ToString(generalSpec.Type);
+                    Tb_Left_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+                    Tb_StaffID_Left.Text = Convert.ToString(generalSpec.StaffID);
+                    Tb_Datetime_Left.Text = Convert.ToString(generalSpec.CreateDate);
+                }
 
-                    if (generalSpec.EarSide == Ear.Right)
+                if (generalSpec.EarSide == Ear.Right)
                 {
                     Tb_RightEar_Color.Text = Convert.ToString(generalSpec.Color);
                     Tb_RightEar_Type.Text = Convert.ToString(generalSpec.Type);
@@ -77,10 +78,9 @@ namespace Presentation_Clinician
                     Tb_StaffID_Right.Text = Convert.ToString(generalSpec.StaffID);
                     Tb_Datetime_Right.Text = Convert.ToString(generalSpec.CreateDate);
                 }
-                else
-                {
-                    MessageBox.Show("Ingen informatioer om høreapparat for højre øre");
-                }
+            }
+           
+
             }
 
           
