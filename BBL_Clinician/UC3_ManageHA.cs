@@ -25,11 +25,11 @@ namespace BBL_Clinician
 
        }
 
-       public bool SaveHA(int HearingAidID, string type, string color, DateTime createDate, int ClinianID)
+       public void SaveHA(int HearingAidID, string type, string color, DateTime createDate, int ClinianID)
        {
+           GeneralSpec generalSpec = new GeneralSpec();
+           clinicDatabase.CreateNewGeneralSpec(generalSpec);
             
-           return true;
-           //måske skal vi benytte general spec her - ved ikke om man skal have en datetime og staffid med her
        }
 
         public void CreateHA(GeneralSpec generalSpec)
