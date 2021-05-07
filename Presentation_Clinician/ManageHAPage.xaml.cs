@@ -58,7 +58,7 @@ namespace Presentation_Clinician
 
             foreach (var generalSpec in HA_GeneralSpec)
             {
-            //hvad hvis der ikke er data
+            
                     if (generalSpec.EarSide == Ear.Left)
                     {
                         Tb_LeftEar_Color.Text = Convert.ToString(generalSpec.Color);
@@ -67,6 +67,7 @@ namespace Presentation_Clinician
                         Tb_StaffID_Left.Text = Convert.ToString(generalSpec.StaffID);
                         Tb_Datetime_Left.Text = Convert.ToString(generalSpec.CreateDate);
                     }
+                    else
 
                     if (generalSpec.EarSide == Ear.Right)
                 {
