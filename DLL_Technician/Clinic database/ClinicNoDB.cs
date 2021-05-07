@@ -24,16 +24,30 @@ namespace DLL_Technician
                 testPatient.Lastname = "Andersen";
                 testPatient.Age = 69;
 
-                EarCast leftEar = new EarCast();
-                leftEar.EarSide = EarCast.Ear.Left;
+                testPatient.TecnicalSpecs = new List<TecnicalSpec>();
 
-                EarCast rightEar = new EarCast();
-                rightEar.EarSide = EarCast.Ear.Right;
+                TecnicalSpec testTecnicalSpecLeft = new TecnicalSpec();
+                testTecnicalSpecLeft.EarSide = Ear.Left;
 
-                testPatient.EarCasts = new List<EarCast>();
+                TecnicalSpec testTecnicalSpecRight = new TecnicalSpec();
+                testTecnicalSpecRight.EarSide = Ear.Right;
+                testTecnicalSpecRight.Printed = true;
 
-                testPatient.EarCasts.Add(leftEar);
-                testPatient.EarCasts.Add(rightEar);
+                testPatient.TecnicalSpecs.Add(testTecnicalSpecLeft);
+                testPatient.TecnicalSpecs.Add(testTecnicalSpecRight);
+
+                testPatient.GeneralSpecs = new List<GeneralSpec>();
+
+                GeneralSpec testGeneralSpecLeft = new GeneralSpec();
+                testGeneralSpecLeft.Color = PlugColor.Almond;
+                testGeneralSpecLeft.Type = Material.Silhuet;
+
+                GeneralSpec testGeneralSpecRight = new GeneralSpec();
+                testGeneralSpecRight.Color = PlugColor.Honey;
+                testGeneralSpecRight.Type = Material.Blød;
+
+                testPatient.GeneralSpecs.Add(testGeneralSpecLeft);
+                testPatient.GeneralSpecs.Add(testGeneralSpecRight);
 
                 return testPatient;
             }
@@ -71,6 +85,36 @@ namespace DLL_Technician
                 testPatient.Name = "Børge";
                 testPatient.Lastname = "Andersen";
                 testPatient.Age = 69;
+
+                testPatient.TecnicalSpecs = new List<TecnicalSpec>();
+
+                TecnicalSpec testTecnicalSpecLeft = new TecnicalSpec();
+                testTecnicalSpecLeft.EarSide = Ear.Left;
+                testTecnicalSpecLeft.RawEarScan = new RawEarScan();
+
+                TecnicalSpec testTecnicalSpecRight = new TecnicalSpec();
+                testTecnicalSpecRight.EarSide = Ear.Right;
+                testTecnicalSpecRight.Printed = true;
+
+                testTecnicalSpecRight.RawEarScan = new RawEarScan();
+
+                testPatient.TecnicalSpecs.Add(testTecnicalSpecLeft);
+                testPatient.TecnicalSpecs.Add(testTecnicalSpecRight);
+
+
+                testPatient.GeneralSpecs = new List<GeneralSpec>();
+
+                GeneralSpec testGeneralSpecLeft = new GeneralSpec();
+                testGeneralSpecLeft.Color = PlugColor.Almond;
+                testGeneralSpecLeft.Type = Material.Silhuet;
+
+                GeneralSpec testGeneralSpecRight = new GeneralSpec();
+                testGeneralSpecRight.Color = PlugColor.Honey;
+                testGeneralSpecRight.Type = Material.Blød;
+
+                testPatient.GeneralSpecs.Add(testGeneralSpecLeft);
+                testPatient.GeneralSpecs.Add(testGeneralSpecRight);
+
                 return testPatient;
             }
             else

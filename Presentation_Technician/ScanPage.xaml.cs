@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +20,8 @@ using CoreEFTest.Models;
 using DLL_Technician;
 using DTO;
 using HelixToolkit.Wpf;
+using Newtonsoft.Json;
+using QuantumConcepts.Formats.StereoLithography;
 
 namespace Presentation_Technician
 {
@@ -36,6 +41,9 @@ namespace Presentation_Technician
         private RawEarScan rawEarScan;
         private ModelImporter modelImporter;
         private FullRawEarScan fullRawEarScan;
+        private BinaryFormatter binaryFormatter;
+        private JsonSerializer jsonSerializer;
+        private QuantumConcepts.Formats.StereoLithography.STLDocument stlDocument = new STLDocument(); 
 
         //Venstre øreafstøbning
         //private const string MODEL_PATH = "Mold_for_Ear_V1.7_L.stl";
@@ -53,7 +61,9 @@ namespace Presentation_Technician
             uc4_scan = new UC4_Scan(db, scanner);
 
             modelImporter = new ModelImporter();
-            
+            binaryFormatter = new BinaryFormatter();
+            jsonSerializer = new JsonSerializer();
+
         }
 
         #region Hent metoder
@@ -97,6 +107,7 @@ namespace Presentation_Technician
             {
                 PatientInformationTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
                 ScanB.IsEnabled = true;
+                HentInfoB.IsEnabled = false;
             }
             else
             {
@@ -152,9 +163,31 @@ namespace Presentation_Technician
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
             Visual3D.Content = modelImporter.Load(MODEL_PATH);
+
+            //byte[] bytes;
+            //stlDocument.SaveAsBinary(MODEL_PATH);
+
+
+            //var _object = modelImporter.Load(MODEL_PATH);// Dette objekt er ikke serilaziable
+
+            byte[] bytes = System.IO.File.ReadAllBytes(MODEL_PATH);
+            
+            //using (var _MemoryStream = new MemoryStream())
+            //{
+            //    IFormatter _BinaryFormatter = new BinaryFormatter();
+            //    _BinaryFormatter.Serialize(_MemoryStream, str);
+            //    bytes = _MemoryStream.ToArray();
+            //}
+
+            patientAndHA.TecnicalSpecs[0].RawEarScan.Scan = new byte[bytes.Length];
+            patientAndHA.TecnicalSpecs[0].RawEarScan.Scan = bytes;
+
+
+
             GemB.IsEnabled = true;
         }
 
+       
         #endregion
 
         #region Gem metoder
