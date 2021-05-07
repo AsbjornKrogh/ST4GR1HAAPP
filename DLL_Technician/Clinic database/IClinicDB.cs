@@ -23,6 +23,8 @@ namespace DLL_Technician
 
       bool SaveScan(RawEarScan scan, string CPR);
 
+      bool UpdateGeneralspec(GeneralSpec generalSpec);
+
       //UC5
       List<TecnicalSpec> GetTechnicalSpecs(string CPR);
 
