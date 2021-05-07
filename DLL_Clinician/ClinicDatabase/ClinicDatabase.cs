@@ -25,9 +25,16 @@ namespace DLL_Clinician
       /// <returns></returns>
       public List<Patient> GetAllPatients()
       {
-         List<Patient> Patient = _dbContext.Patient.ToList();
+         try
+         {
+            List<Patient> Patient = _dbContext.Patient.ToList();
 
-         return Patient;
+            return Patient;
+         }
+         catch
+         {
+            return null;
+         }
       }
 
       /// <summary>
@@ -37,9 +44,16 @@ namespace DLL_Clinician
       /// <returns></returns>
       public Patient GetPatient(string CPR)
       {
-         Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+         try
+         {
+            Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
 
-         return patient;
+            return patient;
+         }
+         catch
+         {
+            return null;
+         }
       }
 
       /// <summary>
@@ -104,7 +118,7 @@ namespace DLL_Clinician
       {
          try
          {
-            Patient DBpatient = _dbContext.Patient.Find(patient.CPR);
+            Patient DBpatient = _dbContext.Patient.Single(x => x.CPR == patient.CPR);
 
             if (DBpatient != null)
             {
@@ -203,11 +217,11 @@ namespace DLL_Clinician
       {
          try
          {
-            List<GeneralSpec> generalSpecs = _dbContext.GeneralSpecs.Where(x => x.CPR == CPR).ToList();
+            List<GeneralSpec> generalSpecs = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Where(x => x.CPR == CPR).ToList();
 
             return generalSpecs;
          }
-         catch (Exception e)
+         catch 
          {
             return null;
          }

@@ -8,7 +8,7 @@ namespace DLL_Technician
    public interface IClinicDB
    {
       //UC 3.2
-      Patient GetPatient(string CPR);
+      Patient GetPatientWithGeneralSpecAndTechnicalSpec(string CPR);
 
       //UC3.3
       bool SaveTechnicalSpec(TecnicalSpec techSpec);
@@ -22,7 +22,7 @@ namespace DLL_Technician
       bool SaveScan(RawEarScan scan, string CPR);
 
       //UC5
-      List<TecnicalSpec> GetEarScan(string CPR);
+      List<TecnicalSpec> GetTechnicalSpecs(string CPR);
 
       List<TecnicalSpec> GetEarScans();
 

@@ -8,15 +8,15 @@ namespace CoreEFTest.Models
 {
    public class EarCast
    {
-       public enum Ear { Left, Right }
+      public enum Ear { Left, Right }
 
-        [Key]
+      [Key]
       public int EarCastID { get; set; }
 
       [Required]
       public Ear EarSide { get; set; }
 
-        [Required] 
+      [Required]
       public DateTime CastDate { get; set; } = DateTime.Now.Date;
 
       [Required]

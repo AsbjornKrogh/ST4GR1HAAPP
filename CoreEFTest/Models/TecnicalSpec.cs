@@ -32,12 +32,13 @@ namespace CoreEFTest.Models
         public Patient Patient { get; set; }
 
         [Required]
-        [ForeignKey("GenerealSpec")]
-        public int HAGenerelSpec { get; set; }
+        [ForeignKey("GeneralSpec")]
+        public int HAGenerelSpecID { get; set; }
         public GeneralSpec GeneralSpec { get; set; }
 
         //[ForeignKey("RawEarScan")]
         public int ScanID { get; set; }
+        
         public RawEarScan RawEarScan { get; set; }
 
         public List<RawEarPrint> EarPrints { get; set; }
