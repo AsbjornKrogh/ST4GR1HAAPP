@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BBL_Clinician;
+using BLL_Clinician;
 using CoreEFTest.Models;
 
 namespace Presentation_Clinician
@@ -20,36 +21,38 @@ namespace Presentation_Clinician
     public partial class HAInformationWindow : Window
     {
         UC3_ManageHA _manageHA = new UC3_ManageHA();
-        GeneralSpec _generalSpec = new GeneralSpec();
+        private GeneralSpec _generalSpec;
         ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
         private Patient _patient;
         private List<GeneralSpec> listGeneralSpecs;
         private ManageHAPage manageHa;
+        private UC2_ManagePatient _managePatient;
         
 
         
 
 
-        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa)
+        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa, UC2_ManagePatient managePatient)
         {
             InitializeComponent();
             _clinicianMain = clinicianMainWindow;
             _manageHA = manageHa;
-            
+            _managePatient = managePatient;
+
 
         }
 
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
         {
-            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.CPR);
+            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.Patient.CPR);
 
             foreach (var clinicianSpec in listGeneralSpecs)
             {
-                if (clinicianSpec != null)
+                if (clinicianSpec.EarSide == Ear.Right)
                 {
                     Lb_OldHearingRight.Items.Add("Dato: " + clinicianSpec.CreateDate);
                 }
-                else
+                else if(clinicianSpec.EarSide == Ear.Left)
                 {
                     Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
 
@@ -63,10 +66,10 @@ namespace Presentation_Clinician
 
         private void btn_ShowOldAid_Click(object sender, RoutedEventArgs e)
         {
-            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.CPR);
-            GeneralSpec selectedGeneralSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
 
-            
+            _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
+            listGeneralSpecs = _manageHA.GetAllHA(_patient.CPR);
+            _generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
 
             foreach (var item in listGeneralSpecs)
             {
