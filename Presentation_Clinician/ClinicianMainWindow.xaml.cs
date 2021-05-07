@@ -38,7 +38,7 @@ namespace Presentation_Clinician
        public string CPR { get; set; }
        public int StaffID { get; set; }
 
-       public Patient Patient { get; set;}
+       public Patient Patient;
 
 
 
@@ -50,6 +50,7 @@ namespace Presentation_Clinician
          InitializeComponent();
          homeWindow = new HomeWindow(this, managePatient);
          clinician = new StaffLogin();
+         Patient = new Patient();
 
       }
       public void Window_Loaded(object sender, RoutedEventArgs e)

@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BBL_Clinician;
+using BLL_Clinician;
 using CoreEFTest.Models;
 
 namespace Presentation_Clinician
@@ -22,6 +23,7 @@ namespace Presentation_Clinician
     {
         ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
         UC3_ManageHA manageHA = new UC3_ManageHA();
+        UC2_ManagePatient managePatient = new UC2_ManagePatient();
 
         private HearingTestWindow _hearingTest;
         private OrderNewHA orderNewHa;
@@ -47,45 +49,38 @@ namespace Presentation_Clinician
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
         {
-            _haInformation = new HAInformationWindow(_clinicianMainWindow,manageHA);
+            _haInformation = new HAInformationWindow(_clinicianMainWindow,manageHA,managePatient);
             _haInformation.Show();
          //TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(clinicianMainWindow.CPR));
         }
 
         private void HA_Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var HA_GeneralSpec = manageHA.GetHA(_clinicianMainWindow.CPR);
+            var HA_GeneralSpec = manageHA.GetHA(_clinicianMainWindow.Patient.CPR);
 
             foreach (var generalSpec in HA_GeneralSpec)
             {
-            //hvad hvis der ikke er data
-            if (generalSpec != null)
-            {
-                if (generalSpec.EarSide == Ear.Left)
+                if (generalSpec != null)
                 {
-                    Tb_LeftEar_Color.Text = Convert.ToString(generalSpec.Color);
-                    Tb_LeftEar_Type.Text = Convert.ToString(generalSpec.Type);
-                    Tb_Left_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
-                    Tb_StaffID_Left.Text = Convert.ToString(generalSpec.StaffID);
-                    Tb_Datetime_Left.Text = Convert.ToString(generalSpec.CreateDate);
-                }
+                    if (generalSpec.EarSide == Ear.Left)
+                    {
+                        Tb_LeftEar_Color.Text = Convert.ToString(generalSpec.Color);
+                        Tb_LeftEar_Type.Text = Convert.ToString(generalSpec.Type);
+                        Tb_Left_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+                        Tb_StaffID_Left.Text = Convert.ToString(generalSpec.StaffID);
+                        Tb_Datetime_Left.Text = Convert.ToString(generalSpec.CreateDate);
+                    }
 
-                if (generalSpec.EarSide == Ear.Right)
-                {
-                    Tb_RightEar_Color.Text = Convert.ToString(generalSpec.Color);
-                    Tb_RightEar_Type.Text = Convert.ToString(generalSpec.Type);
-                    Tb_Right_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
-                    Tb_StaffID_Right.Text = Convert.ToString(generalSpec.StaffID);
-                    Tb_Datetime_Right.Text = Convert.ToString(generalSpec.CreateDate);
+                    if (generalSpec.EarSide == Ear.Right)
+                    {
+                        Tb_RightEar_Color.Text = Convert.ToString(generalSpec.Color);
+                        Tb_RightEar_Type.Text = Convert.ToString(generalSpec.Type);
+                        Tb_Right_HAID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+                        Tb_StaffID_Right.Text = Convert.ToString(generalSpec.StaffID);
+                        Tb_Datetime_Right.Text = Convert.ToString(generalSpec.CreateDate);
+                    }
                 }
             }
-           
-
-            }
-
-          
-            
-
         }
 
         private void BtnOrderHearingAids_Click(object sender, RoutedEventArgs e)
