@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Transactions;
+using CoreEFTest.Models;
 using DLL_Login;
 using DTO;
 
@@ -21,7 +22,7 @@ namespace BLL_Login
       /// <param name="staffID"></param>
       /// <param name="pw"></param>
       /// <returns></returns>
-      public DTO_StaffLogin CheckLogin(string staffID, string pw)
+      public StaffLogin CheckLogin(string staffID, string pw)
       {
          return DbLogin.LoginStaff(staffID, pw);
       }

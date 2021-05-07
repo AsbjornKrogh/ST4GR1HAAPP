@@ -20,7 +20,7 @@ namespace Presentation_Clinician
     public partial class OrderNewHA : Window
     {
         UC3_ManageHA manageHA = new UC3_ManageHA();
-        MainWindow mainWindow = new MainWindow();
+        ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
         public OrderNewHA()
         {
             InitializeComponent();

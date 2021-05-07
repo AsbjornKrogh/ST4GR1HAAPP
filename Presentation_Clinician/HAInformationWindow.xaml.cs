@@ -21,21 +21,21 @@ namespace Presentation_Clinician
     {
         UC3_ManageHA _manageHA = new UC3_ManageHA();
         GeneralSpec _generalSpec = new GeneralSpec();
-        MainWindow main = new MainWindow();
+        ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
         //private List<GeneralSpec> listGeneralSpecs;
 
 
-        public HAInformationWindow(MainWindow mainWindow, UC3_ManageHA manageHa)
+        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa)
         {
             InitializeComponent();
-            main = mainWindow;
+            _clinicianMain = clinicianMainWindow;
             _manageHA = manageHa;
 
         }
 
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
         {
-            var listGeneralSpecs = _manageHA.GetAllHA(main.CPR);
+            var listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.CPR);
 
             foreach (var clinicianSpec in listGeneralSpecs)
             {

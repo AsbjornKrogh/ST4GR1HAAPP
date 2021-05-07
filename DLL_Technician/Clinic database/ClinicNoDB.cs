@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using CoreEFTest;
 using CoreEFTest.Models;
+using DTO;
 
 namespace DLL_Technician
 {
@@ -205,6 +206,12 @@ namespace DLL_Technician
 
                 return tecnicalSpecs;
             }
+
+        public List<ProcesSpec> GetProcesInfo(string CPR)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
         
     }

@@ -19,12 +19,12 @@ namespace Presentation_Clinician
     public partial class HomeWindow : Window
     {
         private UC2_ManagePatient uc2ManagePatient;
-        private MainWindow mainWindow;
-        public HomeWindow(MainWindow mainWindow, UC2_ManagePatient managePatient)
+        private ClinicianMainWindow _clinicianMainWindow;
+        public HomeWindow(ClinicianMainWindow clinicianMainWindow, UC2_ManagePatient managePatient)
         {
             InitializeComponent();
 
-            this.mainWindow = mainWindow;
+            this._clinicianMainWindow = clinicianMainWindow;
             this.uc2ManagePatient = managePatient;
 
             TbCPRnumber.Focus();
@@ -33,24 +33,24 @@ namespace Presentation_Clinician
         private void BtOK_Click(object sender, RoutedEventArgs e)
         {
             string cpr = TbCPRnumber.Text;
-            mainWindow.LoginOK = true;
+            _clinicianMainWindow.LoginOK = true;
 
             if (uc2ManagePatient.CheckCPRClinicDatabase(cpr))
             {
-                mainWindow.LoginOK = true;
+                _clinicianMainWindow.LoginOK = true;
                 Close();
-                mainWindow.CPR = cpr;
+                _clinicianMainWindow.CPR = cpr;
 
             }
             else if (uc2ManagePatient.CheckCPRRegionDatabase(cpr))
             {
-                mainWindow.LoginOK = true;
+                _clinicianMainWindow.LoginOK = true;
                 Close();
-                mainWindow.CPR = cpr;
+                _clinicianMainWindow.CPR = cpr;
             }
             else
             {
-                mainWindow.LoginOK = false;
+                _clinicianMainWindow.LoginOK = false;
                 string message = "Ugyldigt CPR";
                 string title = "Fejl";
                 MessageBoxImage error = MessageBoxImage.Error;

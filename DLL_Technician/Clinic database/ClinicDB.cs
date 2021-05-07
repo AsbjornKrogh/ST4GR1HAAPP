@@ -299,7 +299,7 @@ namespace DLL_Technician
                   //Henter Earprint
                   if (procesSpecL.Printed)
                   {
-                     RawEarPrint rawEarPrint = _dbContext.RawEarPrints.OrderBy(x => x.PrintDate).Last(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID && x.EarSide == Ear.Left));
+                     RawEarPrint rawEarPrint = _dbContext.RawEarPrints.OrderBy(x => x.PrintDate).Last(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID && x.EarSide == Ear.Left);
                      procesSpecL.PrintDateTime = rawEarPrint.PrintDate;
                      procesSpecL.PrintTechId = rawEarPrint.StaffID;
                   }
@@ -336,7 +336,7 @@ namespace DLL_Technician
                   //Henter Earprint
                   if (procesSpecR.Printed)
                   {
-                     RawEarPrint rawEarPrint = _dbContext.RawEarPrints.OrderBy(x => x.PrintDate).Last(x => x.HATechnicalSpecID == TechspecR.HATechinalSpecID && x.EarSide == Ear.Right));
+                     RawEarPrint rawEarPrint = _dbContext.RawEarPrints.OrderBy(x => x.PrintDate).Last(x => x.HATechnicalSpecID == TechspecR.HATechinalSpecID && x.EarSide == Ear.Right);
                      procesSpecR.PrintDateTime = rawEarPrint.PrintDate;
                      procesSpecR.PrintTechId = rawEarPrint.StaffID;
                   }

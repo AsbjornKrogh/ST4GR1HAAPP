@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoreEFTest.Context;
 using CoreEFTest.Models;
 using DLL_Technician;
 using DLL_Technician.Printer;
@@ -24,16 +25,17 @@ namespace Presentation_Technician
    public partial class TechnicianMainWindow : Window
    {
        private IClinicDB db;
+       private ClinicDBContext context; 
        private IScanner scanner;
        private IPrinter printer;
-       private StaffLogin technician;
+       public StaffLogin technician { set; get; }
        private TimeStamp timeStamp;
-      public TechnicianMainWindow()
+       public TechnicianMainWindow()
       {
          InitializeComponent();
-
-        //db = new ClinicDB();
-         db = new ClinicNoDB();
+         context = new ClinicDBContext();
+         db = new ClinicDB(context);
+         //db = new ClinicNoDB();
          timeStamp = new TimeStamp();
          printer = new NoPrinter(timeStamp);
 
