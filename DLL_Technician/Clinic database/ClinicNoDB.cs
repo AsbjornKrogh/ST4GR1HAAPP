@@ -63,7 +63,17 @@ namespace DLL_Technician
 
         public bool SaveTechnicalSpec(TecnicalSpec techSpec)
         {
-            throw new NotImplementedException();
+            Thread.Sleep(1000);
+            int trigger = random.Next(1, 10);
+
+            if (trigger > 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
 
@@ -207,12 +217,38 @@ namespace DLL_Technician
                 return tecnicalSpecs;
             }
 
+
+
+        #endregion
+
+        #region UC 6
         public List<ProcesSpec> GetProcesInfo(string CPR)
         {
-            throw new NotImplementedException();
+            List<ProcesSpec> procesSpecs = new List<ProcesSpec>();
+
+            if (CPR == "123456-7891")
+            {
+                ProcesSpec procesSpecLeft = new ProcesSpec();
+                procesSpecLeft.ClinicianId = 1;
+                procesSpecLeft.scanTechId = 2;
+                procesSpecLeft.Printed = true;
+                procesSpecLeft.PrintDateTime = DateTime.Now;
+
+
+                ProcesSpec procesSpecRight = new ProcesSpec();
+                procesSpecRight.ClinicianId = 1;
+                procesSpecRight.scanTechId = 2;
+                procesSpecRight.Printed = false;
+                procesSpecRight.scanDateTime = DateTime.Now;
+
+                procesSpecs.Add(procesSpecLeft);
+                procesSpecs.Add(procesSpecRight);
+            }
+
+            return procesSpecs;
         }
 
         #endregion
-        
+
     }
 }

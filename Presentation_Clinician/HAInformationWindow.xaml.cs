@@ -19,7 +19,7 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class HAInformationWindow : Window
     {
-        UC3_ManageHA _manageHA = new UC3_ManageHA();
+        UC3_ManageHA manageHA = new UC3_ManageHA();
         GeneralSpec _generalSpec = new GeneralSpec();
         ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
         //private List<GeneralSpec> listGeneralSpecs;
@@ -39,38 +39,17 @@ namespace Presentation_Clinician
 
             foreach (var clinicianSpec in listGeneralSpecs)
             {
-                if (clinicianSpec.EarSide == Ear.Right)
+                if (clinicianSpec != null)
                 {
-                    Lb_OldHearingRight.Items.Add("Dato: " + clinicianSpec.CreateDate);
+                    Lb_OldHearing.Items.Add( "øre: " + clinicianSpec.EarSide);
+                    Lb_OldHearing.Items.Add("Dato:" + clinicianSpec.CreateDate);
                 }
-                else if(clinicianSpec.EarSide == Ear.Left)
+                else
                 {
-                    Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
-                }
-                else if (listGeneralSpecs != null)
-                {
-                    Lb_OldHearingLeft.Items.Add("Patienten har ingen tidligere høreapparter for venstre øre");
-                    Lb_OldHearingRight.Items.Add("Patienten har ingen tidligere høreapparter for venstre øre");
+                    Lb_OldHearing.Items.Add("patienten har ingen tidligere høreapparater");
                 }
             }
             
-        }
-
-        private void Tblock_OldHearingAid_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            Tblock_OldHearingAid.Text = _generalSpec.CPR;
-            Tblock_OldHearingAid.Text = Convert.ToString(_generalSpec.CreateDate);
-            Tblock_OldHearingAid.Text = Convert.ToString(_generalSpec.EarSide);
-            Tblock_OldHearingAid.Text = Convert.ToString(_generalSpec.Color);
-            Tblock_OldHearingAid.Text = Convert.ToString(_generalSpec.Type);
-            Tblock_OldHearingAid.Text = Convert.ToString(_generalSpec.HAGeneralSpecID);
-            Tblock_OldHearingAid.Text = Convert.ToString(_generalSpec.StaffID);
-        }
-
-        private void Lb_OldHearingRight_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           
         }
     }
 }

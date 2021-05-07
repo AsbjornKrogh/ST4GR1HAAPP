@@ -21,8 +21,6 @@ namespace BLL_Clinician
             clinicDatabase = new ClinicDatabase();
         }
 
-
-        
         public void SaveUpdates(Patient patient)
         {
 
@@ -34,12 +32,6 @@ namespace BLL_Clinician
             clinicDatabase.CreatePatient(patient);
             
         }
-
-        //public void SavePatientPressed(Patient patient, string email, int phonenumber)
-        //{
-        //    //patient.zipcode = phonenumber;
-        //    clinicDatabase.UpdatePatient(patient);
-        //}
 
         public bool CheckCPRClinicDatabase(string CPRnumber)
         {
@@ -65,26 +57,22 @@ namespace BLL_Clinician
 
         public bool CheckCPRRegionDatabase(string CPRnumber)
         {
-            int patientRegistered = 0;
-            foreach (var patient in clinicDatabase.GetAllPatients())
+            if (regionDatabase.CheckCPR(CPRnumber))
             {
-                if (patient.CPR == CPRnumber)
-                {
-                    patientRegistered++;
-                }
-
-                if (patientRegistered == 1)
-                {
-                    CPRCorrect = true;
-                }
-                else
-                {
-                    CPRCorrect = false;
-                }
+                CPRCorrect = true;
             }
+            else
+            {
+                CPRCorrect = false;
+            }
+
             return CPRCorrect;
         }
 
+        public Patient GetPatientInformationRegionsDatbase(string CPRnumber)
+        {
+            return regionDatabase.GetPatient(CPRnumber);
+        }
 
         public Patient GetPatientInformation(string CPRnumber)
         {

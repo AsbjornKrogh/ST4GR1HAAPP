@@ -14,15 +14,15 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="20">
+        <StackPanel Margin="250,20,250,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1.4*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Cpr-nummer:"></Label>
-                <TextBox Grid.Column="1">
+                <Label Content="CPR-nummer:"></Label>
+                <TextBox x:Name="CPRTB" Grid.Column="1">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -31,7 +31,7 @@
                 </TextBox>
             </Grid>
 
-            <Button x:Name="OKB" Content="OK" Click="OKB_Click">
+            <Button x:Name="OKB" Content="Vis status" Click="OKB_Click" Margin="10">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -42,10 +42,69 @@
 
         </StackPanel>
         
-        <StackPanel Grid.Row="1" Margin="20">
-            <StatusBar Grid.Row="1" Height="50"></StatusBar>
-            <Label Content="Status" HorizontalAlignment="Center"></Label>
+        <StackPanel Grid.Row="1" Margin="250,0,250,0">
+            <Label Content="Status" HorizontalAlignment="Center" FontSize="20"></Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+            <StatusBar Grid.Row="1" Grid.ColumnSpan="2" x:Name="StatusBar" Height="50">
+                <ProgressBar x:Name="ProgressBar" Width="295" Height="45" >
+                    <ProgressBar.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                        </Style>
+                    </ProgressBar.Resources>
+                </ProgressBar>
+                <StatusBar.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                    </Style>
+                </StatusBar.Resources>
+            </StatusBar>
+                <Label x:Name="StatusL" Visibility="Collapsed" Content="0 %" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" ></Label>
+            </Grid>
+            <Grid Name="TwoHALGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
+                <Label Content="Venstre:"></Label>
+                <Label Grid.Column="1" Content="Højre:"></Label>
+            </Grid>
+
+                <Grid Name="TwoHATBGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBox x:Name="StatusLeftTB">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                    </Style>
+                </TextBox.Resources>
+                </TextBox>
+
+                <TextBox Grid.Column="1" x:Name="StatusRightTB">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </Grid>
+
+            <TextBox x:Name="OneHAStatusTB" Visibility="Collapsed">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5 5 5 5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
         </StackPanel>
     </Grid>
 </Page>

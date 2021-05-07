@@ -20,7 +20,9 @@ namespace Presentation_Clinician
     public partial class OrderNewHA : Window
     {
         UC3_ManageHA manageHA = new UC3_ManageHA();
-        ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
+        MainWindow mainWindow = new MainWindow();
+        GeneralSpec generalSpec = new GeneralSpec();
+        Patient patient = new Patient();
         public OrderNewHA()
         {
             InitializeComponent();
@@ -28,7 +30,24 @@ namespace Presentation_Clinician
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-           
+            if (Cb_LeftEar.IsChecked == true)
+            {
+                generalSpec.EarSide = Ear.Left;
+                generalSpec.CPR = mainWindow.CPR;
+                generalSpec.CreateDate = DateTime.Now;
+                generalSpec.StaffID = mainWindow.StaffID;
+                TbNewColor.Text = generalSpec.Color.ToString();
+                TbNewType.Text = patient.GeneralSpecs.ToString();
+            }
+            else if (Cb_RightEar.IsChecked == true)
+            {
+                generalSpec.EarSide = Ear.Right;
+                generalSpec.CPR = mainWindow.CPR;
+                generalSpec.CreateDate = DateTime.Now;
+                generalSpec.StaffID = mainWindow.StaffID;
+                TbNewColor.Text = generalSpec.Color.ToString();
+                TbNewType.Text = generalSpec.Type.ToString();
+            }
         }
     }
 }

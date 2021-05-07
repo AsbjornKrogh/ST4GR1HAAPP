@@ -4,6 +4,7 @@ using System.Text;
 using DLL_Technician;
 using CoreEFTest;
 using CoreEFTest.Models;
+using DTO;
 
 namespace BLL_Technician
 { 
@@ -16,6 +17,9 @@ namespace BLL_Technician
             clinicDB = clinicDb;
         }
 
-        
+        public List<ProcesSpec> GetProccesInformations(string CPR)
+        {
+           return clinicDB.GetProcesInfo(CPR);
+        }
     }
 }
