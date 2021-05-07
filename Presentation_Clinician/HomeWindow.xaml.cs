@@ -35,12 +35,18 @@ namespace Presentation_Clinician
             string cpr = TbCPRnumber.Text;
             mainWindow.LoginOK = true;
 
-            if (uc2ManagePatient.CheckCPR(cpr))
+            if (uc2ManagePatient.CheckCPRClinicDatabase(cpr))
             {
                 mainWindow.LoginOK = true;
                 Close();
                 mainWindow.CPR = cpr;
 
+            }
+            else if (uc2ManagePatient.CheckCPRRegionDatabase(cpr))
+            {
+                mainWindow.LoginOK = true;
+                Close();
+                mainWindow.CPR = cpr;
             }
             else
             {

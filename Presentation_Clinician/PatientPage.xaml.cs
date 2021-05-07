@@ -46,7 +46,7 @@ namespace Presentation_Clinician
                 uc2ManagePatient.SaveUpdates(patient);
                 MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
             }
-            //else if (TBCPR.Text ==regionpatient.CPR)
+            //else (TBCPR.Text == regionpatient.CPR)
             //{
             //    uc2ManagePatient.SavePatientPressed(patient);
             //}

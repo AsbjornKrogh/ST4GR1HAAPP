@@ -19,22 +19,20 @@ namespace BBL_Clinician
 
        }
 
-       public void GetHA(string CPR)
+       public List<GeneralSpec> GetHA(string CPR)
        {
-           
-           
+           return clinicDatabase.GetLatestGeneralSpecs(CPR);
+
        }
 
-       public bool SaveHA(int HearingAidID, string type, string color, DateTime createDate, int ClinianID)
+       public void SaveHA(string type, string color, DateTime createDate, int ClinianID)
        {
-            
-           return true;
-           //måske skal vi benytte general spec her - ved ikke om man skal have en datetime og staffid med her
+
        }
 
         public void CreateHA(GeneralSpec generalSpec)
         {
-            
+            clinicDatabase.CreateNewGeneralSpec(generalSpec);
         }
 
         public List<GeneralSpec> GetAllHA(string CPR)

@@ -22,9 +22,14 @@ namespace DLL_Clinician
 
         void UpdateGeneralSpec(GeneralSpec generalSpec);
 
+
+        bool CreateNewGeneralSpec(GeneralSpec generalSpec);
+
+        List<GeneralSpec> GetLatestGeneralSpecs(string CPR);
+
         //muligvis - men skal ikke laves endnu
         //GetHearingTestPDF(string CPR)
-        
+
 
 
         //UC6
