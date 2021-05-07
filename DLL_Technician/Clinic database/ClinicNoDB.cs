@@ -4,10 +4,11 @@ using System.Text;
 using System.Threading;
 using CoreEFTest;
 using CoreEFTest.Models;
+using DTO;
 
 namespace DLL_Technician
 {
-    public class ClinicNoDB:IClinicDB
+    public class ClinicNoDB: IClinicDB
     {
         private Random random = new Random();
 
@@ -96,7 +97,6 @@ namespace DLL_Technician
 
         #endregion
 
-
         #region UC5 print
 
 
@@ -161,6 +161,12 @@ namespace DLL_Technician
 
                 return tecnicalSpecs;
             }
+
+        public List<ProcesSpec> GetProcesInfo(string CPR)
+        {
+           throw new NotImplementedException();
+        }
+
         #endregion
         
     }
