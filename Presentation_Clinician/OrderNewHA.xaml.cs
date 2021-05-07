@@ -49,6 +49,8 @@ namespace Presentation_Clinician
                 TbNewColor.Text = generalSpec.Color.ToString();
                 TbNewType.Text = generalSpec.Type.ToString();
             }
+
+            manageHA.CreateHA(generalSpec);
         }
     }
 }

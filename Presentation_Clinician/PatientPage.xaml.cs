@@ -57,7 +57,7 @@ namespace Presentation_Clinician
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
         {
-            patient = uc2ManagePatient.GetPatientInformation(_clinicianMainWindow.CPR);
+            patient = uc2ManagePatient.GetPatientInformation(_clinicianMainWindow.Patient.CPR);
             TBname.Text = patient.Name;
             TBsurname.Text = patient.Lastname;
             TBCPR.Text = patient.CPR;

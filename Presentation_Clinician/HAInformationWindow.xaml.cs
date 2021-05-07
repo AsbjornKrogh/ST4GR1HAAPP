@@ -24,6 +24,9 @@ namespace Presentation_Clinician
         ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
         private Patient _patient;
         private List<GeneralSpec> listGeneralSpecs;
+        private ManageHAPage manageHa;
+        
+
         
 
 
@@ -44,11 +47,11 @@ namespace Presentation_Clinician
             {
                 if (clinicianSpec != null)
                 {
-                    Lb_OldHearingRight.Items.Add("Dato: " + _patient.GeneralSpecs[5].CreateDate);
+                    Lb_OldHearingRight.Items.Add("Dato: " + clinicianSpec.CreateDate);
                 }
                 else
                 {
-                    Lb_OldHearingLeft.Items.Add("Dato: " + _patient.GeneralSpecs[4].CreateDate);
+                    Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
 
                 }
                
@@ -60,7 +63,6 @@ namespace Presentation_Clinician
 
         private void btn_ShowOldAid_Click(object sender, RoutedEventArgs e)
         {
-            _patient=new Patient();
             listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.CPR);
             GeneralSpec selectedGeneralSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
 
