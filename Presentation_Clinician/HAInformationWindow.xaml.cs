@@ -47,6 +47,11 @@ namespace Presentation_Clinician
                 {
                     Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
                 }
+                else if (listGeneralSpecs != null)
+                {
+                    Lb_OldHearingLeft.Items.Add("Patienten har ingen tidligere høreapparter for venstre øre");
+                    Lb_OldHearingRight.Items.Add("Patienten har ingen tidligere høreapparter for venstre øre");
+                }
             }
             
         }
