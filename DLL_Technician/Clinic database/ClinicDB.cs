@@ -263,6 +263,11 @@ namespace DLL_Technician
          }
       }
 
+      /// <summary>
+      /// Henter Process informationerne til det give CPR. Metoden vil altid hente de nyeste informationer. 
+      /// </summary>
+      /// <param name="CPR"></param>
+      /// <returns></returns>
       public List<ProcesSpec> GetProcesInfo(string CPR)
       {
 

@@ -8,7 +8,7 @@ using DTO;
 
 namespace DLL_Technician
 {
-    public class ClinicNoDB:IClinicDB
+    public class ClinicNoDB: IClinicDB
     {
         private Random random = new Random();
 
@@ -150,7 +150,6 @@ namespace DLL_Technician
         }
 
         #endregion
-
 
         #region UC5 print
 
