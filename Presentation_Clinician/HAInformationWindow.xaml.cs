@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BBL_Clinician;
+using CoreEFTest.Models;
 
 namespace Presentation_Clinician
 {
@@ -17,12 +19,35 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class HAInformationWindow : Window
     {
+        UC3_ManageHA manageHA = new UC3_ManageHA();
+        GeneralSpec _generalSpec = new GeneralSpec();
+        MainWindow main = new MainWindow();
+        private List<GeneralSpec> listGeneralSpecs;
+
+
         public HAInformationWindow()
         {
             InitializeComponent();
 
+        }
 
+        private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
+        {
+            listGeneralSpecs = manageHA.GetAllHA(main.CPR);
 
+            foreach (var clinicianSpec in listGeneralSpecs)
+            {
+                if (clinicianSpec != null)
+                {
+                    Lb_OldHearing.Items.Add( "øre: " + clinicianSpec.EarSide);
+                    Lb_OldHearing.Items.Add("Dato:" + clinicianSpec.CreateDate);
+                }
+                else
+                {
+                    Lb_OldHearing.Items.Add("patienten har ingen tidligere høreapparater");
+                }
+            }
+            
         }
     }
 }

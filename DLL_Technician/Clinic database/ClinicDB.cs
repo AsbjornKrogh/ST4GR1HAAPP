@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CoreEFTest.Context;
 using CoreEFTest.Models;
+using DTO;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace DLL_Technician
@@ -183,7 +184,7 @@ namespace DLL_Technician
 
             _dbContext.TecnicalSpecs.Update(Techspec);
 
-             return _dbContext.RawEarScans.Contains(scan);
+            return _dbContext.RawEarScans.Contains(scan);
          }
          catch
          {
@@ -202,7 +203,7 @@ namespace DLL_Technician
          try
          {
             //Henter TechSpec for V og H øre
-            TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x=> x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
+            TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
             TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
             //Henter Earscan for V og H øre 
@@ -215,13 +216,14 @@ namespace DLL_Technician
 
             //Oprettelse af listen
             List<TecnicalSpec> Techspec = new List<TecnicalSpec>(2);
+
             //Tilføjelse af techspec objekterne til listen 
             Techspec.Add(TechspecL); Techspec.Add(TechspecR);
 
             //Return the list;
             return Techspec;
          }
-         catch 
+         catch
          {
             return null;
          }
@@ -259,7 +261,96 @@ namespace DLL_Technician
          {
             return null;
          }
+      }
 
+      public List<ProcesSpec> GetProcesInfo(string CPR)
+      {
+
+         List<ProcesSpec> procesSpecs = new List<ProcesSpec>();
+         ProcesSpec procesSpecL = new ProcesSpec();
+         ProcesSpec procesSpecR = new ProcesSpec();
+
+         try
+         {
+            //Venstre
+            //Henter generalspec
+            GeneralSpec generalSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
+            if (generalSpecL.CreateDate != null)
+            {
+               procesSpecL.GeneralSpecCreateDateTime = generalSpecL.CreateDate;
+               procesSpecL.ClinicianId = generalSpecL.StaffID;
+               TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.HAGenerelSpecID == generalSpecL.HAGeneralSpecID);
+
+               //Henter techspec
+               if (TechspecL.CreateDate != null)
+               {
+                  procesSpecL.TechSpecCreateDateTime = TechspecL.CreateDate;
+                  procesSpecL.TechnicalId = TechspecL.StaffID;
+                  procesSpecL.Printed = procesSpecL.Printed;
+
+                  //Henter EarScan
+                  TechspecL.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID);
+                  if (TechspecL.RawEarScan != null)
+                  {
+                     procesSpecL.scanTechId = TechspecL.StaffID;
+                     procesSpecL.scanDateTime = TechspecL.CreateDate;
+                  }
+
+                  //Henter Earprint
+                  if (procesSpecL.Printed)
+                  {
+                     RawEarPrint rawEarPrint = _dbContext.RawEarPrints.OrderBy(x => x.PrintDate).Last(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID && x.EarSide == Ear.Left));
+                     procesSpecL.PrintDateTime = rawEarPrint.PrintDate;
+                     procesSpecL.PrintTechId = rawEarPrint.StaffID;
+                  }
+               }
+            }
+
+            procesSpecs.Add(procesSpecL);
+
+
+            //Højre
+            //Henter GeneralSpec
+            GeneralSpec generalSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
+            if (generalSpecR.CreateDate != null)
+            {
+               procesSpecR.GeneralSpecCreateDateTime = generalSpecR.CreateDate;
+               procesSpecR.ClinicianId = generalSpecR.StaffID;
+               TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.HAGenerelSpecID == generalSpecR.HAGeneralSpecID);
+
+               //Henter techspec
+               if (TechspecR.CreateDate != null)
+               {
+                  procesSpecR.TechSpecCreateDateTime = TechspecR.CreateDate;
+                  procesSpecR.TechnicalId = TechspecR.StaffID;
+                  procesSpecR.Printed = procesSpecR.Printed;
+
+                  //Henter EarScan
+                  TechspecR.RawEarScan = _dbContext.RawEarScans.Single(x => x.HATechnicalSpecID == TechspecR.HATechinalSpecID);
+                  if (TechspecR.RawEarScan != null)
+                  {
+                     procesSpecR.scanTechId = TechspecR.StaffID;
+                     procesSpecR.scanDateTime = TechspecR.CreateDate;
+                  }
+
+                  //Henter Earprint
+                  if (procesSpecR.Printed)
+                  {
+                     RawEarPrint rawEarPrint = _dbContext.RawEarPrints.OrderBy(x => x.PrintDate).Last(x => x.HATechnicalSpecID == TechspecR.HATechinalSpecID && x.EarSide == Ear.Right));
+                     procesSpecR.PrintDateTime = rawEarPrint.PrintDate;
+                     procesSpecR.PrintTechId = rawEarPrint.StaffID;
+                  }
+               }
+            }
+
+            procesSpecs.Add(procesSpecR);
+
+            return procesSpecs;
+         }
+         catch
+         {
+            return null;
+         }
       }
    }
 }
