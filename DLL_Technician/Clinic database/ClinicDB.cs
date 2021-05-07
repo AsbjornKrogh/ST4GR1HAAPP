@@ -192,6 +192,22 @@ namespace DLL_Technician
          }
       }
 
+      public bool UpdateGeneralspec(GeneralSpec generalSpec)
+      {
+         try
+         {
+            _dbContext.GeneralSpecs.Update(generalSpec);
+            return _dbContext.GeneralSpecs.Contains(generalSpec);
+         }
+         catch
+         {
+            return false;
+         }
+       
+
+   
+      }
+
       /// <summary>
       /// Der hentes et earscan fra DB ud fra et specifikt CPR.
       /// Metoden returnerer en liste der indeholder scanning for både venstre og højre øre.
