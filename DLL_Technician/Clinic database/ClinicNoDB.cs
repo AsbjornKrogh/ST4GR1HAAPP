@@ -75,6 +75,21 @@ namespace DLL_Technician
                 return false;
             }
         }
+
+        public bool UpdateGeneralspec(GeneralSpec generalSpec)
+        {
+            Thread.Sleep(1000);
+            int trigger = random.Next(1, 10);
+
+            if (trigger > 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         #endregion
 
         #region UC3.4 Delete patient
@@ -148,6 +163,7 @@ namespace DLL_Technician
                 return false;
             }
         }
+
 
         #endregion
 
