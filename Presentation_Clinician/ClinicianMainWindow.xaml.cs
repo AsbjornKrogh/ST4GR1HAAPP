@@ -19,9 +19,9 @@ using BLL_Clinician;
 namespace Presentation_Clinician
 {
    /// <summary>
-   /// Interaction logic for MainWindow.xaml
+   /// Interaction logic for ClinicianMainWindow.xaml
    /// </summary>
-   public partial class MainWindow : Window
+   public partial class ClinicianMainWindow : Window
    {
        
        UC2_ManagePatient managePatient = new UC2_ManagePatient();
@@ -38,7 +38,7 @@ namespace Presentation_Clinician
        Color color1 = Color.FromRgb(237,246,253);
        Color color2 = Color.FromRgb(226, 230, 230);
 
-      public MainWindow()
+      public ClinicianMainWindow()
       {
          InitializeComponent();
          homeWindow = new HomeWindow(this, managePatient);
@@ -103,7 +103,7 @@ namespace Presentation_Clinician
             }
             else
             {
-                MessageBox.Show("Fejl ved loginOK -- MainWindow");
+                MessageBox.Show("Fejl ved loginOK -- ClinicianMainWindow");
                 Close();
             }
         }

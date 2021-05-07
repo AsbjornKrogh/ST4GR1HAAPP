@@ -21,7 +21,7 @@ namespace Presentation_Login
    //Hello fresh changes
 
    /// <summary>
-   /// Interaction logic for MainWindow.xaml
+   /// Interaction logic for ClinicianMainWindow.xaml
    /// </summary>
    public partial class MainWindow : Window
    {
