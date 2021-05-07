@@ -20,20 +20,20 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class ManageHAPage : Page
     {
-        MainWindow mainWindow = new MainWindow();
+        ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
         UC3_ManageHA manageHA = new UC3_ManageHA();
 
         private HearingTestWindow _hearingTest;
         private OrderNewHA orderNewHa;
 
         GeneralSpec generalSpec = new GeneralSpec();
-        HAInformationWindow _haInformation = new HAInformationWindow();
+        HAInformationWindow _haInformation;
         
         
-        public ManageHAPage(MainWindow mainWindow, UC3_ManageHA manageHA)
+        public ManageHAPage(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHA)
         {
             InitializeComponent();
-            this.mainWindow = mainWindow;
+            this._clinicianMainWindow = clinicianMainWindow;
             this.manageHA = manageHA;
             
         }
@@ -47,16 +47,19 @@ namespace Presentation_Clinician
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
         {
-            _haInformation = new HAInformationWindow();
+            _haInformation = new HAInformationWindow(_clinicianMainWindow,manageHA);
             _haInformation.Show();
-         //TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(mainWindow.CPR));
+         //TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(clinicianMainWindow.CPR));
         }
 
         private void HA_Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var HA_GeneralSpec = manageHA.GetHA(mainWindow.CPR);
+            var HA_GeneralSpec = manageHA.GetHA(_clinicianMainWindow.CPR);
 
             foreach (var generalSpec in HA_GeneralSpec)
+            {
+            //hvad hvis der ikke er data
+            if (generalSpec != null)
             {
                 if (generalSpec.EarSide == Ear.Left)
                 {
@@ -75,6 +78,9 @@ namespace Presentation_Clinician
                     Tb_StaffID_Right.Text = Convert.ToString(generalSpec.StaffID);
                     Tb_Datetime_Right.Text = Convert.ToString(generalSpec.CreateDate);
                 }
+            }
+           
+
             }
 
           

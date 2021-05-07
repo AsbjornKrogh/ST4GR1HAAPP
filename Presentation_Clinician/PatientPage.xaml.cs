@@ -25,14 +25,14 @@ namespace Presentation_Clinician
         private UC2_ManagePatient uc2ManagePatient;
         private Patient patient;
 
-        private MainWindow mainWindow;
+        private ClinicianMainWindow _clinicianMainWindow;
      
 
-        public PatientPage(MainWindow mainWindow, UC2_ManagePatient managePatient)
+        public PatientPage(ClinicianMainWindow clinicianMainWindow, UC2_ManagePatient managePatient)
         {
             InitializeComponent();
 
-            this.mainWindow = mainWindow;
+            this._clinicianMainWindow = clinicianMainWindow;
             this.uc2ManagePatient = managePatient;
 
         }
@@ -46,11 +46,6 @@ namespace Presentation_Clinician
                 uc2ManagePatient.SaveUpdates(patient);
                 MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
             }
-            //else if (TBCPR.Text ==regionpatient.CPR)
-            //{
-            //    uc2ManagePatient.SavePatientPressed(patient);
-            //}
-
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
@@ -62,7 +57,7 @@ namespace Presentation_Clinician
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
         {
-            patient = uc2ManagePatient.GetPatientInformation(mainWindow.CPR);
+            patient = uc2ManagePatient.GetPatientInformation(_clinicianMainWindow.CPR);
             TBname.Text = patient.Name;
             TBsurname.Text = patient.Lastname;
             TBCPR.Text = patient.CPR;

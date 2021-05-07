@@ -12,8 +12,17 @@
             <ColumnDefinition Width="23*"/>
             <ColumnDefinition Width="339*"/>
         </Grid.ColumnDefinitions>
+<<<<<<< HEAD
+        <ListBox x:Name="Lb_OldHearingRight" Margin="14,102,248,184"/>
+        <Label Content="Tidligere høreapparater højre" HorizontalAlignment="Left" Margin="5,26,0,0" VerticalAlignment="Top" Width="172" RenderTransformOrigin="0.411,-3.054"/>
+        <ListBox x:Name="Lb_OldHearingLeft" Margin="241,102,18,184"/>
+        <Label Content="Tidligere høreapparater Venstre" HorizontalAlignment="Left" Margin="245,28,0,0" VerticalAlignment="Top" Width="163"/>
+        <TextBlock x:Name="Tblock_OldHearingAid" Grid.Column="2" HorizontalAlignment="Left" Margin="32,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="213" Width="238"/>
+        <Button x:Name="btn_ShowOldAid" Content="Vis tidligere høreapparat" HorizontalAlignment="Left" Margin="111,301,0,0" VerticalAlignment="Top" Width="232" Click="btn_ShowOldAid_Click"/>
+=======
         <TextBox x:Name="Tb_OldHearingAids" Grid.Column="2" HorizontalAlignment="Left" Margin="30,60,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="322"/>
         <ListBox x:Name="Lb_OldHearing" Margin="44,76,167,67"/>
+>>>>>>> 278db4458d1042a5a44bdde2cd52d6b1719d9c3a
 
     </Grid>
 </Window>

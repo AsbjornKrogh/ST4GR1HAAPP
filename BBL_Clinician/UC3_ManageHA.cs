@@ -8,6 +8,7 @@ namespace BBL_Clinician
    public class UC3_ManageHA
    {
        private IClinicDatabase clinicDatabase;
+       GeneralSpec generalSpec = new GeneralSpec();
 
        public UC3_ManageHA()
        {
@@ -25,16 +26,13 @@ namespace BBL_Clinician
 
        }
 
-       public void SaveHA(int HearingAidID, string type, string color, DateTime createDate, int ClinianID)
+       public void SaveHA(Ear earSide, Material type, PlugColor color, DateTime createDate, string StaffID)
        {
-           GeneralSpec generalSpec = new GeneralSpec();
-           clinicDatabase.CreateNewGeneralSpec(generalSpec);
-            
        }
 
         public void CreateHA(GeneralSpec generalSpec)
         {
-            
+            clinicDatabase.CreateNewGeneralSpec(generalSpec);
         }
 
         public List<GeneralSpec> GetAllHA(string CPR)

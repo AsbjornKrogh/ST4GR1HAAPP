@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using CoreEFTest.Models;
 using DTO;
 
 namespace DLL_Login
@@ -11,7 +12,7 @@ namespace DLL_Login
       private SqlCommand command;
       //private const String DBlogin = "F20ST2ITS2201907648";
       private const String DBlogin = "ST4GRP1";
-      private DTO_StaffLogin dtoStaffLogin;
+      private StaffLogin staffLogin;
 
       public DB_Login()
       {
@@ -24,10 +25,10 @@ namespace DLL_Login
       /// <param name="StaffID"> Entered in LoginWindow</param>
       /// <param name="pw">Entered in LoginWindow</param>
       /// <returns></returns>
-      public DTO_StaffLogin LoginStaff(string StaffID, string pw)
+      public StaffLogin LoginStaff(string StaffID, string pw)
       {
          //DTO Init
-         dtoStaffLogin = new DTO_StaffLogin
+         staffLogin = new StaffLogin
          {
             StaffID = Convert.ToInt32(StaffID),
             Password = null
@@ -37,7 +38,7 @@ namespace DLL_Login
          string connectionString = (@"Data Source=st-i4dab.uni.au.dk;Initial Catalog=" + DBlogin + ";Integrated Security=False;User ID=" + DBlogin + ";Password=" + DBlogin + ";Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
          connection = new SqlConnection(connectionString);
          command = new SqlCommand();
-         string queryString = "Select * from StaffTable where StaffID = '" + StaffID + "'";
+         string queryString = "Select * from StaffLogin where StaffID = '" + StaffID + "'";
 
          //DB Open and request 
          try
@@ -51,12 +52,12 @@ namespace DLL_Login
                {
                   if (reader["StaffID"].ToString() == StaffID && reader["Password"].ToString() == pw)
                   {
-                     dtoStaffLogin.Name = reader["Name"].ToString();
+                     staffLogin.Name = reader["Name"].ToString();
 
-                     if (reader["Status"].ToString() == "C")
-                        dtoStaffLogin.StaffStatus = StaffStatus.Clinician;
+                     if (reader["StaffStatus"].ToString() == "C")
+                        staffLogin.StaffStatus = Status.Clinician;
                      else
-                        dtoStaffLogin.StaffStatus = StaffStatus.Technician;
+                        staffLogin.StaffStatus = Status.Technician;
                   }
                }
             }
@@ -69,7 +70,7 @@ namespace DLL_Login
          {
             connection.Close();
          }
-         return dtoStaffLogin;
+         return staffLogin;
       }
    }
 }

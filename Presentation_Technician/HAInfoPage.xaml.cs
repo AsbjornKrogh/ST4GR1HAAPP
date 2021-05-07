@@ -24,6 +24,7 @@ namespace Presentation_Technician
     public partial class HAInfoPage : Page
     {
         private UC3_ShowHATech uc3_ShowHATech;
+        private UC3_UpdateHATech uc3_UpdateHATech;
 
         private IClinicDB db;
         private bool isRunning;
@@ -34,6 +35,9 @@ namespace Presentation_Technician
             InitializeComponent();
             this.db = db;
             uc3_ShowHATech = new UC3_ShowHATech(db);
+            uc3_UpdateHATech = new UC3_UpdateHATech(db);
+            ShowHAInfoB.IsEnabled = false;
+            RedigerB.IsEnabled = false;
         }
 
         private void OKB_Click(object sender, RoutedEventArgs e)
@@ -83,14 +87,10 @@ namespace Presentation_Technician
             {
                 patientInfoTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
 
-                if (patientAndHA.EarCasts[0].EarSide == EarCast.Ear.Left)
-                {
-                    
-                }
+                HAList.Items.Add(patientAndHA.TecnicalSpecs[0].EarSide.ToString());
+                HAList.Items.Add(patientAndHA.TecnicalSpecs[1].EarSide.ToString());
 
-
-                HAList.Items.Add(patientAndHA.EarCasts[0].EarSide.ToString());
-                HAList.Items.Add(patientAndHA.EarCasts[1].EarSide.ToString());
+                ShowHAInfoB.IsEnabled = true;
             }
             else
             {
@@ -101,11 +101,90 @@ namespace Presentation_Technician
 
         private void ShowHAInfoB_Click(object sender, RoutedEventArgs e)
         {
-            EarCast selected = (EarCast)patientAndHA.EarCasts[HAList.SelectedIndex];
+            if (HAList.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vælg et høreapparat og prøv igen", "Information");
+            }
+            else
+            {
+                GeneralSpec selectedGeneralSpec = (GeneralSpec) patientAndHA.GeneralSpecs[HAList.SelectedIndex];
+                TecnicalSpec selectedTecnicalSpec = (TecnicalSpec) patientAndHA.TecnicalSpecs[HAList.SelectedIndex];
 
-            TypeTB.Text = selected.PatientCPR;
+                TypeTB.Text = selectedGeneralSpec.Type.ToString();
+                ColorTB.Text = selectedGeneralSpec.Color.ToString();
+                GenDateTB.Text = selectedGeneralSpec.CreateDate.ToShortDateString();
 
+                TechDateTB.Text = selectedTecnicalSpec.CreateDate.ToShortDateString();
 
+                //Todo Kommenter dette ind
+                //if (selectedTecnicalSpec.RawEarScan == null)
+                //{
+                //    PrintStatusTB.Text = "Ikke scannet endnu";
+                //}
+                //else
+                //{
+                if (selectedTecnicalSpec.Printed == false)
+                {
+
+                    PrintStatusTB.Text = "Ikke printet endnu";
+                }
+
+                if (selectedTecnicalSpec.Printed == true)
+                {
+
+                    PrintStatusTB.Text = "Printet";
+                }
+
+                //}
+                RedigerB.IsEnabled = true;
+            }
+        }
+
+        private void RedigerB_Click(object sender, RoutedEventArgs e)
+        {
+            TypeCB.Visibility = Visibility.Visible;
+            TypeTB.Visibility = Visibility.Collapsed;
+            TypeCB.Background = Brushes.LightGoldenrodYellow;
+
+            foreach (var types in Enum.GetValues(typeof(Material)))
+            {
+                TypeCB.Items.Add(types);
+            }
+
+            ColorCB.Visibility = Visibility.Visible;
+            ColorTB.Visibility = Visibility.Collapsed;
+            ColorCB.Background = Brushes.LightGoldenrodYellow;
+
+            foreach (var colors in Enum.GetValues(typeof(PlugColor)))
+            {
+                ColorCB.Items.Add(colors);
+            }
+
+            GemB.Visibility = Visibility.Visible;
+            RedigerB.Visibility = Visibility.Collapsed;
+        }
+
+        private void GemB_Click(object sender, RoutedEventArgs e)
+        {
+            TypeCB.Visibility = Visibility.Collapsed;
+            TypeTB.Visibility = Visibility.Visible;
+            TypeTB.Text = TypeCB.SelectionBoxItem.ToString();
+            
+
+            ColorCB.Visibility = Visibility.Collapsed;
+            ColorTB.Visibility = Visibility.Visible;
+            ColorTB.Text = ColorCB.SelectionBoxItem.ToString();
+            
+            GemB.Visibility = Visibility.Collapsed;
+            RedigerB.Visibility = Visibility.Visible;
+
+            patientAndHA.GeneralSpecs[HAList.SelectedIndex].Type = (Material)TypeCB.SelectionBoxItem;
+            patientAndHA.GeneralSpecs[HAList.SelectedIndex].Color = (PlugColor) ColorCB.SelectionBoxItem;
+
+            uc3_UpdateHATech.SaveTechnicalSpec(patientAndHA.TecnicalSpecs[HAList.SelectedIndex]);
+
+            ColorCB.Text = "";
+            TypeCB.Text = "";
         }
     }
 }

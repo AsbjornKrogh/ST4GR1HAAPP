@@ -305,6 +305,7 @@ namespace DLL_Technician
                   if (procesSpecL.Printed)
                   {
                      RawEarPrint rawEarPrint = _dbContext.RawEarPrints.OrderBy(x => x.PrintDate).Last(x => x.HATechnicalSpecID == TechspecL.HATechinalSpecID && x.EarSide == Ear.Left);
+                     ;
                      procesSpecL.PrintDateTime = rawEarPrint.PrintDate;
                      procesSpecL.PrintTechId = rawEarPrint.StaffID;
                   }
