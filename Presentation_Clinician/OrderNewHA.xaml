@@ -7,19 +7,17 @@
         mc:Ignorable="d"
         Title="Klinik Portalen" Height="450" Width="800">
     <Grid>
-        <Button x:Name="BtnSaveNewHA" Content="Gem" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="31" Width="76" Click="BtnSave_Click" RenderTransformOrigin="0.507,1.742"/>
-        <Label Content="Høreapparat for højre øre" HorizontalAlignment="Left" Margin="174,68,0,0" VerticalAlignment="Top"/>
-        <Label Content="Høreapparat for venstre øre" HorizontalAlignment="Left" Margin="448,68,0,0" VerticalAlignment="Top"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="175,98,0,0" VerticalAlignment="Top"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="449,98,0,0" VerticalAlignment="Top"/>
-        <Label Content="" HorizontalAlignment="Left" Margin="175,129,0,0" VerticalAlignment="Top"/>
-        <Label Content="Farve" HorizontalAlignment="Left" Margin="175,137,0,0" VerticalAlignment="Top"/>
-        <Label Content="Farve" HorizontalAlignment="Left" Margin="449,137,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TbNewTypeR" HorizontalAlignment="Left" Margin="223,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TbNewTypeL" HorizontalAlignment="Left" Margin="494,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TbNewColorR" HorizontalAlignment="Left" Margin="223,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TbNewColorL" HorizontalAlignment="Left" Margin="494,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BtnSaveNewHA" Content="Gem" HorizontalAlignment="Left" Margin="68,317,0,0" VerticalAlignment="Top" Height="31" Width="76" Click="BtnSave_Click" RenderTransformOrigin="0.507,1.742"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="23,177,0,0" VerticalAlignment="Top"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="24,215,0,0" VerticalAlignment="Top"/>
+        <Label Content="Farve" HorizontalAlignment="Left" Margin="24,242,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TbNewType" HorizontalAlignment="Left" Margin="69,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TbNewColor" HorizontalAlignment="Left" Margin="69,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Bestil et nyt høreapparat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <CheckBox x:Name="Cb_LeftEar" Content="Venstre øre" HorizontalAlignment="Left" Margin="35,115,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Cb_RightEar" Content="Højre øre" HorizontalAlignment="Left" Margin="35,135,0,0" VerticalAlignment="Top"/>
+        <Label Content="Step 1: Vælg øre" HorizontalAlignment="Left" Margin="24,74,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Step 2: Design høreapparat" HorizontalAlignment="Left" Margin="24,181,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
     </Grid>
 </Window>

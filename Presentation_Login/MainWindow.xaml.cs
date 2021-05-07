@@ -13,7 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BLL_Login;
+using CoreEFTest.Models;
 using DTO;
+using Presentation_Clinician;
+using Presentation_Technician;
 
 namespace Presentation_Login
 {
@@ -27,11 +30,15 @@ namespace Presentation_Login
    {
       //Class Init
       private readonly DB_BLL_Login dbBllLogin;
+      private ClinicianMainWindow clinicianMainWindow;
+      private TechnicianMainWindow technicianMainWindow; 
 
       public MainWindow()
       {
          InitializeComponent();
          dbBllLogin = new DB_BLL_Login();
+         clinicianMainWindow = new ClinicianMainWindow();
+         technicianMainWindow = new TechnicianMainWindow();
       }
 
       /// <summary>
@@ -63,15 +70,19 @@ namespace Presentation_Login
          string StaffID = MedarbejderIDTB.Text;
          string PW = PasswordTB.Password;
 
-         DTO_StaffLogin dtoStaffLogin = dbBllLogin.CheckLogin(StaffID, PW);
+         StaffLogin staffLogin = dbBllLogin.CheckLogin(StaffID, PW);
 
-         if (dtoStaffLogin.StaffStatus == StaffStatus.Technician)
+         if (staffLogin.StaffStatus == Status.Technician)
          {
-            //Todo go to technician side of the program 
+             technicianMainWindow.technician = staffLogin;  
+
+             technicianMainWindow.ShowDialog();
          }
          else
          {
-            //Todo go to clinician side of the program 
+             clinicianMainWindow.clinician = staffLogin;
+
+             clinicianMainWindow.ShowDialog();
          }
       }
    }

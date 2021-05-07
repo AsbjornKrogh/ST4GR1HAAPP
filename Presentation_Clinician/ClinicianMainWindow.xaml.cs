@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BBL_Clinician;
 using BLL_Clinician;
+using CoreEFTest.Models;
 
 namespace Presentation_Clinician
 {
@@ -30,10 +31,12 @@ namespace Presentation_Clinician
        private HomeWindow homeWindow;
        private PatientPage patientPage;
        private ManageHAPage manageHaPage;
-       //private HearingTestWindow hearingTest;
+       public StaffLogin clinician { set; get; }
+        //private HearingTestWindow hearingTest;
 
         public bool LoginOK { get; set; }
        public string CPR { get; set; }
+       public int StaffID { get; set; }
 
        Color color1 = Color.FromRgb(237,246,253);
        Color color2 = Color.FromRgb(226, 230, 230);
@@ -42,6 +45,7 @@ namespace Presentation_Clinician
       {
          InitializeComponent();
          homeWindow = new HomeWindow(this, managePatient);
+         clinician = new StaffLogin();
 
       }
       public void Window_Loaded(object sender, RoutedEventArgs e)

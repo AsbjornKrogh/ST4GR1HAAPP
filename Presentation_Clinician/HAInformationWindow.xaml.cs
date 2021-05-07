@@ -19,7 +19,7 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class HAInformationWindow : Window
     {
-        UC3_ManageHA _manageHA = new UC3_ManageHA();
+        UC3_ManageHA manageHA = new UC3_ManageHA();
         GeneralSpec _generalSpec = new GeneralSpec();
         ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
         private Patient _patient;
@@ -42,11 +42,11 @@ namespace Presentation_Clinician
 
             foreach (var clinicianSpec in listGeneralSpecs)
             {
-                if (clinicianSpec.EarSide == Ear.Right)
+                if (clinicianSpec != null)
                 {
                     Lb_OldHearingRight.Items.Add("Dato: " + _patient.GeneralSpecs[5].CreateDate);
                 }
-                else if(clinicianSpec.EarSide == Ear.Left)
+                else
                 {
                     Lb_OldHearingLeft.Items.Add("Dato: " + _patient.GeneralSpecs[4].CreateDate);
 

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BBL_Clinician\BLL_Clinician.csproj" />
+    <ProjectReference Include="..\CoreEFTest\CoreEFTest.csproj" />
   </ItemGroup>
 
 </Project>
