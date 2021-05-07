@@ -11,8 +11,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BLL_Technician;
 using CoreEFTest.Models;
 using DLL_Technician;
+using DTO;
 
 namespace Presentation_Technician
 {
@@ -24,32 +26,193 @@ namespace Presentation_Technician
         private IClinicDB db;
         private StaffLogin technician;
         private bool okIsRunning;
+        private UC6_ShowProcess uc6_showProcess;
+        private List<ProcesSpec> procesSpec;
+
         public ProcessPage(IClinicDB db, StaffLogin login)
         {
             InitializeComponent();
 
             this.db = db;
             technician = login;
+            uc6_showProcess = new UC6_ShowProcess(db);
+            procesSpec = new List<ProcesSpec>();
         }
 
         private void OKB_Click(object sender, RoutedEventArgs e)
         {
-            ////    if (okIsRunning != true)
-            ////    {
-            ////        okIsRunning = true;
+            if (okIsRunning != true)
+            {
+                okIsRunning = true;
 
-            ////        BackgroundWorker worker = new BackgroundWorker();
+                BackgroundWorker worker = new BackgroundWorker();
 
-            ////        worker.DoWork += UC4GetPatientInformation;
+                worker.DoWork += UC6GetProcessInformation;
 
-            ////        worker.RunWorkerCompleted += UC4GetPatientInformationCompleted;
+                worker.RunWorkerCompleted += UC6GetProcessInformationCompleted;
 
-            ////        string castID = HACastIDTB.Text;
-            ////        worker.RunWorkerAsync(castID);
+                string CPR = CPRTB.Text;
+                worker.RunWorkerAsync(CPR);
 
-            ////        Loading.Visibility = Visibility.Visible;
-            ////        Loading.Spin = true;
-            ////    }
+                Loading.Visibility = Visibility.Visible;
+                Loading.Spin = true;
+            }
+        }
+
+        public void UC6GetProcessInformation(object sender, DoWorkEventArgs e)
+        {
+            e.Result = uc6_showProcess.GetProccesInformations((string) e.Argument);
+        }
+
+        public void UC6GetProcessInformationCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Loading.Visibility = Visibility.Collapsed;
+            Loading.Spin = false;
+
+            StatusL.Visibility = Visibility.Visible;
+
+            procesSpec = (List<ProcesSpec>)e.Result;
+
+            //Hvis der kun er et høreapparat:
+            if (procesSpec.Count == 1)
+            {
+                TwoHALGrid.Visibility = Visibility.Collapsed;
+                TwoHATBGrid.Visibility = Visibility.Collapsed;
+                OneHAStatusTB.Visibility = Visibility.Visible;
+
+                if (procesSpec[0].Printed == true)
+                {
+                    ProgressBar.Value = 100;
+                    StatusL.Content = "100%";
+
+                    OneHAStatusTB.Text = "Printet den " + procesSpec[0].PrintDateTime.ToShortDateString();
+                }
+
+                else if (procesSpec[0].scanTechId != 0)
+                {
+                    ProgressBar.Value = 50;
+                    StatusL.Content = "50%";
+                    OneHAStatusTB.Text = "Scannet den " + procesSpec[0].scanDateTime.ToShortDateString();
+
+                }
+
+                else if (procesSpec[0].ClinicianId !=0)
+                {
+                    ProgressBar.Value = 25;
+                    StatusL.Content = "25%";
+                    OneHAStatusTB.Text = "Oprettet den " + procesSpec[0].GeneralSpecCreateDateTime.ToShortDateString();
+
+                }
+                else
+                {
+                    ProgressBar.Value = 0;
+                    StatusL.Content = "0%";
+                    OneHAStatusTB.Text = "Der er ikke oprettet nogle høreapparat for den pågældende patient";
+
+                }
+            }
+
+            
+
+            //Hvis der er to høreapparat:
+            if (procesSpec.Count == 2)
+            {
+                if (procesSpec[0].Printed == true || procesSpec[1].Printed == true)
+                {
+                    if (procesSpec[1].Printed == true && procesSpec[0].Printed == true)
+                    {
+                        ProgressBar.Value = 100;
+                        StatusL.Content = "100%";
+                        StatusLeftTB.Text = "Printet den " + procesSpec[0].PrintDateTime.ToShortDateString();
+                        StatusRightTB.Text = "Printet den " + procesSpec[1].PrintDateTime.ToShortDateString();
+                    }
+                    else
+                    {
+                        ProgressBar.Value = 80;
+                        StatusL.Content = "80%";
+
+                        if (procesSpec[0].Printed == true)
+                        {
+                            StatusLeftTB.Text = "Printet den " + procesSpec[0].PrintDateTime.ToShortDateString();
+                            StatusRightTB.Text = "Scannet den " + procesSpec[1].scanDateTime.ToShortDateString();
+                        }
+                        else
+                        {
+                            StatusRightTB.Text = "Printet den " + procesSpec[1].PrintDateTime.ToShortDateString();
+                            StatusLeftTB.Text = "Scannet den " + procesSpec[0].scanDateTime.ToShortDateString();
+
+                        }
+                    }
+                }
+                else if (procesSpec[0].scanTechId != 0 || procesSpec[1].scanTechId != 0)
+                {
+                    if (procesSpec[0].scanTechId != 0 && procesSpec[1].scanTechId != 0)
+                    {
+                        ProgressBar.Value = 60;
+                        StatusL.Content = "60%";
+                        StatusLeftTB.Text = "Scannet den " + procesSpec[0].scanDateTime.ToShortDateString();
+                        StatusRightTB.Text = "Scannet den " + procesSpec[1].scanDateTime.ToShortDateString();
+
+                    }
+                    else
+                    {
+                        ProgressBar.Value = 40;
+                        StatusL.Content = "40%";
+
+                        if (procesSpec[0].scanTechId != 0)
+                        {
+                            StatusLeftTB.Text = "Scannet den " + procesSpec[0].scanDateTime.ToShortDateString();
+                            StatusRightTB.Text = "Oprettet den " + procesSpec[1].GeneralSpecCreateDateTime.ToShortDateString();
+                        }
+                        else
+                        {
+                            StatusRightTB.Text = "Scannet den " + procesSpec[1].scanDateTime.ToShortDateString();
+                            StatusLeftTB.Text = "Oprettet den " + procesSpec[0].GeneralSpecCreateDateTime.ToShortDateString();
+
+                        }
+                    }
+                }
+
+                else if (procesSpec[0].ClinicianId != 0 && procesSpec[1].ClinicianId != 0)
+                {
+                    if (procesSpec[0].ClinicianId != 0 && procesSpec[1].ClinicianId != 0)
+                    {
+                        ProgressBar.Value = 20;
+                        StatusL.Content = "20%";
+
+                        StatusLeftTB.Text = "Oprettet den " + procesSpec[0].GeneralSpecCreateDateTime.ToShortDateString();
+                        StatusRightTB.Text = "Oprettet den " + procesSpec[1].GeneralSpecCreateDateTime.ToShortDateString();
+
+                    }
+                    else
+                    {
+                        ProgressBar.Value = 10;
+                        StatusL.Content = "10%";
+
+                        if (procesSpec[0].ClinicianId != 0)
+                        {
+                            StatusLeftTB.Text = "Oprettet den " + procesSpec[0].GeneralSpecCreateDateTime.ToShortDateString();
+                            StatusRightTB.Text = "Ikke oprettet endnu";
+                        }
+                        else
+                        {
+                            StatusRightTB.Text = "Oprettet den " + procesSpec[1].GeneralSpecCreateDateTime.ToShortDateString();
+                            StatusLeftTB.Text = "Ikke oprettet endnu";
+                        }
+                    }
+                }
+                else
+                {
+                    ProgressBar.Value = 0;
+                    StatusL.Content = "0%";
+
+                    StatusLeftTB.Text = "Ikke oprettet endnu";
+                    StatusRightTB.Text = "Ikke oprettet endnu";
+
+                }
+
+            }
+
 
         }
     }

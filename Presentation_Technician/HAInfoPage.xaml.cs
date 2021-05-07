@@ -24,6 +24,7 @@ namespace Presentation_Technician
     public partial class HAInfoPage : Page
     {
         private UC3_ShowHATech uc3_ShowHATech;
+        private UC3_UpdateHATech uc3_UpdateHATech;
 
         private IClinicDB db;
         private bool isRunning;
@@ -34,7 +35,9 @@ namespace Presentation_Technician
             InitializeComponent();
             this.db = db;
             uc3_ShowHATech = new UC3_ShowHATech(db);
-            
+            uc3_UpdateHATech = new UC3_UpdateHATech(db);
+            ShowHAInfoB.IsEnabled = false;
+            RedigerB.IsEnabled = false;
         }
 
         private void OKB_Click(object sender, RoutedEventArgs e)
@@ -86,6 +89,8 @@ namespace Presentation_Technician
 
                 HAList.Items.Add(patientAndHA.TecnicalSpecs[0].EarSide.ToString());
                 HAList.Items.Add(patientAndHA.TecnicalSpecs[1].EarSide.ToString());
+
+                ShowHAInfoB.IsEnabled = true;
             }
             else
             {
@@ -96,34 +101,43 @@ namespace Presentation_Technician
 
         private void ShowHAInfoB_Click(object sender, RoutedEventArgs e)
         {
-            GeneralSpec selectedGeneralSpec = (GeneralSpec)patientAndHA.GeneralSpecs[HAList.SelectedIndex];
-            TecnicalSpec selectedTecnicalSpec = (TecnicalSpec)patientAndHA.TecnicalSpecs[HAList.SelectedIndex];
+            if (HAList.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vælg et høreapparat og prøv igen", "Information");
+            }
+            else
+            {
+                GeneralSpec selectedGeneralSpec = (GeneralSpec) patientAndHA.GeneralSpecs[HAList.SelectedIndex];
+                TecnicalSpec selectedTecnicalSpec = (TecnicalSpec) patientAndHA.TecnicalSpecs[HAList.SelectedIndex];
 
+                TypeTB.Text = selectedGeneralSpec.Type.ToString();
+                ColorTB.Text = selectedGeneralSpec.Color.ToString();
+                GenDateTB.Text = selectedGeneralSpec.CreateDate.ToShortDateString();
 
-            TypeTB.Text = selectedGeneralSpec.Type.ToString();
-            ColorTB.Text = selectedGeneralSpec.Color.ToString();
-            GenDateTB.Text = selectedGeneralSpec.CreateDate.ToShortDateString();
+                TechDateTB.Text = selectedTecnicalSpec.CreateDate.ToShortDateString();
 
-            TechDateTB.Text = selectedTecnicalSpec.CreateDate.ToShortDateString();
-           
-            //Todo Kommenter dette ind
-            //if (selectedTecnicalSpec.RawEarScan == null)
-            //{
-            //    PrintStatusTB.Text = "Ikke scannet endnu";
-            //}
-            //else
-            //{
+                //Todo Kommenter dette ind
+                //if (selectedTecnicalSpec.RawEarScan == null)
+                //{
+                //    PrintStatusTB.Text = "Ikke scannet endnu";
+                //}
+                //else
+                //{
                 if (selectedTecnicalSpec.Printed == false)
                 {
 
                     PrintStatusTB.Text = "Ikke printet endnu";
                 }
+
                 if (selectedTecnicalSpec.Printed == true)
                 {
 
                     PrintStatusTB.Text = "Printet";
                 }
-            //}
+
+                //}
+                RedigerB.IsEnabled = true;
+            }
         }
 
         private void RedigerB_Click(object sender, RoutedEventArgs e)
@@ -161,14 +175,13 @@ namespace Presentation_Technician
             ColorTB.Visibility = Visibility.Visible;
             ColorTB.Text = ColorCB.SelectionBoxItem.ToString();
             
-            
             GemB.Visibility = Visibility.Collapsed;
             RedigerB.Visibility = Visibility.Visible;
 
             patientAndHA.GeneralSpecs[HAList.SelectedIndex].Type = (Material)TypeCB.SelectionBoxItem;
             patientAndHA.GeneralSpecs[HAList.SelectedIndex].Color = (PlugColor) ColorCB.SelectionBoxItem;
 
-
+            uc3_UpdateHATech.SaveTechnicalSpec(patientAndHA.TecnicalSpecs[HAList.SelectedIndex]);
 
             ColorCB.Text = "";
             TypeCB.Text = "";
