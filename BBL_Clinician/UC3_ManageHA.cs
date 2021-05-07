@@ -8,6 +8,7 @@ namespace BBL_Clinician
    public class UC3_ManageHA
    {
        private IClinicDatabase clinicDatabase;
+       GeneralSpec generalSpec = new GeneralSpec();
 
        public UC3_ManageHA()
        {
@@ -25,9 +26,8 @@ namespace BBL_Clinician
 
        }
 
-       public void SaveHA(string type, string color, DateTime createDate, int ClinianID)
+       public void SaveHA(Ear earSide, Material type, PlugColor color, DateTime createDate, string StaffID)
        {
-
        }
 
         public void CreateHA(GeneralSpec generalSpec)

@@ -34,6 +34,7 @@ namespace Presentation_Clinician
 
         public bool LoginOK { get; set; }
        public string CPR { get; set; }
+       public int StaffID { get; set; }
 
        Color color1 = Color.FromRgb(237,246,253);
        Color color2 = Color.FromRgb(226, 230, 230);

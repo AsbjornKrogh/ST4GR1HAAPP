@@ -24,7 +24,6 @@ namespace Presentation_Clinician
     {
         private UC2_ManagePatient uc2ManagePatient;
         private Patient patient;
-
         private MainWindow mainWindow;
      
 
@@ -46,11 +45,6 @@ namespace Presentation_Clinician
                 uc2ManagePatient.SaveUpdates(patient);
                 MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
             }
-            //else (TBCPR.Text == regionpatient.CPR)
-            //{
-            //    uc2ManagePatient.SavePatientPressed(patient);
-            //}
-
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
