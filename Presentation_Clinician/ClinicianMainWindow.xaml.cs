@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BBL_Clinician;
 using BLL_Clinician;
 using CoreEFTest.Models;
 
@@ -29,18 +28,15 @@ namespace Presentation_Clinician
        UC3_ManageHA manageHA = new UC3_ManageHA();
        ProcessClinPage processClinPage = new ProcessClinPage();
        private HomeWindow homeWindow;
-       private PatientPage patientPage;
-       private ManageHAPage manageHaPage;
+     
        public StaffLogin clinician { set; get; }
-        //private HearingTestWindow hearingTest;
 
        public bool LoginOK { get; set; }
-       public string CPR { get; set; }
+       public bool RegionLoginOK { get; set; }
+      // public string CPR { get; set; }
        public int StaffID { get; set; }
 
        public Patient Patient;
-
-
 
        Color color1 = Color.FromRgb(237,246,253);
        Color color2 = Color.FromRgb(226, 230, 230);
@@ -110,9 +106,8 @@ namespace Presentation_Clinician
                 Main.Content = new PatientPage(this, managePatient);
                 ShowDialog();
             }
-            else
+            else 
             {
-                MessageBox.Show("Fejl ved loginOK -- ClinicianMainWindow");
                 Close();
             }
         }

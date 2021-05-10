@@ -9,7 +9,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BBL_Clinician;
 using BLL_Clinician;
 using CoreEFTest.Models;
 
@@ -24,6 +23,11 @@ namespace Presentation_Clinician
         ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
         private Patient _patient;
         private List<GeneralSpec> listGeneralSpecs;
+        private ManageHAPage manageHa;
+
+        
+
+        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa)
         private UC2_ManagePatient _managePatient;
         
 
@@ -33,7 +37,7 @@ namespace Presentation_Clinician
         public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa, UC2_ManagePatient managePatient)
         {
             InitializeComponent();
-            _clinicianMain = clinicianMainWindow;
+            _clinicianMainWindow = clinicianMainWindow;
             _manageHA = manageHa;
             _managePatient = managePatient;
             
@@ -42,7 +46,8 @@ namespace Presentation_Clinician
 
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
         {
-            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.Patient.CPR);
+            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMainWindow.Patient.CPR);
+      
 
             foreach (var clinicianSpec in listGeneralSpecs)
             {
@@ -54,14 +59,13 @@ namespace Presentation_Clinician
                 else if(clinicianSpec.EarSide == Ear.Left)
                 {
                     Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
-
                 }
                
             }
             
         }
 
-      
+
 
         private void btn_ShowOldAid_Click(object sender, RoutedEventArgs e)
         {
@@ -83,8 +87,8 @@ namespace Presentation_Clinician
             //    }
             //}
 
-            
-            
+
+
 
             //Tblock_OldHearingAid.Text = selectedGeneralSpec.CPR;
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.EarSide);
@@ -94,7 +98,7 @@ namespace Presentation_Clinician
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.HAGeneralSpecID);
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.StaffID);
 
-            
+
 
 
             //Tblock_OldHearingAid.Text =  "Øre: " + Convert.ToString(_generalSpec.EarSide) + "\r\nDato " + Convert.ToString(_generalSpec.CreateDate) + "\r\nFarve : " + Convert.ToString(_generalSpec.Color);
@@ -115,5 +119,7 @@ namespace Presentation_Clinician
         {
 
         }
+
     }
 }
+

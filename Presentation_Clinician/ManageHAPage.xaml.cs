@@ -10,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BBL_Clinician;
 using BLL_Clinician;
 using CoreEFTest.Models;
 
@@ -21,16 +20,14 @@ namespace Presentation_Clinician
     /// </summary>
     public partial class ManageHAPage : Page
     {
-        ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
         UC3_ManageHA manageHA = new UC3_ManageHA();
-        UC2_ManagePatient managePatient = new UC2_ManagePatient();
+
+        ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
+        HAInformationWindow _haInformation;
 
         private HearingTestWindow _hearingTest;
         private OrderNewHA orderNewHa;
 
-        GeneralSpec generalSpec = new GeneralSpec();
-        HAInformationWindow _haInformation;
-        
         
         public ManageHAPage(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHA)
         {
@@ -49,7 +46,7 @@ namespace Presentation_Clinician
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
         {
-            _haInformation = new HAInformationWindow(_clinicianMainWindow,manageHA,managePatient);
+            _haInformation = new HAInformationWindow(_clinicianMainWindow,manageHA);
             _haInformation.Show();
          //TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(clinicianMainWindow.CPR));
         }
