@@ -21,11 +21,9 @@ namespace Presentation_Clinician
     public partial class HAInformationWindow : Window
     {
         UC3_ManageHA _manageHA = new UC3_ManageHA();
-        private GeneralSpec _generalSpec;
         ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
         private Patient _patient;
         private List<GeneralSpec> listGeneralSpecs;
-        private ManageHAPage manageHa;
         private UC2_ManagePatient _managePatient;
         
 
@@ -38,7 +36,7 @@ namespace Presentation_Clinician
             _clinicianMain = clinicianMainWindow;
             _manageHA = manageHa;
             _managePatient = managePatient;
-
+            
 
         }
 
@@ -51,6 +49,7 @@ namespace Presentation_Clinician
                 if (clinicianSpec.EarSide == Ear.Right)
                 {
                     Lb_OldHearingRight.Items.Add("Dato: " + clinicianSpec.CreateDate);
+                    
                 }
                 else if(clinicianSpec.EarSide == Ear.Left)
                 {
@@ -69,15 +68,20 @@ namespace Presentation_Clinician
 
             _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
             listGeneralSpecs = _manageHA.GetAllHA(_patient.CPR);
-            _generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            //_generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            GeneralSpec generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
 
-            foreach (var item in listGeneralSpecs)
-            {
-                if (Lb_OldHearingLeft.SelectedItems.ToString() == "Dato: " + item.CreateDate)
-                {
-                    Tblock_OldHearingAid.Text = "Øre: " + Convert.ToString(item.EarSide) + "\r\nDato " + Convert.ToString(item.CreateDate) + "\r\nFarve : " + Convert.ToString(item.Color);
-                }
-            }
+
+            Tb_OldHearingAid.Text = "Øre: " + Convert.ToString(generalSpec.EarSide) + "\r\nDato " + Convert.ToString(generalSpec.CreateDate) + "\r\nFarve : " + Convert.ToString(generalSpec.Color);
+
+
+            //foreach (var item in listGeneralSpecs)
+            //{
+            //    if (Lb_OldHearingLeft.SelectedItems.ToString() == "Dato: " + item.CreateDate)
+            //    {
+            //        Tblock_OldHearingAid.Text = "Øre: " + Convert.ToString(item.EarSide) + "\r\nDato " + Convert.ToString(item.CreateDate) + "\r\nFarve : " + Convert.ToString(item.Color);
+            //    }
+            //}
 
             
             
@@ -104,6 +108,11 @@ namespace Presentation_Clinician
 
 
 
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }
