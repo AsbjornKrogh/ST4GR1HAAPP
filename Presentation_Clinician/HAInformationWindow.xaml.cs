@@ -25,9 +25,6 @@ namespace Presentation_Clinician
         private List<GeneralSpec> listGeneralSpecs;
         private ManageHAPage manageHa;
 
-        
-
-        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa)
         private UC2_ManagePatient _managePatient;
         
 
@@ -37,7 +34,7 @@ namespace Presentation_Clinician
         public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa, UC2_ManagePatient managePatient)
         {
             InitializeComponent();
-            _clinicianMainWindow = clinicianMainWindow;
+            _clinicianMain = clinicianMainWindow;
             _manageHA = manageHa;
             _managePatient = managePatient;
             
@@ -46,7 +43,7 @@ namespace Presentation_Clinician
 
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
         {
-            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMainWindow.Patient.CPR);
+            listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.Patient.CPR);
       
 
             foreach (var clinicianSpec in listGeneralSpecs)

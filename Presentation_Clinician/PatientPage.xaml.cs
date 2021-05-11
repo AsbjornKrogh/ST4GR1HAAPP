@@ -50,6 +50,16 @@ namespace Presentation_Clinician
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
         {
+
+            if (TBCPR.Text == patient.CPR)
+            {
+                patient.Email = TBEmail.Text;
+                patient.MobilNummer = TBPhonenumber.Text;
+                uc2ManagePatient.SaveUpdates(patient);
+                MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
+            }
+
+
             TBEmail.IsEnabled = true;
             TBPhonenumber.IsEnabled = true;
             TBPhonenumber.Focus();

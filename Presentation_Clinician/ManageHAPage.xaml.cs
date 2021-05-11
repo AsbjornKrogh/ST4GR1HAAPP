@@ -24,7 +24,7 @@ namespace Presentation_Clinician
 
         ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
         HAInformationWindow _haInformation;
-
+        public UC2_ManagePatient _managePatient;
         private HearingTestWindow _hearingTest;
         private OrderNewHA orderNewHa;
 
@@ -46,7 +46,7 @@ namespace Presentation_Clinician
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
         {
-            _haInformation = new HAInformationWindow(_clinicianMainWindow,manageHA);
+            _haInformation = new HAInformationWindow(_clinicianMainWindow,manageHA,_managePatient);
             _haInformation.Show();
          //TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(clinicianMainWindow.CPR));
         }
