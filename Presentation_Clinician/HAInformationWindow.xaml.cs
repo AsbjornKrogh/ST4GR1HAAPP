@@ -21,31 +21,27 @@ namespace Presentation_Clinician
     {
         UC3_ManageHA _manageHA = new UC3_ManageHA();
         ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
-        private Patient _patient;
+        private Patient _patient = new Patient();
+        private GeneralSpec generalSpec = new GeneralSpec();
         private List<GeneralSpec> listGeneralSpecs;
-        private ManageHAPage manageHa;
-
         private UC2_ManagePatient _managePatient;
         
 
-        
 
-
-        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa, UC2_ManagePatient managePatient)
+        public HAInformationWindow(ClinicianMainWindow clinicianMainWindow)
         {
             InitializeComponent();
             _clinicianMain = clinicianMainWindow;
-            _manageHA = manageHa;
-            _managePatient = managePatient;
-            
+            _manageHA = new UC3_ManageHA();
+            _managePatient = new UC2_ManagePatient();
 
         }
 
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
         {
             listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.Patient.CPR);
-      
-
+            _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
+            
             foreach (var clinicianSpec in listGeneralSpecs)
             {
                 if (clinicianSpec.EarSide == Ear.Right)
@@ -57,11 +53,8 @@ namespace Presentation_Clinician
                 {
                     Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
                 }
-               
             }
-            
         }
-
 
 
         private void btn_ShowOldAid_Click(object sender, RoutedEventArgs e)
@@ -70,9 +63,9 @@ namespace Presentation_Clinician
             _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
             listGeneralSpecs = _manageHA.GetAllHA(_patient.CPR);
             //_generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
-            GeneralSpec generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
 
-
+            
             Tb_OldHearingAid.Text = "Øre: " + Convert.ToString(generalSpec.EarSide) + "\r\nDato " + Convert.ToString(generalSpec.CreateDate) + "\r\nFarve : " + Convert.ToString(generalSpec.Color);
 
 
@@ -86,7 +79,6 @@ namespace Presentation_Clinician
 
 
 
-
             //Tblock_OldHearingAid.Text = selectedGeneralSpec.CPR;
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.EarSide);
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.CreateDate);
@@ -94,8 +86,6 @@ namespace Presentation_Clinician
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.Type);
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.HAGeneralSpecID);
             //Tblock_OldHearingAid.Text = Convert.ToString(selectedGeneralSpec.StaffID);
-
-
 
 
             //Tblock_OldHearingAid.Text =  "Øre: " + Convert.ToString(_generalSpec.EarSide) + "\r\nDato " + Convert.ToString(_generalSpec.CreateDate) + "\r\nFarve : " + Convert.ToString(_generalSpec.Color);
@@ -106,16 +96,9 @@ namespace Presentation_Clinician
             //Tblock_OldHearingAid.Text = Convert.ToString(_generalSpec.HAGeneralSpecID);
             //Tblock_OldHearingAid.Text = Convert.ToString(_generalSpec.StaffID);
 
-
-
-
-
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+       
 
     }
 }

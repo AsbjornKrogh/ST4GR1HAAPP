@@ -39,13 +39,8 @@ namespace Presentation_Clinician
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (TBCPR.Text == patient.CPR)
-            {
-                patient.Email = TBEmail.Text;
-                patient.MobilNummer = TBPhonenumber.Text;
-                uc2ManagePatient.SaveUpdates(patient);
-                MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
-            }
+            patient = uc2ManagePatient.GetPatientInformationRegionsDatabase(_clinicianMainWindow.Patient.CPR);
+            uc2ManagePatient.SavePatientPressed(patient);
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
@@ -60,9 +55,7 @@ namespace Presentation_Clinician
             }
 
 
-            TBEmail.IsEnabled = true;
-            TBPhonenumber.IsEnabled = true;
-            TBPhonenumber.Focus();
+            
         }
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
@@ -109,6 +102,12 @@ namespace Presentation_Clinician
             //    TBEmail.IsEnabled = false;
             //    TBPhonenumber.IsEnabled = false;
             //}
+
+
+            TBEmail.IsEnabled = true;
+            TBPhonenumber.IsEnabled = true;
+            TBPhonenumber.Focus();
+
         }
     }
 }

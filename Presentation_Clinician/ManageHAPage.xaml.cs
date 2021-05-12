@@ -46,7 +46,7 @@ namespace Presentation_Clinician
 
         private void BtnFormerHearingAids_Click(object sender, RoutedEventArgs e)
         {
-            _haInformation = new HAInformationWindow(_clinicianMainWindow,manageHA,_managePatient);
+            _haInformation = new HAInformationWindow(_clinicianMainWindow);
             _haInformation.Show();
          //TbAllHA.Text = Convert.ToString(manageHA.GetAllHA(clinicianMainWindow.CPR));
         }
