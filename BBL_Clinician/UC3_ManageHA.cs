@@ -37,7 +37,7 @@ namespace BLL_Clinician
 
         public List<GeneralSpec> GetAllHA(string CPR)
        {
-          return clinicDatabase.GetAlleGeneralSpecs(CPR);
+          return clinicDatabase.GetAllGeneralSpecs(CPR);
        }
 
    }

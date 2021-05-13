@@ -40,7 +40,7 @@ namespace Presentation_Clinician
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
         {
             listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.Patient.CPR);
-            _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
+            //_patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
             
             foreach (var clinicianSpec in listGeneralSpecs)
             {
@@ -49,23 +49,26 @@ namespace Presentation_Clinician
                     Lb_OldHearingRight.Items.Add("Dato: " + clinicianSpec.CreateDate);
                     
                 }
-                else if(clinicianSpec.EarSide == Ear.Left)
+                
+                if(clinicianSpec.EarSide == Ear.Left)
                 {
                     Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
                 }
             }
         }
-
+        
 
         private void btn_ShowOldAid_Click(object sender, RoutedEventArgs e)
         {
 
-            _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
-            listGeneralSpecs = _manageHA.GetAllHA(_patient.CPR);
+            // _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
+            // listGeneralSpecs = _manageHA.GetAllHA(_patient.CPR);
             //_generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
-            generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            // generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            generalSpec = listGeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            generalSpec = listGeneralSpecs[Lb_OldHearingRight.SelectedIndex];
 
-            
+
             Tb_OldHearingAid.Text = "Øre: " + Convert.ToString(generalSpec.EarSide) + "\r\nDato " + Convert.ToString(generalSpec.CreateDate) + "\r\nFarve : " + Convert.ToString(generalSpec.Color);
 
 
