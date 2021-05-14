@@ -163,39 +163,13 @@ namespace Presentation_Technician
             rawEarScan = (RawEarScan)e.Result;
 
             //Opretter en technicalSpec
-            //if (patientAndHA.GeneralSpecs[0].EarSide == Ear.Left)
-            //{
-                uc4_scan.CreateTechnicalSpec(patientAndHA.CPR, technician.StaffID, patientAndHA.GeneralSpecs[0].EarSide);
-            //}
-            //else
-            //{
-                
-            //}
+            uc4_scan.CreateTechnicalSpec(patientAndHA.CPR, technician.StaffID, rawEarScan.EarSide);
+            
 
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
 
             Visual3D.Content = modelImporter.Load(MODEL_PATH);
-
-            //byte[] bytes;
-            //stlDocument.SaveAsBinary(MODEL_PATH);
-
-
-            //var _object = modelImporter.Load(MODEL_PATH);// Dette objekt er ikke serilaziable
-
-
-            byte[] bytes = System.IO.File.ReadAllBytes(MODEL_PATH);
-            
-            //using (var _MemoryStream = new MemoryStream())
-            //{
-            //    IFormatter _BinaryFormatter = new BinaryFormatter();
-            //    _BinaryFormatter.Serialize(_MemoryStream, str);
-            //    bytes = _MemoryStream.ToArray();
-            //}
-
-            patientAndHA.TecnicalSpecs[0].RawEarScan.Scan = new byte[bytes.Length];
-            patientAndHA.TecnicalSpecs[0].RawEarScan.Scan = bytes;
-
 
             GemB.IsEnabled = true;
         }

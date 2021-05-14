@@ -151,6 +151,8 @@ namespace DLL_Technician
             EarCast earCast = _dbContext.EarCast.Single(x => x.EarCastID == earCastId);
             Patient patient = GetPatientWithGeneralSpecAndTechnicalSpec(earCast.PatientCPR);
 
+            patient.EarCasts.Add(earCast); 
+
             return patient;
          }
          catch
