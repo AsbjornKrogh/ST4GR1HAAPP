@@ -182,7 +182,7 @@ namespace Presentation_Technician
             patientAndHA.GeneralSpecs[HAList.SelectedIndex].Type = (Material)TypeCB.SelectionBoxItem;
             patientAndHA.GeneralSpecs[HAList.SelectedIndex].Color = (PlugColor) ColorCB.SelectionBoxItem;
 
-            uc3_UpdateHATech.SaveTechnicalSpec(patientAndHA.TecnicalSpecs[HAList.SelectedIndex]);
+            uc3_UpdateHATech.UpdateGeneralSpec(patientAndHA.GeneralSpecs[HAList.SelectedIndex]);
             
             ColorCB.Text = "";
             TypeCB.Text = "";

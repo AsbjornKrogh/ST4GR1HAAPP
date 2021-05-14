@@ -162,6 +162,7 @@ namespace Presentation_Technician
 
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
+
             Visual3D.Content = modelImporter.Load(MODEL_PATH);
 
             //byte[] bytes;
@@ -169,6 +170,7 @@ namespace Presentation_Technician
 
 
             //var _object = modelImporter.Load(MODEL_PATH);// Dette objekt er ikke serilaziable
+
 
             byte[] bytes = System.IO.File.ReadAllBytes(MODEL_PATH);
             

@@ -74,7 +74,7 @@ namespace Presentation_Technician
 
             procesSpec = (List<ProcesSpec>)e.Result;
 
-            //Hvis der kun er et høreapparat:
+            //Hvis der kun er et høreapparat:  - melder fejl med rigtig DB
             if (procesSpec.Count == 1)
             {
                 TwoHALGrid.Visibility = Visibility.Collapsed;
@@ -112,9 +112,6 @@ namespace Presentation_Technician
 
                 }
             }
-
-            
-
             //Hvis der er to høreapparat:
             if (procesSpec.Count == 2)
             {
