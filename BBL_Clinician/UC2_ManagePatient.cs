@@ -13,12 +13,14 @@ namespace BLL_Clinician
     {
         private IClinicDatabase clinicDatabase;
         private IRegionDatabase regionDatabase;
-        bool CPRCorrect;
+        private bool CPRCorrect;
+        private bool RegionCPRCorrect;
         
 
         public UC2_ManagePatient()
         {
             clinicDatabase = new ClinicDatabase();
+            regionDatabase = new RegionDatabase();
         }
 
         public void SaveUpdates(Patient patient)
@@ -54,21 +56,21 @@ namespace BLL_Clinician
             return CPRCorrect;
         }
 
-        public bool CheckCPRRegionDatabase(string CPRnumber)
-        {
-            if (regionDatabase.CheckCPR(CPRnumber))
-            {
-                CPRCorrect = true;
-            }
-            else
-            {
-                CPRCorrect = false;
-            }
+        //public bool CheckCPRRegionDatabase(string CPRnumber)
+        //{
+        //    if (regionDatabase.CheckCPR(CPRnumber) == true)
+        //    {
+        //        RegionCPRCorrect = true;
+        //    }
+        //    else
+        //    {
+        //        RegionCPRCorrect = false;
+        //    }
 
-            return CPRCorrect;
-        }
+        //    return RegionCPRCorrect;
+        //}
 
-        public Patient GetPatientInformationRegionsDatbase(string CPRnumber)
+        public Patient GetPatientInformationRegionsDatabase(string CPRnumber)
         {
             return regionDatabase.GetPatient(CPRnumber);
         }

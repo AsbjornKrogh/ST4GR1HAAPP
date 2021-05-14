@@ -44,6 +44,7 @@ namespace Presentation_Technician
         {
             if (isRunning != true)
             {
+                HAList.Items.Clear();
                 string CPR = CPRnummerTB.Text;
                 if (CPR.Length == 11 && CPR.Contains('-'))
                 {

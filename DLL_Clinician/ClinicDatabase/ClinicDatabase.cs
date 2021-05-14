@@ -47,6 +47,7 @@ namespace DLL_Clinician
          try
          {
             Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+            patient.GeneralSpecs = this.GetAllGeneralSpecs(CPR);
 
             return patient;
          }
@@ -213,7 +214,7 @@ namespace DLL_Clinician
       /// </summary>
       /// <param name="CPR"></param>
       /// <returns></returns>
-      public List<GeneralSpec> GetAlleGeneralSpecs(string CPR)
+      public List<GeneralSpec> GetAllGeneralSpecs(string CPR)
       {
          try
          {

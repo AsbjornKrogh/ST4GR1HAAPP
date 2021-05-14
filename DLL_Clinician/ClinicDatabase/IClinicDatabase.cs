@@ -18,7 +18,7 @@ namespace DLL_Clinician
         void UpdatePatient(Patient patient);
 
         //UC3
-        List<GeneralSpec> GetAlleGeneralSpecs(string CPR);
+        List<GeneralSpec> GetAllGeneralSpecs(string CPR);
 
         void UpdateGeneralSpec(GeneralSpec generalSpec);
 

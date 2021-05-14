@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CoreEFTest.Models;
-using BBL_Clinician;
+using BLL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -20,10 +20,9 @@ namespace Presentation_Clinician
     public partial class OrderNewHA : Window
     {
         UC3_ManageHA manageHA = new UC3_ManageHA();
-        ClinicianMainWindow mainWindow = new ClinicianMainWindow();
+        ClinicianMainWindow _clinicianMainWindow= new ClinicianMainWindow();
         GeneralSpec generalSpec = new GeneralSpec();
-        Patient patient = new Patient();
-        
+
         public OrderNewHA()
         {
             InitializeComponent();
@@ -34,21 +33,24 @@ namespace Presentation_Clinician
             if (Cb_LeftEar.IsChecked == true)
             {
                 generalSpec.EarSide = Ear.Left;
-                generalSpec.CPR = mainWindow.CPR;
+                generalSpec.CPR = _clinicianMainWindow.Patient.CPR;
                 generalSpec.CreateDate = DateTime.Now;
-                generalSpec.StaffID = mainWindow.StaffID;
-                TbNewColor.Text = generalSpec.Color.ToString();
-                TbNewType.Text = patient.GeneralSpecs.ToString();
+                generalSpec.StaffID = _clinicianMainWindow.StaffID;
+                CbNewColor.Text = generalSpec.Color.ToString();
+                CbNewType.Text = generalSpec.Type.ToString();
             }
             else if (Cb_RightEar.IsChecked == true)
             {
                 generalSpec.EarSide = Ear.Right;
-                generalSpec.CPR = mainWindow.CPR;
+                generalSpec.CPR = _clinicianMainWindow.Patient.CPR;
                 generalSpec.CreateDate = DateTime.Now;
-                generalSpec.StaffID = mainWindow.StaffID;
-                TbNewColor.Text = generalSpec.Color.ToString();
-                TbNewType.Text = generalSpec.Type.ToString();
+                generalSpec.StaffID = _clinicianMainWindow.StaffID;
+                CbNewColor.Text = generalSpec.Color.ToString();
+                CbNewType.Text = generalSpec.Type.ToString();
             }
+
+            manageHA.CreateHA(generalSpec);
+            MessageBox.Show("Høreapparatet er bestilt");
         }
     }
 }

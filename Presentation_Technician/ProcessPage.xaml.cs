@@ -68,6 +68,7 @@ namespace Presentation_Technician
         {
             Loading.Visibility = Visibility.Collapsed;
             Loading.Spin = false;
+            okIsRunning = false;
 
             StatusL.Visibility = Visibility.Visible;
 

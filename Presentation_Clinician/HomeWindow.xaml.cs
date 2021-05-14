@@ -39,14 +39,14 @@ namespace Presentation_Clinician
             {
                 _clinicianMainWindow.LoginOK = true;
                 Close();
-                _clinicianMainWindow.CPR = cpr;
+                _clinicianMainWindow.Patient.CPR = cpr;
 
             }
-            else if (uc2ManagePatient.CheckCPRRegionDatabase(cpr))
+            else if (uc2ManagePatient.GetPatientInformationRegionsDatabase(cpr) != null)
             {
-                _clinicianMainWindow.LoginOK = true;
+                _clinicianMainWindow.RegionLoginOK = true;
                 Close();
-                _clinicianMainWindow.CPR = cpr;
+                _clinicianMainWindow.Patient.CPR = cpr;
             }
             else
             {
