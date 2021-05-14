@@ -15,9 +15,9 @@ namespace BLL_Technician
             this.clinicDB = clinicDB;
         }
 
-        public bool SaveTechnicalSpec(TecnicalSpec tecnicalSpec)
+        public bool UpdateGeneralSpec(GeneralSpec generalSpec)
         {
-            return clinicDB.SaveTechnicalSpec(tecnicalSpec);
+            return clinicDB.UpdateGeneralspec(generalSpec);
         }
     }
 }

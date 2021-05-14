@@ -57,7 +57,7 @@ namespace DLL_Login
                   {
                      staffLogin.Name = reader["Name"].ToString();
 
-                     if (reader["StaffStatus"].ToString() == "C")
+                     if (reader["StaffStatus"].ToString() == "0")
                         staffLogin.StaffStatus = Status.Clinician;
                      else
                         staffLogin.StaffStatus = Status.Technician;

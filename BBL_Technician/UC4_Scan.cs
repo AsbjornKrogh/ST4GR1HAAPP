@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CoreEFTest.Models;
 using DLL_Technician;
+using DTO;
 
 namespace BLL_Technician
 {

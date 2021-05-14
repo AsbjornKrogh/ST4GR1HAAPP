@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Channels;
-using CoreEFTest.Context;
+﻿using CoreEFTest.Context;
 using CoreEFTest.Models;
 using Hl7.Fhir.Rest;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Serialization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace EFCoreTestConsoleApp
 {
-   class Program
+    class Program
    {
       static void Main(string[] args)
       {
@@ -49,8 +45,8 @@ namespace EFCoreTestConsoleApp
 
          EarCast newCast = new EarCast()
          {
-            PatientCPR = "250997-0000",
-            EarSide = EarCast.Ear.Left,
+            PatientCPR = "111111-1111",
+            EarSide = EarCast.Ear.Right,
          };
 
          //clinicianDbLogic.CreateEarCast(newCast);

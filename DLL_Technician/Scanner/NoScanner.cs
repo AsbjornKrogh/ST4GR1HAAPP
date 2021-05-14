@@ -12,6 +12,9 @@ namespace DLL_Technician
         private RawEarScan earscan;
         private ITimeStamp timeStamp;
 
+        //Højre øreafstøbning
+        //private const string MODEL_PATH = "Mold_for_Ear_V1.7_R.stl";
+
         public NoScanner(ITimeStamp timeStamp)
         {
             this.timeStamp = timeStamp;
@@ -35,6 +38,11 @@ namespace DLL_Technician
         {
             earscan = new RawEarScan();
 
+            //byte[] bytes = System.IO.File.ReadAllBytes(MODEL_PATH);
+
+
+            //earscan.Scan = new byte[bytes.Length];
+            //earscan.Scan = bytes;
             earscan.StaffID = ScanTechID;
             earscan.ScanDate = timeStamp.getDate();
 
