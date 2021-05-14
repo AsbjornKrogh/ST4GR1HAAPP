@@ -56,19 +56,19 @@ namespace BLL_Clinician
             return CPRCorrect;
         }
 
-        //public bool CheckCPRRegionDatabase(string CPRnumber)
-        //{
-        //    if (regionDatabase.CheckCPR(CPRnumber) == true)
-        //    {
-        //        RegionCPRCorrect = true;
-        //    }
-        //    else
-        //    {
-        //        RegionCPRCorrect = false;
-        //    }
+        public bool CheckCPRRegionDatabase(string CPRnumber)
+        {
+            if (regionDatabase.CheckCPR(CPRnumber) == true)
+            {
+                RegionCPRCorrect = true;
+            }
+            else
+            {
+                RegionCPRCorrect = false;
+            }
 
-        //    return RegionCPRCorrect;
-        //}
+            return RegionCPRCorrect;
+        }
 
         public Patient GetPatientInformationRegionsDatabase(string CPRnumber)
         {

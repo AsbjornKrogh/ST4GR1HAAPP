@@ -12,7 +12,6 @@
         <Label Content="Højre øre" HorizontalAlignment="Left" Margin="22,55,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
         <Label Content="Venstre øre" HorizontalAlignment="Left" Margin="329,60,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
         <Button x:Name="BtnRetrieveHearingTest" Content="Hent høreprøve" HorizontalAlignment="Left" Margin="204,288,0,0" VerticalAlignment="Top" Height="26" Width="134" Click="BtnRetrieveHearingTest_Click"/>
-        <Button x:Name="BtnOrderHearingAids" Content="Bestil nyt høreapparat" Width="134" Margin="363,288,303,86" Click="BtnOrderHearingAids_Click"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="22,90,0,0" VerticalAlignment="Top"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="332,94,0,0" VerticalAlignment="Top"/>
         <Label Content="" HorizontalAlignment="Left" Margin="22,126,0,0" VerticalAlignment="Top"/>
@@ -36,5 +35,6 @@
         <TextBox x:Name="Tb_StaffID_Right" HorizontalAlignment="Left" Margin="140,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Dato" HorizontalAlignment="Left" Margin="26,207,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="Tb_Datetime_Right" HorizontalAlignment="Left" Margin="140,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BtnOrderHearingAids1" Content="Bestil nyt høreapparat" HorizontalAlignment="Left" Margin="368,288,0,0" VerticalAlignment="Top" Height="26" Width="168" Click="BtnOrderHearingAids1_Click"/>
     </Grid>
 </Page>
