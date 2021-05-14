@@ -22,7 +22,7 @@ namespace Presentation_Clinician
         UC3_ManageHA _manageHA = new UC3_ManageHA();
         ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
         private Patient _patient = new Patient();
-        private GeneralSpec generalSpec = new GeneralSpec();
+        private GeneralSpec generalSpec;
         private List<GeneralSpec> listGeneralSpecs;
         private UC2_ManagePatient _managePatient;
         
@@ -40,34 +40,70 @@ namespace Presentation_Clinician
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
         {
             listGeneralSpecs = _manageHA.GetAllHA(_clinicianMain.Patient.CPR);
-            _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
-            
+
             foreach (var clinicianSpec in listGeneralSpecs)
             {
                 if (clinicianSpec.EarSide == Ear.Right)
                 {
-                    Lb_OldHearingRight.Items.Add("Dato: " + clinicianSpec.CreateDate);
-                    
+                    Lb_OldHearingRight.Items.Add("Dato " + clinicianSpec.CreateDate);
+
                 }
-                else if(clinicianSpec.EarSide == Ear.Left)
+                else if (clinicianSpec.EarSide == Ear.Left)
                 {
                     Lb_OldHearingLeft.Items.Add("Dato: " + clinicianSpec.CreateDate);
                 }
             }
         }
-
+        
 
         private void btn_ShowOldAid_Click(object sender, RoutedEventArgs e)
         {
 
-            _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
-            listGeneralSpecs = _manageHA.GetAllHA(_patient.CPR);
+            // _patient = _managePatient.GetPatientInformation(_clinicianMain.Patient.CPR);
+            // listGeneralSpecs = _manageHA.GetAllHA(_patient.CPR);
             //_generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
-            generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+            // generalSpec = (GeneralSpec)_patient.GeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+
+
+
+            if (Lb_OldHearingRight.SelectedIndex >= 0)
+            {
+                generalSpec = listGeneralSpecs[Lb_OldHearingRight.SelectedIndex];
+
+                Tb_EarSide.Text = Convert.ToString(generalSpec.EarSide);
+                Tb_Type.Text = Convert.ToString(generalSpec.Type);
+                Tb_Color.Text = Convert.ToString(generalSpec.Color);
+                Tb_ID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+                Tb_CreateDate.Text = Convert.ToString(generalSpec.CreateDate);
+                Tb_StaffID.Text = Convert.ToString(generalSpec.StaffID);
+
+                Lb_OldHearingRight.SelectedIndex = -1;
+
+            }
+            else if (Lb_OldHearingLeft.SelectedIndex >= 0)
+            {
+                generalSpec = listGeneralSpecs[Lb_OldHearingLeft.SelectedIndex];
+
+                Tb_EarSide.Text = Convert.ToString(generalSpec.EarSide);
+                Tb_Type.Text = Convert.ToString(generalSpec.Type);
+                Tb_Color.Text = Convert.ToString(generalSpec.Color);
+                Tb_ID.Text = Convert.ToString(generalSpec.HAGeneralSpecID);
+                Tb_CreateDate.Text = Convert.ToString(generalSpec.CreateDate);
+                Tb_StaffID.Text = Convert.ToString(generalSpec.StaffID);
+
+                Lb_OldHearingLeft.SelectedIndex = -1;
+
+            }
+            else
+            {
+                MessageBox.Show("Vælg et høreapparat");
+            }
+
+        
 
             
-            Tb_OldHearingAid.Text = "Øre: " + Convert.ToString(generalSpec.EarSide) + "\r\nDato " + Convert.ToString(generalSpec.CreateDate) + "\r\nFarve : " + Convert.ToString(generalSpec.Color);
-
+            
+            //Tb_OldHearingAid.Text = "Øre: " + Convert.ToString(generalSpec.EarSide) + "\r\nDato " + Convert.ToString(generalSpec.CreateDate) + "\r\nFarve : " + Convert.ToString(generalSpec.Color);
 
             //foreach (var item in listGeneralSpecs)
             //{
@@ -98,7 +134,7 @@ namespace Presentation_Clinician
 
         }
 
-       
+
 
     }
 }
