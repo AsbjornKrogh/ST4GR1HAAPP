@@ -19,6 +19,20 @@ namespace CoreEFTest.Context
       protected override void OnConfiguring(DbContextOptionsBuilder options)
          => options.UseSqlServer("Data Source=ST-I4DAB.uni.au.dk;Initial Catalog=ST4GRP1;User ID=ST4GRP1;Password=ST4GRP1;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       #region CascadeConverter2Restrict
 
       protected override void OnModelCreating(ModelBuilder modelBuilder)

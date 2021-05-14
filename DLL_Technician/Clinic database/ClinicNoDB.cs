@@ -149,6 +149,11 @@ namespace DLL_Technician
             }
         }
 
+        public bool UpdateGeneralspec(GeneralSpec generalSpec)
+        {
+           throw new NotImplementedException();
+        }
+
         #endregion
 
         #region UC5 print

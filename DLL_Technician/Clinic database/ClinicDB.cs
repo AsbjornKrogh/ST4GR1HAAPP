@@ -54,12 +54,12 @@ namespace DLL_Technician
             TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
             TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
-            patient.TecnicalSpecs = new List<TecnicalSpec>() { TechspecR, TechspecL };
+            patient.TecnicalSpecs = new List<TecnicalSpec>() { TechspecL, TechspecR};
 
             GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Left && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
             GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == CPR && x.EarSide == Ear.Right && x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
 
-            patient.GeneralSpecs = new List<GeneralSpec>() { GenSpecR, GenSpecL };
+            patient.GeneralSpecs = new List<GeneralSpec>() { GenSpecL, GenSpecR };
             return patient;
          }
          catch

@@ -189,8 +189,8 @@ namespace DLL_Clinician
       {
          try
          {
-            //Henter genneralspec for højre og venstre øre
-            GeneralSpec generalSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Left);
+            //Henter genneralspec for højre og venstre øre        //x afgører hvilken kolonne 
+            GeneralSpec generalSpecL = _dbContext.GeneralSpecs.     OrderBy(x => x.CreateDate).         LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Left);
             GeneralSpec generalSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
             //Placere generalSpec i listen 

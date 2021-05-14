@@ -8,18 +8,29 @@ namespace DTO
 
       public int ClinicianId { get; set; }
 
+
+
       public DateTime TechSpecCreateDateTime { get; set; }
 
       public int TechnicalId { get; set; }
 
+
+
+
       public bool Printed { get; set; }
+
+      public DateTime PrintDateTime { get; set; }
+
+      public int PrintTechId { get; set; }
+
+
 
       public DateTime scanDateTime { get; set; }
 
       public int scanTechId { get; set; }
 
-      public DateTime PrintDateTime { get; set; }
 
-      public int PrintTechId { get; set; }
+
+  
    }
 }

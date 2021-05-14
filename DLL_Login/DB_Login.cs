@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Linq;
+using CoreEFTest.Context;
 using CoreEFTest.Models;
 using DTO;
 
@@ -7,6 +9,7 @@ namespace DLL_Login
 {
    public class DB_Login
    {
+      private ClinicDBContext context;
       private SqlConnection connection;
       private SqlDataReader reader;
       private SqlCommand command;
@@ -16,7 +19,7 @@ namespace DLL_Login
 
       public DB_Login()
       {
-         
+         context = new ClinicDBContext();
       }
 
       /// <summary>
@@ -71,6 +74,22 @@ namespace DLL_Login
             connection.Close();
          }
          return staffLogin;
+      }
+
+      public StaffLogin EFStaffLogin(string StaffID, string pw)
+      {
+         try
+         {
+            StaffLogin staffLogin = context.StaffLogin.Single(x => x.StaffID == Convert.ToInt32(StaffID));
+            staffLogin.Password = null;
+         }
+         catch
+         {
+            Console.Write("Database not connected or data not found");
+         }
+
+         return staffLogin;
+
       }
    }
 }
