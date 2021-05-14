@@ -34,6 +34,7 @@ namespace Presentation_Clinician
         {
             string cpr = TbCPRnumber.Text;
             _clinicianMainWindow.LoginOK = false;
+            _clinicianMainWindow.RegionLoginOK = false;
 
             if (uc2ManagePatient.CheckCPRClinicDatabase(cpr))
             {
@@ -42,7 +43,7 @@ namespace Presentation_Clinician
                 _clinicianMainWindow.Patient.CPR = cpr;
 
             }
-            else if (uc2ManagePatient.GetPatientInformationRegionsDatabase(cpr) != null)
+            else if (uc2ManagePatient.CheckCPRRegionDatabase(cpr))
             {
                 _clinicianMainWindow.RegionLoginOK = true;
                 Close();
@@ -51,6 +52,7 @@ namespace Presentation_Clinician
             else
             {
                 _clinicianMainWindow.LoginOK = false;
+                _clinicianMainWindow.RegionLoginOK = false;
                 string message = "Ugyldigt CPR";
                 string title = "Fejl";
                 MessageBoxImage error = MessageBoxImage.Error;

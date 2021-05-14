@@ -81,7 +81,7 @@ namespace Presentation_Clinician
                 TBEmail.IsEnabled = false;
                 TBPhonenumber.IsEnabled = false;
             }
-            else if (_clinicianMainWindow.RegionLoginOK)
+            if (_clinicianMainWindow.RegionLoginOK)
             {
                 patient = uc2ManagePatient.GetPatientInformationRegionsDatabase(_clinicianMainWindow.Patient.CPR);
                 TBname.Text = patient.Name;

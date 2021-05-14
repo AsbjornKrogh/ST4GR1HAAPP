@@ -101,7 +101,7 @@ namespace Presentation_Clinician
             homeWindow.ShowDialog();
             homeWindow.TbCPRnumber.Clear();
 
-            if (LoginOK)
+            if (LoginOK || RegionLoginOK)
             {
                 Main.Content = new PatientPage(this, managePatient);
                 ShowDialog();
