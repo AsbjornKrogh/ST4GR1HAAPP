@@ -17,7 +17,7 @@ namespace EFCoreTestConsoleApp
 
          ProgramHL7 program = new ProgramHL7();
 
-         //program.metode();
+         program.metode();
 
 
          #region Create (CRUD)
@@ -127,7 +127,7 @@ namespace EFCoreTestConsoleApp
             PrintDate = DateTime.Now,
          };
 
-         clinicianDbLogic.SavePrint(print, "111111-1111");
+         //clinicianDbLogic.SavePrint(print, "111111-1111");
 
          #endregion
 

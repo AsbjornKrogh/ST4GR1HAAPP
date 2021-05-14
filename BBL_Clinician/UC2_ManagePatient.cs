@@ -25,8 +25,7 @@ namespace BLL_Clinician
 
         public void SaveUpdates(Patient patient)
         {
-
-            clinicDatabase.UpdatePatient(patient);
+           clinicDatabase.UpdatePatient(patient);
         }
 
         public void SavePatientPressed(Patient patient)

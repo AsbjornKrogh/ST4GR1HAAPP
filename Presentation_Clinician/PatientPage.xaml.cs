@@ -81,27 +81,27 @@ namespace Presentation_Clinician
                 TBEmail.IsEnabled = false;
                 TBPhonenumber.IsEnabled = false;
             }
-            //else if (_clinicianMainWindow.RegionLoginOK)
-            //{
-            //    patient = uc2ManagePatient.GetPatientInformationRegionsDatabase(_clinicianMainWindow.Patient.CPR);
-            //    TBname.Text = patient.Name;
-            //    TBsurname.Text = patient.Lastname;
-            //    TBCPR.Text = patient.CPR;
-            //    TBAddress.Text = patient.Adress;
-            //    TbCity.Text = patient.City;
-            //    TbZipcode.Text = Convert.ToString(patient.zipcode);
-            //    TBPhonenumber.Text = patient.MobilNummer;
-            //    TBEmail.Text = patient.Email;
+            else if (_clinicianMainWindow.RegionLoginOK)
+            {
+                patient = uc2ManagePatient.GetPatientInformationRegionsDatabase(_clinicianMainWindow.Patient.CPR);
+                TBname.Text = patient.Name;
+                TBsurname.Text = patient.Lastname;
+                TBCPR.Text = patient.CPR;
+                TBAddress.Text = patient.Adress;
+                TbCity.Text = patient.City;
+                TbZipcode.Text = Convert.ToString(patient.zipcode);
+                TBPhonenumber.Text = patient.MobilNummer;
+                TBEmail.Text = patient.Email;
 
-            //    TBname.IsEnabled = false;
-            //    TBsurname.IsEnabled = false;
-            //    TBCPR.IsEnabled = false;
-            //    TBAddress.IsEnabled = false;
-            //    TbCity.IsEnabled = false;
-            //    TbZipcode.IsEnabled = false;
-            //    TBEmail.IsEnabled = false;
-            //    TBPhonenumber.IsEnabled = false;
-            //}
+                TBname.IsEnabled = false;
+                TBsurname.IsEnabled = false;
+                TBCPR.IsEnabled = false;
+                TBAddress.IsEnabled = false;
+                TbCity.IsEnabled = false;
+                TbZipcode.IsEnabled = false;
+                TBEmail.IsEnabled = false;
+                TBPhonenumber.IsEnabled = false;
+            }
 
 
             TBEmail.IsEnabled = true;

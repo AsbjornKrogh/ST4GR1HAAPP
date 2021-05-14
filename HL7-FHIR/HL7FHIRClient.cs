@@ -60,7 +60,6 @@ namespace HL7_FHIR
          return new Patient();
       }
 
-
       public Patient FindPatientByCPR(string CPR)
       {
          var con = new SearchParams();
