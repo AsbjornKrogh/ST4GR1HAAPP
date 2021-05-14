@@ -38,6 +38,8 @@ namespace Presentation_Technician
         private bool ScanisRunning;
         private bool SaveScanisRunning;
         private Patient patientAndHA;
+
+        
         private RawEarScan rawEarScan;
         private ModelImporter modelImporter;
         private FullRawEarScan fullRawEarScan;
@@ -160,6 +162,16 @@ namespace Presentation_Technician
 
             rawEarScan = (RawEarScan)e.Result;
 
+            //Opretter en technicalSpec
+            //if (patientAndHA.GeneralSpecs[0].EarSide == Ear.Left)
+            //{
+                uc4_scan.CreateTechnicalSpec(patientAndHA.CPR, technician.StaffID, patientAndHA.GeneralSpecs[0].EarSide);
+            //}
+            //else
+            //{
+                
+            //}
+
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
 
@@ -183,7 +195,6 @@ namespace Presentation_Technician
 
             patientAndHA.TecnicalSpecs[0].RawEarScan.Scan = new byte[bytes.Length];
             patientAndHA.TecnicalSpecs[0].RawEarScan.Scan = bytes;
-
 
 
             GemB.IsEnabled = true;
