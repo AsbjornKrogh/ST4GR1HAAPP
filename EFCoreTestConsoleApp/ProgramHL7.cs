@@ -1,6 +1,7 @@
 ﻿using Hl7.Fhir.Model;
 using HL7_FHIR;
 using System;
+using Newtonsoft.Json.Serialization;
 
 namespace EFCoreTestConsoleApp
 {

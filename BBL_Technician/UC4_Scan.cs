@@ -28,9 +28,9 @@ namespace BLL_Technician
             return scanner.connectTo3DScanner();
         }
 
-        public RawEarScan StartScanning(int ScanTechID)
+        public RawEarScan StartScanning(Ear Earside)
         {
-            return scanner.StartScanning(ScanTechID);
+            return scanner.StartScanning(Earside);
         }
 
         public bool SaveScan(RawEarScan scan, string CPR)

@@ -135,7 +135,7 @@ namespace Presentation_Technician
 
                     worker.RunWorkerCompleted += UC4ScanCompleted;
 
-                    worker.RunWorkerAsync(technician.StaffID);
+                    worker.RunWorkerAsync(patientAndHA.EarCasts[0].EarSide);
 
                     ScanLoading.Visibility = Visibility.Visible;
                     ScanLoading.Spin = true;
@@ -150,7 +150,7 @@ namespace Presentation_Technician
 
         public void UC4StartScan(object sender, DoWorkEventArgs e)
         {
-            e.Result = uc4_scan.StartScanning((int) e.Argument);
+            e.Result = uc4_scan.StartScanning((Ear)e.Argument);
         }
 
         public void UC4ScanCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -161,11 +161,11 @@ namespace Presentation_Technician
             ScannerL.Visibility = Visibility.Collapsed;
 
             rawEarScan = (RawEarScan)e.Result;
+            rawEarScan.StaffID = technician.StaffID;
 
             //Opretter en technicalSpec
             uc4_scan.CreateTechnicalSpec(patientAndHA.CPR, technician.StaffID, rawEarScan.EarSide);
             
-
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
 

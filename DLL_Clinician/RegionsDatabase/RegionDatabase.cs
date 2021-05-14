@@ -41,7 +41,7 @@ namespace DLL_Clinician
          {
             Hl7.Fhir.Model.Patient Hl7patient = (Hl7.Fhir.Model.Patient)component.Resource;
 
-            patient.Name = Hl7patient.Name[0].Given.ToString();
+
             patient.Lastname = Hl7patient.Name[0].Family;
             Date date = Hl7patient.BirthDateElement;
             //patient.Age = date.

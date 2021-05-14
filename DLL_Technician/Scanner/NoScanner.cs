@@ -34,7 +34,7 @@ namespace DLL_Technician
             }
         }
 
-        public RawEarScan StartScanning(int ScanTechID)
+        public RawEarScan StartScanning(Ear earside)
         {
             earscan = new RawEarScan();
 
@@ -42,8 +42,7 @@ namespace DLL_Technician
 
             earscan.Scan = new byte[bytes.Length];
             earscan.Scan = bytes;
-
-            earscan.StaffID = ScanTechID;
+            earscan.EarSide = earside;
             earscan.ScanDate = timeStamp.getDate();
 
             Thread.Sleep(3000);

@@ -8,7 +8,7 @@ namespace DLL_Technician
     public interface IScanner
     {
         bool connectTo3DScanner();
-        RawEarScan StartScanning(int ScanTechID);
+        RawEarScan StartScanning(Ear earside);
 
     }
 }
