@@ -143,6 +143,9 @@ namespace Presentation_Technician
 
         private void RedigerB_Click(object sender, RoutedEventArgs e)
         {
+            string type = TypeTB.Text;
+            string farve = ColorTB.Text;
+
             TypeCB.Visibility = Visibility.Visible;
             TypeTB.Visibility = Visibility.Collapsed;
             TypeCB.Background = Brushes.LightGoldenrodYellow;
@@ -152,6 +155,8 @@ namespace Presentation_Technician
                 TypeCB.Items.Add(types);
             }
 
+            TypeCB.Text = type; //Viser den type der var på forhånd i Combobox
+
             ColorCB.Visibility = Visibility.Visible;
             ColorTB.Visibility = Visibility.Collapsed;
             ColorCB.Background = Brushes.LightGoldenrodYellow;
@@ -160,6 +165,8 @@ namespace Presentation_Technician
             {
                 ColorCB.Items.Add(colors);
             }
+
+            ColorCB.Text = farve; //Viser den farve der var på forhånd i Combobox
 
             GemB.Visibility = Visibility.Visible;
             RedigerB.Visibility = Visibility.Collapsed;
