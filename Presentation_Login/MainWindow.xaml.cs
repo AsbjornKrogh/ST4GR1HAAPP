@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,14 +32,12 @@ namespace Presentation_Login
       //Class Init
       private readonly DB_BLL_Login dbBllLogin;
       private ClinicianMainWindow clinicianMainWindow;
-      private TechnicianMainWindow technicianMainWindow; 
+      private TechnicianMainWindow technicianMainWindow;
 
       public MainWindow()
       {
          InitializeComponent();
          dbBllLogin = new DB_BLL_Login();
-         clinicianMainWindow = new ClinicianMainWindow();
-         technicianMainWindow = new TechnicianMainWindow();
       }
 
       /// <summary>
@@ -58,7 +57,7 @@ namespace Presentation_Login
       /// <param name="e"></param>
       private void PasswordTB_KeyUp(object sender, KeyEventArgs e)
       {
-         if (e.Key == Key.Enter) 
+         if (e.Key == Key.Enter)
             LoginMetode();
       }
 
@@ -74,16 +73,26 @@ namespace Presentation_Login
 
          if (staffLogin.StaffStatus == Status.Technician)
          {
-             technicianMainWindow.technician = staffLogin;  
-
-             technicianMainWindow.ShowDialog();
+            technicianMainWindow = new TechnicianMainWindow();
+            technicianMainWindow.technician = staffLogin;
+            technicianMainWindow.ShowDialog();
+         }
+         else if (staffLogin.StaffStatus == Status.Clinician)
+         {
+           
+            clinicianMainWindow = new ClinicianMainWindow();
+            clinicianMainWindow.clinician = staffLogin;
+            clinicianMainWindow.ShowDialog();
          }
          else
          {
-             clinicianMainWindow.clinician = staffLogin;
-
-             clinicianMainWindow.ShowDialog();
+            MessageBox.Show("Forkert brugernavn eller password");
          }
+      }
+
+      private void LoginWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+      {
+         Environment.Exit(1);
       }
    }
 }

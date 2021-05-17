@@ -31,12 +31,11 @@ namespace DLL_Login
       public StaffLogin LoginStaff(string StaffID, string pw)
       {
          //DTO Init
-         staffLogin = new StaffLogin
-         {
-            StaffID = Convert.ToInt32(StaffID),
-            Password = null
-         };
-
+         staffLogin = new StaffLogin();
+         staffLogin.StaffID = Convert.ToInt32(StaffID);
+         staffLogin.Password = null;
+         staffLogin.StaffStatus = Status.Null;
+         
          //DB connect and query
          string connectionString = (@"Data Source=st-i4dab.uni.au.dk;Initial Catalog=" + DBlogin + ";Integrated Security=False;User ID=" + DBlogin + ";Password=" + DBlogin + ";Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
          connection = new SqlConnection(connectionString);

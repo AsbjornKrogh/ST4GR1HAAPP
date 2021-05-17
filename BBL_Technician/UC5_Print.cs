@@ -4,6 +4,7 @@ using System.Text;
 using CoreEFTest.Models;
 using DLL_Technician;
 using DLL_Technician.Printer;
+using DTO;
 
 namespace BLL_Technician
 {
@@ -37,5 +38,20 @@ namespace BLL_Technician
             return printer.StartPrint(printTechID, earScans);
         }
 
+        public bool DBPrint(FullRawEarPrint fullRawEarPrint)
+        {
+           RawEarPrint print;
+         foreach (RawEarScan rawEarScan in fullRawEarPrint.EarScans)
+           {
+            print = new RawEarPrint();
+            print.StaffID = fullRawEarPrint.PrintTechID;
+            print.EarSide = rawEarScan.EarSide;
+            print.HATechnicalSpecID = rawEarScan.HATechnicalSpecID;
+            print.PrintDate = DateTime.Now;
+            db.SavePrint(print);
+           }
+
+         return true;
+        }
     }
 }

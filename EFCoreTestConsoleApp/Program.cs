@@ -240,7 +240,22 @@ namespace EFCoreTestConsoleApp
       {
          _dbContext = dbContext;
       }
+  /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="earCast"></param>
+      public void CreateEarCast(EarCast earCast)
+      {
+         try
+         {
+            _dbContext.EarCast.Add(earCast);
+            _dbContext.SaveChanges();
+         }
+         catch 
+         {
 
+         }
+      }
       #region Patient
 
       /// <summary>
@@ -376,24 +391,7 @@ namespace EFCoreTestConsoleApp
 
       #region EarCast
 
-      /// <summary>
-      /// 
-      /// </summary>
-      /// <param name="earCast"></param>
-      public void CreateEarCast(EarCast earCast)
-      {
-         try
-         {
-            Patient patient = _dbContext.Patient.Single(x => x.CPR == earCast.PatientCPR);
-
-            _dbContext.EarCast.Add(earCast);
-            _dbContext.SaveChanges();
-         }
-         catch (Exception e)
-         {
-
-         }
-      }
+    
 
       /// <summary>
       /// 

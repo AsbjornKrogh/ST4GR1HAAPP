@@ -195,6 +195,7 @@ namespace Presentation_Technician
                 fullRawEarScan = new FullRawEarScan();
                 fullRawEarScan.scan = rawEarScan;
                 fullRawEarScan.CPR = patientAndHA.CPR;
+                fullRawEarScan.scan.StaffID = technician.StaffID;
 
                 worker.RunWorkerAsync(fullRawEarScan);
 

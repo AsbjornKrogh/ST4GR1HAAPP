@@ -20,7 +20,7 @@ namespace Presentation_Clinician
     public partial class HAInformationWindow : Window
     {
         UC3_ManageHA _manageHA = new UC3_ManageHA();
-        ClinicianMainWindow _clinicianMain = new ClinicianMainWindow();
+        private ClinicianMainWindow _clinicianMain;
         private Patient _patient = new Patient();
         private GeneralSpec generalSpec;
         private List<GeneralSpec> listGeneralSpecs;

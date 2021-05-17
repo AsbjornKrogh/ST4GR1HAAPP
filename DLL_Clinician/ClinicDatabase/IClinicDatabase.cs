@@ -27,13 +27,10 @@ namespace DLL_Clinician
 
         List<GeneralSpec> GetLatestGeneralSpecs(string CPR);
 
-        //muligvis - men skal ikke laves endnu
-        //GetHearingTestPDF(string CPR)
+        void CreateEarCast(EarCast earCast);
 
 
 
-        //UC6
-        //List<ProcesSpec> GetProcesInfo(string CPR); 
 
 
 

@@ -36,6 +36,7 @@ namespace Presentation_Technician
         private List<TecnicalSpec> patientInformations;
         private RawEarScan rawEarScan;
         private RawEarPrint printedEarPrint;
+        private FullRawEarPrint fullRawEarPrint; 
 
 
         public PrintPage(IClinicDB db, IPrinter printer, StaffLogin technician)
@@ -207,16 +208,15 @@ namespace Presentation_Technician
                 worker.RunWorkerCompleted += UC5AddToPrintQueueCompleted;
                 
 
-                FullRawEarPrint fullRawEarPrint = new FullRawEarPrint();
+                fullRawEarPrint = new FullRawEarPrint();
                 fullRawEarPrint.PrintTechID = technician.StaffID;
+                fullRawEarPrint.CPR = CPRnummerTB.Text;
                 fullRawEarPrint.EarScans = new List<RawEarScan>();
                 
 
                 if (PatientInformationLB.Items.Count > 0)
                 {
-                  
-
-                    if (PatientInformationLB.SelectedIndex == 0)
+                   if (PatientInformationLB.SelectedIndex == 0)
                     {
                         foreach (var tecnical in patientInformationsAll)
                         {
@@ -268,6 +268,7 @@ namespace Presentation_Technician
             else
             {
                 MessageBox.Show("Øreproppen er tilføjet til printkøen");
+                uc5_print.DBPrint(fullRawEarPrint);
             }
         }
 
