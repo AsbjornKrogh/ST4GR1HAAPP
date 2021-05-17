@@ -29,6 +29,7 @@ namespace Presentation_Technician
         private IClinicDB db;
         private bool isRunning;
         private Patient patientAndHA;
+        private int count = 0;
 
         public HAInfoPage(IClinicDB db)
         {
@@ -150,22 +151,26 @@ namespace Presentation_Technician
             TypeTB.Visibility = Visibility.Collapsed;
             TypeCB.Background = Brushes.LightGoldenrodYellow;
 
-            foreach (var types in Enum.GetValues(typeof(Material)))
-            {
-                TypeCB.Items.Add(types);
-            }
-
-            TypeCB.Text = type; //Viser den type der var på forhånd i Combobox
-
             ColorCB.Visibility = Visibility.Visible;
             ColorTB.Visibility = Visibility.Collapsed;
             ColorCB.Background = Brushes.LightGoldenrodYellow;
+            
 
-            foreach (var colors in Enum.GetValues(typeof(PlugColor)))
+            if (count == 0)
             {
-                ColorCB.Items.Add(colors);
+                foreach (var types in Enum.GetValues(typeof(Material)))
+                {
+                    TypeCB.Items.Add(types);
+                }
+                
+                foreach (var colors in Enum.GetValues(typeof(PlugColor)))
+                {
+                    ColorCB.Items.Add(colors);
+                }
+                count++;
             }
 
+            TypeCB.Text = type; //Viser den type der var på forhånd i Combobox
             ColorCB.Text = farve; //Viser den farve der var på forhånd i Combobox
 
             GemB.Visibility = Visibility.Visible;
