@@ -80,6 +80,7 @@ namespace Presentation_Clinician
                 TbZipcode.IsEnabled = false;
                 TBEmail.IsEnabled = false;
                 TBPhonenumber.IsEnabled = false;
+                BtnSave.IsEnabled = false;
             }
             if (_clinicianMainWindow.RegionLoginOK)
             {
@@ -101,13 +102,23 @@ namespace Presentation_Clinician
                 TbZipcode.IsEnabled = false;
                 TBEmail.IsEnabled = false;
                 TBPhonenumber.IsEnabled = false;
+                bntUpdate.IsEnabled = false;
             }
 
 
-            TBEmail.IsEnabled = true;
+            
+        }
+
+        private void btn_RedigerTele_Click(object sender, RoutedEventArgs e)
+        {
             TBPhonenumber.IsEnabled = true;
             TBPhonenumber.Focus();
+        }
 
+        private void Btn_RedigerEmail_Click(object sender, RoutedEventArgs e)
+        {
+            TBEmail.IsEnabled = true;
+            TBEmail.Focus();
         }
     }
 }
