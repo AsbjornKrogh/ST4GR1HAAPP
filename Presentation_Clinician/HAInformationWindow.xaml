@@ -17,18 +17,17 @@
         <ListBox x:Name="Lb_OldHearingLeft" Margin="241,102,18,184" IsSynchronizedWithCurrentItem="False"/>
         <Label Content="Venstre øre" HorizontalAlignment="Left" Margin="241,71,0,0" VerticalAlignment="Top" Width="163"/>
         <Button x:Name="btn_ShowOldAid" Content="Vis " HorizontalAlignment="Center" Margin="0,297,0,0" VerticalAlignment="Top" Width="78" Click="btn_ShowOldAid_Click" Height="28"/>
-        <TextBox x:Name="Tb_OldHearingAid" Grid.Column="2" HorizontalAlignment="Left" Margin="61,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" Height="99"/>
-        <TextBox x:Name="Tb_EarSide" Grid.Column="2" HorizontalAlignment="Left" Margin="150,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Øre" Grid.Column="2" HorizontalAlignment="Left" Margin="61,213,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_Color" Grid.Column="2" HorizontalAlignment="Left" Margin="150,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Farve" Grid.Column="2" HorizontalAlignment="Left" Margin="61,262,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_Type" Grid.Column="2" HorizontalAlignment="Left" Margin="150,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Type" Grid.Column="2" HorizontalAlignment="Left" Margin="61,239,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_ID" Grid.Column="2" HorizontalAlignment="Left" Margin="150,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="ID" Grid.Column="2" HorizontalAlignment="Left" Margin="61,285,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_CreateDate" Grid.Column="2" HorizontalAlignment="Left" Margin="150,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Dato" Grid.Column="2" HorizontalAlignment="Left" Margin="61,311,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Tb_StaffID" Grid.Column="2" HorizontalAlignment="Left" Margin="150,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Personale ID" Grid.Column="2" HorizontalAlignment="Left" Margin="61,335,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_EarSide" Grid.Column="2" HorizontalAlignment="Left" Margin="150,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Øre" Grid.Column="2" HorizontalAlignment="Left" Margin="61,114,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_Color" Grid.Column="2" HorizontalAlignment="Left" Margin="150,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Farve" Grid.Column="2" HorizontalAlignment="Left" Margin="61,164,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_Type" Grid.Column="2" HorizontalAlignment="Left" Margin="150,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Type" Grid.Column="2" HorizontalAlignment="Left" Margin="61,140,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_ID" Grid.Column="2" HorizontalAlignment="Left" Margin="150,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="ID" Grid.Column="2" HorizontalAlignment="Left" Margin="61,186,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_CreateDate" Grid.Column="2" HorizontalAlignment="Left" Margin="150,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Dato" Grid.Column="2" HorizontalAlignment="Left" Margin="61,213,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Tb_StaffID" Grid.Column="2" HorizontalAlignment="Left" Margin="150,241,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Personale ID" Grid.Column="2" HorizontalAlignment="Left" Margin="61,237,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

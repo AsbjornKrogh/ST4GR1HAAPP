@@ -100,7 +100,7 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Type: " Grid.Column="1"></Label>
-                        <TextBox x:Name="TypeTB" Grid.Column="2" Margin="0,5,5,0">
+                        <TextBox x:Name="TypeTB" Grid.Column="2" Margin="0,5,5,0" IsEnabled="False">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -125,7 +125,7 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Farve: " Grid.Column="1"></Label>
-                        <TextBox x:Name="ColorTB" Grid.Column="2" Margin="0,5,5,0" Background="White" Visibility="Visible">
+                        <TextBox x:Name="ColorTB" Grid.Column="2" Margin="0,5,5,0" Background="White" Visibility="Visible" IsEnabled="False">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -149,7 +149,7 @@
                             <ColumnDefinition Width="137*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Dato for aftryk: " Grid.ColumnSpan="3" Margin="21,0,32,0"/>
-                        <TextBox x:Name="GenDateTB" Grid.Column="2" Margin="0,5,5,0" Grid.ColumnSpan="2">
+                        <TextBox x:Name="GenDateTB" Grid.Column="2" Margin="0,5,5,0" Grid.ColumnSpan="2" IsEnabled="False">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -167,7 +167,7 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="1" Content="Dato:"></Label>
-                        <TextBox x:Name="TechDateTB" Grid.Column="2"  Margin="0,5,5,0">
+                        <TextBox x:Name="TechDateTB" Grid.Column="2"  Margin="0,5,5,0" IsEnabled="False">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5 5 5 5"/>
@@ -183,7 +183,7 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="1" Content="Printstatus:"></Label>
-                        <TextBox x:Name="PrintStatusTB" Grid.Column="2"  Margin="0,5,5,0">
+                        <TextBox x:Name="PrintStatusTB" Grid.Column="2"  Margin="0,5,5,0" IsEnabled="False">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5 5 5 5"/>

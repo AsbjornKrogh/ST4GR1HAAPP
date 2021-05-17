@@ -26,9 +26,10 @@ namespace Presentation_Technician
       private UC3_ShowHATech uc3_ShowHATech;
       private UC3_UpdateHATech uc3_UpdateHATech;
 
-      private IClinicDB db;
-      private bool isRunning;
-      private Patient patientAndHA;
+        private IClinicDB db;
+        private bool isRunning;
+        private Patient patientAndHA;
+        private int count = 0;
 
       public HAInfoPage(IClinicDB db)
       {
@@ -160,29 +161,40 @@ namespace Presentation_Technician
          }
       }
 
-      private void RedigerB_Click(object sender, RoutedEventArgs e)
-      {
-         TypeCB.Visibility = Visibility.Visible;
-         TypeTB.Visibility = Visibility.Collapsed;
-         TypeCB.Background = Brushes.LightGoldenrodYellow;
+        private void RedigerB_Click(object sender, RoutedEventArgs e)
+        {
+            string type = TypeTB.Text;
+            string farve = ColorTB.Text;
 
-         foreach (var types in Enum.GetValues(typeof(Material)))
-         {
-            TypeCB.Items.Add(types);
-         }
+            TypeCB.Visibility = Visibility.Visible;
+            TypeTB.Visibility = Visibility.Collapsed;
+            TypeCB.Background = Brushes.LightGoldenrodYellow;
 
-         ColorCB.Visibility = Visibility.Visible;
-         ColorTB.Visibility = Visibility.Collapsed;
-         ColorCB.Background = Brushes.LightGoldenrodYellow;
+            ColorCB.Visibility = Visibility.Visible;
+            ColorTB.Visibility = Visibility.Collapsed;
+            ColorCB.Background = Brushes.LightGoldenrodYellow;
+            
 
-         foreach (var colors in Enum.GetValues(typeof(PlugColor)))
-         {
-            ColorCB.Items.Add(colors);
-         }
+            if (count == 0)
+            {
+                foreach (var types in Enum.GetValues(typeof(Material)))
+                {
+                    TypeCB.Items.Add(types);
+                }
+                
+                foreach (var colors in Enum.GetValues(typeof(PlugColor)))
+                {
+                    ColorCB.Items.Add(colors);
+                }
+                count++;
+            }
 
-         GemB.Visibility = Visibility.Visible;
-         RedigerB.Visibility = Visibility.Collapsed;
-      }
+            TypeCB.Text = type; //Viser den type der var på forhånd i Combobox
+            ColorCB.Text = farve; //Viser den farve der var på forhånd i Combobox
+
+            GemB.Visibility = Visibility.Visible;
+            RedigerB.Visibility = Visibility.Collapsed;
+        }
 
       private void GemB_Click(object sender, RoutedEventArgs e)
       {
