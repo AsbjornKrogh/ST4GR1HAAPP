@@ -84,7 +84,7 @@ namespace Presentation_Clinician
             if (_clinicianMainWindow.RegionLoginOK)
             {
                 patient = uc2ManagePatient.GetPatientInformationRegionsDatabase(_clinicianMainWindow.Patient.CPR);
-                TBname.Text = patient.Name;
+                TBname.Text = Convert.ToString(patient.Name);
                 TBsurname.Text = patient.Lastname;
                 TBCPR.Text = patient.CPR;
                 TBAddress.Text = patient.Adress;
