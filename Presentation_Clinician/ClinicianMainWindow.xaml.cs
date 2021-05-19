@@ -51,6 +51,7 @@ namespace Presentation_Clinician
       }
       public void Window_Loaded(object sender, RoutedEventArgs e)
       {
+         StaffID = clinician.StaffID;
           Hide();
           CheckPatientCPR();
       }

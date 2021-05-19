@@ -252,6 +252,11 @@ namespace DLL_Technician
             return procesSpecs;
         }
 
+        public bool SavePrint(RawEarPrint rawEarPrint)
+        {
+           return true;
+        }
+
         #endregion
 
     }

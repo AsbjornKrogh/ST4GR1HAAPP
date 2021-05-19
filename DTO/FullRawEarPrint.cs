@@ -9,5 +9,6 @@ namespace DTO
     {
         public int PrintTechID;
         public List<RawEarScan> EarScans;
+        public string CPR;
     }
 }

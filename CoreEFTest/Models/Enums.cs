@@ -10,7 +10,7 @@ namespace CoreEFTest.Models
 
    public enum Material { Silhuet, AntiAllergi, Blød, Titan, Termotec }
 
-   public enum Status { Clinician, Technician }
+   public enum Status { Clinician, Technician, Null }
 
 
 }

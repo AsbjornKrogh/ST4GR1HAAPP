@@ -13,7 +13,7 @@ namespace DLL_Technician
         private ITimeStamp timeStamp;
 
         //Højre øreafstøbning
-        //private const string MODEL_PATH = "Mold_for_Ear_V1.7_R.stl";
+        private const string MODEL_PATH = "Mold_for_Ear_V1.7_R.stl";
 
         public NoScanner(ITimeStamp timeStamp)
         {
@@ -34,16 +34,15 @@ namespace DLL_Technician
             }
         }
 
-        public RawEarScan StartScanning(int ScanTechID)
+        public RawEarScan StartScanning(Ear earside)
         {
             earscan = new RawEarScan();
 
-            //byte[] bytes = System.IO.File.ReadAllBytes(MODEL_PATH);
+            byte[] bytes = System.IO.File.ReadAllBytes(MODEL_PATH);
 
-
-            //earscan.Scan = new byte[bytes.Length];
-            //earscan.Scan = bytes;
-            earscan.StaffID = ScanTechID;
+            earscan.Scan = new byte[bytes.Length];
+            earscan.Scan = bytes;
+            earscan.EarSide = earside;
             earscan.ScanDate = timeStamp.getDate();
 
             Thread.Sleep(3000);

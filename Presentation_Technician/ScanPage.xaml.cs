@@ -135,7 +135,7 @@ namespace Presentation_Technician
 
                     worker.RunWorkerCompleted += UC4ScanCompleted;
 
-                    worker.RunWorkerAsync(technician.StaffID);
+                    worker.RunWorkerAsync(patientAndHA.EarCasts[0].EarSide);
 
                     ScanLoading.Visibility = Visibility.Visible;
                     ScanLoading.Spin = true;
@@ -150,7 +150,7 @@ namespace Presentation_Technician
 
         public void UC4StartScan(object sender, DoWorkEventArgs e)
         {
-            e.Result = uc4_scan.StartScanning((int) e.Argument);
+            e.Result = uc4_scan.StartScanning((Ear)e.Argument);
         }
 
         public void UC4ScanCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -161,41 +161,15 @@ namespace Presentation_Technician
             ScannerL.Visibility = Visibility.Collapsed;
 
             rawEarScan = (RawEarScan)e.Result;
+            rawEarScan.StaffID = technician.StaffID;
 
             //Opretter en technicalSpec
-            //if (patientAndHA.GeneralSpecs[0].EarSide == Ear.Left)
-            //{
-                uc4_scan.CreateTechnicalSpec(patientAndHA.CPR, technician.StaffID, patientAndHA.GeneralSpecs[0].EarSide);
-            //}
-            //else
-            //{
-                
-            //}
-
+            uc4_scan.CreateTechnicalSpec(patientAndHA.CPR, technician.StaffID, rawEarScan.EarSide);
+            
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
 
             Visual3D.Content = modelImporter.Load(MODEL_PATH);
-
-            //byte[] bytes;
-            //stlDocument.SaveAsBinary(MODEL_PATH);
-
-
-            //var _object = modelImporter.Load(MODEL_PATH);// Dette objekt er ikke serilaziable
-
-
-            byte[] bytes = System.IO.File.ReadAllBytes(MODEL_PATH);
-            
-            //using (var _MemoryStream = new MemoryStream())
-            //{
-            //    IFormatter _BinaryFormatter = new BinaryFormatter();
-            //    _BinaryFormatter.Serialize(_MemoryStream, str);
-            //    bytes = _MemoryStream.ToArray();
-            //}
-
-            patientAndHA.TecnicalSpecs[0].RawEarScan.Scan = new byte[bytes.Length];
-            patientAndHA.TecnicalSpecs[0].RawEarScan.Scan = bytes;
-
 
             GemB.IsEnabled = true;
         }
@@ -221,6 +195,7 @@ namespace Presentation_Technician
                 fullRawEarScan = new FullRawEarScan();
                 fullRawEarScan.scan = rawEarScan;
                 fullRawEarScan.CPR = patientAndHA.CPR;
+                fullRawEarScan.scan.StaffID = technician.StaffID;
 
                 worker.RunWorkerAsync(fullRawEarScan);
 

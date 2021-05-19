@@ -247,6 +247,22 @@ namespace DLL_Clinician
          return _dbContext.GeneralSpecs.Contains(generalSpec);
       }
 
+      /// <summary>
+      /// Laver en ny earcast i Databasen
+      /// </summary>
+      /// <param name="earCast"></param>
+      public void CreateEarCast(EarCast earCast)
+      {
+         try
+         {
+            _dbContext.EarCast.Add(earCast);
+            _dbContext.SaveChanges();
+         }
+         catch
+         {
+
+         }
+      }
 
       /// <summary>
       /// Makes no sence to make <3 :*

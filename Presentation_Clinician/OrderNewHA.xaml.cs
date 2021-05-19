@@ -14,43 +14,53 @@ using BLL_Clinician;
 
 namespace Presentation_Clinician
 {
-    /// <summary>
-    /// Interaction logic for OrderNewHA.xaml
-    /// </summary>
-    public partial class OrderNewHA : Window
-    {
-        UC3_ManageHA manageHA = new UC3_ManageHA();
-        ClinicianMainWindow _clinicianMainWindow= new ClinicianMainWindow();
-        GeneralSpec generalSpec = new GeneralSpec();
+   /// <summary>
+   /// Interaction logic for OrderNewHA.xaml
+   /// </summary>
+   public partial class OrderNewHA : Window
+   {
+      UC3_ManageHA manageHA = new UC3_ManageHA();
 
-        public OrderNewHA()
-        {
-            InitializeComponent();
-        }
+      private ClinicianMainWindow _clinicianMainWindow;
+      private GeneralSpec generalSpec;
+      private EarCast earCast;
 
-        private void BtnSave_Click(object sender, RoutedEventArgs e)
-        {
-            if (Cb_LeftEar.IsChecked == true)
-            {
-                generalSpec.EarSide = Ear.Left;
-                generalSpec.CPR = _clinicianMainWindow.Patient.CPR;
-                generalSpec.CreateDate = DateTime.Now;
-                generalSpec.StaffID = _clinicianMainWindow.StaffID;
-                CbNewColor.Text = generalSpec.Color.ToString();
-                CbNewType.Text = generalSpec.Type.ToString();
-            }
-            else if (Cb_RightEar.IsChecked == true)
-            {
-                generalSpec.EarSide = Ear.Right;
-                generalSpec.CPR = _clinicianMainWindow.Patient.CPR;
-                generalSpec.CreateDate = DateTime.Now;
-                generalSpec.StaffID = _clinicianMainWindow.StaffID;
-                CbNewColor.Text = generalSpec.Color.ToString();
-                CbNewType.Text = generalSpec.Type.ToString();
-            }
+      public OrderNewHA(ClinicianMainWindow clinicianMainWindow)
+      {
+         _clinicianMainWindow = clinicianMainWindow;
+         InitializeComponent();
+      }
 
-            manageHA.CreateHA(generalSpec);
-            MessageBox.Show("Høreapparatet er bestilt");
-        }
-    }
+      private void BtnSave_Click(object sender, RoutedEventArgs e)
+      {
+         generalSpec = new GeneralSpec();
+         earCast = new EarCast();
+
+         if (Cb_LeftEar.IsChecked == true)
+         {
+            generalSpec.EarSide = Ear.Left;
+            earCast.EarSide = EarCast.Ear.Left;
+         }
+         else if (Cb_RightEar.IsChecked == true)
+         {
+            generalSpec.EarSide = Ear.Right;
+            earCast.EarSide = EarCast.Ear.Right;
+         }
+
+         generalSpec.CPR = _clinicianMainWindow.Patient.CPR;
+         generalSpec.CreateDate = DateTime.Now;
+         generalSpec.StaffID = _clinicianMainWindow.StaffID;
+         CbNewColor.Text = generalSpec.Color.ToString();
+         CbNewType.Text = generalSpec.Type.ToString();
+
+         earCast.CastDate = DateTime.Now;
+         earCast.PatientCPR = _clinicianMainWindow.Patient.CPR;
+
+         manageHA.CreateHA(generalSpec);
+
+         manageHA.createEC(earCast);
+
+         MessageBox.Show("Høreapparatet er bestilt");
+      }
+   }
 }

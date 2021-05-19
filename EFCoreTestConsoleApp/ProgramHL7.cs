@@ -1,6 +1,7 @@
 ﻿using Hl7.Fhir.Model;
 using HL7_FHIR;
 using System;
+using Newtonsoft.Json.Serialization;
 
 namespace EFCoreTestConsoleApp
 {
@@ -25,16 +26,16 @@ namespace EFCoreTestConsoleApp
 
          //CPR
          Identifier id = new Identifier();
-         id.Value = "123456-7891";
+         id.Value = "123456-1234";
 
          newHL7Patient.Identifier.Add(id);
 
          //Adresse
          Address address = new Address();
-         address.City = "Aarhus";
+         address.City = "Aarhus N";
          address.Country = "DK";
-         address.PostalCode = "8000";
-         address.District = "Aarhusvej 15";
+         address.PostalCode = "8200";
+         address.District = "Aarhusvej 17";
 
          newHL7Patient.Address.Add(address);
 
@@ -45,7 +46,7 @@ namespace EFCoreTestConsoleApp
 
          client.CreateHl7FHIRPatient(newHL7Patient);
 
-         Hl7.Fhir.Model.Patient patient = client.FindPatientByCPR("123456-7891");
+         Hl7.Fhir.Model.Patient patient = client.FindPatientByCPR("123456-1234");
 
 
          //client.FindPatientByCPR("250997-0000");

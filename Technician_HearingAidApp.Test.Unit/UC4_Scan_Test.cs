@@ -1,4 +1,5 @@
 using BLL_Technician;
+using CoreEFTest.Models;
 using DLL_Technician;
 using NUnit.Framework;
 using NSubstitute;
@@ -36,9 +37,9 @@ namespace Technician_HearingAidApp.Test.Unit
         [Test]
         public void UC4_Scan_StartScanner_ScannerRecievesStartCall()
         {
-            uut.StartScanning(1);
+            uut.StartScanning(Ear.Left);
 
-            _scanner.Received().StartScanning(1);
+            _scanner.Received().StartScanning(Ear.Left);
         }
 
 

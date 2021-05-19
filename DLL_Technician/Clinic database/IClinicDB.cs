@@ -31,9 +31,8 @@ namespace DLL_Technician
       List<TecnicalSpec> GetEarScans();
 
       //UC6
-      List<ProcesSpec> GetProcesInfo(string CPR); 
+      List<ProcesSpec> GetProcesInfo(string CPR);
 
-
-
+      bool SavePrint(RawEarPrint rawEarPrint);
    }
 }

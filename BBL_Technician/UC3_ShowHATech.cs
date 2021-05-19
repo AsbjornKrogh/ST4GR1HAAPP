@@ -15,7 +15,6 @@ namespace BLL_Technician
            this.clinicDB = clinicDB;
        }
 
-
        public Patient GetPatient(string CPR)
        {
            return clinicDB.GetPatientWithGeneralSpecAndTechnicalSpec(CPR);

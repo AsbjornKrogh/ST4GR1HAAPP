@@ -22,7 +22,10 @@ namespace Presentation_Clinician
     {
         UC3_ManageHA manageHA = new UC3_ManageHA();
 
-        ClinicianMainWindow _clinicianMainWindow = new ClinicianMainWindow();
+        //todo Her gør i det rigtigt. Se linje 36 og construktor :D - Dette skal overføres til OrderNewHA
+        private ClinicianMainWindow _clinicianMainWindow;
+
+
         HAInformationWindow _haInformation;
         public UC2_ManagePatient _managePatient;
         private HearingTestWindow _hearingTest;
@@ -88,7 +91,7 @@ namespace Presentation_Clinician
 
         private void BtnOrderHearingAids1_Click(object sender, RoutedEventArgs e)
         {
-            orderNewHa = new OrderNewHA();
+            orderNewHa = new OrderNewHA(_clinicianMainWindow);
             orderNewHa.Show();
         }
     }

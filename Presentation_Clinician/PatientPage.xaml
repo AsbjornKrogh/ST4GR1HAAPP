@@ -44,5 +44,7 @@
         <TextBox x:Name="TbCity" HorizontalAlignment="Left" Margin="170,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBox x:Name="TbZipcode" HorizontalAlignment="Left" Margin="170,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="Postnummer" HorizontalAlignment="Left" Margin="85,200,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_RedigerTele" Content="Rediger" HorizontalAlignment="Left" Margin="605,47,0,0" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.519,0.451" Click="btn_RedigerTele_Click"/>
+        <Button x:Name="Btn_RedigerEmail" Content="Rediger" HorizontalAlignment="Left" Margin="606,82,0,0" VerticalAlignment="Top" Width="59" Click="Btn_RedigerEmail_Click"/>
     </Grid>
 </Page>
