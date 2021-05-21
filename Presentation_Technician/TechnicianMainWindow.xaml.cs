@@ -16,6 +16,7 @@ using CoreEFTest.Context;
 using CoreEFTest.Models;
 using DLL_Technician;
 using DLL_Technician.Printer;
+using Presentation_ShowProcess;
 
 namespace Presentation_Technician
 {
@@ -105,7 +106,7 @@ namespace Presentation_Technician
 
         private void ProcesB_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ProcessPage(db,technician);
+            Main.Content = new UC6_showProcess(db,technician);
             VelkommenL.Visibility = Visibility.Collapsed;
             ProcesB.IsEnabled = false;
 
