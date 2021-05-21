@@ -58,7 +58,7 @@ namespace BLL_Clinician
 
         public bool CheckCPRRegionDatabase(string CPRnumber)
         {
-            if (regionDatabase.CheckCPR(CPRnumber) == true)
+            if (regionDatabase.CheckCPR(CPRnumber))
             {
                 RegionCPRCorrect = true;
             }

@@ -43,7 +43,7 @@ namespace Presentation_Clinician
                 _clinicianMainWindow.Patient.CPR = cpr;
 
             }
-            else if (uc2ManagePatient.CheckCPRRegionDatabase(cpr))
+            else if (uc2ManagePatient.GetPatientInformationRegionsDatabase(cpr) != null)
             {
                 _clinicianMainWindow.RegionLoginOK = true;
                 Close();

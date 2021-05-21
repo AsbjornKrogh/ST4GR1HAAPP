@@ -17,8 +17,9 @@ namespace EFCoreTestConsoleApp
          //Navn givning
          var name = new Hl7.Fhir.Model.HumanName();
          name.Use = Hl7.Fhir.Model.HumanName.NameUse.Official;
-         name.Prefix = new string[] { "Mr" };
-         name.Given = new string[] { "Test" };
+         //name.Prefix = new string[] { "Mr" };
+         //name.Given = new string[] { "Test" };
+         name.Text = "Test12";
          name.Family = "Testensen";
 
          newHL7Patient.Name.Add(name);
