@@ -24,7 +24,8 @@ namespace CoreEFTest.Models
         [Required]
         [ForeignKey("StaffLogin")]
         public int StaffID { get; set; }
-        //public StaffLogin StaffLogin { get; set; }
+       
+        public StaffLogin StaffLogin { get; set; }
 
         [Required]
         [ForeignKey("Patient")]
@@ -39,10 +40,10 @@ namespace CoreEFTest.Models
         public GeneralSpec GeneralSpec { get; set; }
 
         //[ForeignKey("RawEarScan")]
-       // public int ScanID { get; set; }
+        public int ScanID { get; set; }
         
         public RawEarScan RawEarScan { get; set; }
 
-        //public List<RawEarPrint> EarPrints { get; set; }
+        public List<RawEarPrint> EarPrints { get; set; }
     }
 }
