@@ -38,12 +38,13 @@ namespace BLL_Technician
             return clinicDB.SaveScan(scan, CPR);
         }
 
-        public bool CreateTechnicalSpec(Patient patient, int ScanTechID, Ear earSide)
+        public bool CreateTechnicalSpec(Patient patient, StaffLogin ScanTechID, Ear earSide)
         {
             TecnicalSpec techSpec = new TecnicalSpec();
             techSpec.CPR = patient.CPR;
             techSpec.Patient = patient;
-            techSpec.StaffID = ScanTechID;
+            techSpec.StaffID = ScanTechID.StaffID;
+            techSpec.StaffLogin = ScanTechID; 
             techSpec.Printed = false;
             techSpec.EarSide = earSide; 
             techSpec.CreateDate = DateTime.Now;
@@ -51,7 +52,6 @@ namespace BLL_Technician
             //null values
             techSpec.EarPrints = new List<RawEarPrint>();
             techSpec.RawEarScan = new RawEarScan();
-            techSpec.StaffLogin = new StaffLogin();
             techSpec.ScanID = 0;
            
             return clinicDB.SaveTechnicalSpec(techSpec);
