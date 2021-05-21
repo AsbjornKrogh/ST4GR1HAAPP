@@ -38,13 +38,15 @@ namespace BLL_Technician
             return clinicDB.SaveScan(scan, CPR);
         }
 
-        public bool CreateTechnicalSpec(string CPR, int ScanTechID, Ear earSide)
+        public bool CreateTechnicalSpec(Patient patient, int ScanTechID, Ear earSide)
         {
             TecnicalSpec techSpec = new TecnicalSpec();
-            techSpec.CPR = CPR;
+            techSpec.CPR = patient.CPR;
+            techSpec.Patient = patient;
             techSpec.StaffID = ScanTechID;
             techSpec.Printed = false;
             techSpec.EarSide = earSide; 
+            techSpec.CreateDate = DateTime.Now;
 
             return clinicDB.SaveTechnicalSpec(techSpec);
         }

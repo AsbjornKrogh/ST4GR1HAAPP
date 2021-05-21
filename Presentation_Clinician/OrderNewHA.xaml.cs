@@ -39,12 +39,12 @@ namespace Presentation_Clinician
          if (Cb_LeftEar.IsChecked == true)
          {
             generalSpec.EarSide = Ear.Left;
-            earCast.EarSide = EarCast.Ear.Left;
+            earCast.EarSide = Ear.Left;
          }
          else if (Cb_RightEar.IsChecked == true)
          {
             generalSpec.EarSide = Ear.Right;
-            earCast.EarSide = EarCast.Ear.Right;
+            earCast.EarSide = Ear.Right;
          }
 
          generalSpec.CPR = _clinicianMainWindow.Patient.CPR;
