@@ -41,6 +41,8 @@ namespace Presentation_Clinician
         {
             patient = uc2ManagePatient.GetPatientInformationRegionsDatabase(_clinicianMainWindow.Patient.CPR);
             uc2ManagePatient.SavePatientPressed(patient);
+            MessageBox.Show("Patienten er gemt i databasen");
+
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
