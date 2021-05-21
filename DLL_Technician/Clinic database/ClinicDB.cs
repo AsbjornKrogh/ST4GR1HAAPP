@@ -78,8 +78,8 @@ namespace DLL_Technician
       /// <returns></returns>
       public bool SaveTechnicalSpec(TecnicalSpec techSpec)
       {
-         try
-         {
+         //try
+         //{
             GeneralSpec generalSpec = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == techSpec.CPR && x.EarSide == techSpec.EarSide);
 
             techSpec.HAGenerelSpecID = generalSpec.HAGeneralSpecID;
@@ -88,11 +88,11 @@ namespace DLL_Technician
             _dbContext.SaveChanges();
 
             return _dbContext.TecnicalSpecs.Contains(techSpec);
-      }
-         catch
-         {
-            return false;
-         }
+      //}
+      //   catch
+      //   {
+      //      return false;
+      //   }
       }
 
       /// <summary>

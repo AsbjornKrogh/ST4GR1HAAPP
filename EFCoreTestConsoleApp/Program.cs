@@ -46,7 +46,7 @@ namespace EFCoreTestConsoleApp
          EarCast newCast = new EarCast()
          {
             PatientCPR = "111111-1111",
-            EarSide = EarCast.Ear.Right,
+            EarSide = Ear.Right,
          };
 
          //clinicianDbLogic.CreateEarCast(newCast);

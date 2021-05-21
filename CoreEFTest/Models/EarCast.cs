@@ -7,9 +7,7 @@ using System.Text;
 namespace CoreEFTest.Models
 {
    public class EarCast
-   {
-      public enum Ear { Left, Right }
-
+   { 
       [Key]
       public int EarCastID { get; set; }
 

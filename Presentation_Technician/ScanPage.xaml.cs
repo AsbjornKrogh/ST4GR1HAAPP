@@ -60,7 +60,7 @@ namespace Presentation_Technician
             this.scanner = scanner;
             this.technician = technician;
 
-            uc4_scan = new UC4_Scan(db, scanner);
+            uc4_scan = new UC4_Scan(this.db, scanner);
 
             modelImporter = new ModelImporter();
             binaryFormatter = new BinaryFormatter();
@@ -164,7 +164,7 @@ namespace Presentation_Technician
             rawEarScan.StaffID = technician.StaffID;
 
             //Opretter en technicalSpec
-            uc4_scan.CreateTechnicalSpec(patientAndHA.CPR, technician.StaffID, rawEarScan.EarSide);
+            uc4_scan.CreateTechnicalSpec(patientAndHA, technician.StaffID, rawEarScan.EarSide);
             
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
