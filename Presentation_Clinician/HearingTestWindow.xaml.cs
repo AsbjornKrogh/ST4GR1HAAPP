@@ -25,11 +25,6 @@ namespace Presentation_Clinician
         {
             InitializeComponent();
 
-            //FileStream stream = new FileStream(@"Audiogram_Patient1.pdf", FileMode.Open);
-
-            ////Load PDF file using stream.
-            //pdfViewer.Load(stream);
-
             pdfViewer.ItemSource = @"Audiogram_Patient1.pdf";
 
         }
