@@ -83,11 +83,7 @@ namespace Presentation_Clinician
             }
         }
 
-        //private void BtnOrderHearingAids_Click(object sender, RoutedEventArgs e)
-        //{
-        //    orderNewHa = new OrderNewHA();
-        //    orderNewHa.Show();
-        //}
+      
 
         private void BtnOrderHearingAids1_Click(object sender, RoutedEventArgs e)
         {

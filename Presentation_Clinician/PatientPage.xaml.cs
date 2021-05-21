@@ -39,8 +39,16 @@ namespace Presentation_Clinician
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            patient = uc2ManagePatient.GetPatientInformationRegionsDatabase(_clinicianMainWindow.Patient.CPR);
-            uc2ManagePatient.SavePatientPressed(patient);
+            int count = 0;
+            if (BtnSave.IsPressed)
+            {
+                patient = uc2ManagePatient.GetPatientInformationRegionsDatabase(_clinicianMainWindow.Patient.CPR);
+                uc2ManagePatient.SavePatientPressed(patient);
+                MessageBox.Show("Patienten er gemt i databasen");
+                
+            }
+
+
         }
 
         private void bntUpdate_Click(object sender, RoutedEventArgs e)
