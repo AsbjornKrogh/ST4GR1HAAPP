@@ -4,22 +4,37 @@ using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 using DLL_Clinician.RegionsDatabase;
 using Hl7.Fhir.Serialization;
+using HL7_FHIR;
 
 namespace DLL_Clinician
 {
    public class RegionDatabase : IRegionDatabase
    {
       private FhirClient client;
+      HL7FHIRClient client2 = new HL7FHIRClient();
 
-      public RegionDatabase()
+
+        public RegionDatabase()
       {
          client = new FhirClient("https://aseecest3fhirservice.azurewebsites.net/");
+         client2 = new HL7FHIRClient();
          client.Timeout = 120000;
       }
 
       public bool CheckCPR(string CPR)
       {
-         return true;
+          try
+          {
+              CoreEFTest.Models.Patient patient = GetPatient(CPR);
+              if (patient.CPR == CPR)
+                  return true;
+              else
+                  return false;
+          }
+          catch 
+          {
+              return false;
+          }
       }
 
       /// <summary>
@@ -29,7 +44,7 @@ namespace DLL_Clinician
       /// <returns></returns>
       public CoreEFTest.Models.Patient GetPatient(string CPR)
       {
-         CoreEFTest.Models.Patient patient = new CoreEFTest.Models.Patient();
+          CoreEFTest.Models.Patient patient = null;
 
          var con = new SearchParams();
 
@@ -39,8 +54,10 @@ namespace DLL_Clinician
 
          foreach (Bundle.EntryComponent component in result.Entry)
          {
-            Hl7.Fhir.Model.Patient Hl7patient = (Hl7.Fhir.Model.Patient)component.Resource;
+             patient = new CoreEFTest.Models.Patient(); 
+             Hl7.Fhir.Model.Patient Hl7patient = (Hl7.Fhir.Model.Patient)component.Resource;
 
+            patient.CPR = Hl7patient.Identifier[0].Value;
             patient.Name = Hl7patient.Name[0].Text;
             patient.Lastname = Hl7patient.Name[0].Family;
             Date date = Hl7patient.BirthDateElement;
@@ -50,7 +67,6 @@ namespace DLL_Clinician
             patient.zipcode = Convert.ToInt32(Hl7patient.Address[0].PostalCode);
             break;
          }
-
          return patient;
       }
    }

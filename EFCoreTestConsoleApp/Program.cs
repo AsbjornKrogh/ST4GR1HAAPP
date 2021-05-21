@@ -220,7 +220,7 @@ namespace EFCoreTestConsoleApp
 
          #region Hent en patient med alle parametre udfyldt
 
-         Patient patient = clinicianDbLogic.GetPatientWithGeneralSpecAndTechnicalSpec("111111-1111");
+         //Patient patient = clinicianDbLogic.GetPatientWithGeneralSpecAndTechnicalSpec("111111-1111");
 
          #endregion
 
@@ -269,40 +269,40 @@ namespace EFCoreTestConsoleApp
          return Patient;
       }
 
-      /// <summary>
-      /// Metoden bliver benyttet til at hente en patient fra DB der passer til det pågældende CPR
-      /// og det nyeste technical- og generalspec for hvert øre fra databasen tilhørende patienten 
-      /// og returnere et patient objekt.
-      /// </summary>
-      /// <param name="CPR"></param>
-      /// <returns></returns>
-      public Patient GetPatientWithGeneralSpecAndTechnicalSpec(string CPR)
-      {
-         Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+        /// <summary>
+        /// Metoden bliver benyttet til at hente en patient fra DB der passer til det pågældende CPR
+        /// og det nyeste technical- og generalspec for hvert øre fra databasen tilhørende patienten 
+        /// og returnere et patient objekt.
+        /// </summary>
+        /// <param name="CPR"></param>
+        /// <returns></returns>
+        public Patient GetPatientWithGeneralSpecAndTechnicalSpec(string CPR)
+        {
+            Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
 
-         TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate)
-            .Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
-         TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate)
-            .Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
+            TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate)
+               .Last(x => x.CPR == CPR && x.EarSide == Ear.Left);
+            TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate)
+               .Last(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
-         patient.TecnicalSpecs = new List<TecnicalSpec>() {TechspecR, TechspecL};
+            patient.TecnicalSpecs = new List<TecnicalSpec>() { TechspecR, TechspecL };
 
-         GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x =>
-            x.CPR == CPR && x.EarSide == Ear.Left && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
-         GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x =>
-            x.CPR == CPR && x.EarSide == Ear.Right && x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
+            GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x =>
+               x.CPR == CPR && x.EarSide == Ear.Left && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID);
+            GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x =>
+               x.CPR == CPR && x.EarSide == Ear.Right && x.HAGeneralSpecID == TechspecR.HAGenerelSpecID);
 
-         patient.GeneralSpecs = new List<GeneralSpec>() {GenSpecR, GenSpecL};
+            patient.GeneralSpecs = new List<GeneralSpec>() { GenSpecR, GenSpecL };
 
-         return patient;
-      }
+            return patient;
+        }
 
-      /// <summary>
-      /// 
-      /// </summary>
-      /// <param name="CPR"></param>
-      /// <returns></returns>
-      public Patient GetPatient(string CPR)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="CPR"></param>
+        /// <returns></returns>
+        public Patient GetPatient(string CPR)
       {
          Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
 
