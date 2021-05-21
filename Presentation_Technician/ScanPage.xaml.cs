@@ -107,13 +107,13 @@ namespace Presentation_Technician
 
             if (patientAndHA != null)
             {
-                PatientInformationTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
+                PatientInformationTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age + "\r\nØreside: " + patientAndHA.GeneralSpecs[0].EarSide;
                 ScanB.IsEnabled = true;
                 HentInfoB.IsEnabled = false;
             }
             else
             {
-                PatientInformationTB.Text = "Det indtastede høreafstøbningsID findes ikke i databasen";
+                PatientInformationTB.Text = "Det indtastede\r\nhøreafstøbningsID findes\r\nikke i databasen";
             }
         }
         #endregion

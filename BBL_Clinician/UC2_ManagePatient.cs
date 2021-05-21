@@ -37,7 +37,8 @@ namespace BLL_Clinician
         public bool CheckCPRClinicDatabase(string CPRnumber)
         {
             int patientRegistered = 0;
-            foreach (var patient in clinicDatabase.GetAllPatients())
+            List<Patient> PatientListe = clinicDatabase.GetAllPatients();
+            foreach (var patient in PatientListe)
             {
                 if (patient.CPR == CPRnumber)
                 {

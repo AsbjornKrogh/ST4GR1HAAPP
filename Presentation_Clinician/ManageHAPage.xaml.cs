@@ -27,7 +27,6 @@ namespace Presentation_Clinician
 
 
         HAInformationWindow _haInformation;
-        public UC2_ManagePatient _managePatient;
         private HearingTestWindow _hearingTest;
         private OrderNewHA orderNewHa;
 
@@ -83,11 +82,7 @@ namespace Presentation_Clinician
             }
         }
 
-        //private void BtnOrderHearingAids_Click(object sender, RoutedEventArgs e)
-        //{
-        //    orderNewHa = new OrderNewHA();
-        //    orderNewHa.Show();
-        //}
+      
 
         private void BtnOrderHearingAids1_Click(object sender, RoutedEventArgs e)
         {

@@ -19,14 +19,14 @@ namespace EFCoreTestConsoleApp
          name.Use = Hl7.Fhir.Model.HumanName.NameUse.Official;
          //name.Prefix = new string[] { "Mr" };
          //name.Given = new string[] { "Test" };
-         name.Text = "Test12";
+         name.Text = "Asbjørnen";
          name.Family = "Testensen";
 
          newHL7Patient.Name.Add(name);
 
          //CPR
          Identifier id = new Identifier();
-         id.Value = "123456-1234";
+         id.Value = "999999-8888";
 
          newHL7Patient.Identifier.Add(id);
 
@@ -46,7 +46,7 @@ namespace EFCoreTestConsoleApp
 
          client.CreateHl7FHIRPatient(newHL7Patient);
 
-         Hl7.Fhir.Model.Patient patient = client.FindPatientByCPR("123456-1234");
+         //Hl7.Fhir.Model.Patient patient = client.FindPatientByCPR("123456-1234");
 
 
          //client.FindPatientByCPR("250997-0000");
