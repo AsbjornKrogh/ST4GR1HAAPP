@@ -48,6 +48,12 @@ namespace BLL_Technician
             techSpec.EarSide = earSide; 
             techSpec.CreateDate = DateTime.Now;
 
+            //null values
+            techSpec.EarPrints = new List<RawEarPrint>();
+            techSpec.RawEarScan = new RawEarScan();
+            techSpec.StaffLogin = new StaffLogin();
+            techSpec.ScanID = 0;
+           
             return clinicDB.SaveTechnicalSpec(techSpec);
         }
     }
