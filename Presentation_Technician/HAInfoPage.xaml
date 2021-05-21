@@ -74,7 +74,7 @@
 
                 <StackPanel Grid.Column="1" Grid.Row="1">
                     <Label Grid.Column="1" Content ="Vælg høreapparat" HorizontalAlignment="Left" FontWeight="Bold" ></Label>
-                    <ListBox Grid.Column="1" Name="HAList"  Height ="100" Width="150" HorizontalAlignment="Left">
+                    <ListBox Grid.Column="1" Name="HAList"  Height ="100" Width="150" HorizontalAlignment="Left" SelectionChanged="HAList_SelectionChanged">
                         <ListBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5 5 5 5"/>

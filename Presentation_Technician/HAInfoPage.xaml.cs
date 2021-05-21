@@ -28,6 +28,7 @@ namespace Presentation_Technician
 
       private IClinicDB db;
       private bool isRunning;
+      private bool rediger;
       private Patient patientAndHA;
       private int count = 0;
 
@@ -114,48 +115,49 @@ namespace Presentation_Technician
 
       private void ShowHAInfoB_Click(object sender, RoutedEventArgs e)
       {
-         if (HAList.SelectedIndex == -1)
-         {
-            MessageBox.Show("Vælg et høreapparat og prøv igen", "Information");
-         }
-         else
-         {
-            GeneralSpec selectedGeneralSpec = (GeneralSpec)patientAndHA.GeneralSpecs[HAList.SelectedIndex];
-            TecnicalSpec selectedTecnicalSpec = (TecnicalSpec)patientAndHA.TecnicalSpecs[HAList.SelectedIndex];
+      //   if (HAList.SelectedIndex == -1)
+      //   {
+      //      MessageBox.Show("Vælg et høreapparat og prøv igen", "Information");
+      //   }
+      //   else
+      //   {
+      //      GeneralSpec selectedGeneralSpec = (GeneralSpec)patientAndHA.GeneralSpecs[HAList.SelectedIndex];
+      //      TecnicalSpec selectedTecnicalSpec = (TecnicalSpec)patientAndHA.TecnicalSpecs[HAList.SelectedIndex];
 
-            TypeTB.Text = selectedGeneralSpec.Type.ToString();
-            ColorTB.Text = selectedGeneralSpec.Color.ToString();
-            GenDateTB.Text = selectedGeneralSpec.CreateDate.ToShortDateString();
+      //      TypeTB.Text = selectedGeneralSpec.Type.ToString();
+      //      ColorTB.Text = selectedGeneralSpec.Color.ToString();
+      //      GenDateTB.Text = selectedGeneralSpec.CreateDate.ToShortDateString();
 
-            TechDateTB.Text = selectedTecnicalSpec.CreateDate.ToShortDateString();
+      //      TechDateTB.Text = selectedTecnicalSpec.CreateDate.ToShortDateString();
 
-            //Todo Kommenter dette ind
-            //if (selectedTecnicalSpec.RawEarScan == null)
-            //{
-            //    PrintStatusTB.Text = "Ikke scannet endnu";
-            //}
-            //else
-            //{
-            if (selectedTecnicalSpec.Printed == false)
-            {
+      //      //Todo Kommenter dette ind
+      //      //if (selectedTecnicalSpec.RawEarScan == null)
+      //      //{
+      //      //    PrintStatusTB.Text = "Ikke scannet endnu";
+      //      //}
+      //      //else
+      //      //{
+      //      if (selectedTecnicalSpec.Printed == false)
+      //      {
 
-               PrintStatusTB.Text = "Ikke printet endnu";
-            }
+      //         PrintStatusTB.Text = "Ikke printet endnu";
+      //      }
 
-            if (selectedTecnicalSpec.Printed == true)
-            {
+      //      if (selectedTecnicalSpec.Printed == true)
+      //      {
 
-               PrintStatusTB.Text = "Printet";
-            }
+      //         PrintStatusTB.Text = "Printet";
+      //      }
 
-            //}
-            RedigerB.IsEnabled = true;
-         }
+      //      //}
+      //      RedigerB.IsEnabled = true;
+      //   }
       }
 
       private void RedigerB_Click(object sender, RoutedEventArgs e)
       {
-         string type = TypeTB.Text;
+          rediger = true; 
+          string type = TypeTB.Text;
          string farve = ColorTB.Text;
 
          TypeCB.Visibility = Visibility.Visible;
@@ -190,7 +192,7 @@ namespace Presentation_Technician
 
       private void GemB_Click(object sender, RoutedEventArgs e)
       {
-         TypeCB.Visibility = Visibility.Collapsed;
+          TypeCB.Visibility = Visibility.Collapsed;
          TypeTB.Visibility = Visibility.Visible;
          TypeTB.Text = TypeCB.SelectionBoxItem.ToString();
 
@@ -209,6 +211,41 @@ namespace Presentation_Technician
 
          ColorCB.Text = "";
          TypeCB.Text = "";
+         rediger = false;
       }
-   }
+
+        private void HAList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!rediger)
+            {
+                GeneralSpec selectedGeneralSpec = (GeneralSpec) patientAndHA.GeneralSpecs[HAList.SelectedIndex];
+                TecnicalSpec selectedTecnicalSpec = (TecnicalSpec) patientAndHA.TecnicalSpecs[HAList.SelectedIndex];
+
+                TypeTB.Text = selectedGeneralSpec.Type.ToString();
+                ColorTB.Text = selectedGeneralSpec.Color.ToString();
+                GenDateTB.Text = selectedGeneralSpec.CreateDate.ToShortDateString();
+
+                TechDateTB.Text = selectedTecnicalSpec.CreateDate.ToShortDateString();
+
+
+                if (selectedTecnicalSpec.Printed == false)
+                {
+
+                    PrintStatusTB.Text = "Ikke printet endnu";
+                }
+
+                if (selectedTecnicalSpec.Printed == true)
+                {
+
+                    PrintStatusTB.Text = "Printet";
+                }
+
+                RedigerB.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Afslut redigering inden du vælger nyt høreapparat");
+            }
+        }
+    }
 }
