@@ -37,12 +37,12 @@ namespace DLL_Clinician
           }
       }
 
-      /// <summary>
-      /// Metoden finder en patient i HL7-Fhir databasen med det givne CPR og returnere et patient objekt. 
-      /// </summary>
-      /// <param name="CPR"></param>
-      /// <returns></returns>
-      public CoreEFTest.Models.Patient GetPatient(string CPR)
+        /// <summary>
+        /// Metoden finder en patient i HL7-Fhir databasen med det givne CPR og returnere et patient objekt. 
+        /// </summary>
+        /// <param name="CPR"></param>
+        /// <returns></returns>
+        public CoreEFTest.Models.Patient GetPatient(string CPR)
       {
           CoreEFTest.Models.Patient patient = null;
 
