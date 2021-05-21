@@ -28,22 +28,17 @@ namespace Presentation_Clinician
    public partial class ClinicianMainWindow : Window
    {
 
-       
-       private ClinicDBContext context = new ClinicDBContext();
-       private IClinicDatabase db = new ClinicDatabase();
-
        UC2_ManagePatient managePatient = new UC2_ManagePatient();
        UC3_ManageHA manageHA = new UC3_ManageHA();
-       ProcessClinPage processClinPage = new ProcessClinPage();
+
        private UC6_showProcess showProcess;
+       private ClinicDBContext context = new ClinicDBContext();
        private HomeWindow homeWindow;
-     
-       public StaffLogin clinician { set; get; }
 
        public bool LoginOK { get; set; }
        public bool RegionLoginOK { get; set; }
-      // public string CPR { get; set; }
        public int StaffID { get; set; }
+       public StaffLogin clinician { set; get; }
 
        public Patient Patient;
 
@@ -96,7 +91,6 @@ namespace Presentation_Clinician
 
         private void BtnProces_Click(object sender, RoutedEventArgs e)
         {
-     
             BtnPatient.Background = new SolidColorBrush(color2);
             BtnStart.Background = new SolidColorBrush(color2);
             BtnHearingAid.Background = new SolidColorBrush(color2);
@@ -104,7 +98,6 @@ namespace Presentation_Clinician
 
             showProcess = new UC6_showProcess(context, clinician);
             Main.Content = showProcess;
-
         }
 
         public void CheckPatientCPR()

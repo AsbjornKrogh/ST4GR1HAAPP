@@ -63,9 +63,6 @@ namespace Presentation_Clinician
             TBEmail.IsEnabled = false;
             TBPhonenumber.IsEnabled = false;
 
-
-
-
         }
 
         private void PatientPage1_Loaded(object sender, RoutedEventArgs e)
@@ -115,8 +112,6 @@ namespace Presentation_Clinician
                 bntUpdate.IsEnabled = false;
             }
 
-
-            
         }
 
         private void btn_RedigerTele_Click(object sender, RoutedEventArgs e)

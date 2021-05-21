@@ -14,9 +14,6 @@ namespace BLL_Clinician
         private IClinicDatabase clinicDatabase;
         private IRegionDatabase regionDatabase;
         private bool CPRCorrect;
-        //private bool RegionCPRCorrect;
-        
-
         public UC2_ManagePatient()
         {
             clinicDatabase = new ClinicDatabase();
@@ -56,20 +53,6 @@ namespace BLL_Clinician
             }
             return CPRCorrect;
         }
-
-        //public bool CheckCPRRegionDatabase(string CPRnumber)
-        //{
-        //    if (regionDatabase.CheckCPR(CPRnumber))
-        //    {
-        //        RegionCPRCorrect = true;
-        //    }
-        //    else
-        //    {
-        //        RegionCPRCorrect = false;
-        //    }
-
-        //    return RegionCPRCorrect;
-        //}
 
         public Patient GetPatientInformationRegionsDatabase(string CPRnumber)
         {

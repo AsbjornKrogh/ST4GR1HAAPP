@@ -20,6 +20,7 @@ namespace Presentation_Clinician
     {
         private UC2_ManagePatient uc2ManagePatient;
         private ClinicianMainWindow _clinicianMainWindow;
+
         public HomeWindow(ClinicianMainWindow clinicianMainWindow, UC2_ManagePatient managePatient)
         {
             InitializeComponent();
@@ -38,7 +39,6 @@ namespace Presentation_Clinician
 
             if (TbCPRnumber.Text.Length == 11 && TbCPRnumber.Text != "           ")
             {
-
                 if (uc2ManagePatient.CheckCPRClinicDatabase(cpr))
                 {
                     _clinicianMainWindow.LoginOK = true;
@@ -61,7 +61,6 @@ namespace Presentation_Clinician
                     MessageBoxImage error = MessageBoxImage.Error;
                     MessageBox.Show(message, title, MessageBoxButton.OK, error);
                 }
-
             }
             else
             {
@@ -70,7 +69,6 @@ namespace Presentation_Clinician
                 MessageBoxImage error = MessageBoxImage.Error;
                 MessageBox.Show(message, title, MessageBoxButton.OK, error);
             }
-
         }
     }
 }

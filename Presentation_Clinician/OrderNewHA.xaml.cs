@@ -31,7 +31,6 @@ namespace Presentation_Clinician
 
             this._clinicianMainWindow = clinicianMainWindow;
             this.manageHA = manageHa;
-
       }
 
       private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -61,18 +60,13 @@ namespace Presentation_Clinician
 
          manageHA.CreateHA(generalSpec);
 
-         manageHA.createEC(earCast);
+         manageHA.CreateEC(earCast);
 
          CbNewType.SelectedIndex = -1;
          CbNewColor.SelectedIndex = -1;
 
             MessageBox.Show("Høreapparatet er bestilt","Bekræftigelse",MessageBoxButton.OK,MessageBoxImage.Information);
 
-            
-
       }
-
-      
-
    }
 }

@@ -20,21 +20,18 @@ namespace Presentation_Clinician
     public partial class HAInformationWindow : Window
     {
         UC3_ManageHA _manageHA = new UC3_ManageHA();
+
         private ClinicianMainWindow _clinicianMain;
-        private Patient _patient = new Patient();
+
         private GeneralSpec generalSpec;
         private List<GeneralSpec> listGeneralSpecs;
-        private UC2_ManagePatient _managePatient;
         
-
-
         public HAInformationWindow(ClinicianMainWindow clinicianMainWindow)
         {
             InitializeComponent();
+
             _clinicianMain = clinicianMainWindow;
             _manageHA = new UC3_ManageHA();
-            _managePatient = new UC2_ManagePatient();
-
         }
 
         private void HAInformationWindow1_Loaded(object sender, RoutedEventArgs e)
@@ -54,12 +51,9 @@ namespace Presentation_Clinician
                 }
             }
         }
-        
 
         private void btn_ShowOldAid_Click(object sender, RoutedEventArgs e)
         {
-
-
             if (Lb_OldHearingRight.SelectedIndex >= 0)
             {
                 generalSpec = listGeneralSpecs[Lb_OldHearingRight.SelectedIndex];
@@ -92,14 +86,7 @@ namespace Presentation_Clinician
             {
                 MessageBox.Show("Vælg et høreapparat");
             }
-
-        
-
-
         }
-
-
-
     }
 }
 

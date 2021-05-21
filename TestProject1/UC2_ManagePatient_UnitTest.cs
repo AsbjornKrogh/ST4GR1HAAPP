@@ -24,7 +24,6 @@ namespace Clinician_HearingAidApp.Test.Unit
             uut = new UC2_ManagePatient();
             clinicDatabase = Substitute.For<IClinicDatabase>();
             patient = new FakePatient();
-
         }
 
         [Test]

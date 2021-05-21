@@ -30,7 +30,7 @@ namespace BLL_Clinician
           return clinicDatabase.GetAllGeneralSpecs(CPR);
        }
 
-        public void createEC(EarCast earCast)
+        public void CreateEC(EarCast earCast)
         {
           clinicDatabase.CreateEarCast(earCast);
         }
