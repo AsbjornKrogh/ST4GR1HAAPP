@@ -150,7 +150,7 @@ namespace DLL_Technician
          try
          {
             int earCastId = Convert.ToInt32(EarCastID);
-            EarCast earCast = _dbContext.EarCast.Single(x => x.EarCastID == earCastId);
+            EarCast earCast = _dbContext.EarCast.OrderBy(x => x.CastDate).Last(x => x.EarCastID == earCastId);
             Patient patient = GetPatientWithGeneralSpecAndTechnicalSpec(earCast.PatientCPR);
 
             patient.EarCasts.Add(earCast); 
