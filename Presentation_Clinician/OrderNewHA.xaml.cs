@@ -25,10 +25,13 @@ namespace Presentation_Clinician
       private GeneralSpec generalSpec;
       private EarCast earCast;
 
-      public OrderNewHA(ClinicianMainWindow clinicianMainWindow)
+      public OrderNewHA(ClinicianMainWindow clinicianMainWindow, UC3_ManageHA manageHa)
       {
-         _clinicianMainWindow = clinicianMainWindow;
-         InitializeComponent();
+          InitializeComponent();
+
+            this._clinicianMainWindow = clinicianMainWindow;
+            this.manageHA = manageHa;
+
       }
 
       private void BtnSave_Click(object sender, RoutedEventArgs e)

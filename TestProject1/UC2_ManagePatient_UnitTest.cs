@@ -38,7 +38,7 @@ namespace Clinician_HearingAidApp.Test.Unit
         [Test]
         public void SavePatientPressed_ExpectedResult_CallDatabaseUpdate()
         {
-            uut.SavePatientPressed(patient);
+            uut.SavePatient(patient);
 
             clinicDatabase.Received(1).CreatePatient(patient);
         }

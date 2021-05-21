@@ -84,7 +84,7 @@ namespace Presentation_Clinician
 
         private void BtnOrderHearingAids1_Click(object sender, RoutedEventArgs e)
         {
-            orderNewHa = new OrderNewHA(_clinicianMainWindow);
+            orderNewHa = new OrderNewHA(_clinicianMainWindow, manageHA);
             orderNewHa.Show();
             
             
