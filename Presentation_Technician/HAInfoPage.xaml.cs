@@ -26,10 +26,10 @@ namespace Presentation_Technician
       private UC3_ShowHATech uc3_ShowHATech;
       private UC3_UpdateHATech uc3_UpdateHATech;
 
-        private IClinicDB db;
-        private bool isRunning;
-        private Patient patientAndHA;
-        private int count = 0;
+      private IClinicDB db;
+      private bool isRunning;
+      private Patient patientAndHA;
+      private int count = 0;
 
       public HAInfoPage(IClinicDB db)
       {
@@ -78,7 +78,7 @@ namespace Presentation_Technician
       }
 
       public void UC3GetPatientCompleted(object sender, RunWorkerCompletedEventArgs e)
-      {
+      {// Bude det ikke være generalspec som skal kigges på og ikke tecspec? 
          isRunning = false;
          Loading.Spin = false;
          Loading.Visibility = Visibility.Collapsed;
@@ -87,36 +87,28 @@ namespace Presentation_Technician
 
          if (patientAndHA != null)
          {
-            patientInfoTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
-          
-            if (patientAndHA.TecnicalSpecs != null)
+            patientInfoTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " +
+                                 patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age;
+
+            foreach (TecnicalSpec spec in patientAndHA.TecnicalSpecs)
             {
-               if (patientAndHA.TecnicalSpecs.Count == 1)
-               {
-                  HAList.Items.Add(patientAndHA.TecnicalSpecs[0].EarSide.ToString());
-               }
-               else
-               {
-                  HAList.Items.Add(patientAndHA.TecnicalSpecs[0].EarSide.ToString());
-                  HAList.Items.Add(patientAndHA.TecnicalSpecs[1].EarSide.ToString());
-               }
+               if (spec != null)
+               HAList.Items.Add(spec.EarSide.ToString());
             }
-            else
+
+            if (patientAndHA.TecnicalSpecs[0] == null && patientAndHA.TecnicalSpecs[1] == null)
             {
                patientInfoTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " +
                                     patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age +
                                     "\r\n\n Ingen scanning fortaget";
             }
-           
-
-
-
-            ShowHAInfoB.IsEnabled = true;
          }
          else
          {
             patientInfoTB.Text = "Det indtastede CPR nummer findes ikke i databasen";
          }
+
+         ShowHAInfoB.IsEnabled = true;
 
       }
 
@@ -161,40 +153,40 @@ namespace Presentation_Technician
          }
       }
 
-        private void RedigerB_Click(object sender, RoutedEventArgs e)
-        {
-            string type = TypeTB.Text;
-            string farve = ColorTB.Text;
+      private void RedigerB_Click(object sender, RoutedEventArgs e)
+      {
+         string type = TypeTB.Text;
+         string farve = ColorTB.Text;
 
-            TypeCB.Visibility = Visibility.Visible;
-            TypeTB.Visibility = Visibility.Collapsed;
-            TypeCB.Background = Brushes.LightGoldenrodYellow;
+         TypeCB.Visibility = Visibility.Visible;
+         TypeTB.Visibility = Visibility.Collapsed;
+         TypeCB.Background = Brushes.LightGoldenrodYellow;
 
-            ColorCB.Visibility = Visibility.Visible;
-            ColorTB.Visibility = Visibility.Collapsed;
-            ColorCB.Background = Brushes.LightGoldenrodYellow;
-            
+         ColorCB.Visibility = Visibility.Visible;
+         ColorTB.Visibility = Visibility.Collapsed;
+         ColorCB.Background = Brushes.LightGoldenrodYellow;
 
-            if (count == 0)
+
+         if (count == 0)
+         {
+            foreach (var types in Enum.GetValues(typeof(Material)))
             {
-                foreach (var types in Enum.GetValues(typeof(Material)))
-                {
-                    TypeCB.Items.Add(types);
-                }
-                
-                foreach (var colors in Enum.GetValues(typeof(PlugColor)))
-                {
-                    ColorCB.Items.Add(colors);
-                }
-                count++;
+               TypeCB.Items.Add(types);
             }
 
-            TypeCB.Text = type; //Viser den type der var på forhånd i Combobox
-            ColorCB.Text = farve; //Viser den farve der var på forhånd i Combobox
+            foreach (var colors in Enum.GetValues(typeof(PlugColor)))
+            {
+               ColorCB.Items.Add(colors);
+            }
+            count++;
+         }
 
-            GemB.Visibility = Visibility.Visible;
-            RedigerB.Visibility = Visibility.Collapsed;
-        }
+         TypeCB.Text = type; //Viser den type der var på forhånd i Combobox
+         ColorCB.Text = farve; //Viser den farve der var på forhånd i Combobox
+
+         GemB.Visibility = Visibility.Visible;
+         RedigerB.Visibility = Visibility.Collapsed;
+      }
 
       private void GemB_Click(object sender, RoutedEventArgs e)
       {

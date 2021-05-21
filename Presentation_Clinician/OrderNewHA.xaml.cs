@@ -60,7 +60,7 @@ namespace Presentation_Clinician
 
          manageHA.createEC(earCast);
 
-         MessageBox.Show("Høreapparatet er bestilt");
+         MessageBox.Show("Høreapparatet er bestilt","Bekræftigelse",MessageBoxButton.OK,MessageBoxImage.Information);
       }
    }
 }

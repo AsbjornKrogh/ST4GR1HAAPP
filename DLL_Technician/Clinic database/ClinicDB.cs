@@ -47,14 +47,16 @@ namespace DLL_Technician
       /// <returns></returns>
       public Patient GetPatientWithGeneralSpecAndTechnicalSpec(string CPR)
       {
+         Patient patient = new Patient();
+
          try
          {
-            Patient patient = _dbContext.Patient.Single(x => x.CPR == CPR);
+            patient = _dbContext.Patient.Single(x => x.CPR == CPR);
 
-            //TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Left);
-            //TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Right);
+            TecnicalSpec TechspecL = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Left);
+            TecnicalSpec TechspecR = _dbContext.TecnicalSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Right);
 
-            //patient.TecnicalSpecs = new List<TecnicalSpec>() { TechspecL, TechspecR};
+            patient.TecnicalSpecs = new List<TecnicalSpec>() { TechspecL, TechspecR};
 
             GeneralSpec GenSpecL = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Left/* && x.HAGeneralSpecID == TechspecL.HAGenerelSpecID*/);
             GeneralSpec GenSpecR = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).LastOrDefault(x => x.CPR == CPR && x.EarSide == Ear.Right /*&& x.HAGeneralSpecID == TechspecR.HAGenerelSpecID*/);
@@ -64,7 +66,7 @@ namespace DLL_Technician
          }
          catch
          {
-            return null;
+            return patient;
          }
       }
 
