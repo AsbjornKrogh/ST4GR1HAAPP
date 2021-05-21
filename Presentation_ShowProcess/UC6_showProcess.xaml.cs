@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BLL_Technician;
+using CoreEFTest.Context;
 using CoreEFTest.Models;
 using DLL_Technician;
 using DTO;
@@ -29,11 +30,11 @@ namespace Presentation_ShowProcess
         private UC6_ShowProcess uc6_showProcess;
         private List<ProcesSpec> procesSpec;
 
-        public UC6_showProcess(IClinicDB db, StaffLogin login)
+        public UC6_showProcess(ClinicDBContext dbContext, StaffLogin login)
         {
             InitializeComponent();
 
-            this.db = db;
+            this.db = new ClinicDB(dbContext);
             technician = login;
             uc6_showProcess = new UC6_ShowProcess(db);
             procesSpec = new List<ProcesSpec>();
