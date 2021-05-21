@@ -164,7 +164,7 @@ namespace Presentation_Technician
             rawEarScan.StaffID = technician.StaffID;
 
             //Opretter en technicalSpec
-            uc4_scan.CreateTechnicalSpec(patientAndHA, technician.StaffID, rawEarScan.EarSide);
+            uc4_scan.CreateTechnicalSpec(patientAndHA, technician, rawEarScan.EarSide);
             
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en
