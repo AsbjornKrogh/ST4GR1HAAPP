@@ -61,6 +61,12 @@ namespace Presentation_Clinician
          manageHA.createEC(earCast);
 
          MessageBox.Show("Høreapparatet er bestilt","Bekræftigelse",MessageBoxButton.OK,MessageBoxImage.Information);
+
+         CbNewType.SelectedIndex = -1;
+         CbNewColor.SelectedIndex = -1;
       }
+
+      
+
    }
 }

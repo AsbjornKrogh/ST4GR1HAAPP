@@ -27,7 +27,6 @@ namespace Presentation_Clinician
 
 
         HAInformationWindow _haInformation;
-        public UC2_ManagePatient _managePatient;
         private HearingTestWindow _hearingTest;
         private OrderNewHA orderNewHa;
 
