@@ -26,7 +26,7 @@ namespace EFCoreTestConsoleApp
 
          //CPR
          Identifier id = new Identifier();
-         id.Value = "999999-8888";
+         id.Value = "777777-8888";
 
          newHL7Patient.Identifier.Add(id);
 

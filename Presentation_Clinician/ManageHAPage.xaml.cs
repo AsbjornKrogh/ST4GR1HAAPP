@@ -24,8 +24,6 @@ namespace Presentation_Clinician
 
         //todo Her gør i det rigtigt. Se linje 36 og construktor :D - Dette skal overføres til OrderNewHA
         private ClinicianMainWindow _clinicianMainWindow;
-
-
         HAInformationWindow _haInformation;
         private HearingTestWindow _hearingTest;
         private OrderNewHA orderNewHa;
@@ -88,6 +86,8 @@ namespace Presentation_Clinician
         {
             orderNewHa = new OrderNewHA(_clinicianMainWindow);
             orderNewHa.Show();
+            
+            
         }
     }
 }
