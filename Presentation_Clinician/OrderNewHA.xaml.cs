@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CoreEFTest.Models;
 using BLL_Clinician;
+using DLL_Clinician;
 
 namespace Presentation_Clinician
 {
@@ -19,7 +20,7 @@ namespace Presentation_Clinician
    /// </summary>
    public partial class OrderNewHA : Window
    {
-      UC3_ManageHA manageHA = new UC3_ManageHA();
+       UC3_ManageHA _manageHA = new UC3_ManageHA(new ClinicDatabase());
 
       private ClinicianMainWindow _clinicianMainWindow;
       private GeneralSpec generalSpec;
@@ -29,8 +30,9 @@ namespace Presentation_Clinician
       {
           InitializeComponent();
 
-            this._clinicianMainWindow = clinicianMainWindow;
-            this.manageHA = manageHa;
+          _clinicianMainWindow = clinicianMainWindow;
+          _manageHA = manageHa;
+
       }
 
       private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -58,9 +60,9 @@ namespace Presentation_Clinician
          earCast.CastDate = DateTime.Now;
          earCast.PatientCPR = _clinicianMainWindow.Patient.CPR;
 
-         manageHA.CreateHA(generalSpec);
+         _manageHA.CreateHA(generalSpec);
 
-         manageHA.CreateEC(earCast);
+         _manageHA.CreateEC(earCast);
 
          CbNewType.SelectedIndex = -1;
          CbNewColor.SelectedIndex = -1;

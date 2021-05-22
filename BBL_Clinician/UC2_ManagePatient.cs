@@ -11,13 +11,13 @@ namespace BLL_Clinician
 {
     public class UC2_ManagePatient
     {
-        private IClinicDatabase clinicDatabase;
+        public IClinicDatabase clinicDatabase;
         private IRegionDatabase regionDatabase;
         private bool CPRCorrect;
-        public UC2_ManagePatient()
+        public UC2_ManagePatient(IClinicDatabase _clinicDatabase, IRegionDatabase _regionDatabase)
         {
-            clinicDatabase = new ClinicDatabase();
-            regionDatabase = new RegionDatabase();
+            clinicDatabase = _clinicDatabase;
+            regionDatabase = _regionDatabase;
         }
 
         public void SaveUpdates(Patient patient)
@@ -54,14 +54,16 @@ namespace BLL_Clinician
             return CPRCorrect;
         }
 
+        public Patient GetPatientInformation(string CPRnumber)
+        {
+            return clinicDatabase.GetPatient(CPRnumber);
+        }
+
         public Patient GetPatientInformationRegionsDatabase(string CPRnumber)
         {
             return regionDatabase.GetPatient(CPRnumber);
         }
 
-        public Patient GetPatientInformation(string CPRnumber)
-        {
-            return clinicDatabase.GetPatient(CPRnumber);
-        }
+     
     }
 }

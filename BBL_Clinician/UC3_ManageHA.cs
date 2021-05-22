@@ -9,15 +9,14 @@ namespace BLL_Clinician
    {
        private IClinicDatabase clinicDatabase;
        
-       public UC3_ManageHA()
+       public UC3_ManageHA(IClinicDatabase _clinicDatabase)
        {
-           clinicDatabase = new ClinicDatabase();
+           clinicDatabase = _clinicDatabase;
        }
 
        public List<GeneralSpec> GetHA(string CPR)
        {
            return clinicDatabase.GetLatestGeneralSpecs(CPR);
-
        }
 
         public void CreateHA(GeneralSpec generalSpec)
