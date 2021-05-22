@@ -33,6 +33,8 @@ namespace Presentation_Clinician
           _clinicianMainWindow = clinicianMainWindow;
           _manageHA = manageHa;
 
+          CbNewColor.ItemsSource = typeof(Colors).GetProperties();
+
       }
 
       private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -45,7 +47,7 @@ namespace Presentation_Clinician
             generalSpec.EarSide = Ear.Left;
             earCast.EarSide = Ear.Left;
          }
-         else if (Cb_RightEar.IsChecked == true)
+         if (Cb_RightEar.IsChecked == true)
          {
             generalSpec.EarSide = Ear.Right;
             earCast.EarSide = Ear.Right;
@@ -54,18 +56,21 @@ namespace Presentation_Clinician
          generalSpec.CPR = _clinicianMainWindow.Patient.CPR;
          generalSpec.CreateDate = DateTime.Now;
          generalSpec.StaffID = _clinicianMainWindow.StaffID;
+         
          CbNewColor.Text = generalSpec.Color.ToString();
          CbNewType.Text = generalSpec.Type.ToString();
-
+         
          earCast.CastDate = DateTime.Now;
          earCast.PatientCPR = _clinicianMainWindow.Patient.CPR;
-
+         
          _manageHA.CreateHA(generalSpec);
 
          _manageHA.CreateEC(earCast);
 
          CbNewType.SelectedIndex = -1;
          CbNewColor.SelectedIndex = -1;
+         Cb_LeftEar.IsChecked = false;
+         Cb_RightEar.IsChecked = false;
 
             MessageBox.Show("Høreapparatet er bestilt","Bekræftigelse",MessageBoxButton.OK,MessageBoxImage.Information);
 

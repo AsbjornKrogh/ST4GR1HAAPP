@@ -13,26 +13,26 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnSave_Click" Height="38" Width="85" Background="#FFDDDDDD" BorderBrush="#FF7E7A7A" FontWeight="Normal" Foreground="#FF020202" FontFamily="Segoe UI" Margin="457,188,0,0">
+        <Button x:Name="BtnSave" Content="Gem" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnSave_Click" Height="38" Width="85" Background="#FFDDDDDD" BorderBrush="#FF7E7A7A" FontWeight="Normal" Foreground="#FF020202" FontFamily="Segoe UI" Margin="452,191,0,0">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10,10,10,10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <TextBox x:Name="TBPhonenumber" HorizontalAlignment="Left" Margin="408,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FF4B4A4A"/>
-        <TextBox x:Name="TBEmail" HorizontalAlignment="Left" Margin="407,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FF555555"/>
-        <Label Content="Telefon nr." HorizontalAlignment="Left" Margin="323,77,0,0" VerticalAlignment="Top" Width="108" BorderBrush="#FF555555"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="323,110,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="18,77,0,0" VerticalAlignment="Top"/>
-        <Label Content="CPR" HorizontalAlignment="Left" Margin="18,142,0,0" VerticalAlignment="Top"/>
-        <Label Content="Adresse" HorizontalAlignment="Left" Margin="18,178,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBname" HorizontalAlignment="Left" Margin="103,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
-        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="18,110,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBsurname" HorizontalAlignment="Left" Margin="103,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
-        <TextBox x:Name="TBCPR" HorizontalAlignment="Left" Margin="103,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
-        <TextBox x:Name="TBAddress" HorizontalAlignment="Left" Margin="103,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
-        <Button x:Name="bntUpdate" Content="Opdater" HorizontalAlignment="Center" VerticalAlignment="Top" Height="38" Width="84" Click="bntUpdate_Click" Background="#FFDDDDDD" FontWeight="Normal" Foreground="#FF131212" BorderBrush="#FF8D8D8D" RenderTransformOrigin="0.614,0.684" Margin="0,188,0,0">
+        <TextBox x:Name="TBPhonenumber" HorizontalAlignment="Left" Margin="343,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FF4B4A4A"/>
+        <TextBox x:Name="TBEmail" HorizontalAlignment="Left" Margin="342,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#FF555555"/>
+        <Label Content="Telefon nr." HorizontalAlignment="Left" Margin="258,80,0,0" VerticalAlignment="Top" Width="108" BorderBrush="#FF555555"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="258,113,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="18,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="CPR" HorizontalAlignment="Left" Margin="18,145,0,0" VerticalAlignment="Top"/>
+        <Label Content="Adresse" HorizontalAlignment="Left" Margin="18,181,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBname" HorizontalAlignment="Left" Margin="101,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
+        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="18,113,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBsurname" HorizontalAlignment="Left" Margin="101,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
+        <TextBox x:Name="TBCPR" HorizontalAlignment="Left" Margin="101,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
+        <TextBox x:Name="TBAddress" HorizontalAlignment="Left" Margin="101,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
+        <Button x:Name="bntUpdate" Content="Opdater" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="84" Click="bntUpdate_Click" Background="#FFDDDDDD" FontWeight="Normal" Foreground="#FF131212" BorderBrush="#FF8D8D8D" RenderTransformOrigin="0.614,0.684" Margin="342,191,0,0">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10,10,10,10"/>
@@ -40,11 +40,21 @@
             </Button.Resources>
         </Button>
         <Label Content="Patientinformation:" HorizontalAlignment="Left" Margin="18,20,0,0" VerticalAlignment="Top" Width="299" FontWeight="Bold" FontSize="20"/>
-        <Label Content="By" HorizontalAlignment="Left" Margin="21,209,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TbCity" HorizontalAlignment="Left" Margin="103,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
-        <TextBox x:Name="TbZipcode" HorizontalAlignment="Left" Margin="103,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
-        <Label Content="Postnummer" HorizontalAlignment="Left" Margin="18,248,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_RedigerTele" Content="Rediger" HorizontalAlignment="Left" Margin="545,80,0,0" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.519,0.451" Click="btn_RedigerTele_Click"/>
-        <Button x:Name="Btn_RedigerEmail" Content="Rediger" HorizontalAlignment="Left" Margin="544,113,0,0" VerticalAlignment="Top" Width="59" Click="Btn_RedigerEmail_Click"/>
+        <Label Content="By" HorizontalAlignment="Left" Margin="21,212,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TbCity" HorizontalAlignment="Left" Margin="101,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
+        <TextBox x:Name="TbZipcode" HorizontalAlignment="Left" Margin="101,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" BorderBrush="#FF4B4A4A"/>
+        <Label Content="Postnummer" HorizontalAlignment="Left" Margin="18,251,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_RedigerTele" Content="Rediger" HorizontalAlignment="Left" Margin="480,83,0,0" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.519,0.451" Click="btn_RedigerTele_Click"/>
+        <Button x:Name="Btn_RedigerEmail" Content="Rediger" HorizontalAlignment="Left" Margin="479,116,0,0" VerticalAlignment="Top" Width="50" Click="Btn_RedigerEmail_Click"/>
+        <Rectangle HorizontalAlignment="Left" Height="1" Margin="26,57,0,0" Stroke="Black" VerticalAlignment="Top" Width="501" Fill="#FF080808" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
     </Grid>
 </Page>
