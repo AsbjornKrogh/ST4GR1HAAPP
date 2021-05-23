@@ -11,16 +11,13 @@ namespace BLL_Clinician
 {
     public class UC2_ManagePatient
     {
-        private IClinicDatabase clinicDatabase;
+        public IClinicDatabase clinicDatabase;
         private IRegionDatabase regionDatabase;
         private bool CPRCorrect;
-        private bool RegionCPRCorrect;
-        
-
-        public UC2_ManagePatient()
+        public UC2_ManagePatient(IClinicDatabase _clinicDatabase, IRegionDatabase _regionDatabase)
         {
-            clinicDatabase = new ClinicDatabase();
-            regionDatabase = new RegionDatabase();
+            clinicDatabase = _clinicDatabase;
+            regionDatabase = _regionDatabase;
         }
 
         public void SaveUpdates(Patient patient)
@@ -28,7 +25,7 @@ namespace BLL_Clinician
            clinicDatabase.UpdatePatient(patient);
         }
 
-        public void SavePatientPressed(Patient patient)
+        public void SavePatient(Patient patient)
         {
             clinicDatabase.CreatePatient(patient);
             
@@ -37,7 +34,8 @@ namespace BLL_Clinician
         public bool CheckCPRClinicDatabase(string CPRnumber)
         {
             int patientRegistered = 0;
-            foreach (var patient in clinicDatabase.GetAllPatients())
+            List<Patient> PatientListe = clinicDatabase.GetAllPatients();
+            foreach (var patient in PatientListe)
             {
                 if (patient.CPR == CPRnumber)
                 {
@@ -56,18 +54,9 @@ namespace BLL_Clinician
             return CPRCorrect;
         }
 
-        public bool CheckCPRRegionDatabase(string CPRnumber)
+        public Patient GetPatientInformation(string CPRnumber)
         {
-            if (regionDatabase.CheckCPR(CPRnumber))
-            {
-                RegionCPRCorrect = true;
-            }
-            else
-            {
-                RegionCPRCorrect = false;
-            }
-
-            return RegionCPRCorrect;
+            return clinicDatabase.GetPatient(CPRnumber);
         }
 
         public Patient GetPatientInformationRegionsDatabase(string CPRnumber)
@@ -75,9 +64,6 @@ namespace BLL_Clinician
             return regionDatabase.GetPatient(CPRnumber);
         }
 
-        public Patient GetPatientInformation(string CPRnumber)
-        {
-            return clinicDatabase.GetPatient(CPRnumber);
-        }
+     
     }
 }

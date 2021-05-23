@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using CoreEFTest.Models;
 using Microsoft.EntityFrameworkCore;
@@ -17,20 +18,15 @@ namespace CoreEFTest.Context
       public DbSet<GeneralSpec> GeneralSpecs { get; set; }
 
       protected override void OnConfiguring(DbContextOptionsBuilder options)
-         => options.UseSqlServer("Data Source=ST-I4DAB.uni.au.dk;Initial Catalog=ST4GRP1;User ID=ST4GRP1;Password=ST4GRP1;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+         => options.LogTo(message => Debug.WriteLine(message))
+            .EnableSensitiveDataLogging()
+            .UseSqlServer("Data Source=ST-I4DAB.uni.au.dk;Initial Catalog=ST4GRP1;User ID=ST4GRP1;Password=ST4GRP1;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
 
 
 
 
-
-
-
-
-
-
-
-
+      
 
 
       #region CascadeConverter2Restrict

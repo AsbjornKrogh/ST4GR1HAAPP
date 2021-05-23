@@ -7,10 +7,10 @@ namespace CoreEFTest.Models
 {
     public class TecnicalSpec
     {
-        [Required]
-        [Key]
-        [MaxLength(10)]
-        public int HATechinalSpecID { get; set; }
+       [Required]
+       [Key]
+       [MaxLength(10)]
+       public int HATechinalSpecID { get; set; }
 
         [Required]
         public Ear EarSide { get; set; }
@@ -24,16 +24,19 @@ namespace CoreEFTest.Models
         [Required]
         [ForeignKey("StaffLogin")]
         public int StaffID { get; set; }
+       
         public StaffLogin StaffLogin { get; set; }
 
         [Required]
         [ForeignKey("Patient")]
         public string CPR { get; set; }
+        
         public Patient Patient { get; set; }
 
         [Required]
         [ForeignKey("GeneralSpec")]
         public int HAGenerelSpecID { get; set; }
+        
         public GeneralSpec GeneralSpec { get; set; }
 
         //[ForeignKey("RawEarScan")]

@@ -106,7 +106,7 @@ namespace Presentation_Technician
 
         private void ProcesB_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new UC6_showProcess(db,technician);
+            Main.Content = new UC6_showProcess(context,technician);
             VelkommenL.Visibility = Visibility.Collapsed;
             ProcesB.IsEnabled = false;
 
