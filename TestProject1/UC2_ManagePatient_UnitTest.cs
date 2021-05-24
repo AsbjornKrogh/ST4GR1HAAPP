@@ -51,13 +51,13 @@ namespace Clinician_HearingAidApp.Test.Unit
             clinicDatabase.Received(1).GetPatient(cpr);
         }
 
-        [Test]
-        public void GetPatientInformationRegionDatabase_ExpectedResult_CallGetPatient()
-        {
-            uut.GetPatientInformationRegionsDatabase("123456-7890");
+        //[Test]
+        //public void GetPatientInformationRegionDatabase_ExpectedResult_CallGetPatient()
+        //{
+        //    uut.GetPatientInformationRegionsDatabase("123456-7890");
 
-            regionDatabase.Received(1).GetPatient("123456-7890");
-        }
+        //    regionDatabase.Received(1).GetPatient("123456-7890");
+        //}
     }
 
     public class FakePatient: Patient
