@@ -35,8 +35,8 @@ namespace Presentation_Technician
       {
          InitializeComponent();
          context = new ClinicDBContext();
-         db = new ClinicDB(context);
-         //db = new ClinicNoDB();
+         //db = new ClinicDB(context);
+         db = new ClinicNoDB();
          timeStamp = new TimeStamp();
          printer = new NoPrinter(timeStamp);
 

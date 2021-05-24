@@ -33,6 +33,6 @@ namespace DLL_Technician
       //UC6
       List<ProcesSpec> GetProcesInfo(string CPR);
 
-      bool SavePrint(RawEarPrint rawEarPrint);
+      bool SavePrint(RawEarPrint rawEarPrint,string CPR);
    }
 }
