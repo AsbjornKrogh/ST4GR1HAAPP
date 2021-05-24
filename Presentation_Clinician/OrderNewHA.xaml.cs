@@ -63,9 +63,9 @@ namespace Presentation_Clinician
          CbNewType.SelectedIndex = -1;
          CbNewColor.SelectedIndex = -1;
 
-            MessageBox.Show("Høreapparatet er bestilt","Bekræftigelse",MessageBoxButton.OK,MessageBoxImage.Information);
+         MessageBox.Show("Høreapparatet er bestilt","Bekræftigelse",MessageBoxButton.OK,MessageBoxImage.Information);
 
-            
+         this.Close();
 
       }
 
