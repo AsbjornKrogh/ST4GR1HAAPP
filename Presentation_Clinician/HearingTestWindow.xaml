@@ -9,7 +9,6 @@
         Title="HearingTestWindow" Height="450" Width="800">
     <Grid>
         <TextBlock Text="HearingTestWindow"/>
-        <!--<PdfViewer:PdfViewerControl/>-->
         <PdfViewer:PdfViewerControl x:Name="pdfViewer"></PdfViewer:PdfViewerControl>
     </Grid>
 </Window>
