@@ -8,26 +8,15 @@ namespace BLL_Clinician
    public class UC3_ManageHA
    {
        private IClinicDatabase clinicDatabase;
-       GeneralSpec generalSpec = new GeneralSpec();
-
-       public UC3_ManageHA()
+       
+       public UC3_ManageHA(IClinicDatabase _clinicDatabase)
        {
-           clinicDatabase = new ClinicDatabase();
-       }
-
-       public void GetHearingTest(string CPR)
-       {
-
+           clinicDatabase = _clinicDatabase;
        }
 
        public List<GeneralSpec> GetHA(string CPR)
        {
            return clinicDatabase.GetLatestGeneralSpecs(CPR);
-
-       }
-
-       public void SaveHA(Ear earSide, Material type, PlugColor color, DateTime createDate, string StaffID)
-       {
        }
 
         public void CreateHA(GeneralSpec generalSpec)
@@ -40,7 +29,7 @@ namespace BLL_Clinician
           return clinicDatabase.GetAllGeneralSpecs(CPR);
        }
 
-        public void createEC(EarCast earCast)
+        public void CreateEC(EarCast earCast)
         {
           clinicDatabase.CreateEarCast(earCast);
         }

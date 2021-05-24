@@ -9,9 +9,9 @@
         Title="Tekniker" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Frame x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="hidden"/>
-           
-    <Label x:Name="VelkommenL" Content="Velkommen til tekniker-hovedmenu!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"></Label>
-       
+
+        <Label x:Name="VelkommenL" Content="Velkommen til tekniker-hovedmenu!" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="152,0,0,0"></Label>
+
         <StackPanel Orientation="Horizontal" Height ="35" VerticalAlignment="Top">
             <Button x:Name="HovedmenuB" Content="Hovedmenu" MinWidth="75" Margin="10,0,0,0" Click="HovedmenuB_Click">
                 <Button.Resources>

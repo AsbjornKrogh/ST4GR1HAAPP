@@ -209,10 +209,7 @@ namespace Presentation_ShowProcess
                     StatusRightTB.Text = "Patient ikke oprettet endnu";
 
                 }
-
             }
-
-
         }
     }
 }

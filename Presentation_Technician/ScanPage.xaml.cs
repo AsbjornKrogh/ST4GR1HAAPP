@@ -38,8 +38,9 @@ namespace Presentation_Technician
         private bool ScanisRunning;
         private bool SaveScanisRunning;
         private Patient patientAndHA;
+        private string castID = "";
 
-        
+
         private RawEarScan rawEarScan;
         private ModelImporter modelImporter;
         private FullRawEarScan fullRawEarScan;
@@ -81,7 +82,7 @@ namespace Presentation_Technician
 
                 worker.RunWorkerCompleted += UC4GetPatientInformationCompleted;
 
-                string castID = HACastIDTB.Text;
+                castID = HACastIDTB.Text;
                 worker.RunWorkerAsync(castID);
 
                 Loading.Visibility = Visibility.Visible;
@@ -100,14 +101,35 @@ namespace Presentation_Technician
             HentisRunning = false;
             Loading.Spin = false;
             Loading.Visibility = Visibility.Collapsed;
+            string earside = "";
 
             PatientInformationTB.Visibility = Visibility.Visible;
 
             patientAndHA = (Patient) e.Result;
 
+            foreach (var earcast in patientAndHA.EarCasts)
+            {
+                if (earcast.EarCastID == Convert.ToInt32(castID))
+                {
+                    if (Convert.ToInt32(earcast.EarSide) == 1)
+                    {
+                        earside = "Venstre";
+                    }
+                    else if(Convert.ToInt32(earcast.EarSide) == 2)
+                    {
+                        earside = "Højre";
+                    }
+                    else
+                    {
+                        earside = "Ikke defineret";
+                    }
+                }
+            }
+
+
             if (patientAndHA != null)
             {
-                PatientInformationTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age + "\r\nØreside: " + patientAndHA.GeneralSpecs[0].EarSide;
+                PatientInformationTB.Text = "CPR: " + patientAndHA.CPR + "\r\nNavn: " + patientAndHA.Name + " " + patientAndHA.Lastname + "\r\nAlder: " + patientAndHA.Age + "\r\nØreside: " + earside;
                 ScanB.IsEnabled = true;
                 HentInfoB.IsEnabled = false;
             }
@@ -164,7 +186,7 @@ namespace Presentation_Technician
             rawEarScan.StaffID = technician.StaffID;
 
             //Opretter en technicalSpec
-            uc4_scan.CreateTechnicalSpec(patientAndHA, technician.StaffID, rawEarScan.EarSide);
+            uc4_scan.CreateTechnicalSpec(patientAndHA, technician, rawEarScan.EarSide);
             
             //Todo er det sådan vi vil have vist filen?
             //Viser STL-filen på GUI'en

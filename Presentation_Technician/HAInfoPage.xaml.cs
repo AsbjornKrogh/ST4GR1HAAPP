@@ -113,106 +113,113 @@ namespace Presentation_Technician
 
       }
 
-      private void ShowHAInfoB_Click(object sender, RoutedEventArgs e)
-      {
-      //   if (HAList.SelectedIndex == -1)
-      //   {
-      //      MessageBox.Show("Vælg et høreapparat og prøv igen", "Information");
-      //   }
-      //   else
-      //   {
-      //      GeneralSpec selectedGeneralSpec = (GeneralSpec)patientAndHA.GeneralSpecs[HAList.SelectedIndex];
-      //      TecnicalSpec selectedTecnicalSpec = (TecnicalSpec)patientAndHA.TecnicalSpecs[HAList.SelectedIndex];
+      
 
-      //      TypeTB.Text = selectedGeneralSpec.Type.ToString();
-      //      ColorTB.Text = selectedGeneralSpec.Color.ToString();
-      //      GenDateTB.Text = selectedGeneralSpec.CreateDate.ToShortDateString();
+        #region Knap-metoder
 
-      //      TechDateTB.Text = selectedTecnicalSpec.CreateDate.ToShortDateString();
+        private void RedigerB_Click(object sender, RoutedEventArgs e)
+        {
+            rediger = true;
+            string type = TypeTB.Text;
+            string farve = ColorTB.Text;
 
-      //      //Todo Kommenter dette ind
-      //      //if (selectedTecnicalSpec.RawEarScan == null)
-      //      //{
-      //      //    PrintStatusTB.Text = "Ikke scannet endnu";
-      //      //}
-      //      //else
-      //      //{
-      //      if (selectedTecnicalSpec.Printed == false)
-      //      {
+            TypeCB.Visibility = Visibility.Visible;
+            TypeTB.Visibility = Visibility.Collapsed;
+            TypeCB.Background = Brushes.LightGoldenrodYellow;
 
-      //         PrintStatusTB.Text = "Ikke printet endnu";
-      //      }
-
-      //      if (selectedTecnicalSpec.Printed == true)
-      //      {
-
-      //         PrintStatusTB.Text = "Printet";
-      //      }
-
-      //      //}
-      //      RedigerB.IsEnabled = true;
-      //   }
-      }
-
-      private void RedigerB_Click(object sender, RoutedEventArgs e)
-      {
-          rediger = true; 
-          string type = TypeTB.Text;
-         string farve = ColorTB.Text;
-
-         TypeCB.Visibility = Visibility.Visible;
-         TypeTB.Visibility = Visibility.Collapsed;
-         TypeCB.Background = Brushes.LightGoldenrodYellow;
-
-         ColorCB.Visibility = Visibility.Visible;
-         ColorTB.Visibility = Visibility.Collapsed;
-         ColorCB.Background = Brushes.LightGoldenrodYellow;
+            ColorCB.Visibility = Visibility.Visible;
+            ColorTB.Visibility = Visibility.Collapsed;
+            ColorCB.Background = Brushes.LightGoldenrodYellow;
 
 
-         if (count == 0)
-         {
-            foreach (var types in Enum.GetValues(typeof(Material)))
+            if (count == 0)
             {
-               TypeCB.Items.Add(types);
+                foreach (var types in Enum.GetValues(typeof(Material)))
+                {
+                    TypeCB.Items.Add(types);
+                }
+
+                foreach (var colors in Enum.GetValues(typeof(PlugColor)))
+                {
+                    ColorCB.Items.Add(colors);
+                }
+                count++;
             }
 
-            foreach (var colors in Enum.GetValues(typeof(PlugColor)))
-            {
-               ColorCB.Items.Add(colors);
-            }
-            count++;
-         }
+            TypeCB.Text = type; //Viser den type der var på forhånd i Combobox
+            ColorCB.Text = farve; //Viser den farve der var på forhånd i Combobox
 
-         TypeCB.Text = type; //Viser den type der var på forhånd i Combobox
-         ColorCB.Text = farve; //Viser den farve der var på forhånd i Combobox
+            GemB.Visibility = Visibility.Visible;
+            RedigerB.Visibility = Visibility.Collapsed;
+        }
 
-         GemB.Visibility = Visibility.Visible;
-         RedigerB.Visibility = Visibility.Collapsed;
-      }
-
-      private void GemB_Click(object sender, RoutedEventArgs e)
-      {
-          TypeCB.Visibility = Visibility.Collapsed;
-         TypeTB.Visibility = Visibility.Visible;
-         TypeTB.Text = TypeCB.SelectionBoxItem.ToString();
+        private void GemB_Click(object sender, RoutedEventArgs e)
+        {
+            TypeCB.Visibility = Visibility.Collapsed;
+            TypeTB.Visibility = Visibility.Visible;
+            TypeTB.Text = TypeCB.SelectionBoxItem.ToString();
 
 
-         ColorCB.Visibility = Visibility.Collapsed;
-         ColorTB.Visibility = Visibility.Visible;
-         ColorTB.Text = ColorCB.SelectionBoxItem.ToString();
+            ColorCB.Visibility = Visibility.Collapsed;
+            ColorTB.Visibility = Visibility.Visible;
+            ColorTB.Text = ColorCB.SelectionBoxItem.ToString();
 
-         GemB.Visibility = Visibility.Collapsed;
-         RedigerB.Visibility = Visibility.Visible;
+            GemB.Visibility = Visibility.Collapsed;
+            RedigerB.Visibility = Visibility.Visible;
 
-         patientAndHA.GeneralSpecs[HAList.SelectedIndex].Type = (Material)TypeCB.SelectionBoxItem;
-         patientAndHA.GeneralSpecs[HAList.SelectedIndex].Color = (PlugColor)ColorCB.SelectionBoxItem;
+            patientAndHA.GeneralSpecs[HAList.SelectedIndex].Type = (Material)TypeCB.SelectionBoxItem;
+            patientAndHA.GeneralSpecs[HAList.SelectedIndex].Color = (PlugColor)ColorCB.SelectionBoxItem;
 
-         uc3_UpdateHATech.UpdateGeneralSpec(patientAndHA.GeneralSpecs[HAList.SelectedIndex]);
+            uc3_UpdateHATech.UpdateGeneralSpec(patientAndHA.GeneralSpecs[HAList.SelectedIndex]);
 
-         ColorCB.Text = "";
-         TypeCB.Text = "";
-         rediger = false;
-      }
+            ColorCB.Text = "";
+            TypeCB.Text = "";
+            rediger = false;
+        }
+
+
+        private void ShowHAInfoB_Click(object sender, RoutedEventArgs e)
+        {
+            //   if (HAList.SelectedIndex == -1)
+            //   {
+            //      MessageBox.Show("Vælg et høreapparat og prøv igen", "Information");
+            //   }
+            //   else
+            //   {
+            //      GeneralSpec selectedGeneralSpec = (GeneralSpec)patientAndHA.GeneralSpecs[HAList.SelectedIndex];
+            //      TecnicalSpec selectedTecnicalSpec = (TecnicalSpec)patientAndHA.TecnicalSpecs[HAList.SelectedIndex];
+
+            //      TypeTB.Text = selectedGeneralSpec.Type.ToString();
+            //      ColorTB.Text = selectedGeneralSpec.Color.ToString();
+            //      GenDateTB.Text = selectedGeneralSpec.CreateDate.ToShortDateString();
+
+            //      TechDateTB.Text = selectedTecnicalSpec.CreateDate.ToShortDateString();
+
+            //      //Todo Kommenter dette ind
+            //      //if (selectedTecnicalSpec.RawEarScan == null)
+            //      //{
+            //      //    PrintStatusTB.Text = "Ikke scannet endnu";
+            //      //}
+            //      //else
+            //      //{
+            //      if (selectedTecnicalSpec.Printed == false)
+            //      {
+
+            //         PrintStatusTB.Text = "Ikke printet endnu";
+            //      }
+
+            //      if (selectedTecnicalSpec.Printed == true)
+            //      {
+
+            //         PrintStatusTB.Text = "Printet";
+            //      }
+
+            //      //}
+            //      RedigerB.IsEnabled = true;
+            //   }
+        }
+        #endregion
+
 
         private void HAList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

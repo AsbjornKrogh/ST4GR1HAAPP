@@ -15,7 +15,8 @@ namespace DLL_Technician
 
       public ClinicDB(ClinicDBContext dbContext)
       {
-         _dbContext = dbContext;
+         _dbContext = new ClinicDBContext();
+            //= dbContext;
       }
 
       /// <summary>
@@ -80,11 +81,13 @@ namespace DLL_Technician
       {
          //try
          //{
+            TecnicalSpec tecnicalSpec = techSpec;
             GeneralSpec generalSpec = _dbContext.GeneralSpecs.OrderBy(x => x.CreateDate).Last(x => x.CPR == techSpec.CPR && x.EarSide == techSpec.EarSide);
 
-            techSpec.HAGenerelSpecID = generalSpec.HAGeneralSpecID;
+            tecnicalSpec.HAGenerelSpecID = generalSpec.HAGeneralSpecID;
+            tecnicalSpec.GeneralSpec = generalSpec;
 
-            _dbContext.TecnicalSpecs.Add(techSpec);
+            _dbContext.TecnicalSpecs.Add(tecnicalSpec);
             _dbContext.SaveChanges();
 
             return _dbContext.TecnicalSpecs.Contains(techSpec);

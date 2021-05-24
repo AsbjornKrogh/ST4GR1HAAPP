@@ -24,9 +24,7 @@ namespace Presentation_Clinician
         public HearingTestWindow()
         {
             InitializeComponent();
-
             pdfViewer.ItemSource = @"Audiogram_Patient1.pdf";
-
         }
     }
 }

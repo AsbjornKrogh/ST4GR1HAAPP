@@ -7,10 +7,10 @@ namespace CoreEFTest.Models
 {
     public class TecnicalSpec
     {
-        [Required]
-        [Key]
-        [MaxLength(10)]
-        public int HATechinalSpecID { get; set; }
+       [Required]
+       [Key]
+       [MaxLength(10)]
+       public int HATechinalSpecID { get; set; }
 
         [Required]
         public Ear EarSide { get; set; }

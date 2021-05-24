@@ -10,6 +10,8 @@ namespace CoreEFTest.Models
 {
    public class Patient
    {
+      //Burde have en patient ID istedet. (Int PatientID { get; set; }) 
+
       [Required]
       [Key]
       [MaxLength(11)]
