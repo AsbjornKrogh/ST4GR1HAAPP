@@ -40,6 +40,7 @@ namespace BLL_Technician
 
         public bool DBPrint(FullRawEarPrint fullRawEarPrint)
         {
+            string CPR = fullRawEarPrint.CPR;
            RawEarPrint print;
          foreach (RawEarScan rawEarScan in fullRawEarPrint.EarScans)
            {
@@ -48,7 +49,7 @@ namespace BLL_Technician
             print.EarSide = rawEarScan.EarSide;
             print.HATechnicalSpecID = rawEarScan.HATechnicalSpecID;
             print.PrintDate = DateTime.Now;
-            db.SavePrint(print);
+            db.SavePrint(print, CPR);
            }
 
          return true;
