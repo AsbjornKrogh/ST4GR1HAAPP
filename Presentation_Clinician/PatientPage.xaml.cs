@@ -56,7 +56,7 @@ namespace Presentation_Clinician
                 patient.Email = TBEmail.Text;
                 patient.MobilNummer = TBPhonenumber.Text;
                 uc2ManagePatient.SaveUpdates(patient);
-                MessageBox.Show("Patientens e-mail og telefonnummer er opdateret");
+                MessageBox.Show("Ændringen er gemt");
                 
             }
 

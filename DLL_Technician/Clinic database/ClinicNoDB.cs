@@ -89,7 +89,7 @@ namespace DLL_Technician
         {
             Thread.Sleep(1000);
 
-            if (EarCastID == "R-1")
+            if (EarCastID == "1")
             {
                 Patient testPatient = new Patient();
                 testPatient.CPR = "123456-7891";
@@ -122,6 +122,21 @@ namespace DLL_Technician
                 GeneralSpec testGeneralSpecRight = new GeneralSpec();
                 testGeneralSpecRight.Color = PlugColor.Honey;
                 testGeneralSpecRight.Type = Material.Blød;
+
+                EarCast earCastRight = new EarCast();
+                EarCast earCastLeft = new EarCast();
+
+                earCastRight.EarCastID = 1;
+                earCastRight.EarSide = Ear.Right;
+
+
+                earCastLeft.EarCastID = 2;
+                earCastLeft.EarSide = Ear.Left;
+
+                testPatient.EarCasts = new List<EarCast>();
+                testPatient.EarCasts.Add(earCastRight);
+
+                testPatient.EarCasts.Add(earCastLeft);
 
                 testPatient.GeneralSpecs.Add(testGeneralSpecLeft);
                 testPatient.GeneralSpecs.Add(testGeneralSpecRight);
@@ -252,7 +267,8 @@ namespace DLL_Technician
             return procesSpecs;
         }
 
-        public bool SavePrint(RawEarPrint rawEarPrint)
+
+        public bool SavePrint(RawEarPrint rawEarPrint, string CPR)
         {
            return true;
         }
