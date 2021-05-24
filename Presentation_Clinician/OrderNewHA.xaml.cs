@@ -33,7 +33,6 @@ namespace Presentation_Clinician
           _clinicianMainWindow = clinicianMainWindow;
           _manageHA = manageHa;
 
-          CbNewColor.ItemsSource = typeof(Colors).GetProperties();
 
       }
 
