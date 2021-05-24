@@ -72,7 +72,9 @@ namespace Presentation_Clinician
          Cb_LeftEar.IsChecked = false;
          Cb_RightEar.IsChecked = false;
 
-            MessageBox.Show("Høreapparatet er bestilt","Bekræftigelse",MessageBoxButton.OK,MessageBoxImage.Information);
+         MessageBox.Show("Høreapparatet er bestilt","Bekræftigelse",MessageBoxButton.OK,MessageBoxImage.Information);
+
+            
 
       }
    }
