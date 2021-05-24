@@ -64,8 +64,8 @@ namespace Presentation_Technician
 
             BackgroundWorker worker = new BackgroundWorker();
 
-            worker.DoWork += UC4GetPatientInformationAll;
-            worker.RunWorkerCompleted += UC4GetPatientInformationAllCompleted;
+            worker.DoWork += UC5GetPatientInformationAll;
+            worker.RunWorkerCompleted += UC5GetPatientInformationAllCompleted;
 
             worker.RunWorkerAsync();
 
@@ -78,12 +78,12 @@ namespace Presentation_Technician
       }
 
 
-      public void UC4GetPatientInformationAll(object sender, DoWorkEventArgs e)
+      public void UC5GetPatientInformationAll(object sender, DoWorkEventArgs e)
       {
          e.Result = uc5_print.GetEarScans();
       }
 
-      public void UC4GetPatientInformationAllCompleted(object sender, RunWorkerCompletedEventArgs e)
+      public void UC5GetPatientInformationAllCompleted(object sender, RunWorkerCompletedEventArgs e)
       {
          HentisRunning = false;
          Loading.Spin = false;
